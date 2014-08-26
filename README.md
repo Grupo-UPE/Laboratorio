@@ -2,7 +2,7 @@ Laboratorio de Programacion
 ===========
 
 Repositorio del grupo de la materia Laboratorio de Programacion
-============================
+
 
 Alumnos:
 Fernadez, Sergio
@@ -12,4 +12,4 @@ Ziegler, Pablo
 
 
 Profesor: Ronconi, Francisco
-=============================
+----------------------------
