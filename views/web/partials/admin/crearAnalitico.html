@@ -1,0 +1,66 @@
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target="nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+       
+        <a class="brand" href="#"><img src="img/logo.png"  /></a>
+        <div class="nav-collapse">
+          <ul class="nav">
+          <li ng-repeat="link in usuario.rol.puntosDeMenu"><a href="#/{{link.url}}">{{link.nombre}}</a></li>
+            <li><a href="/tracker/j_spring_security_logout">Salir</a></li>
+          </ul>
+          <ul class="nav pull-right">
+            <li>&nbsp;&nbsp;&nbsp;<span style="color:#fff">SIGUPE <br> &nbsp;&nbsp;&nbsp;Versión preliminar</span></li>
+		  </ul>	
+        </div><!-- /.nav-collapse -->
+      </div>
+    </div><!-- /navbar-inner -->
+</div><!-- /navbar -->
+<div class="form-base1">
+  <div class="row-fluid">
+	 
+	    <h1>Busqueda de Alumnos</h1>
+	    <div class="form-base">
+          <div class="row-fluid">
+			<form  class="form-horizontal" name="formDNI"  id="formDNI" novalidate>	        
+		        <div class="control-group">
+					<label class="control-label" for="inputDNI">DNI:</label>
+					<div class="controls">
+						<input type="text" id="inputDNI" name="inputNombre" ng-model="dni" ng-required="true" />
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+				<button type="submit"   ng-click="buscarAlumno(dni)">Buscar</button>
+					</div>
+				</div>
+				</form>
+	
+		  <div class="form-group">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+	          <th>Apellido</th>
+	          <th>DNI</th>
+	        </tr>
+	      </thead>
+          <tbody ng-repeat="a in alumnos">
+            <tr>
+              <td>{{a.nombre}}</td>
+              <td>{{a.apellido}}</td>
+              <td>{{a.dni}}</td>
+              <td>
+                <a href="#/ADMIN/crearAnalitico/{{a.id}}" class="btn btn-small btn-primary">Crear Analitico</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>	
+      </div>
+	</div>
+  </div>
+</div>

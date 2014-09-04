@@ -1,0 +1,94 @@
+<div class="container">
+	<h1>Datos Básicos del Valor Base</h1>
+
+	<form novalidate="novalidate" class="form-horizontal">
+		
+		<div class="control-group">
+			<label class="control-label" for="inputLey">Ley</label>
+			<div class="controls">
+				<select id="inputLey" ng-model="valorBaseDetalleWraper.sueValorBaseDetalle.rrhhLey.leyId"
+					ng-options="ley.leyId as ley.descrip for ley in leyes">
+					<option value=""></option>
+				</select>
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label" for="inputRL">Régimen Laboral</label>
+			<div class="controls">
+				<select id="inputRL"
+					ng-model="valorBaseDetalleWraper.sueValorBaseDetalle.sueRegimenLaboral.regLaboralId"
+					ng-options="rl.regLaboralId as rl.valor for rl in regimenesLaborales">
+					<option value=""></option>
+				</select>
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label" for="inputAgrupamiento">Agrupamiento</label>
+			<div class="controls">
+				<select id="inputAgrupamiento" ng-model="valorBaseDetalleWraper.sueValorBaseDetalle.rrhhAgrupamiento.agrupamientoId"
+					ng-options="a.agrupamientoId as a.descrip for a in agrupamientos">
+					<option value=""></option>
+				</select>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="inputCategoria">Categoría</label>
+			<div class="controls">
+				<select id="inputCategoria"
+					ng-model="valorBaseDetalleWraper.sueValorBaseDetalle.rrhhCategoria.categoriaId"
+					ng-options="ca.categoriaId as ca.descrip for ca in categorias">
+					<option value=""></option>
+				</select>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="inputTipo">Tipo</label>
+			<div class="controls">
+				<select id="inputTipo"
+					ng-model="valorBaseDetalleWraper.sueValorBaseDetalle.sueValorBaseTipo.tipoValorBaseId"
+					ng-options="t.tipoValorBaseId as t.descrip for t in valoresBaseTipo">
+					<option value=""></option>
+				</select>
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label" for="inputCantidad">Cantidad</label>
+			<div class="controls">
+				<input type="text" id="inputCantidad"
+					ng-model="valorBaseDetalleWraper.sueValorBaseDetalle.valor" />
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label" for="inputFechaDesde">Fecha desde</label>
+			<div class="controls">
+				<input type="text" ui-date="dateOptions" ui-date-format="dd / mm / yy"
+					name="inputFechaDesde" id="inputFechaDesde" ng-model="valorBaseDetalleWraper.fechaDesde">
+				<div ui-date="dateOptions" ui-date-format="dd / mm / yy"
+					name="inputFechaDesde" id="inputFechaDesde" ng-model="fechaDesdeDiv"/>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="inputFechaHasta">Fecha hasta</label>
+			<div class="controls">
+				<input type="text" ui-date="dateOptions" ui-date-format="dd / mm / yy"
+					name="inputFechaHasta" id="inputFechaHasta" ng-model="valorBaseDetalleWraper.fechaHasta">
+				<div ui-date="dateOptions" ui-date-format="dd / mm / yy"
+					name="inputFechaHasta" id="inputFechaHasta" ng-model="fechaHastaDiv"/>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<div class="controls">
+				<a ng-click="createNewValorBaseDetalle()" class="btn btn-small btn-primary">Guardar</a>
+				<a ng-click="cancel()" class="btn btn-small btn-primary">Cancelar</a>
+			</div>
+		</div>
+	</form>
+</div>

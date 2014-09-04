@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="ngdemo">
+  <head>
+    <meta charset="utf-8">
+    <title>SIGUPE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/bootstrap/fuelux/fuelux.css" rel="stylesheet">
+    <link href="css/bootstrap/fuelux/fuelux-responsive.min.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    
+    <!-- Se usa para el collapsable de los filtros -->
+    <link rel="stylesheet" href="css/jquery-ui/themes/smoothness/jquery-ui.css" />   
+  </head>
+
+<body>
+  <!-- <div ng-include="'commons/header.html'"></div> -->
+  <div ng-view class="container"></div> 
+  <div ng-include="'commons/footer.html'"></div>
+
+  <script src="js/commons.js"></script>
+
+  <!-- JQuery ================================================================ -->
+  <script src="js/jquery/jquery-2.0.3.js"></script>
+  <script src="js/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+		
+  <!-- DATATABLE ============================================================= -->
+  <script src="js/jquery/datatables/jquery.dataTables.min.js"></script>
+  <script src="js/jquery/datatables/jquery.dataTables.pagination.js"></script>
+  <script src="js/jquery/datatables/jquery.dataTables.columnFilter.js"></script>
+	
+  <!-- Bootstrap ============================================================= -->
+  <script src="js/bootstrap/bootstrap.js"></script>
+
+  <!-- AngularJS v1.2.8 -->	
+  <script src="js/angular/angular.js"></script>
+  <script src="js/angular/angular-resource.js"></script>
+  <script src="js/angular/angular-cookies.min.js"></script>
+  <script src="js/angular/angular-route.min.js"></script>
+  <script src="js/angular/i18n/angular-locale_es-ar.js"></script>
+  <script src="js/angular-ui/date.js"></script>
+  <script src="js/angular-ui/mask.js"></script>
+  <script src="js/angular-ui/validate.js"></script>
+	
+  <!-- AngularJS App Code ==================================================== -->
+  <script src="js/app/app.js"></script>
+  <script src="js/app/services.js"></script>
+  <script src="js/app/controllers.js"></script>
+  <script src="js/app/filters.js"></script>
+  <script src="js/app/directives.js"></script> 
+  
+  <script src="js/config/environment.js"></script> 
+	
+  <script src="js/ui-bootstrap/modal.js"></script>
+  <script src="js/ui-bootstrap/transition.js"></script>	
+  <script src="js/ui-bootstrap/dropdown.js"></script>	
+  <script src="js/ui-bootstrap/datepicker.js"></script>	
+  <script src="js/ui-bootstrap/position.js"></script>	
+  <script src="js/ui-bootstrap/tabs.js"></script>	
+	
+  <script src="js/bootstrap/bootstrap.js"></script>
+  <!-- <script src="js/ui-bootstrap/ui-bootstrap-tpls-0.10.0.min.js"></script>  -->
+  </body>
+</html>

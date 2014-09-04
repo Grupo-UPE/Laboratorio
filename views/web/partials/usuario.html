@@ -1,0 +1,45 @@
+<br>
+<div class="form-base1">
+  <div class="row-fluid">
+	 
+	    <h1>Usuario</h1>
+	    <alert-message></alert-message>
+	    <alert-error></alert-error>
+	  </div>
+	    <div class="form-base">
+          <div class="row-fluid">
+			<form  class="form-horizontal" name="formUsuario"  id="formUsuario" novalidate>	        
+		        <div class="control-group">
+					<label class="control-label" for="inputUsername">Nombre de Usuario:</label>
+					<div class="controls">
+						<input type="text" id="inputUsername" name="inputUsername" ng-model="usuario.username" ng-maxlength=8 ng-readonly="accion == 'SHOW' || accion == 'EDIT'" ng-required="true" />
+					</div>
+				</div>
+				
+				<div class="control-group">
+					<label class="control-label" for="inputPassword">Contraseña:</label>
+					<div class="controls">
+						<input type="text" id="inputPassword" name="inputPassword" ng-model="usuario.password" ng-readonly="accion == 'SHOW'" ng-required="true" />
+					</div>
+					<div class="alert-error-f" ng-show="formUsuario.inputUsername.$dirty && formUsuario.inputUsername.$invalid">
+				    	<small class="error" ng-show="formUsuario.inputUsername.$error.maxlength">Sólo se permite un máximo de 8 caracteres!</small>
+					</div>					
+				</div>
+
+				<div class="control-group">
+					<div class="controls">
+						<button type="submit"   ng-click="save()" ng-show="accion == 'NEW'" class="btn btn-small btn-primary" ng-disabled="formUsuario.$invalid">Guardar</button>
+						<button type="submit"   ng-click="update()" ng-show="accion == 'EDIT'" class="btn btn-small btn-primary" ng-disabled="formUsuario.$invalid">Guardar</button>
+						<button type="submit"   ng-click="cancel()" ng-show="accion == 'SHOW'" class="btn btn-small">Volver</button>
+						<button type="submit"   ng-click="cancel()" ng-hide="accion == 'SHOW'" class="btn btn-small">Cancelar</button>
+					</div>
+				</div>
+			</form>
+		  </div>
+		</div>
+	
+  
+</div>
+
+						
+

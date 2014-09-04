@@ -1,0 +1,47 @@
+<br>
+<div class="form-base1">
+  <div class="row-fluid">
+	 
+	    <h1>Usuario</h1>
+	    <alert-message></alert-message>
+	    <alert-error></alert-error>
+	  </div>
+	    <div class="form-base">
+          <div class="row-fluid">
+			<form  class="form-horizontal" name="formCarrera"  id="formCarrera" novalidate>	        
+		        <div class="control-group">
+					<label class="control-label" for="inputCarrera">Nombre de Carrera:</label>
+					<div class="controls">
+						<input type="text" id="inputCarrera" name="inputNombre" ng-model="carrera.nombre" ng-readonly="accion == 'SHOW' || accion == 'EDIT'" ng-required="true" />
+					</div>
+				</div>
+				
+				<div class="control-group">
+					
+					<label class="control-label" for="selectPlan">Plan de carrera:</label>
+				<div class="controls">
+    <select id="selectPlan" name="selectPlan" ng-model="carrera.plan" ng-options="plan.nombre for plan in planes">
+    </select>
+    </div>
+  </span><br/>
+					
+					</div>
+					<div class="alert-error-f" ng-show="formUsuario.inputNombre.$dirty">
+				    	<small class="error" ng-show="formUsuario.inputNombre.$error.maxlength">Sólo se permite un máximo de 8 caracteres!</small>
+					</div>					
+				</div>
+
+				<div class="control-group">
+					<div class="controls">
+						<button type="submit"   ng-click="save()" ng-show="accion == 'NEW'" class="btn btn-small btn-primary" ng-disabled="formCarrera.$invalid">Guardar</button>
+						<button type="submit"   ng-click="update()" ng-show="accion == 'EDIT'" class="btn btn-small btn-primary" ng-disabled="formCarrera.$invalid">Guardar</button>
+						<button type="submit"   ng-click="cancel()" ng-show="accion == 'SHOW'" class="btn btn-small">Volver</button>
+						<button type="submit"   ng-click="cancel()" ng-hide="accion == 'SHOW'" class="btn btn-small">Cancelar</button>
+					</div>
+				</div>
+			</form>
+		  </div>
+		</div>
+	
+  
+</div>

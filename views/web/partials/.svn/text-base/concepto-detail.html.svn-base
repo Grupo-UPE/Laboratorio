@@ -1,0 +1,26 @@
+<div class="container">
+    <h1>Detalle del concepto</h1>
+
+    <form novalidate="novalidate" class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label" for="inputOrden">Orden Visual:</label>
+
+            <div class="controls">
+                <input type="text" id="inputOrden" ng-model="concepto.ordenVisual"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputDescripGral">Descripcion:</label>
+
+            <div class="controls">
+                <input type="text" id="inputDescripGral" ng-model="concepto.descripGral"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <a ng-click="cancel()" class="btn btn-small">Cancelar</a>
+                <a ng-click="updateConcepto()" class="btn btn-small btn-primary">Actualizar concepto</a>
+            </div>
+        </div>
+    </form>
+</div>

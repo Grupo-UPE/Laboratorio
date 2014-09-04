@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from MateriaService WSDL service -->
+
+  <service name="Materia" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://model.datos.de.base.mis.tracker.com.ar"/>
+      <parameter name="wsdlServiceElement" value="MateriaService"/>
+      <parameter name="schemaQualified" value="http://model.datos.de.base.mis.tracker.com.ar"/>
+      <parameter name="wsdlServicePort" value="Materia"/>
+      <parameter name="className" value="ar.com.tracker.mis.base.de.datos.model.Materia"/>
+      <parameter name="wsdlPortType" value="Materia"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://model.datos.de.base.mis.tracker.com.ar" xmlns:retNS="http://model.datos.de.base.mis.tracker.com.ar" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getId" qname="operNS:getId" returnQName="retNS:getIdReturn" returnType="rtns:int" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://model.datos.de.base.mis.tracker.com.ar" name="setId" qname="operNS:setId" soapAction="">
+        <parameter xmlns:pns="http://model.datos.de.base.mis.tracker.com.ar" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://model.datos.de.base.mis.tracker.com.ar" name="setCursos" qname="operNS:setCursos" soapAction="">
+        <parameter xmlns:pns="http://model.datos.de.base.mis.tracker.com.ar" xmlns:tns="http://model.datos.de.base.mis.tracker.com.ar" xmlns:itns="http://model.datos.de.base.mis.tracker.com.ar" qname="pns:cursos" type="tns:ArrayOf_xsd_anyType" itemQName="itns:item"/>
+      </operation>
+      <operation xmlns:operNS="http://model.datos.de.base.mis.tracker.com.ar" xmlns:retNS="http://model.datos.de.base.mis.tracker.com.ar" xmlns:rtns="http://model.datos.de.base.mis.tracker.com.ar" xmlns:tns="http://model.datos.de.base.mis.tracker.com.ar" name="getCursos" qname="operNS:getCursos" returnQName="retNS:getCursosReturn" returnType="rtns:ArrayOf_xsd_anyType" returnItemQName="tns:item" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://model.datos.de.base.mis.tracker.com.ar" name="setJefeCatedra" qname="operNS:setJefeCatedra" soapAction="">
+        <parameter xmlns:pns="http://model.datos.de.base.mis.tracker.com.ar" xmlns:tns="http://model.datos.de.base.mis.tracker.com.ar" qname="pns:jefeCatedra" type="tns:Docente"/>
+      </operation>
+      <operation xmlns:operNS="http://model.datos.de.base.mis.tracker.com.ar" xmlns:retNS="http://model.datos.de.base.mis.tracker.com.ar" xmlns:rtns="http://model.datos.de.base.mis.tracker.com.ar" name="getJefeCatedra" qname="operNS:getJefeCatedra" returnQName="retNS:getJefeCatedraReturn" returnType="rtns:Docente" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://model.datos.de.base.mis.tracker.com.ar" xmlns:retNS="http://model.datos.de.base.mis.tracker.com.ar" xmlns:rtns="http://model.datos.de.base.mis.tracker.com.ar" name="getDepartamento" qname="operNS:getDepartamento" returnQName="retNS:getDepartamentoReturn" returnType="rtns:Departamento" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://model.datos.de.base.mis.tracker.com.ar" name="setDepartamento" qname="operNS:setDepartamento" soapAction="">
+        <parameter xmlns:pns="http://model.datos.de.base.mis.tracker.com.ar" xmlns:tns="http://model.datos.de.base.mis.tracker.com.ar" qname="pns:departamento" type="tns:Departamento"/>
+      </operation>
+      <operation xmlns:operNS="http://model.datos.de.base.mis.tracker.com.ar" xmlns:retNS="http://model.datos.de.base.mis.tracker.com.ar" xmlns:rtns="http://model.datos.de.base.mis.tracker.com.ar" xmlns:tns="http://model.datos.de.base.mis.tracker.com.ar" name="getCorrelativas" qname="operNS:getCorrelativas" returnQName="retNS:getCorrelativasReturn" returnType="rtns:ArrayOf_xsd_anyType" returnItemQName="tns:item" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://model.datos.de.base.mis.tracker.com.ar" name="setCorrelativas" qname="operNS:setCorrelativas" soapAction="">
+        <parameter xmlns:pns="http://model.datos.de.base.mis.tracker.com.ar" xmlns:tns="http://model.datos.de.base.mis.tracker.com.ar" xmlns:itns="http://model.datos.de.base.mis.tracker.com.ar" qname="pns:correlativas" type="tns:ArrayOf_xsd_anyType" itemQName="itns:item"/>
+      </operation>
+      <parameter name="allowedMethods" value="getDepartamento setCorrelativas getCursos setJefeCatedra getCorrelativas setDepartamento setCursos getJefeCatedra setId getId"/>
+
+      <arrayMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_anyType" type="java:java.lang.Object[]" innerType="cmp-ns:anyType" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:Docente" type="java:ar.com.tracker.mis.base.de.datos.model.Docente" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:&gt;getCorrelativas" type="java:ar.com.tracker.mis.base.de.datos.model.GetCorrelativas" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:&gt;setCursos" type="java:ar.com.tracker.mis.base.de.datos.model.SetCursos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:&gt;setCorrelativasResponse" type="java:ar.com.tracker.mis.base.de.datos.model.SetCorrelativasResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:&gt;getCursosResponse" type="java:ar.com.tracker.mis.base.de.datos.model.GetCursosResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:&gt;setDepartamentoResponse" type="java:ar.com.tracker.mis.base.de.datos.model.SetDepartamentoResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:&gt;setIdResponse" type="java:ar.com.tracker.mis.base.de.datos.model.SetIdResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:&gt;setCorrelativas" type="java:ar.com.tracker.mis.base.de.datos.model.SetCorrelativas" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:Departamento" type="java:ar.com.tracker.mis.base.de.datos.model.Departamento" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:&gt;setJefeCatedraResponse" type="java:ar.com.tracker.mis.base.de.datos.model.SetJefeCatedraResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:&gt;getIdResponse" type="java:ar.com.tracker.mis.base.de.datos.model.GetIdResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:&gt;setDepartamento" type="java:ar.com.tracker.mis.base.de.datos.model.SetDepartamento" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:&gt;setId" type="java:ar.com.tracker.mis.base.de.datos.model.SetId" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:&gt;getId" type="java:ar.com.tracker.mis.base.de.datos.model.GetId" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:&gt;getDepartamento" type="java:ar.com.tracker.mis.base.de.datos.model.GetDepartamento" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:&gt;getJefeCatedra" type="java:ar.com.tracker.mis.base.de.datos.model.GetJefeCatedra" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:&gt;setCursosResponse" type="java:ar.com.tracker.mis.base.de.datos.model.SetCursosResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:&gt;getCursos" type="java:ar.com.tracker.mis.base.de.datos.model.GetCursos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:&gt;getCorrelativasResponse" type="java:ar.com.tracker.mis.base.de.datos.model.GetCorrelativasResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:&gt;getDepartamentoResponse" type="java:ar.com.tracker.mis.base.de.datos.model.GetDepartamentoResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:&gt;getJefeCatedraResponse" type="java:ar.com.tracker.mis.base.de.datos.model.GetJefeCatedraResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.datos.de.base.mis.tracker.com.ar" qname="ns:&gt;setJefeCatedra" type="java:ar.com.tracker.mis.base.de.datos.model.SetJefeCatedra" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

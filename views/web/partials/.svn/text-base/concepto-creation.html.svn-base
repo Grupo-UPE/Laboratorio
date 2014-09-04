@@ -1,0 +1,108 @@
+<div class="container">
+    <h1>Crear nuevo concepto</h1>
+
+    <form novalidate="novalidate" class="form-horizontal">
+    	<div class="control-group">
+            <label class="control-label" for="inputTipo">Tipo:</label>
+            <div class="controls">
+	        <select id="inputTipo" ng-model="concepto.sueConceptoTipo" ng-options="ct.tipoConceptoId as ct.descrip for ct in conceptosTipo">
+	        	<option value="">Seleccione</option>
+	      	</select>
+	      	  </div>
+         </div>
+    
+    	<div class="control-group">
+            <label class="control-label" for="inputCaracter">Caracter:</label>
+            <div class="controls">
+	        <select id="inputCaracter" ng-model="concepto.sueConceptoCaracter" ng-options="cc.caracterId as cc.descrip for cc in conceptosCaracter">
+	        	<option value="">Seleccione</option>
+	      	</select>
+	      	  </div>
+         </div>
+         
+         <div class="control-group">
+            <label class="control-label" for="inputModalidad">Modalidad:</label>
+            <div class="controls">
+	        <select id="inputModalidad" ng-model="concepto.sueConceptoModalidad" ng-options="cm.modalidadId as cm.descrip for cm in conceptosModalidad">
+	        	<option value="">Seleccione</option>
+	      	</select>
+	      	  </div>
+         </div>
+         
+          <div class="control-group">
+            <label class="control-label" for="inputAplicacion">Aplicación:</label>
+            <div class="controls">
+	        <select id="inputAplicacion" ng-model="concepto.sueConceptoAplicacion" ng-options="ca.tipoAplicacionId as ca.descrip for ca in conceptosAplicacion">
+	        	<option value="">Seleccione</option>
+	      	</select>
+	      	  </div>
+         </div>
+
+        <div class="control-group">
+            <label class="control-label" for="inputDescripGral">Descripción general:</label>
+
+            <div class="controls">
+                <input type="text" id="inputDescripGral" ng-model="concepto.descripGral" placeholder="Descripcion gral"/>
+            </div>
+        </div>
+          <div class="control-group">
+            <label class="control-label" for="inputFechaDesde">Desde:</label>
+
+            <div class="controls">
+				<input type="text" ui-date="dateOptions" ui-date-format="dd/mm/yy" name="inputFechaDesde"  id="inputFechaDesde" ng-model="fechaDesde">
+				<div ui-date="dateOptions" ui-date-format="dd/mm/yy" name="inputFechaDesde"  id="inputFechaDesde"  /><!--ng-model="fechaDesde" />-->
+            </div>
+        </div>
+
+          <div class="control-group">
+            <label class="control-label" for="inputFechaHasta">Hasta:</label>
+
+            <div class="controls">
+				<input type="text" ui-date="dateOptions" ui-date-format="d/m/yy" name="inputFechaHasta"  id="inputFechaHasta" ng-model="fechaHasta">
+                <div ui-date="dateOptions" ui-date-format="d/m/yy" name="inputFechaHasta"  id="inputFechaHasta" /><!-- ng-model="fechaHasta" />-->
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="clave">Clave:</label>
+            <div class="controls">
+                <input type="text" id="clave" ng-model="concepto.claveTag" placeholder="Clave"/>
+            </div>
+        </div>
+<!-- Deberia ser un "number picker " -->
+        <div class="control-group">
+            <label class="control-label" for="inputOrden">Orden Visual:</label>
+            <div class="controls">
+                <input type="text" id="inputOrden" ng-model="concepto.ordenVisual" placeholder="Orden"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputVigente">Vigente:</label>
+            <div class="controls">
+                <input type="text" id="inputVigente" ng-model="concepto.vigente" placeholder="Vigencia"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="inputObservaciones">Observaciones:</label>
+            <div class="controls">
+                <input type="textarea" id="inputObservaciones" ng-model="concepto.observaciones" placeholder="Ingrese texto"/>
+            </div>
+        </div>
+
+
+<!-- Esto no deberia estar! -->
+<!--         <div class="control-group"> -->
+<!--             <label class="control-label" for="inputUsuarioCarga">Usuario Carga:</label> -->
+<!--             <div class="controls"> -->
+<!--                 <input type="text" id="inputUsuarioCarga" ng-model="concepto.usuarioCarga" placeholder="Volar este campo"/> -->
+<!--             </div> -->
+<!--         </div> -->
+
+        <div class="control-group">
+            <div class="controls">
+                <a ng-click="createNewConcepto()" class="btn btn-small btn-primary">Guardar</a>
+            </div>
+        </div>
+    </form>
+</div>

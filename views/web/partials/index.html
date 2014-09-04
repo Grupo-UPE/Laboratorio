@@ -1,0 +1,28 @@
+<script type="text/javascript" language="javascript" src="js/extra/collapse.js"></script>
+
+<div class="form-base1">
+  <div class="row-fluid">
+    <h3>TEXTOS</h3>
+  </div>
+  <div class="form-base">
+    <div class="row-fluid">
+	  <div class="form-group">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Username</th>
+	          <th>Password</th>
+	          <th></th>
+	        </tr>
+	      </thead>
+          <tbody ng-repeat="texto in textos">
+            <tr>
+              <td>{{texto.texto}}</td>
+              <td>{{texto._id}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+field.name.empty=Name field is mandatory.
+field.standard.empty=Standard field is mandatory.
+field.age.empty=Age field is mandatory.
+field.sex.empty=Sex field is mandatory.
+
+field.age.NAN=Age should be a number. 

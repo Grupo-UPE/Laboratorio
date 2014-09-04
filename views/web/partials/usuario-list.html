@@ -1,0 +1,59 @@
+<script type="text/javascript" language="javascript" src="js/extra/collapse.js"></script>
+
+<div class="form-base1">
+  <div class="row-fluid">
+    <h3>Administración de Usuarios</h3>
+  </div>
+  <div class="form-base">
+    <div class="row-fluid">
+      <div class="accordion">
+        <h3>Filtros</h3>
+	    <table class="table table-striped table-condensed">
+	      <tbody>
+				<tr>
+		            <th colspan="2">
+		            	<label for="inputUsername" dir="rtl">Username</label>
+		            	<input type="text" name="inputUsername" ng-model="username">
+					</th>
+					<th>
+						<label for="inputPassword" dir="rtl">Password</label>
+						<input type="text" name="inputPassword" ng-model="password">
+					</th>
+				</tr>
+		    </tbody>
+		    <tfoot>
+		    	<tr>
+		    		<td colspan="4">
+		    			<a id="btnApplyFilters" class="btn btn-small btn-primary">Buscar</a>
+       	    			<a id="btnClearFilters" class="btn btn-small">Limpiar</a>
+       	    		</td>
+	    		</tr>
+		    </tfoot>
+	    </table>
+	  </div>
+	  <div class="form-group">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Username</th>
+	          <th>Password</th>
+	          <th></th>
+	        </tr>
+	      </thead>
+          <tbody ng-repeat="u in usuarios">
+            <tr>
+              <td>{{u.username}}</td>
+              <td>{{u.password}}</td>
+              <td>
+                <a title='Editar' alt='Editar' ng-click="edit(u.id)"><i class='icon-edit'></i></a>&nbsp;
+                <a title='Eliminar' alt='Eliminar' ng-click="delete(u.id)"><i class='icon-trash'></i></a>&nbsp;
+                <a title='Ver' alt='Ver' ng-click="show(u.id)"><i class='icon-search'></i></a>&nbsp;
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <a ng-click="create()" class="btn btn-small btn-primary">Nuevo Usuario</a>
+      </div>
+	</div>
+  </div>
+</div>

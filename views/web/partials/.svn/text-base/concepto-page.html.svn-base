@@ -1,0 +1,52 @@
+<script type="text/javascript" language="javascript" src="js/jquery/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="js/jquery/datatables/jquery.dataTables.pagination.js"></script>
+<script type="text/javascript" language="javascript" src="js/jquery/datatables/jquery.dataTables.columnFilter.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+	url = "http://localhost:8080/Sueldos/rest/concepto/page";
+	initialOrder = [[ 0, "desc" ]];
+	columns = [
+	 			{ "mData": "conceptoId", "sClass": "ng-binding" },
+ 				{ "mData": "sueConceptoModalidad.descrip" },
+ 				{ "mData": "sueConceptoTipo.descrip" },
+ 				{ "mData": "sueConceptoAplicacion.descrip" },
+	 			{ "mData": "claveTag", "bSortable": false },
+	 			{ "mData": "descripGral", "bSortable": false },
+	 			{ "mData": "ordenVisual" },
+ 	 			{ "sDefaultContent": "" },
+ 		      ];
+	addActions = function (nRow) {
+					var idConcepto = $("td:eq(0)", nRow).html();
+					$('td:eq(7)', nRow).html("<a ng-click='editConcepto("+idConcepto+")'>Editar</a>&nbsp;<a ng-click='deleteConcepto("+idConcepto+")'>Eliminar</a>");
+				};
+</script>
+	
+<div class="span6">
+    <table class="table table-striped table-condensed" id ="example" datatables="initialize">
+        <thead>
+	        <tr>
+	            <th>Concepto Id</th>
+				<th>Modalidad</th>
+				<th>Tipo</th>
+				<th>Aplicación</th>
+				<th>Clave</th>
+				<th>Descripcion</th>
+				<th>Orden Visual</th>
+				<th>Acciones</th>
+	        </tr>
+	    </thead>
+        <tfoot>
+			<tr>
+				<th><input type="text"></th>
+				<th><input type="text"></th>
+				<th><input type="text"></th>
+				<th><input type="text"></th>
+				<th><input type="text"></th>
+			</tr>
+		</tfoot>
+    </table>
+
+	<a id="btnClearFilters" class="btn btn-small">Limpiar filtros</a>
+	<a id="btnApplyFilters" class="btn btn-small">Filtrar conceptos</a>
+    <a ng-click="createNewConcepto()" class="btn btn-small">Crear nuevo concepto</a>
+</div>

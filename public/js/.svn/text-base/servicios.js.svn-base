@@ -1,0 +1,49 @@
+
+	    function cargar_combo(id_elem,servicio)
+	    {
+	    	var host = "http://localhost:8080/";
+	    	
+			var elem = $("#"+id_elem); 
+			
+			switch(servicio)
+			{
+				case "concepto_caracter": 	
+									valor = "caracterId";
+									descripcion = "descrip";
+									servicio = host+"Sueldos/rest/concepto/getSueConceptoCaracterAll";
+									break;		
+									
+				case "concepto_tipo":
+									valor = "tipoConceptoId";
+									descripcion = "descrip";
+									servicio = host+"Sueldos/rest/concepto/getSueConceptoTipoAll";
+									break;		
+									
+				case "concepto_modalidad": 	
+									valor = "modalidadId";
+									descripcion = "descrip";
+									servicio = host+"Sueldos/rest/concepto/getSueConceptoModalidadAll";
+									break;	
+
+				case "concepto_aplicacion": 	
+									valor = "tipoAplicacionId";
+									descripcion = "descrip";
+									servicio = host+"Sueldos/rest/concepto/getSueConceptoAplicacionAll";
+									break;										
+			}	
+
+				cargar_servicio(servicio, elem,valor,descripcion);
+						
+
+	    }
+		
+		function cargar_servicio(servicio, elem,valor,descripcion)
+		{
+		        	$.getJSON(servicio,
+        	    	function(data) {
+    	    			//alert(data);
+		                $.each(data, function(i,item){
+		                	elem.append("<option value=" + item[valor] + ">" + item[descripcion] + "</option>");
+		                });
+        	    	});
+		}

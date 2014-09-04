@@ -1,0 +1,70 @@
+<script type="text/javascript" language="javascript" src="js/jquery/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="js/jquery/datatables/jquery.dataTables.pagination.js"></script>
+<script type="text/javascript" language="javascript" src="js/jquery/datatables/jquery.dataTables.columnFilter.js"></script>
+<script type="text/javascript" language="javascript" src="js/commons.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+	url = "http://localhost:8080/Sueldos/rest/valorBaseDetalle/all";
+	initialOrder = [[ 0, "asc" ]];
+	columns = [
+	 			{ "mData": "rrhhLey.descrip" },
+ 				{ "mData": "sueRegimenLaboral.valor" },
+ 				{ "mData": "rrhhAgrupamiento.descrip" },
+ 				{ "mData": "rrhhCategoria.descrip" },
+	 			{ "mData": "sueValorBaseTipo.descrip" },
+	 			{ "mData": "valor", "bSearchable": false  },
+	 			{ "mData": "fdesde", "bSortable": false },
+	 			{ "mData": "fhasta" },
+ 	 			{ "sDefaultContent": "", "bSortable": false },
+ 		      ];
+	addActions = function (nRow) {
+					var idValorBaseDetalle = $("td:eq(0)", nRow).html();
+					$('td:eq(8)', nRow).html("<a ng-click='editValorBaseDetalle("+idValorBaseDetalle+")'>Editar</a>&nbsp;<a ng-click='deleteValorBaseDetalle("+idValorBaseDetalle+")'>Eliminar</a>");
+ 					// completa el campo de fecha desde
+					var dateInMilliseconds = getDate(parseInt($("td:eq(6)", nRow).html()));
+ 					$('td:eq(6)', nRow).html(dateInMilliseconds);
+ 					// completa el campo de fecha hasta
+ 					dateInMilliseconds = getDate(parseInt($("td:eq(7)", nRow).html()));
+ 					$('td:eq(7)', nRow).html(dateInMilliseconds);
+ 				};
+</script>
+	
+<div class="span6">
+    <table class="table table-striped table-condensed" id ="example" datatables="initialize">
+        <thead>
+	        <tr>
+	            <th>Ley</th>
+				<th>RH</th>
+				<th>Agrupamiento</th>
+				<th>Categoría</th>
+				<th>Tipo</th>
+				<th>Valor</th>
+				<th>Fecha Desde</th>
+				<th>Fecha Hasta</th>
+				<th>Acciones</th>
+	        </tr>
+	    </thead>
+        <tfoot>
+			<tr>
+				<th><input type="text"></th>
+				<th><input type="text"></th>
+				<th><input type="text"></th>
+				<th><input type="text"></th>
+				<th><input type="text"></th>
+				<th></th>
+				<th>
+					<input type="text" ui-date="dateOptions" ui-date-format="dd / mm / yy" name="inputFechaDesde" id="inputFechaDesde" ng-model="fechaDesde">
+					<div ui-date="dateOptions" ui-date-format="dd /mm / yy" name="inputFechaDesde" id="inputFechaDesde" ng-model="fechaDesdeDiv" />
+				</th>
+				<th>
+					<input type="text" ui-date="dateOptions" ui-date-format="dd / mm / yy" name="inputFechaHasta" id="inputFechaHasta" ng-model="fechaHasta">
+					<div ui-date="dateOptions" ui-date-format="dd /mm / yy" name="inputFechaHasta" id="inputFechaHasta" ng-model="fechaHastaDiv" />
+				</th>
+			</tr>
+		</tfoot>
+    </table>
+
+	<a id="btnClearFilters" class="btn btn-small">Limpiar filtros</a>
+	<a id="btnApplyFilters" class="btn btn-small">Filtrar valores bases</a>
+    <a ng-click="createNewValorBaseDetalle()" class="btn btn-small">Nuevo Valor Base</a>
+</div>

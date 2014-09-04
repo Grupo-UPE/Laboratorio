@@ -1,0 +1,7 @@
+getDate = function (dateInMilliseconds) {
+	if (!isNaN(dateInMilliseconds)) {
+		var javascriptDate = new Date(dateInMilliseconds);
+ 		return javascriptDate.getUTCDate()+" / "+javascriptDate.getUTCMonth()+1+" / "+javascriptDate.getUTCFullYear();
+ 	}
+ 	return "";
+};

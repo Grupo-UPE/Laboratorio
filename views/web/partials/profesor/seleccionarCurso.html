@@ -1,0 +1,54 @@
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target="nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+       
+        <a class="brand" href="#"><img src="img/logo.png"  /></a>
+        <div class="nav-collapse">
+          <ul class="nav">
+          <li ng-repeat="link in usuario.rol.puntosDeMenu"><a href="#/{{link.url}}">{{link.nombre}}</a></li>
+            <li><a href="/tracker/j_spring_security_logout">Salir</a></li>
+          </ul>
+          <ul class="nav pull-right">
+            <li>&nbsp;&nbsp;&nbsp;<span style="color:#fff">SIGUPE <br> &nbsp;&nbsp;&nbsp;Versión preliminar</span></li>
+		  </ul>	
+        </div><!-- /.nav-collapse -->
+      </div>
+    </div><!-- /navbar-inner -->
+</div><!-- /navbar -->
+<br>
+<!-- Faltarian los datos del alumno -->
+<div class="form-base1">
+  <div class="row-fluid">
+  <h3>Crear Final</h3>
+  <a ng-click="buscarCursos(usuario.id)" class="btn btn-small btn-primary">Buscar Mis cursos</a>
+  </div>
+    <div class="form-base">
+    <div class="row-fluid">
+  <div class="form-group">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Materia</th>
+	          <th>Turno</th>
+	          <th>Fecha</th>
+	          <th></th>
+	        </tr>
+	      </thead>
+          <tbody ng-repeat="c in cursos">
+            <tr>
+              <td>{{c.materia}}</td>
+              <td>{{c.turno}}</td>
+              <td><input date-picker="start" class="fecha" min-view="date" type="text" id="inputDate" name="inputDate" ng-model="c.fecha"  ng-required="true" data-provide="datepicker" /></td>
+              <td><a ng-click="crearFinal(c.idCurso,c.fecha)" class="btn btn-small" ng-disabled="c.fecha==null" >Crear Final</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+	</div>
+</div>
+</div>

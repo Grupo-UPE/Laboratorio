@@ -1,0 +1,113 @@
+@charset "utf-8";
+/* CSS Document */
+
+  body {
+        padding-top: 70px;
+       
+        background-color: #f5f5f5;
+      }
+		/*contenedor base de formularios*/
+.form-base{
+		
+		padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);	
+			
+		}
+
+.form-base1{
+		
+		padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #ccc;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);	
+			
+		}
+.form-base2{
+		
+		padding: 10px 10px 10px 10px;
+        margin: 0 auto 20px;
+        background-color: #f5802f;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);	
+			
+		}
+		
+		.form-base3{
+		
+		padding: 10px 10px 10px 10px;
+        margin: 0 auto 20px;
+        background-color: #4d4d4f;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);	
+			
+		}
+      .form-signin {
+        max-width: 300px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+.footer{
+	
+	background-color:#4d4d4f;
+	color:#ebebeb;
+	padding:7px;
+	}
+
+.dentro-footer{
+	width:95%;
+
+	/*background-color:#999;*/
+	float:left;
+	margin:5px auto 5px 20px;
+	/*-webkit-border-radius: 5px;
+	border-radius: 5px;*/
+	padding:2px 3px 2px 3px;
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#FFF;
+	/*border-right:#FFF 1px solid;*/
+	text-align:right
+}

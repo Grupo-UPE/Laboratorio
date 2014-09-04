@@ -1,0 +1,80 @@
+'use strict';
+
+/* Services */
+
+/*
+ http://docs.angularjs.org/api/ngResource.$resource
+
+ Default ngResources are defined as
+
+ 'get':    {method:'GET'},
+ 'save':   {method:'POST'},
+ 'query':  {method:'GET', isArray:true},
+ 'remove': {method:'DELETE'},
+ 'delete': {method:'DELETE'}
+
+ */
+
+var services = angular.module('ngdemo.services', ['ngResource']);
+
+services.factory('ConceptosFactory', function ($resource) {
+    return $resource('/Sueldos/rest/concepto/all', {}, {
+        query: { method: 'GET', isArray: true },
+        create: { method: 'POST' }
+    });
+});
+
+services.factory('ConceptoFactory', function ($resource) {
+	return $resource('/Sueldos/rest/concepto/:id', {}, {
+        show: { method: 'GET' },
+        remove: { method: 'DELETE', params: {id: '@id'} },
+    });
+});
+
+services.factory('ConceptoFactory1', function ($resource) {
+	return $resource('/Sueldos/rest/concepto/concepto', {}, {
+        update: { method: 'PUT' },
+        create: { method: 'POST' },
+    });
+});
+
+services.factory('ConceptoTipoFactory', function ($resource) {
+    return $resource('/Sueldos/rest/concepto/getSueConceptoTipoAll', {}, {
+    	 query: { method: 'GET', params: {}, isArray: true },
+        //show: { method: 'GET' },
+        //update: { method: 'PUT', params: {id: '@id'} },
+        //delete: { method: 'DELETE', params: {id: '@id'}  }
+    });
+});
+
+services.factory('ConceptoModalidadFactory', function ($resource) {
+    return $resource('/Sueldos/rest/concepto/getSueConceptoModalidadAll', {}, {
+    	 query: { method: 'GET', params: {}, isArray: true },
+    })
+});
+
+services.factory('ConceptoCaracterFactory', function ($resource) {
+    return $resource('/Sueldos/rest/concepto/getSueConceptoCaracterAll', {}, {
+    	 query: { method: 'GET', params: {}, isArray: true },
+    })
+});
+
+services.factory('ConceptoAplicacionFactory', function ($resource) {
+    return $resource('/Sueldos/rest/concepto/getSueConceptoAplicacionAll', {}, {
+    	 query: { method: 'GET', params: {}, isArray: true },
+    })
+});
+
+services.factory('ValorBaseDetalleFactory', function ($resource) {
+	return $resource('/Sueldos/rest/valorBaseDetalle/:id', {}, {
+        show: { method: 'GET' },
+        remove: { method: 'DELETE', params: {id: '@id'} },
+    });
+});
+
+services.factory('ValorBaseDetalleFactory1', function ($resource) {
+	return $resource('/Sueldos/rest/valorBaseDetalle/valorBaseDetalle', {}, {
+        update: { method: 'PUT' },
+        create: { method: 'POST' },
+    });
+});

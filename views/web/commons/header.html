@@ -1,0 +1,43 @@
+<script>
+$(document).ready(function() {
+	$("a.dropdown-submenu-hover").click( function(){
+		   		return false;
+		});
+});	
+</script>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target="nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+       
+        <a class="brand" href="#"><img src="img/logo.png"  /></a>
+        <div class="nav-collapse">
+          <ul class="nav">
+          <li ng-repeat="link in usuario.rol.puntosDeMenu"><a href="#/{{link.url}}">{{link.nombre}}</a></li>
+            <!-- <li><a href="#">ITEMS</a></li>
+            <li class="active"><a href="#/usuario-list">Usuarios</a></li>
+            <li><a href="#">Link</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tipos <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Items</a></li>
+                <li><a href="#">Estados</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </li>
+             -->
+            <li><a href="/tracker/j_spring_security_logout">Salir</a></li>
+          </ul>
+          <ul class="nav pull-right">
+            <li>&nbsp;&nbsp;&nbsp;<span style="color:#fff">SIGUPE <br> &nbsp;&nbsp;&nbsp;Versión: 0.1</span></li>
+		  </ul>	
+        </div><!-- /.nav-collapse -->
+      </div>
+    </div><!-- /navbar-inner -->
+</div><!-- /navbar -->

@@ -1,0 +1,118 @@
+'use strict';
+
+/* Controllers */
+
+var app = angular.module('ngdemo.controllers', []);
+
+
+// Clear browser cache (in development mode)
+// http://stackoverflow.com/questions/14718826/angularjs-disable-partial-caching-on-dev-machine
+app.run(function ($rootScope, $templateCache) {
+    $rootScope.$on('$viewContentLoaded', function () {
+        $templateCache.removeAll();
+    });
+});
+
+app.controller('ConceptoListPageCtrl', ['$scope', '$location', 'ConceptoFactory',
+    function ($scope, $location, ConceptoFactory) {
+
+	    // callback for ng-click 'createConcepto':
+	    $scope.createNewConcepto = function () {
+	    	$location.path('/concepto-creation');
+	    };
+	    
+		// callback for ng-click 'editConcepto':
+        $scope.editConcepto = function (conceptoId) {
+           $location.path('/concepto-detail/' + conceptoId);
+        };
+        
+        // callback for ng-click 'deleteConcepto':
+        $scope.deleteConcepto = function (conceptoId) {
+        	if (confirm("¿Está seguro que desea eliminar el concepto " + conceptoId + "?")) {
+        		ConceptoFactory.remove({ id: conceptoId });
+        		$location.path("http://localhost:8080/Sueldos/conceptos-page");	
+        	}
+        };
+	}]);
+                          
+app.controller('ConceptoListCtrl', ['$scope', 'ConceptosFactory', 'ConceptoFactory', '$location',
+    function ($scope, ConceptosFactory, ConceptoFactory, $location) {
+
+        // callback for ng-click 'editUser':
+        $scope.editConcepto = function (conceptoId) {
+            $location.path('/concepto-detail/' + conceptoId);
+        };
+
+        // callback for ng-click 'deleteUser':
+        $scope.deleteConcepto = function (conceptoId) {
+        	ConceptoFactory.delete({ id: conceptoId });
+            $scope.conceptos = ConceptosFactory.query();
+        };
+
+        // callback for ng-click 'createUser':
+        $scope.createNewConcepto = function () {
+            $location.path('/concepto-creation');
+        };
+        
+        $scope.conceptos = ConceptosFactory.query();
+    }]);
+
+app.controller('ConceptoDetailCtrl', ['$scope', '$routeParams', 'ConceptoFactory', 'ConceptoFactory1', '$location',
+    function ($scope, $routeParams, ConceptoFactory, ConceptoFactory1, $location) {
+
+        // callback for ng-click 'updateConcepto':
+        $scope.updateConcepto = function () {
+        	ConceptoFactory1.update($scope.concepto);
+        };
+
+        // callback for ng-click 'cancel':
+        $scope.cancel = function () {
+            $location.path('/concepto-page');
+        };
+
+        $scope.concepto = ConceptoFactory.show({id: $routeParams.id});
+    }]);
+
+app.controller('ConceptoCreationCtrl', ['$scope', 'ConceptoFactory1', 'ConceptoTipoFactory', 'ConceptoCaracterFactory','ConceptoModalidadFactory','ConceptoAplicacionFactory', '$location',
+    function ($scope, ConceptoFactory1, ConceptoTipoFactory, ConceptoCaracterFactory, ConceptoModalidadFactory, ConceptoAplicacionFactory, $location) {
+
+        // callback for ng-click 'createNewConcepto':
+        $scope.createNewConcepto = function () {
+        	ConceptoFactory1.create($scope.concepto, $scope.fechaDesde, $scope.fechaHasta);
+            $location.path('/concepto-page');
+        };
+        
+        $scope.conceptosTipo = ConceptoTipoFactory.query();
+        $scope.conceptosCaracter = ConceptoCaracterFactory.query();
+        $scope.conceptosModalidad = ConceptoModalidadFactory.query();
+        $scope.conceptosAplicacion = ConceptoAplicacionFactory.query();
+        
+        $scope.dateOptions = {
+                changeYear: true,
+                changeMonth: true,
+                yearRange: '1900:-0'
+        };
+    }]);
+
+/* VALORES BASES */
+app.controller('ValorBaseDetalleListCtrl', ['$scope', '$location', 'ValorBaseDetalleFactory',
+    function ($scope, $location, ValorBaseDetalleFactory) {
+
+	    // callback for ng-click 'createValorBaseDetalle':
+	    $scope.createNewValorBaseDetalle = function () {
+	    	$location.path('/valor-base-detalle-creation');
+	    };
+	    
+		// callback for ng-click 'editValorBaseDetalle':
+        $scope.editValorBaseDetalle = function (valorBaseDetalleId) {
+           $location.path('/valor-base-detalle-detail/' + valorBaseDetalleId);
+        };
+        
+        // callback for ng-click 'deleteValorBaseDetalle':
+        $scope.deleteValorBaseDetalle = function (valorBaseDetalleId) {
+        	if (confirm("¿Está seguro que desea eliminar el valor base " + valorBaseDetalleId + "?")) {
+        		ValorBaseDetalleFactory.remove({ id: valorBaseDetalleId });
+        		$location.path("http://localhost:8080/Sueldos/valor-base-detalle-page");	
+        	}
+        };
+	}]);
