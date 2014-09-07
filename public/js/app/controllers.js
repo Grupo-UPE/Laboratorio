@@ -14,9 +14,17 @@ app.run(function ($rootScope, $templateCache) {
 
 
 app.controller('IndexController', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-    'textoservice','textoserviceid','textoremove','textocreate',
+    'textoservice','textoserviceid','textoremove','textocreate','USER_ROLES','controlAcceso',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    textoservice,textoserviceid,textoremove,textocreate) {
+                                    textoservice,textoserviceid,textoremove,textocreate,USER_ROLES,controlAcceso) {
+            var roles=[USER_ROLES.admin,USER_ROLES.rhh]
+              if($scope.currentUser===null){
+                $location.path('/login');
+            }else{
+                if(!controlAcceso.puedeAcceder($scope.currentUser,roles)){
+                    $location.path('/');
+                }
+            }
 
             $scope.listatextos=textoservice.query();
             $scope.guardar = function () {
@@ -32,9 +40,17 @@ app.controller('IndexController', ['$scope', '$rootScope', '$cookieStore', '$loc
 }]);
 
 app.controller('EditarController', ['$scope', '$rootScope', '$cookieStore', '$location', '$http','$routeParams',
-    'textoserviceid',
+    'textoserviceid','USER_ROLES','controlAcceso',
                                    function($scope, $rootScope, $cookieStore, $location, $http,$routeParams,
-                                    textoserviceid) {
+                                    textoserviceid,USER_ROLES,controlAcceso) {
+            var roles=[USER_ROLES.admin]
+            if($scope.currentUser===null){
+                $location.path('/login');
+            }else{
+                if(!controlAcceso.puedeAcceder($scope.currentUser,roles)){
+                    $location.path('/');
+                }
+            }
             $scope.txt=textoserviceid.show({id: $routeParams.textoId});
             $scope.guardar = function () {
                 textoserviceid.update({texto: $scope.txt.texto,id:$routeParams.textoId});
@@ -45,3 +61,39 @@ app.controller('EditarController', ['$scope', '$rootScope', '$cookieStore', '$lo
 
 
 }]);
+
+/*Sacamos algo de aca
+https://medium.com/opinionated-angularjs/techniques-for-authentication-in-angularjs-applications-7bbf0346acec
+*/
+app.controller('LoginController', function ($scope, $rootScope, AuthService,$location) {
+  $scope.credenciales = {
+    username: '',
+    password: ''
+  };
+  $scope.login = function (credenciales) {
+    AuthService.login(credenciales).then(function (user) {
+      $scope.setCurrentUser(user);
+      $location.path('/');
+    }, function () {
+    });
+  };
+})
+
+app.constant('USER_ROLES', {
+  all: '*',
+  admin: 'admin',
+  rrhh: 'rrhh',
+  entrevistador: 'entrevistador',
+  invitado:'invitado'
+})
+
+app.controller('ApplicationController', function ($scope,
+                                               USER_ROLES,
+                                               AuthService,Session) {
+  $scope.currentUser = null;
+  $scope.userRoles = USER_ROLES;
+
+  $scope.setCurrentUser = function (user) { //Esto es llamado desde desde $scope.login del LoginController.
+    $scope.currentUser = user;
+  };
+})

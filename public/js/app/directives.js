@@ -1,9 +1,9 @@
 'use strict';
 
 /* Directives */
-    
+
 var appDir = angular.module('ngdemo.directives', []);
-	
+
 appDir.directive('appVersion', ['version', function(version) {
     return function(scope, elm, attrs) {
       elm.text(version);
@@ -11,7 +11,7 @@ appDir.directive('appVersion', ['version', function(version) {
   }]);
 
 appDir.directive('datatables', function initialize($compile) {
-	return { 
+	return {
 		link: function (scope, element, attrs) {
 			// apply DataTable options, use defaults if none specified by user
 			var options = {
@@ -40,12 +40,12 @@ appDir.directive('datatables', function initialize($compile) {
 	    			$compile(nRow)(scope);
 	    		},
 	        };
-	        
+
 			// apply the plugin
 	        var oTable = element.dataTable(options);
-	        
+
 	        $("#btnApplyFilters").click(function () {
-	        	var filters = new Array();	
+	        	var filters = new Array();
 			    $("#exampleFilters tbody").each(function (i) {
 					// esto es porque la tabla de filtros tiene mas de una fila
 					for (var r=0; r<this.rows.length; r++) {
@@ -61,14 +61,14 @@ appDir.directive('datatables', function initialize($compile) {
 			    });
 			    oTable.fnArrayFilter(filters);
 			});
-			
+
 			$("#btnClearFilters").click(function () {
 				oTable.fnFilterClear();
 			});
-			
-			// esto es para que cuando se carga la grilla se limpien los filtros, de manera que no queden pre-cargados con valores de otros requerimientos 
+
+			// esto es para que cuando se carga la grilla se limpien los filtros, de manera que no queden pre-cargados con valores de otros requerimientos
 			$("#btnClearFilters").trigger("click");
-			
+
 	        // watch for any changes to our data, rebuild the DataTable
 	        scope.$watch(attrs.aaData, function(value) {
 	            var val = value || null;
@@ -93,7 +93,7 @@ appDir.directive('dateTimePicker', function() {
 	      '</div>',
 	    link: function(scope, element, attrs, ngModel) {
 	      var input = element.find('input');
-	 
+
 	      input.datetimepicker({
 	        format: "mm/dd/yyyy hh:ii",
 	        showMeridian: true,
@@ -101,7 +101,7 @@ appDir.directive('dateTimePicker', function() {
 	        todayBtn: true,
 	        todayHighlight: true
 	      });
-	 
+
 	      element.bind('blur keyup change', function(){
 	        scope.recipient.datetime = input.val();
 	      });
@@ -118,7 +118,7 @@ appDir.directive('alertMessage', function() {
 	      '<a class="close" data-dismiss="alert">×</a>  '+
 	      '<strong>{{message}}</strong>'+
 	      '</div>'
-	    
+
 	  };
 	});
 
@@ -142,12 +142,12 @@ appDir.directive('cuitcuilValidate', function() {
 
             	var vec= Array(10);
     		    var esCuit=false;
-    		    
+
     		    do {
     		    	viewValue = viewValue.replace('-','');
     		    	viewValue = viewValue.replace('_',''); //porque al final queda unn caracter _
-    		    } while(viewValue.indexOf('-') >= 0);    
-    		    
+    		    } while(viewValue.indexOf('-') >= 0);
+
     		    if ( viewValue.length != 11) {  // si no estan todos los digitos
     		        esCuit=false;
     		    } else {
@@ -164,7 +164,7 @@ appDir.directive('cuitcuilValidate', function() {
     		        vec[7] = viewValue.charAt(  7) * 4;
     		        vec[8] = viewValue.charAt(  8) * 3;
     		        vec[9] = viewValue.charAt(  9) * 2;
-    		                    
+
     		        // Suma cada uno de los resultado.
     		        for( var i = 0;i<=9; i++) {
     		            x += vec[i];
@@ -176,12 +176,12 @@ appDir.directive('cuitcuilValidate', function() {
     		    }
     		    if (esCuit){
     		    	ctrl.$setValidity('validcuitcuil', true);
-    		    	return viewValue; 
+    		    	return viewValue;
     		    } else {
     		    	ctrl.$setValidity('validcuitcuil', false);
     		    	return viewValue;
     		    }
-    		    	
+
             });
         }
     };

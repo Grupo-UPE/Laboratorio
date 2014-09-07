@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="css/jquery-ui/themes/smoothness/jquery-ui.css" />
   </head>
 
-<body>
+<body ng-controller="ApplicationController">
+{{currentUser}}
    <div ng-include="'commons/header.html'"></div>
   <div ng-view class="container"></div>
   <div ng-include="'commons/footer.html'"></div>
@@ -44,6 +45,10 @@
   <script src="js/angular-ui/date.js"></script>
   <script src="js/angular-ui/mask.js"></script>
   <script src="js/angular-ui/validate.js"></script>
+
+  <!-- El coso que nos da el stateprovider para limitar la navegacion segun el rol -->
+  <script src="js/angular-ui/angular-ui-router.js"></script>
+
 
   <!-- AngularJS App Code ==================================================== -->
   <script src="js/app/app.js"></script>

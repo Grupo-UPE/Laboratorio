@@ -1,0 +1,22 @@
+{{currentUser._id}}
+{{currentUser.username}}
+<div ng-if="!authService.isAuthenticated()">
+<form role="form" ng-controller="LoginController" ng-submit="login(credenciales)" novalidate>
+    <legend>Login</legend>
+    {{usr}}
+
+    <div class="form-group">
+        <label for="form-nombre">Nombre</label>
+        <input type="text" class="form-control" id="form-nombre" placeholder="Input field" name="nombre" ng-model="credenciales.username">
+    </div>
+    <div class="form-group">
+        <label for="form-pass">Password</label>
+        <input type="text" class="form-control" id="form-pass" placeholder="Input field" name="pass" ng-model="credenciales.password">
+    </div>
+
+
+
+
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+</div>

@@ -7,6 +7,9 @@ var mongoose        = require('mongoose')
 var texto_schema = require('../models/texto')
   , Texto = db.model('Texto', texto_schema)
 
+  var usuario_schema = require('../models/usuario')
+  , Usuario = db.model('Usuario', usuario_schema)
+
 exports.index = function (req, res, next) {
 
     Texto.find(gotTextos)
@@ -105,10 +108,12 @@ exports.remove = function (req, res, next) {
 }
 
 exports.create = function (req, res, next) {
-    console.log(req.body);
+
     var txt = req.body.texto       || ''
+    var usr_id = req.body.usr_id
     var texto = new Texto({
-        texto : txt
+        texto : txt,
+        usuario_id:usr_id
     })
 
     texto.save(onSaved)

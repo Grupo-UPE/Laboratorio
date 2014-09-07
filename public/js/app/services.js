@@ -55,3 +55,47 @@ services.factory('textoremove', function ($resource) {
         remove: { method: 'POST' },
     });
 });
+
+services.factory('AuthService', function ($http, Session,$rootScope) {
+  var authService = {};
+
+  authService.login = function (credenciales) {
+    return $http
+      .post('/login', credenciales)
+      .then(function (res) {
+        //$rootScope.usr=res;
+        Session.create(res.data._id,
+                       res.data.username,res.data.rol);
+        return res.data;
+      });
+  };
+
+  authService.isAuthenticated = function () {
+    return !!Session._id;
+  };
+
+  return authService;
+})
+
+.service('Session', function () {
+  this.create = function (_id, username,rol) {
+    this._id = _id;
+    this.username = username;
+    this.rol = rol;
+  };
+  this.destroy = function () {
+    this._id = null;
+    this.username = null;
+    this.rol = null;
+  };
+  return this;
+});
+
+services.factory('controlAcceso', function () {
+    this.puedeAcceder=function(usr,roles){
+     if(roles.indexOf(usr.rol) !== -1){ //Si el usuario tiene el rol suficiente para acceder
+        return true;
+     }
+    }
+    return this;
+});

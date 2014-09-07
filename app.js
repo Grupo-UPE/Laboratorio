@@ -11,6 +11,7 @@ var users = require('./routes/users');
 var app = express();
 
 var texto  = require('./controllers/texto')
+var usuario  = require('./controllers/usuario')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,6 +33,7 @@ app.post('/REST/delete-texto', texto.remove)
 app.post('/REST/create-texto', texto.create)
 //app.use('/', routes);
 app.use('/users', users);
+app.post('/login', usuario.login)
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
