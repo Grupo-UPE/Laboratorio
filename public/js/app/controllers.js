@@ -17,7 +17,7 @@ app.controller('IndexController', ['$scope', '$rootScope', '$cookieStore', '$loc
     'textoservice','textoserviceid','textoremove','textocreate','USER_ROLES','controlAcceso',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
                                     textoservice,textoserviceid,textoremove,textocreate,USER_ROLES,controlAcceso) {
-            var roles=[USER_ROLES.admin,USER_ROLES.rhh]
+            /*var roles=[USER_ROLES.admin,USER_ROLES.rhh]
               if($scope.currentUser===null){
                 $location.path('/login');
             }else{
@@ -25,7 +25,7 @@ app.controller('IndexController', ['$scope', '$rootScope', '$cookieStore', '$loc
                     $location.path('/');
                 }
             }
-
+    */
             $scope.listatextos=textoservice.query();
             $scope.guardar = function () {
                 textocreate.create({texto: $scope.txt});
@@ -43,14 +43,16 @@ app.controller('EditarController', ['$scope', '$rootScope', '$cookieStore', '$lo
     'textoserviceid','USER_ROLES','controlAcceso',
                                    function($scope, $rootScope, $cookieStore, $location, $http,$routeParams,
                                     textoserviceid,USER_ROLES,controlAcceso) {
-            var roles=[USER_ROLES.admin]
-            if($scope.currentUser===null){
+           /* var roles=[USER_ROLES.admin];
+            $scope.roles=[USER_ROLES.admin];
+           if($scope.currentUser===null){
                 $location.path('/login');
             }else{
                 if(!controlAcceso.puedeAcceder($scope.currentUser,roles)){
                     $location.path('/');
                 }
             }
+            *
             $scope.txt=textoserviceid.show({id: $routeParams.textoId});
             $scope.guardar = function () {
                 textoserviceid.update({texto: $scope.txt.texto,id:$routeParams.textoId});
@@ -59,7 +61,7 @@ app.controller('EditarController', ['$scope', '$rootScope', '$cookieStore', '$lo
                 $location.path('/');
             }
 
-
+*/
 }]);
 
 /*Sacamos algo de aca
@@ -85,7 +87,7 @@ app.constant('USER_ROLES', {
   rrhh: 'rrhh',
   entrevistador: 'entrevistador',
   invitado:'invitado'
-})
+});
 
 app.controller('ApplicationController', function ($scope,
                                                USER_ROLES,
@@ -96,4 +98,22 @@ app.controller('ApplicationController', function ($scope,
   $scope.setCurrentUser = function (user) { //Esto es llamado desde desde $scope.login del LoginController.
     $scope.currentUser = user;
   };
+
+
+/*  $scope.$on('$viewContentLoaded', function($scope) {
+    //var permisos = $route.permisos;
+    var permitidos = $route.current.$$route.permisos;
+    console.log($scope)
+    if($scope.currentUser===undefined){
+                $location.path('/login');
+        }else{
+            console.log("a");
+                if(!controlAcceso.puedeAcceder($scope.currentUser,permitidos)){
+                    $location.path('/');
+                }
+            }
+  });
+
+
+})*/
 })
