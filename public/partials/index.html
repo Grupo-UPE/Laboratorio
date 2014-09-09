@@ -1,12 +1,6 @@
             <h1>Pruebas</h1>
             <div ng-if="isAuthorized(userRoles.admin)">Sos administrador.</div>
 
-<div ng-switch on="currentUser.role">
-  <div ng-switch-when="userRoles.admin">Administrador.</div>
-  <div ng-switch-when="userRoles.rrhh">RRHH.</div>
-  <div ng-switch-when="userRoles.entrevistador">Entrevistaddor.</div>
-  <div ng-switch-default>Invitado u otra cosa.</div>
-</div>
             <h2>TEXTOS</h2>
                   <p ng-repeat="texto in listatextos">
                         {{texto.texto}}

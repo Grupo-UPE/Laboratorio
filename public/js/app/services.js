@@ -95,6 +95,8 @@ services.factory('controlAcceso', function () {
     this.puedeAcceder=function(usr,roles){
      if(roles.indexOf(usr.rol) !== -1){ //Si el usuario tiene el rol suficiente para acceder
         return true;
+     }else{
+        return false;
      }
     }
     return this;

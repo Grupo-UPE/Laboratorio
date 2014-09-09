@@ -12,35 +12,19 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
                 templateUrl: 'partials/index.html',
                 controller: 'IndexController',
             });
-            $routeProvider.when('/editar/:textoId', {templateUrl: 'partials/editar.html', controller: 'EditarController'});
+            $routeProvider.when('/editar/:textoId',
+                {
+                    templateUrl: 'partials/editar.html',
+                    controller: 'EditarController',
+                    permisos : ['admin']
+                });
             $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginController'});
             $routeProvider.otherwise({redirectTo: '/login'});
 
 }])
 
-    .run(function($rootScope, $cookieStore, $http, $location, $modal, AuthService) {
+    .run(function($rootScope, $cookieStore, $http, $location, $modal, AuthService,controlAcceso) {
             // Reset error when a new view is loaded
 	$rootScope.$on('$viewContentLoaded', function() {
 		delete $rootScope.error;
-	});
-
-	$rootScope.seleccione = "Seleccione..";
-
-	/*
-	$rootScope.openModalList = function ($scope) {
-	    var modalInstance = $modal.open({
-	      templateUrl: 'partials/modal-item-list.html',
-	      controller: 'ModalListCtrl',
-	      scope: $scope,
-	      resolve: {
-	    	title: function () {
-	          return $scope.$title;
-	        },
-	        items: function () {
-	          return $scope.items;
-	        }
-	      }
-	    });
-    };
-    */
-});
+	});});
