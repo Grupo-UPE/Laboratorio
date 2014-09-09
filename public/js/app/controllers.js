@@ -61,7 +61,7 @@ app.controller('EditarController', ['$scope', '$rootScope', '$cookieStore', '$lo
                 $location.path('/');
             }
 
-
+*/
 }]);
 
 /*Sacamos algo de aca
@@ -87,7 +87,7 @@ app.constant('USER_ROLES', {
   rrhh: 'rrhh',
   entrevistador: 'entrevistador',
   invitado:'invitado'
-})
+});
 
 app.controller('ApplicationController', function ($scope,
                                                USER_ROLES,
@@ -98,6 +98,7 @@ app.controller('ApplicationController', function ($scope,
   $scope.setCurrentUser = function (user) { //Esto es llamado desde desde $scope.login del LoginController.
     $scope.currentUser = user;
   };
+
 
 /*  $scope.$on('$viewContentLoaded', function($scope) {
     //var permisos = $route.permisos;
@@ -112,6 +113,7 @@ app.controller('ApplicationController', function ($scope,
                 }
             }
   });
-*/
 
+
+})*/
 })

@@ -1,6 +1,6 @@
 // Creación de la Conexión
 var mongoose        = require('mongoose')
-  , db_lnk          = 'mongodb://localhost/test'
+  , db_lnk          = 'mongodb://192.168.168.1/test'
   , db              = mongoose.createConnection(db_lnk)
 
 // Creación de variables para cargar el modelo
