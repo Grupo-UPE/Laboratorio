@@ -52,7 +52,7 @@ app.controller('EditarController', ['$scope', '$rootScope', '$cookieStore', '$lo
                     $location.path('/');
                 }
             }
-            *
+            */
             $scope.txt=textoserviceid.show({id: $routeParams.textoId});
             $scope.guardar = function () {
                 textoserviceid.update({texto: $scope.txt.texto,id:$routeParams.textoId});
@@ -60,8 +60,6 @@ app.controller('EditarController', ['$scope', '$rootScope', '$cookieStore', '$lo
             $scope.volver = function(){
                 $location.path('/');
             }
-
-*/
 }]);
 
 /*Sacamos algo de aca
