@@ -32,8 +32,14 @@ app.post('/REST/texto', texto.update)
 app.post('/REST/delete-texto', texto.remove)
 app.post('/REST/create-texto', texto.create)
 //app.use('/', routes);
-app.use('/users', users);
 app.post('/login', usuario.login)
+
+//Rutas para los usuarios
+app.get('/REST/usuario', usuario.list)
+app.get('/REST/usuario/:id', usuario.show)
+app.post('/REST/usuario', usuario.update)
+app.post('/REST/delete-usuario', usuario.remove)
+app.post('/REST/create-usuario', usuario.create)
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
