@@ -38,7 +38,7 @@ app.post('/login', usuario.login)
 app.get('/REST/usuario', usuario.list)
 app.get('/REST/usuario/:id', usuario.show)
 app.post('/REST/usuario', usuario.update)
-app.post('/REST/delete-usuario', usuario.remove)
+//app.post('/REST/delete-usuario', usuario.remove)
 app.post('/REST/create-usuario', usuario.create)
 
 /// catch 404 and forward to error handler

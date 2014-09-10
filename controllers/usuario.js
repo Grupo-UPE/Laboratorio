@@ -97,7 +97,7 @@ exports.list = function (req, res, next) {
 
     Usuario.find(gotUsuarios)
 
-  function gotTextos (err, usuarios) {
+  function gotUsuarios (err, usuarios) {
     if (err) {
       console.log(err)
       return next()
@@ -106,6 +106,7 @@ exports.list = function (req, res, next) {
     No le veo mucho sentido a enviar toda la informacion del usuario.
     Me molesta, sobre todo, enviar el password, aunque esta hasheado
     */
+    console.log(JSON.stringify(usuarios));
     return res.json(usuarios);
   }
 
