@@ -10,6 +10,7 @@ var usuario_schema = new Schema({
     email               : String,
     legajo              : String,
     password        :  String,
+    cambiarpass    : Boolean,
     roles                   :  [Schema.ObjectId],
 });
 
