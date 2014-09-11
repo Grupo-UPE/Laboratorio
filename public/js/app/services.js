@@ -17,7 +17,8 @@
 
 var services = angular.module('ngdemo.services', ['ngResource']);
 
-/* USUARIO */
+/* USUARIO
+Lo dejo para consultar.
 services.factory('UsuarioFactory', function ($resource) {
 	return $resource('/tracker/rest/usuario/:id', {}, {
         show: { method: 'GET' },
@@ -27,6 +28,33 @@ services.factory('UsuarioFactory', function ($resource) {
         query: { method: 'GET', params: {}, isArray: true },
     });
 });
+*/
+/*Usuarios*/
+/*
+Si tuvieramos los metodos put y delete quedaria mas prolijo
+*/
+services.factory('usuarioService', function ($resource) {
+    return $resource('/REST/usuario/', {}, {
+        query: { method: 'GET', params: {}, isArray: true }, //trae todos los usuarios
+    });
+});
+services.factory('usuarioCreateService', function ($resource) {
+    return $resource('/REST/create-usuario/', {}, {
+        create: { method: 'POST' },
+    });
+});
+services.factory('usuarioShowUpdateService', function ($resource) {
+    return $resource('/REST/texto/:id', {}, {
+        show: { method: 'GET' },
+        update: { method: 'POST' },
+    });
+});
+services.factory('usuarioRemoveService', function ($resource) {
+    return $resource('/REST/delete-texto/:id', {}, {
+        remove: { method: 'POST' },
+    });
+});
+
 
 /*Textos*/
 services.factory('textoservice', function ($resource) {

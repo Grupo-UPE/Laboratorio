@@ -12,6 +12,32 @@ app.run(function ($rootScope, $templateCache) {
     });
 });
 
+app.controller('usuarioListCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        'usuarioService','usuarioCreateService',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,
+                                    usuarioService,usuarioCreateService) {
+
+            $scope.listaUsuarios=usuarioService.query();
+            $scope.guardar = function () {
+                usuarioCreateService.create({usuario:$scope.usuario})
+                //Deberiamos limpiar el formulario... Depues busco como
+        };
+
+}]);
+
+app.controller('usuarioCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http','$routeParams',
+                        'usuarioShowUpdateService',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,$routeParams,
+                                    usuarioShowUpdateService) {
+            $scope.usuario=usuarioShowUpdateService.show({id: $routeParams.textoId});
+            $scope.guardar = function () {
+                usuarioShowUpdateService.update({usuario: $scope.usuario});
+               $location.path('/usuarios');
+            };
+            $scope.volver = function(){
+                $location.path('/usuarios');
+            }
+}]);
 
 app.controller('IndexController', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
     'textoservice','textoserviceid','textoremove','textocreate','USER_ROLES','controlAcceso',
