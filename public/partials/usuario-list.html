@@ -1,0 +1,63 @@
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>Roles</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="usr in listaUsuarios">
+                <td>{{usr.username}}</td>
+                <td>{{usr.apellido}}</td>
+                <td>{{usr.nombre}}</td>
+                <td>{{usr.roles}}</td>
+                <td><a href="/#/usuarios/{{usr._id}}" class="btn btn-default">Editar</a>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+<form action="" ng-submit="guardar()" method="POST" class="form-horizontal" role="form">
+        <div class="form-group">
+            <legend>Alta nuevo usuario</legend>
+
+                <div class="form-group">
+                    <label for="username">Nombre de usuario</label>
+                    <input type="text" class="form-control" id="username" placeholder="Nombre de Usuario" ng-model="usuario.username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="text" class="form-control" id="" placeholder="Password" ng-model="usuario.password" required>
+                </div>
+                <div class="form-group">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" placeholder="Apellido" ng-model="usuario.apellido" required>
+                </div>
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre" ng-model="usuario.nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="legajo">Legajo</label>
+                    <input type="text" class="form-control" id="legajo" placeholder="Legajo" ng-model="usuario.legajo" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-Mail</label>
+                    <input type="email" class="form-control" id="email" placeholder="em@il" ng-model="usuario.email" required>
+                </div>
+                <div class="form-group">
+                    <label for="roles">Roles</label>
+                    <select  size="5" id="roles" multiple ng-multiple="true" ng-model="usuario.roles" ng-options="r.nombre for r in listaRoles" required></select>
+                </div>
+
+        <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+                <button type="submit" class="btn btn-primary">Generar Usuario</button>
+            </div>
+        </div>
+</form>
+</div>

@@ -63,26 +63,23 @@ Usuario.getAuthenticated(username, password, function(err, usuario, motivo) {
 
 exports.create = function (req, res, next) {
     //Las verificaciones de los requeridos la hariamos desde angular.... por ahora.
-    var username=req.body.username;
-    var nombre=req.body.nombre;
-    var apellido=req.body.apellido;
-    var email=req.body.email;
-    var legajo=req.body.legajo;
-    var password=req.body.password;
-    var cambiarpass=true;
-    var roles=req.body.roles;
+    var usr=req.body.usuario;
 
     var usuario=new Usuario({
-        username:username,
-        nombre:nombre,
-        apellido:apellido,
-        email:email,
-        legajo:legajo,
-        password:password,
-        cambiarpass:cambiarpass,
-        roles:roles,
+        username:usr.username,
+        nombre:usr.nombre,
+        apellido:usr.apellido,
+        email:usr.email,
+        legajo:usr.legajo,
+        password:usr.password,
+        cambiarpass:true,
+        roles:usr.roles,
     });
-    usuario.save(onSaved)
+
+    console.log("Generamos el usuario y nos queda: ");
+    console.log(usuario);
+
+    //usuario.save(onSaved)
 
     function onSaved (err) {
         if (err) {

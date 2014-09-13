@@ -18,6 +18,9 @@ app.controller('usuarioListCTRL', ['$scope', '$rootScope', '$cookieStore', '$loc
                                     usuarioService,usuarioCreateService) {
 
             $scope.listaUsuarios=usuarioService.query();
+            //Lo que sigue tiene que venir de un query... un services que devuelva todos los roles.
+            //Se lo deja para utiizar a modo de ejemplo para armar el html.
+            $scope.listaRoles=[{id:"1",nombre:"Rol 1"},{id:"2",nombre:"Rol 3"},{id:"3",nombre:"Otro rol de prueba"}];
             $scope.guardar = function () {
                 usuarioCreateService.create({usuario:$scope.usuario})
                 //Deberiamos limpiar el formulario... Depues busco como
