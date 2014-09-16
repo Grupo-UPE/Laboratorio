@@ -51,6 +51,4 @@ usuario_schema.statics.getAuthenticated = function(username, password, cb) {
     });
 };
 
-
-module.exports = usuario_schema
-//module.exports = mongoose.model('Usuario', usuario_schema);
+module.exports = mongoose.model('Usuario', usuario_schema); //Exportamos el modelo y no solo el schema.

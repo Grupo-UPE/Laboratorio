@@ -28,7 +28,7 @@
     </div>
     <div class="panel-body">
         <form action="" ng-submit="guardar()" method="POST" class="form-horizontal" role="form">
-                    <div class="form-group col-sm-5 col-md-5 col-lg-5">
+            <div class="form-group col-sm-5 col-md-5 col-lg-5">
                 <legend>Datos del usuario</legend>
                     <label for="username">Nombre de usuario</label>
                     <input type="text" class="form-control" id="username" placeholder="Nombre de Usuario" ng-model="usuario.username" required>
@@ -38,21 +38,19 @@
                     <input type="email" class="form-control" id="email" placeholder="em@il" ng-model="usuario.email" required>
                     <label for="roles">Roles</label><br />
                     <select  size="5" id="roles" multiple ng-multiple="true" ng-model="usuario.roles" ng-options="r.nombre for r in listaRoles" required></select>
-
-                </div>
-                <div class="col-sm-2 col-md-2 col-lg-2">
+            </div>
+            <div class="col-sm-1 col-md-1 col-lg-1">
                 <!-- Es trampa para separar los divs -->
-                </div>
-                <div class="form-group col-sm-5 col-md-5 col-lg-5">
-                <legend>Datos personales</legend>
+            </div>
+            <div class="form-group col-sm-5 col-md-5 col-lg-5">
+                    <legend>Datos personales</legend>
                     <label for="apellido">Apellido</label>
                     <input type="text" class="form-control" id="apellido" placeholder="Apellido" ng-model="usuario.apellido" required>
                     <label for="nombre">Nombre</label>
                     <input type="text" class="form-control" id="nombre" placeholder="Nombre" ng-model="usuario.nombre" required>
                     <label for="legajo">Legajo</label>
                     <input type="text" class="form-control" id="legajo" placeholder="Legajo" ng-model="usuario.legajo" required>
-                </div>
-
+            </div>
             <div class="form-group">
                 <div class="col-sm-10 col-sm-offset-2">
                     <button type="submit" class="btn btn-primary">Generar Usuario</button>

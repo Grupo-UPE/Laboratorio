@@ -1,29 +1,22 @@
-var Usuario = require('../models/usuario');
-
-var mongoose        = require('mongoose')
-  , db_lnk          = 'mongodb://localhost/test'
-  , db              = mongoose.createConnection(db_lnk)
-
-
-  var usuario_schema = require('../models/usuario')
-  , Usuario = db.model('Usuario', usuario_schema)
+var Usuario = require('../models/usuario'); //Traemos directamente el modelo
+var mongoose = require('mongoose');
 
 /*
 *   Pruebas para verficar que funcione
 *
 *
   var tonto = new Usuario({
-    username   : '1234',
-    nombre          :   'nombe',
-    apellido           : 'apellido',
+    username   : 'username',
+    nombre          :   'alguien',
+    apellido           : 'ea ea pepe',
     legajo              : '123',
-    password        :  '1234',
+    password        :  '123456',
 });
 
 tonto.save();
 
 
-Usuario.getAuthenticated('123', '123', function(err, usuario, motivo) {
+Usuario.getAuthenticated('username', '12345', function(err, usuario, motivo) {
         if (err) throw err;
 
         // login was successful if we have a user
