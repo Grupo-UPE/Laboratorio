@@ -1,5 +1,5 @@
 var Usuario = require('../models/usuario'); //Traemos directamente el modelo
-var mongoose = require('mongoose');
+var Rol = require('../models/rol'); //Traemos directamente el modelo
 
 /*
 *   Pruebas para verficar que funcione
@@ -57,6 +57,14 @@ Usuario.getAuthenticated(username, password, function(err, usuario, motivo) {
 exports.create = function (req, res, next) {
     //Las verificaciones de los requeridos la hariamos desde angular.... por ahora.
     var usr=req.body.usuario;
+    var rolesid=[];
+    //console.log(usr.roles);
+    var arr = [];
+    for (var id in usr.roles) {
+        arr.push(usr.roles[id]["_id"]);
+    }
+    console.log(arr);
+    //console.log(rolesid);
 
     var usuario=new Usuario({
         username:usr.username,
@@ -66,37 +74,35 @@ exports.create = function (req, res, next) {
         legajo:usr.legajo,
         password:usr.password,
         cambiarpass:true,
-        roles:usr.roles,
+        roles:arr,
     });
 
-    console.log("Generamos el usuario y nos queda: ");
-    console.log(usuario);
-
-    //usuario.save(onSaved)
+    usuario.save(onSaved)
 
     function onSaved (err) {
         if (err) {
             console.log(err)
             return next(err)
         }
-        return res.redirect('/usuarios')
+        return res.send("");
         }
 };
 
 exports.list = function (req, res, next) {
 
-    Usuario.find(gotUsuarios)
+    Usuario.find(gotUsuarios).populate('roles')
 
   function gotUsuarios (err, usuarios) {
     if (err) {
       console.log(err)
       return next()
     }
+    //console.log(listaUsrs);
     /* Deberiamos utilizar un usuariodto o algo similar.
     No le veo mucho sentido a enviar toda la informacion del usuario.
     Me molesta, sobre todo, enviar el password, aunque esta hasheado
     */
-    console.log(JSON.stringify(usuarios));
+    //console.log(JSON.stringify(usuarios));
     return res.json(usuarios);
   }
 
@@ -113,7 +119,7 @@ exports.show = function (req, res, next) {
       return next(err)
     }
     var usuariodto={
-                _id:usuario.id,
+                _id:usuario._id,
                 username:usuario.nombre,
                 roles:usuario.roles,
                 nombre:usuario.nombre,

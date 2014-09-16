@@ -55,6 +55,12 @@ services.factory('usuarioRemoveService', function ($resource) {
     });
 });
 
+/* Usuarios */
+services.factory('rolService', function ($resource) {
+    return $resource('/REST/rol/', {}, {
+        query: { method: 'GET', params: {}, isArray: true }, //trae todos los usuarios
+    });
+});
 
 /*Textos*/
 services.factory('textoservice', function ($resource) {

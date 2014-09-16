@@ -11,7 +11,7 @@ var usuario_schema = new Schema({
     legajo              : String,
     password        :  String,
     cambiarpass    : Boolean,
-    roles                   :  [Schema.ObjectId],
+    roles                   :  [{type: Schema.ObjectId, ref : 'Rol'}],
 });
 
 usuario_schema.pre('save', function(next) {
@@ -48,7 +48,7 @@ usuario_schema.statics.getAuthenticated = function(username, password, cb) {
             if (isMatch) return cb(null, usuario); //Si coinciden los password retorno el usuario
             return cb(null,null,"No coincide"); //Retorn que no coincide
         });
-    });
+    }).populate('roles');
 };
 
 module.exports = mongoose.model('Usuario', usuario_schema); //Exportamos el modelo y no solo el schema.

@@ -14,6 +14,7 @@ var app = express();
 
 var texto  = require('./controllers/texto')
 var usuario  = require('./controllers/usuario')
+var rol  = require('./controllers/rol')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,6 +43,9 @@ app.get('/REST/usuario/:id', usuario.show)
 app.post('/REST/usuario', usuario.update)
 //app.post('/REST/delete-usuario', usuario.remove)
 app.post('/REST/create-usuario', usuario.create)
+
+//Rutas para roles.
+app.get('/REST/rol', rol.list)
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
