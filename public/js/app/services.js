@@ -97,7 +97,6 @@ services.factory('textoremove', function ($resource) {
     });
 });
 
-<<<<<<< HEAD
 /*Busquedas*/
 
 services.factory('busquedaService', function ($resource) {
@@ -112,15 +111,12 @@ services.factory('busquedaCreateService', function ($resource) {
     });
 });
 /**/
-=======
 //Para verificar el login
 services.factory('estaLogueado', function ($resource) {
     return $resource('/REST/estaLogueado/', {}, {
         query: { method: 'GET', params: {}, isArray: false }, //trae todos los usuarios
     });
 });
-
->>>>>>> 98bddd4a56999c7b28bc29a71a418d9706b5300c
 
 services.factory('AuthService', function ($http, Session,$rootScope) {
   var authService = {};

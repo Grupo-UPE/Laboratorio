@@ -48,9 +48,6 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
             // Reset error when a new view is loaded
 	$rootScope.$on('$viewContentLoaded', function() {
 		delete $rootScope.error;
-<<<<<<< HEAD
-	});});
-=======
 	});})
 
 
@@ -73,4 +70,3 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
         };
     });
 }]);
->>>>>>> 98bddd4a56999c7b28bc29a71a418d9706b5300c
