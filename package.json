@@ -1,18 +1,41 @@
 {
-  "name": "rest",
+  "name": "UPE",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "express": "~4.2.0",
-    "static-favicon": "~1.0.0",
-    "morgan": "~1.0.0",
-    "cookie-parser": "~1.0.1",
     "body-parser": "~1.0.0",
+    "cookie-parser": "~1.0.1",
     "debug": "~0.7.4",
+    "express": "~4.2.0",
+    "express-session": "^1.8.2",
+    "googleapis": "*",
     "jade": "~1.3.0",
-    "mongoose" : "*"
-  }
+    "mongoose": "*",
+    "morgan": "~1.0.0",
+    "static-favicon": "~1.0.0"
+  },
+  "description": "Laboratorio de Programacion ===========",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Grupo-UPE/Laboratorio.git"
+  },
+  "keywords": [
+    "UPE",
+    "Laboratorio",
+    "de",
+    "programacion",
+    "Emplados",
+    "Busqueda"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Grupo-UPE/Laboratorio/issues"
+  },
+  "homepage": "https://github.com/Grupo-UPE/Laboratorio"
 }

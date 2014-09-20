@@ -5,10 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var session = require('express-session')
 mongoose.connect('mongodb://localhost/test'); //Conectamos mongoose.
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+//var users = require('./routes/users');
+gapi = require('./lib/gapi');
 
 var app = express();
 
@@ -18,6 +20,7 @@ var rol  = require('./controllers/rol')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+app.set('views', __dirname + '/views')
 app.set('view engine', 'jade');
 
 app.use(favicon());
@@ -25,6 +28,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
+app.use(session({ secret: 'keyboard cat',
+                            cookie: { maxAge: 12*60*60*1000 },
+                            saveUninitialized: true,
+                            resave: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -46,6 +53,66 @@ app.post('/REST/create-usuario', usuario.create)
 
 //Rutas para roles.
 app.get('/REST/rol', rol.list)
+
+//Login... por ahora esta aca porque es mas de prueba que otra cosa.
+app.get('/login', function(req, res) {
+  var locals = {
+        title: 'Login',
+        url: gapi.url
+      };
+  res.render('login.jade', locals);
+});
+
+
+app.get('/oauth2callback', function(req, res) {
+  var code = req.query.code;
+    gapi.a.getToken(code, function(err, tokens) {
+        gapi.a.setCredentials(tokens);
+        gapi.b.people.get({ userId: 'me', auth: gapi.a }, function(err, profile) {
+        if (err) {
+            console.log('An error occured', err);
+            return;
+        }
+        //console.log(profile); //El usuario se logueo, en teoria.
+        var email=profile.emails;
+        usuario.login(email[0].value,function(rv){//rv=Return Value
+            if(typeof rv != 'undefined'){
+                //req.session=session;
+                rv.token=code; //le meto el token en el usuario.
+                rv.save;
+                req.session.usuario=rv;
+            var locals={
+                title:"Bienvenido!",
+                usuario:rv,
+            }
+            //console.log(rv);
+            res.render('redirect.jade', locals);
+        }else{
+            var locals={
+                title:'Error en el Login',
+            }
+
+            res.render('login.jade', locals);
+        }
+        });
+        });
+    });
+});
+
+//Prueba de googleapis
+app.get('/REST/algo', function(req, res) {
+    gapi.b.people.get({ userId: 'me', auth: gapi.a }, function(err, profile) {
+        if (err) {
+            console.log('An error occured', err);
+            return;
+        }
+        //console.log(profile); //El usuario se logueo, en teoria.
+        res.json(profile);
+    });
+});
+
+//Login
+app.get('/REST/estaLogueado', usuario.estaLogueado);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

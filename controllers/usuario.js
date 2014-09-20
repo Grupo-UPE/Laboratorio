@@ -6,74 +6,61 @@ var Rol = require('../models/rol'); //Traemos directamente el modelo
 *
 *
   var tonto = new Usuario({
-    username   : 'username',
-    nombre          :   'alguien',
-    apellido           : 'ea ea pepe',
-    legajo              : '123',
-    password        :  '123456',
+    email   : 'ferticidio@gmail.com',
 });
 
 tonto.save();
+Usuario.acceder('ferticidio@gmail.com',function(err,usuario,motivo){
+    if(err) throw err;
+    if(usuario){
+        console.log('SUCESS');
+        return;
+    }
+    console.log(motivo);
+});
 
-
-Usuario.getAuthenticated('username', '12345', function(err, usuario, motivo) {
-        if (err) throw err;
-
-        // login was successful if we have a user
-        if (usuario) {
-            // handle login success
-            console.log('login success');
-            return;
-        }
-        console.log(motivo);
-    });
 */
 
-  exports.login = function (req, res, next) {
+exports.estaLogueado=function(req, res) {
+    console.log("aaaaaaaaaaaaaaaaaaa");
+    console.log(req.session);
+    if(typeof req.session.usuario != 'undefined'){
+        console.log(req.session.usuario);
+        return res.json(req.session.usuario);
+    }else{
+        res.writeHead(401, {
+        "Content-Type": "text/plain"
+        });
+        res.end("No autorizado.");
+    }
+}
 
-    var username = req.body.username;
-    var password = req.body.password;
-
-
-Usuario.getAuthenticated(username, password, function(err, usuario, motivo) {
+  exports.login = function (email,callback) {
+Usuario.acceder(email, function(err, usuario, motivo) {
         if (err) throw err;
         if (usuario) {
-            var usuariodto={
-                _id:usuario.id,
-                username:usuario.nombre,
-                roles:usuario.roles,
-                nombre:usuario.nombre,
-                apellido:usuario.apellido,
-            }
-            res.json(usuariodto);
+            console.log("Retornando usuario");
+            callback(usuario);
         }else{
-            res.writeHead(401)
-        res.send();
+            callback('undefined');
         }
-
     });
-};
+}
 
 exports.create = function (req, res, next) {
     //Las verificaciones de los requeridos la hariamos desde angular.... por ahora.
-    var usr=req.body.usuario;
+    var email=req.body.email;
+    var username=req.body.username;
     var rolesid=[];
     //console.log(usr.roles);
     var arr = [];
     for (var id in usr.roles) {
         arr.push(usr.roles[id]["_id"]);
     }
-    console.log(arr);
-    //console.log(rolesid);
 
     var usuario=new Usuario({
-        username:usr.username,
-        nombre:usr.nombre,
-        apellido:usr.apellido,
         email:usr.email,
-        legajo:usr.legajo,
-        password:usr.password,
-        cambiarpass:true,
+        username:usr.username,
         roles:arr,
     });
 
@@ -111,42 +98,46 @@ exports.list = function (req, res, next) {
 exports.show = function (req, res, next) {
   var id = req.params.id
 
-  Texto.findById(id, gotUsuario)
+  Usuario.findById(id, gotUsuario)
 
-  function gotTexto (err, usuario) {
+  function gotUsuario (err, usuario) {
     if (err) {
       console.log(err)
       return next(err)
     }
     var usuariodto={
                 _id:usuario._id,
-                username:usuario.nombre,
+                username:usuario.username,
+                email:usuario.email,
                 roles:usuario.roles,
-                nombre:usuario.nombre,
-                apellido:usuario.apellido,
             }
     return res.json(usuariodto)
   }
 };
 
 exports.update = function (req, res, next) {
+    console.log(req.body.usuario);
+    var mongoose=require('mongoose');
+    var id = mongoose.Types.ObjectId(req.body.usuario._id);
+    //console.log(id);
+    //console.log(id);
+    var username=req.body.usuario.username;
+    var email=req.body.usuario.email;
+    var roles=req.body.usuario.roles;
+    var _id=mongoose.Types.ObjectId(req.body.usuario._id);
 
-    var id = req.body._id
-    var username=req.body.username;
-    var nombre=req.body.nombre;
-    var apellido=req.body.apellido;
-    var email=req.body.email;
-    var legajo=req.body.legajo;
-    var password=req.body.password;
-    var cambiarpass=true;
-    var roles=req.body.roles;
+    //console.log(usr.roles);
+    var arr = [];
+    for (var id in roles) {
+        arr.push(roles[id]["_id"]);
+    }
 
 
-  if ((username=== '')) {
+  if ((email=== '')) {
     return res.send({'error':'Debe escribir algo'})
   }
 
-    Usuario.findById(id, gotUsuario)
+    Usuario.findById(_id, gotUsuario);
 
     function gotUsuario (err, usuario) {
         if (err) {
@@ -156,13 +147,9 @@ exports.update = function (req, res, next) {
             return res.send({'error':'ID invalido'})
         } else {
             usuario.username=username;
-            usuario.nombre=nombre;
-            usuario.apellido=apellido;
             usuario.email=email;
-            usuario.legajo=legajo;
-            usuario.password=password;
-            usuario.roles=roles;
-            texto.save(onSaved)
+            usuario.roles=arr;
+            usuario.save(onSaved)
         }
     }
 

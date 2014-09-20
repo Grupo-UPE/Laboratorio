@@ -1,0 +1,12 @@
+extends layout
+block header
+    script(type='text/javascript').
+      function redireccionar()
+        {
+            location.href="/"
+        }
+        setTimeout ("redireccionar()", 3000);
+block content
+  h1= title
+  p="Redirigiendolo a la aplicacion. Si en 5 segundos lo redirige siga el siguiente link"
+  a(href= "/")= "Ir a la aplicacion"
