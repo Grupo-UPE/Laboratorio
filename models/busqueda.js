@@ -14,4 +14,4 @@ var busqueda_schema = new Schema({
     horario           : String,
 });
 
-module.exports = usuario_schema
+module.exports = busqueda_schema

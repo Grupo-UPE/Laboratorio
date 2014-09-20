@@ -35,6 +35,12 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
                     controller: 'usuarioCTRL',
                     permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
+	    $routeProvider.when('/busquedas',
+                {
+                    templateUrl: 'partials/busqueda-list.html',
+                    controller: 'busquedaListCTRL',
+                    permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                });
 
 }])
 
@@ -42,6 +48,9 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
             // Reset error when a new view is loaded
 	$rootScope.$on('$viewContentLoaded', function() {
 		delete $rootScope.error;
+<<<<<<< HEAD
+	});});
+=======
 	});})
 
 
@@ -64,3 +73,4 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
         };
     });
 }]);
+>>>>>>> 98bddd4a56999c7b28bc29a71a418d9706b5300c

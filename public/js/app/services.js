@@ -97,6 +97,22 @@ services.factory('textoremove', function ($resource) {
     });
 });
 
+<<<<<<< HEAD
+/*Busquedas*/
+
+services.factory('busquedaService', function ($resource) {
+    return $resource('/REST/busqueda/', {}, {
+        query: { method: 'GET', params: {}, isArray: true }, //trae todos las busquedas
+    });
+});
+
+services.factory('busquedaCreateService', function ($resource) {
+    return $resource('/REST/create-busqueda/', {}, {
+        create: { method: 'POST' },
+    });
+});
+/**/
+=======
 //Para verificar el login
 services.factory('estaLogueado', function ($resource) {
     return $resource('/REST/estaLogueado/', {}, {
@@ -104,6 +120,7 @@ services.factory('estaLogueado', function ($resource) {
     });
 });
 
+>>>>>>> 98bddd4a56999c7b28bc29a71a418d9706b5300c
 
 services.factory('AuthService', function ($http, Session,$rootScope) {
   var authService = {};
