@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 var Schema = require('mongoose').Schema
 
 var rol_schema = new Schema({
@@ -5,4 +6,4 @@ var rol_schema = new Schema({
   puntos_de_menu: [{ url: String, anchor: String }],
 })
 
-module.exports = rol_schema
+module.exports = mongoose.model('Rol', rol_schema); //Exportamos el modelo y no solo el schema.

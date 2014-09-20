@@ -13,29 +13,31 @@ app.run(function ($rootScope, $templateCache) {
 });
 
 app.controller('usuarioListCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'usuarioService','usuarioCreateService',
+                        'usuarioService','usuarioCreateService','rolService','$route',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    usuarioService,usuarioCreateService) {
+                                    usuarioService,usuarioCreateService,rolService,$route) {
 
             $scope.listaUsuarios=usuarioService.query();
             //Lo que sigue tiene que venir de un query... un services que devuelva todos los roles.
             //Se lo deja para utiizar a modo de ejemplo para armar el html.
-            $scope.listaRoles=[{id:"1",nombre:"Rol 1"},{id:"2",nombre:"Rol 3"},{id:"3",nombre:"Otro rol de prueba"}];
+            //$scope.listaRoles=[{id:"5418858979b8c2751f48803f",nombre:"Rol 1"},{id:"5418858979b8c2751f48803g",nombre:"Rol 3"},{id:"5418858979b8c2751f48803t",nombre:"Otro rol de prueba"}];
+            $scope.listaRoles=rolService.query();
             $scope.guardar = function () {
-                usuarioCreateService.create({usuario:$scope.usuario})
-                //Deberiamos limpiar el formulario... Depues busco como
-        };
+                var algo=usuarioCreateService.create({usuario:$scope.usuario});
+                    $route.reload(); //Probe varias cosas y es lo unico que me funciona sin usar promises o algo de eso.
 
-}]);
+            }
+            }]);
 
 app.controller('usuarioCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http','$routeParams',
-                        'usuarioShowUpdateService',
+                        'usuarioShowUpdateService','rolService',
                                    function($scope, $rootScope, $cookieStore, $location, $http,$routeParams,
-                                    usuarioShowUpdateService) {
-            $scope.usuario=usuarioShowUpdateService.show({id: $routeParams.textoId});
+                                    usuarioShowUpdateService,rolService) {
+            $scope.usuario=usuarioShowUpdateService.show({id: $routeParams.usuarioId});
+            $scope.listaRoles=rolService.query();
             $scope.guardar = function () {
                 usuarioShowUpdateService.update({usuario: $scope.usuario});
-               $location.path('/usuarios');
+               //$location.path('/usuarios');
             };
             $scope.volver = function(){
                 $location.path('/usuarios');
@@ -43,9 +45,11 @@ app.controller('usuarioCTRL', ['$scope', '$rootScope', '$cookieStore', '$locatio
 }]);
 
 app.controller('IndexController', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-    'textoservice','textoserviceid','textoremove','textocreate','USER_ROLES','controlAcceso',
+    'textoservice','textoserviceid','textoremove','textocreate','USER_ROLES','controlAcceso','google',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    textoservice,textoserviceid,textoremove,textocreate,USER_ROLES,controlAcceso) {
+                                    textoservice,textoserviceid,textoremove,textocreate,USER_ROLES,controlAcceso,google) {
+                                    //Prueba de googleapis
+                                    $scope.profile=google.query();
             /*var roles=[USER_ROLES.admin,USER_ROLES.rhh]
               if($scope.currentUser===null){
                 $location.path('/login');
@@ -116,15 +120,18 @@ app.constant('USER_ROLES', {
   invitado:'invitado'
 });
 
+//Control principal del logueo.
 app.controller('ApplicationController', function ($scope,
                                                USER_ROLES,
-                                               AuthService,Session) {
-  $scope.currentUser = null;
-  $scope.userRoles = USER_ROLES;
+                                               AuthService,Session,estaLogueado) {
+    //var a=
+    $scope.currentUser=estaLogueado.query();
+  //$scope.currentUser = null;
+  //$scope.userRoles = USER_ROLES;
 
-  $scope.setCurrentUser = function (user) { //Esto es llamado desde desde $scope.login del LoginController.
-    $scope.currentUser = user;
-  };
+  //$scope.setCurrentUser = function (user) { //Esto es llamado desde desde $scope.login del LoginController.
+  //  $scope.currentUser = user;
+  //};
 
 
 /*  $scope.$on('$viewContentLoaded', function($scope) {

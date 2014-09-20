@@ -29,6 +29,13 @@ services.factory('UsuarioFactory', function ($resource) {
     });
 });
 */
+//Prueba para de googleapis
+services.factory('google', function ($resource) {
+    return $resource('/REST/algo/', {}, {
+        query: { method: 'GET', params: {}, isArray: false }, //trae todos los usuarios
+    });
+});
+
 /*Usuarios*/
 /*
 Si tuvieramos los metodos put y delete quedaria mas prolijo
@@ -44,7 +51,7 @@ services.factory('usuarioCreateService', function ($resource) {
     });
 });
 services.factory('usuarioShowUpdateService', function ($resource) {
-    return $resource('/REST/texto/:id', {}, {
+    return $resource('/REST/usuario/:id', {}, {
         show: { method: 'GET' },
         update: { method: 'POST' },
     });
@@ -55,6 +62,12 @@ services.factory('usuarioRemoveService', function ($resource) {
     });
 });
 
+/* Usuarios */
+services.factory('rolService', function ($resource) {
+    return $resource('/REST/rol/', {}, {
+        query: { method: 'GET', params: {}, isArray: true }, //trae todos los usuarios
+    });
+});
 
 /*Textos*/
 services.factory('textoservice', function ($resource) {
@@ -84,6 +97,7 @@ services.factory('textoremove', function ($resource) {
     });
 });
 
+<<<<<<< HEAD
 /*Busquedas*/
 
 services.factory('busquedaService', function ($resource) {
@@ -98,6 +112,15 @@ services.factory('busquedaCreateService', function ($resource) {
     });
 });
 /**/
+=======
+//Para verificar el login
+services.factory('estaLogueado', function ($resource) {
+    return $resource('/REST/estaLogueado/', {}, {
+        query: { method: 'GET', params: {}, isArray: false }, //trae todos los usuarios
+    });
+});
+
+>>>>>>> 98bddd4a56999c7b28bc29a71a418d9706b5300c
 
 services.factory('AuthService', function ($http, Session,$rootScope) {
   var authService = {};

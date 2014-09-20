@@ -31,7 +31,7 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
                 });
             $routeProvider.when('/usuarios/:usuarioId',
                 {
-                    templateUrl: 'partials/usuario.html',
+                    templateUrl: 'partials/usuario-edit.html',
                     controller: 'usuarioCTRL',
                     permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
@@ -48,4 +48,29 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
             // Reset error when a new view is loaded
 	$rootScope.$on('$viewContentLoaded', function() {
 		delete $rootScope.error;
+<<<<<<< HEAD
 	});});
+=======
+	});})
+
+
+    .config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.interceptors.push(function ($q) {
+        return {
+            'response': function (response) {
+                //Si es menor de 200 es un response
+                //console.log(response);
+                return response;
+            },
+            'responseError': function (rejection) {
+                //300 o mas es un error.
+                if(rejection.status === 401) {
+                    //401 es e no autorizado.
+                    window.location = "/login";
+                }
+                return $q.reject(rejection);
+            }
+        };
+    });
+}]);
+>>>>>>> 98bddd4a56999c7b28bc29a71a418d9706b5300c
