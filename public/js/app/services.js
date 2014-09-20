@@ -84,6 +84,21 @@ services.factory('textoremove', function ($resource) {
     });
 });
 
+/*Busquedas*/
+
+services.factory('busquedaService', function ($resource) {
+    return $resource('/REST/busqueda/', {}, {
+        query: { method: 'GET', params: {}, isArray: true }, //trae todos las busquedas
+    });
+});
+
+services.factory('busquedaCreateService', function ($resource) {
+    return $resource('/REST/create-busqueda/', {}, {
+        create: { method: 'POST' },
+    });
+});
+/**/
+
 services.factory('AuthService', function ($http, Session,$rootScope) {
   var authService = {};
 
