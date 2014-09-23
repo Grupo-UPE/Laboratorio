@@ -17,6 +17,8 @@ var app = express();
 var texto  = require('./controllers/texto')
 var usuario  = require('./controllers/usuario')
 var rol  = require('./controllers/rol')
+var busqueda = require('./controllers/busqueda')
+var habilidad = require('./controllers/habilidad')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -53,6 +55,13 @@ app.post('/REST/create-usuario', usuario.create)
 
 //Rutas para roles.
 app.get('/REST/rol', rol.list)
+
+
+//Rutas para busquedas
+
+app.get('/REST/busqueda', busqueda.list)
+app.post('/REST/create-busqueda',busqueda.create)
+
 
 //Login... por ahora esta aca porque es mas de prueba que otra cosa.
 app.get('/login', function(req, res) {
@@ -144,6 +153,8 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+
+
 
 
 module.exports = app;

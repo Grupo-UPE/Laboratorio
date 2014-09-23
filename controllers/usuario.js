@@ -4,13 +4,13 @@ var Rol = require('../models/rol'); //Traemos directamente el modelo
 /*
 *   Pruebas para verficar que funcione
 *
-*
+
   var tonto = new Usuario({
-    email   : 'ferticidio@gmail.com',
+    email   : 'pabloz18ezeiza@gmail.com',
 });
 
 tonto.save();
-Usuario.acceder('ferticidio@gmail.com',function(err,usuario,motivo){
+Usuario.acceder('pabloz18ezeiza@gmail.com',function(err,usuario,motivo){
     if(err) throw err;
     if(usuario){
         console.log('SUCESS');
@@ -19,7 +19,7 @@ Usuario.acceder('ferticidio@gmail.com',function(err,usuario,motivo){
     console.log(motivo);
 });
 
-*/
+/**/
 
 exports.estaLogueado=function(req, res) {
     console.log("aaaaaaaaaaaaaaaaaaa");

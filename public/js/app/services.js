@@ -100,14 +100,15 @@ services.factory('textoremove', function ($resource) {
 /*Busquedas*/
 
 services.factory('busquedaService', function ($resource) {
-    return $resource('/REST/busqueda/', {}, {
+    return $resource('/REST/busqueda', {}, {
         query: { method: 'GET', params: {}, isArray: true }, //trae todos las busquedas
     });
 });
 
 services.factory('busquedaCreateService', function ($resource) {
-    return $resource('/REST/create-busqueda/', {}, {
+    return $resource('/REST/create-busqueda', {}, {
         create: { method: 'POST' },
+        query: { method: 'GET', params: {}, isArray: true },
     });
 });
 /**/

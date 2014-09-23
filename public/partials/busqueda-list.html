@@ -1,54 +1,16 @@
 <div class="table-responsive">
     <table class="table table-striped table-hover">
         <thead>
+            <tr>
+             <th>Nombre</th>
+            </tr>
         </thead>
         <tbody>
             <tr ng-repeat="bsq in listaBusquedas">
-                <td>{{bsq.nombre}}</td>
-                <td>{{bsq.fecha}}</td>
-                <td>{{bsq.horario}}</td>
-                <td>{{bsq.habilidades}}</td>
-                <td><a href="/#/busquedas/{{bsq.id_empleado}}" class="btn btn-default">Editar</a>
+               <td>{{bsq.nombre}}</td>
+               <td>{{bsq.horario}}</td>
             </tr>
+
         </tbody>
     </table>
-</div>
-
-
-<div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div class="panel-heading">
-            <h3 class="panel-title">Alta de Busqueda</h3>
-    </div>
-    <div class="panel-body">
-        <form action="" ng-submit="guardar()" method="POST" class="form-horizontal" role="form">
-                    <div class="form-group col-sm-5 col-md-5 col-lg-5">
-                <legend>Datos de la Busqueda</legend>
-                    <label for="busqueda">Nombre de la Busqueda</label>
-                    <input type="text" class="form-control" id="id_empleado" placeholder="Nombre de la busqueda" ng-model="busqueda.id_empleado" required>
-                    <label for="Habilidades">Habilidades</label>
-                    <input type="habilidad" class="form-control" id="habilidad" placeholder="habilidades" ng-model="busqueda.habilidad" required>
-                    <label for="fecha">Fecha</label><br />
-                    <input  type="date" id="fecha" >
-
-                </div>
-                <div class="col-sm-2 col-md-2 col-lg-2">
-                <!-- Es trampa para separar los divs -->
-                </div>
-                <div class="form-group col-sm-5 col-md-5 col-lg-5">
-                <legend>Datos especificos Busqueda</legend>
-                    <label for="Horario">Horario</label>
-                    <input type="text" class="form-control" id="Horario" placeholder="" ng-model="usuario.apellido" required>
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" placeholder="" ng-model="usuario.nombre" required>
-                    <label for="legajo">Legajo</label>
-                    <input type="text" class="form-control" id="legajo" placeholder="" ng-model="usuario.legajo" required>
-                </div>
-
-            <div class="form-group">
-                <div class="col-sm-10 col-sm-offset-2">
-                    <button type="submit" class="btn btn-primary">Generar Busqueda</button>
-                </div>
-            </div>
-        </form>
-    </div>
 </div>

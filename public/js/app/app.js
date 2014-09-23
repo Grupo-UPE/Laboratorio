@@ -35,10 +35,16 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
                     controller: 'usuarioCTRL',
                     permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
-	    $routeProvider.when('/busquedas',
+	    $routeProvider.when('/createbusquedas',
+                {
+                    templateUrl: 'partials/create-busqueda.html',
+                    controller: 'busquedaCreateCTRL',
+                    permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                });
+        $routeProvider.when('/busqueda',
                 {
                     templateUrl: 'partials/busqueda-list.html',
-                    controller: 'busquedaListCTRL',
+                    controller: 'busquedaCTRL',
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
 

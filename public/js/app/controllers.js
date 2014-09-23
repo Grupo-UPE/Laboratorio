@@ -152,17 +152,37 @@ app.controller('ApplicationController', function ($scope,
 })*/
 })
 
-app.controller('busquedaListCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'busquedaService','busquedaCreateService',
+app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        'busquedaService','busquedaCreateService','busquedacreate',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    busquedaService,busquedaCreateService) {
+                                    busquedaService,busquedaCreateService,busquedacreate) {
+
+            $scope.createBusquedas=busquedaService.query();
+            
+            $scope.guardar = function () {
+              busquedacreate.create({busqueda: $scope.bsq});
+              $scope.createBusquedas=busquedaService.query();
+              $scope.bsq="";
+              $route.reload();
+                //busquedaCreateService.create({busqueda:$scope.busqueda})
+                //Deberiamos limpiar el formulario... Depues busco como
+        };
+
+}]);
+
+
+app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        'busquedaService','busquedacreate',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,
+                                    busquedaService,busquedacreate) {
 
             $scope.listaBusquedas=busquedaService.query();
-            //Lo que sigue tiene que venir de un query... un services que devuelva todos los roles.
-            //Se lo deja para utiizar a modo de ejemplo para armar el html.
-            //$scope.listaBusquedas=[{id:"1",nombre:"Rol 1"},{id:"2",nombre:"Rol 3"},{id:"3",nombre:"Otro rol de prueba"}];
+            
             $scope.guardar = function () {
-                busquedaCreateService.create({busqueda:$scope.busqueda})
+              busquedacreate.create({bsq: $scope.bsq});
+              $scope.listaBusquedas=busquedaService.query();
+              $route.reload();
+               busquedaCreateService.create({bsq:$scope.bsq})
                 //Deberiamos limpiar el formulario... Depues busco como
         };
 

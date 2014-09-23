@@ -1,5 +1,7 @@
 var Busqueda = require('../models/busqueda');
+var Habilidad = require("../models/habilidad");
 
+/*
 var mongoose        = require('mongoose')
   , db_lnk          = 'mongodb://localhost/test'
   , db              = mongoose.createConnection(db_lnk)
@@ -7,30 +9,34 @@ var mongoose        = require('mongoose')
 
   var busqueda_schema = require('../models/busqueda')
   , Busqueda = db.model('Busqueda', busqueda_schema)
-
+*/
 
 exports.create = function (req, res, next) {
     //Las verificaciones de los requeridos la hariamos desde angular.... por ahora.
     var bsq=req.body.busqueda;
+    var lhab= [];
+    for(var id in Habilidad.id){
+      lhab.push(Habilidad.id[id]["ID"]);
+    }
 
-    var busqueda=new Busqueda({
+    var busqueda= new Busqueda({
         fecha:bsq.fecha,
         id_empleado:bsq.id_empleado,
         cantidad_empleados:bsq.cantidad_empleados,
         nombre:bsq.nombre,
         abierto:true,
         remuneracion:bsq.remuneracion,
-        habilidades:bsq.habilidades,
+        habilidades:lhab,
         otros_comentarios:bsq.otros_comentarios,
         texto_twitter:bsq.texto_twitter,
         lugar_trabajo:bsq.lugar_trabajo,
         horario:bsq.horario,
     });
 
-    console.log("Generamos la busqueda y nos queda: ");
+    console.log("creamos la busqueda y nos queda: ");
     console.log(busqueda);
 
-    //busqueda.save(onSaved)
+    busqueda.save(onSaved)
 
     function onSaved (err) {
         if (err) {
@@ -44,14 +50,14 @@ exports.create = function (req, res, next) {
 
 exports.list = function (req, res, next) {
 
-    Busqueda.find(gotBusqueda)
+    Busqueda.find(gotBusqueda).populate("habilidades")
 
   function gotBusqueda (err, busquedas) {
     if (err) {
       console.log(err)
       return next()
     }
-    console.log(JSON.stringify(busquedas));
+    //console.log(JSON.stringify(busquedas));
     return res.json(busquedas);
   }
 
@@ -74,6 +80,12 @@ exports.show = function (req, res, next) {
                 fecha:busqueda.fecha,
                 otros_comentarios:busqueda.otros_comentarios,
                 horario:busqueda.horario,
+                cantidad_empleados:busqueda.cantidad_empleados,
+                remuneracion:busqueda.remuneracion,
+                habilidades:busqueda.lhab,
+                texto_twitter:busqueda.texto_twitter,
+                lugar_trabajo:busqueda.lugar_trabajo,
+                
             }
     return res.json(busquedadto)
   }

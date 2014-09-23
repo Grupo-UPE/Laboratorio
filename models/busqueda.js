@@ -1,4 +1,6 @@
-var Schema = require('mongoose').Schema
+//var Schema = require('mongoose').Schema
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
 var busqueda_schema = new Schema({
     fecha          :{type : Date,  default: Date.now},
@@ -7,11 +9,11 @@ var busqueda_schema = new Schema({
     nombre         : String,
     abierto         : Boolean,
     remuneracion    : Number,
-    habilidades     : {[id_habilidad]},
+    //habilidades     : {[id]},
     otros_comentarios : String,
     texto_twitter     : String,
     lugar_trabajo     : String,
     horario           : String,
 });
 
-module.exports = busqueda_schema
+module.exports = mongoose.model("Busqueda",busqueda_schema);
