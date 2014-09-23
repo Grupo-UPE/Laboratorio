@@ -153,14 +153,14 @@ app.controller('ApplicationController', function ($scope,
 })
 
 app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'busquedaService','busquedaCreateService','busquedacreate',
+                        'busquedaService','busquedaCreateService',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    busquedaService,busquedaCreateService,busquedacreate) {
+                                    busquedaService,busquedaCreateService) {
 
             $scope.createBusquedas=busquedaService.query();
-            
+
             $scope.guardar = function () {
-              busquedacreate.create({busqueda: $scope.bsq});
+              //busquedacreate.create({busqueda: $scope.bsq});
               $scope.createBusquedas=busquedaService.query();
               $scope.bsq="";
               $route.reload();
@@ -172,14 +172,14 @@ app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$
 
 
 app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'busquedaService','busquedacreate',
+                        'busquedaService',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    busquedaService,busquedacreate) {
+                                    busquedaService) {
 
             $scope.listaBusquedas=busquedaService.query();
-            
+
             $scope.guardar = function () {
-              busquedacreate.create({bsq: $scope.bsq});
+              //busquedacreate.create({bsq: $scope.bsq});
               $scope.listaBusquedas=busquedaService.query();
               $route.reload();
                busquedaCreateService.create({bsq:$scope.bsq})
