@@ -18,7 +18,7 @@ var texto  = require('./controllers/texto')
 var usuario  = require('./controllers/usuario')
 var rol  = require('./controllers/rol')
 var busqueda = require('./controllers/busqueda')
-var habilidad = require('./controllers/habilidad')
+//var habilidad = require('./controllers/habilidad')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
