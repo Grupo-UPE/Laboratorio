@@ -108,7 +108,6 @@ services.factory('busquedaService', function ($resource) {
 services.factory('busquedaCreateService', function ($resource) {
     return $resource('/REST/create-busqueda', {}, {
         create: { method: 'POST' },
-        query: { method: 'GET', params: {}, isArray: true },
     });
 });
 /**/

@@ -9,7 +9,7 @@
     
     <div class="panel-body">
         <form action="" ng-submit="guardar()" method="POST" class="form-horizontal" role="form">
-            <div class="form-group col-sm-5 col-md-5 col-lg-5">
+            <div class="form-group col-sm-10 col-md-10 col-lg-3">
                     <label for="habilidad">Habilidad</label>
                     <input type="text" class="form-control" id="habilidad" placeholder="Nombre de la Habilidad" ng-model="habilidad" required>
                     
@@ -32,7 +32,10 @@
         <tbody>
             <tr ng-repeat="hab in listaHabilidades">
                 <td>{{hab._id}}</td>
-                <td>{{hab.nombre}}</td>                
+                <td>{{hab.nombre}} 
+                <button><a href="/#/habilidad" type="button" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-search"></span>Edit</a></button>
+                </td>                
             </tr>
         </tbody>
     </table>
