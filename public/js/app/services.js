@@ -101,7 +101,7 @@ services.factory('textoremove', function ($resource) {
 
 services.factory('busquedaService', function ($resource) {
     return $resource('/REST/busqueda', {}, {
-        query: { method: 'GET', params: {}, isArray: true }, //trae todos las busquedas
+        query: { method: 'GET', params: {}, isArray: true }, 
     });
 });
 
@@ -112,6 +112,21 @@ services.factory('busquedaCreateService', function ($resource) {
     });
 });
 /**/
+/*Habilidades*/
+
+
+services.factory('habilidadCreateService', function ($resource) {
+    return $resource('/REST/create-habilidad', {}, {
+        create: { method: 'POST' },
+        query: { method: 'GET', params: {}, isArray: true },
+    });
+});
+services.factory('habilidadService', function ($resource) {
+    return $resource('/REST/habilidad', {}, {
+        query: { method: 'POST', params: {}, isArray: true }, 
+    });
+});
+
 //Para verificar el login
 services.factory('estaLogueado', function ($resource) {
     return $resource('/REST/estaLogueado/', {}, {

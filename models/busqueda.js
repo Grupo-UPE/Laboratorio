@@ -9,7 +9,7 @@ var busqueda_schema = new Schema({
     nombre         : String,
     abierto         : Boolean,
     remuneracion    : Number,
-    //habilidades     : {[id]},
+    habilidades     : [{type: Schema.ObjectId, ref : 'Habilidad'}],
     otros_comentarios : String,
     texto_twitter     : String,
     lugar_trabajo     : String,

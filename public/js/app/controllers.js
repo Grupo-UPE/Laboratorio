@@ -182,8 +182,22 @@ app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$locati
               //busquedacreate.create({bsq: $scope.bsq});
               $scope.listaBusquedas=busquedaService.query();
               $route.reload();
-               busquedaCreateService.create({bsq:$scope.bsq})
+               //busquedaCreateService.create({bsq:$scope.bsq})
                 //Deberiamos limpiar el formulario... Depues busco como
         };
+
+}]);
+
+app.controller('habilidadCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        'habilidadService',"$route",'habilidadCreateService',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,
+                                    habilidadService,$route,habilidadCreateService) {
+
+            $scope.listaHabilidades=habilidadService.query();
+            $scope.guardar = function () {
+	habilidadCreateService.create({habilidad:$scope.habilidad});
+	$scope.listaHabilidades=habilidadService.query();            
+	$route.reload();
+                      };
 
 }]);

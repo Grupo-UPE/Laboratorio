@@ -18,7 +18,7 @@ var texto  = require('./controllers/texto')
 var usuario  = require('./controllers/usuario')
 var rol  = require('./controllers/rol')
 var busqueda = require('./controllers/busqueda')
-//var habilidad = require('./controllers/habilidad')
+var habilidad = require('./controllers/habilidad')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -61,6 +61,10 @@ app.get('/REST/rol', rol.list)
 
 app.get('/REST/busqueda', busqueda.list)
 app.post('/REST/create-busqueda',busqueda.create)
+
+//rutas para habilidades
+app.get('/REST/habilidad', habilidad.list)
+app.post('/REST/create-habilidad', habilidad.create)
 
 
 //Login... por ahora esta aca porque es mas de prueba que otra cosa.

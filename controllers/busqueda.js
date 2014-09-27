@@ -1,5 +1,5 @@
 var Busqueda = require('../models/busqueda');
-//var Habilidad = require("../models/habilidad");
+var Habilidad = require("../models/habilidad");
 
 /*
 var mongoose        = require('mongoose')
@@ -15,9 +15,9 @@ exports.create = function (req, res, next) {
     //Las verificaciones de los requeridos la hariamos desde angular.... por ahora.
     var bsq=req.body.busqueda;
     var lhab= [];
-   // for(var id in Habilidad.id){
-    //  lhab.push(Habilidad.id[id]["ID"]);
-    //}
+    for(var id in Habilidad.id){
+      lhab.push(Habilidad.id[id]["_id"]);
+    }
 
     var busqueda= new Busqueda({
         fecha:bsq.fecha,
