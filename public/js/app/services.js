@@ -116,14 +116,14 @@ services.factory('busquedaCreateService', function ($resource) {
 
 
 services.factory('habilidadCreateService', function ($resource) {
-    return $resource('/REST/create-habilidad', {}, {
+    return $resource('/REST/habilidad', {}, {
         create: { method: 'POST' },
         query: { method: 'GET', params: {}, isArray: true },
     });
 });
 services.factory('habilidadService', function ($resource) {
     return $resource('/REST/habilidad', {}, {
-        query: { method: 'POST', params: {}, isArray: true }, 
+        query: { method: 'GET', params: {}, isArray: true }, 
     });
 });
 

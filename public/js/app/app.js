@@ -58,6 +58,7 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
                     controller: 'habilidadCTRL',
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
+
 	
 
 }])

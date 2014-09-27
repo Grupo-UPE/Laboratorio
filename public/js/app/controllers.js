@@ -195,9 +195,12 @@ app.controller('habilidadCTRL', ['$scope', '$rootScope', '$cookieStore', '$locat
 
             $scope.listaHabilidades=habilidadService.query();
             $scope.guardar = function () {
+              var algo = habilidadCreateService.create({habilidad: $scope.habilidad});
+              $route.reload();
+/*
 	habilidadCreateService.create({habilidad:$scope.habilidad});
 	$scope.listaHabilidades=habilidadService.query();            
-	$route.reload();
+	$route.reload();/*/
                       };
 
 }]);

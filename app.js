@@ -64,7 +64,7 @@ app.post('/REST/create-busqueda',busqueda.create)
 
 //rutas para habilidades
 app.get('/REST/habilidad', habilidad.list)
-app.post('/REST/create-habilidad', habilidad.create)
+app.post('/REST/habilidad', habilidad.create)
 
 
 //Login... por ahora esta aca porque es mas de prueba que otra cosa.
