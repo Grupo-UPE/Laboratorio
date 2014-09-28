@@ -176,14 +176,13 @@ app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$locati
             $scope.listaBusquedas=busquedaService.query();
 
             $scope.list = function () {
-              
+
               $scope.listaBusquedas=busquedaService.query();
               $route.reload();
         };
 
 }]);
 
-<<<<<<< HEAD
 //busqueda de usuarios
 app.controller('buserCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'buserService',
@@ -191,13 +190,11 @@ app.controller('buserCTRL', ['$scope', '$rootScope', '$cookieStore', '$location'
                                     buserService) {
 
             $scope.listaUser=buserService.query();
-              
+
         };
 
 }]);
 
-
-=======
 app.controller('habilidadCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'habilidadService',"$route",'habilidadCreateService',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
@@ -209,9 +206,8 @@ app.controller('habilidadCTRL', ['$scope', '$rootScope', '$cookieStore', '$locat
               $route.reload();
 /*
 	habilidadCreateService.create({habilidad:$scope.habilidad});
-	$scope.listaHabilidades=habilidadService.query();            
+	$scope.listaHabilidades=habilidadService.query();
 	$route.reload();/*/
                       };
 
 }]);
->>>>>>> 110a2af4ce512ca2cbdeb5a434edc8ce303b7cbe

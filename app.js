@@ -17,16 +17,13 @@ var app = express();
 var texto  = require('./controllers/texto')
 var usuario  = require('./controllers/usuario')
 var rol  = require('./controllers/rol')
-var busqueda = require('./controllers/busqueda')
-<<<<<<< HEAD
-//var habilidad = require('./controllers/habilidad')
 var buser = require('./controllers/buser')
-=======
+
+var busqueda = require('./controllers/busqueda')
 var habilidad = require('./controllers/habilidad')
 
 var login = require('./controllers/login')
 var calendar = require('./controllers/calendar')
->>>>>>> 110a2af4ce512ca2cbdeb5a434edc8ce303b7cbe
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
