@@ -47,6 +47,13 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
                     controller: 'busquedaCTRL',
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
+	//busqueda de usuarios	
+	$routeProvider.when('/buser',
+                {
+                    templateUrl: 'partials/buser-list.html',
+                    controller: 'buserCTRL',
+                    permisos : ['RRHH'] //Lo dejo no se el fin que le den.
+                });
 
 }])
 

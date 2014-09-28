@@ -164,3 +164,12 @@ services.factory('controlAcceso', function () {
     }
     return this;
 });
+
+//Busqueda de usuarios
+/*Busquedas*/
+
+services.factory('buserService', function ($resource) {
+    return $resource('/REST/buser', {}, {
+        query: { method: 'GET', params: {}, isArray: true }, 
+    });
+});
