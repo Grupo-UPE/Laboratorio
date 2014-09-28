@@ -189,7 +189,11 @@ app.controller('buserCTRL', ['$scope', '$rootScope', '$cookieStore', '$location'
                                    function($scope, $rootScope, $cookieStore, $location, $http,
                                     buserService) {
 
-            $scope.listaUser=buserService.query();
+            
+               $scope.buscarusuario = function () {
+                    $scope.listaUser=buserService.query();
+                    $route.reload();
+        };
 
         };
 

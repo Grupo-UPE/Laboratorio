@@ -5,29 +5,29 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var session = require('express-session')
+var session = require('express-session');
 mongoose.connect('mongodb://localhost/test'); //Conectamos mongoose.
 
 //var routes = require('./routes/index');
 //var users = require('./routes/users');
-gapi = require('./lib/gapi');
+var gapi = require('./lib/gapi');
 
 var app = express();
 
-var texto  = require('./controllers/texto')
-var usuario  = require('./controllers/usuario')
-var rol  = require('./controllers/rol')
-var buser = require('./controllers/buser')
+var texto  = require('./controllers/texto');
+var usuario  = require('./controllers/usuario');
+var rol  = require('./controllers/rol');
+var buser = require('./controllers/buser');
 
-var busqueda = require('./controllers/busqueda')
-var habilidad = require('./controllers/habilidad')
+var busqueda = require('./controllers/busqueda');
+var habilidad = require('./controllers/habilidad');
 
-var login = require('./controllers/login')
-var calendar = require('./controllers/calendar')
+var login = require('./controllers/login');
+var calendar = require('./controllers/calendar');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('views', __dirname + '/views')
+app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
 app.use(favicon());
@@ -43,47 +43,45 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //Se debe poder definirlas en otro lado
-app.get('/REST/texto', texto.index)
-app.get('/REST/texto/:id', texto.show_edit)
-app.post('/REST/texto', texto.update)
-app.post('/REST/delete-texto', texto.remove)
-app.post('/REST/create-texto', texto.create)
+app.get('/REST/texto', texto.index);
+app.get('/REST/texto/:id', texto.show_edit);
+app.post('/REST/texto', texto.update);
+app.post('/REST/delete-texto', texto.remove);
+app.post('/REST/create-texto', texto.create);
 //app.use('/', routes);
-app.post('/login', usuario.login)
+app.post('/login', usuario.login);
 
 //Rutas para los usuarios
-app.get('/REST/usuario', usuario.list)
-app.get('/REST/usuario/:id', usuario.show)
-app.post('/REST/usuario', usuario.update)
+app.get('/REST/usuario', usuario.list);
+app.get('/REST/usuario/:id', usuario.show);
+app.post('/REST/usuario', usuario.update);
 //app.post('/REST/delete-usuario', usuario.remove)
-app.post('/REST/create-usuario', usuario.create)
+app.post('/REST/create-usuario', usuario.create);
 
 //Rutas para roles.
-app.get('/REST/rol', rol.list)
+app.get('/REST/rol', rol.list);
 
 
 //Rutas para busquedas
 
-app.get('/REST/busqueda', busqueda.list)
-app.post('/REST/create-busqueda',busqueda.create)
+app.get('/REST/busqueda', busqueda.list);
+app.post('/REST/create-busqueda',busqueda.create);
 
-<<<<<<< HEAD
 //Rutas para Busqueda de usuarios
-app.get('REST/buser',buser.list)
-=======
+app.get('/REST/buser',buser.list);
+
 //rutas para habilidades
-app.get('/REST/habilidad', habilidad.list)
-app.post('/REST/habilidad', habilidad.create)
->>>>>>> 110a2af4ce512ca2cbdeb5a434edc8ce303b7cbe
+app.get('/REST/habilidad', habilidad.list);
+app.post('/REST/habilidad', habilidad.create);
 
 
 //Login... por ahora esta aca porque es mas de prueba que otra cosa.
-app.get('/login',login.login)
-app.get('/oauth2callback', login.callback)
+app.get('/login',login.login);
+app.get('/oauth2callback', login.callback);
 
 //Calendario
-app.get('/events', calendar.eventos)
-app.get('/events/crear', calendar.guardar)
+app.get('/events', calendar.eventos);
+app.get('/events/crear', calendar.guardar);
 
 //Prueba de googleapis
 app.get('/REST/algo', function(req, res) {
