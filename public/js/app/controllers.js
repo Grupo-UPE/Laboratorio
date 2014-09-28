@@ -199,3 +199,8 @@ app.controller('habilidadCTRL', ['$scope', '$rootScope', '$cookieStore', '$locat
                       };
 
 }]);
+
+
+app.controller('MainCtrl', function ( $scope ) {
+    $scope.tags = [];
+});

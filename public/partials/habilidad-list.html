@@ -1,6 +1,8 @@
 <div class="table-responsive">
     <tbody>
             <h3> Nuevas Habilidades</h3>
+        
+
         </tbody>
 </div>
 
@@ -13,7 +15,17 @@
                     <label for="habilidad">Habilidad</label>
                     <input type="text" class="form-control" id="habilidad" placeholder="Nombre de la Habilidad" ng-model="habilidad" required>
                     
-            </div>
+                    <div ng-controller="MainCtrl">
+    
+
+    <h3>Current Tags</h3>    
+    <ul>
+        <li ng-repeat="tag in listaHabilidades"></li>
+    </ul>
+    <tag-manager tags="tags"></tag-manager>
+</div>
+
+
            
             <div class="row">
 

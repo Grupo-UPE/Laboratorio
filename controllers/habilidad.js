@@ -5,7 +5,7 @@ exports.create = function (req, res, next) {
     
 
     var habilidad = new Habilidad({
-	nombre: nombre,
+	     nombre: nombre,
 	});
    
 
