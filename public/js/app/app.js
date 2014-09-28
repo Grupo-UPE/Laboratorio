@@ -35,6 +35,9 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
                     controller: 'usuarioCTRL',
                     permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
+
+	//Rutas para manejar busquedas
+
 	    $routeProvider.when('/createbusquedas',
                 {
                     templateUrl: 'partials/create-busqueda.html',
@@ -47,6 +50,7 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
                     controller: 'busquedaCTRL',
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
+<<<<<<< HEAD
 	//busqueda de usuarios	
 	$routeProvider.when('/buser',
                 {
@@ -54,6 +58,18 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
                     controller: 'buserCTRL',
                     permisos : ['RRHH'] //Lo dejo no se el fin que le den.
                 });
+=======
+	//Rutas para manejar Habilidades
+	
+	$routeProvider.when('/habilidad',
+                {
+                    templateUrl: 'partials/habilidad-list.html',
+                    controller: 'habilidadCTRL',
+                    permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                });
+
+	
+>>>>>>> 110a2af4ce512ca2cbdeb5a434edc8ce303b7cbe
 
 }])
 

@@ -10,6 +10,7 @@ var Rol = require('../models/rol'); //Traemos directamente el modelo
 });
 
 tonto.save();
+
 Usuario.acceder('pabloz18ezeiza@gmail.com',function(err,usuario,motivo){
     if(err) throw err;
     if(usuario){
@@ -22,11 +23,8 @@ Usuario.acceder('pabloz18ezeiza@gmail.com',function(err,usuario,motivo){
 /**/
 
 exports.estaLogueado=function(req, res) {
-    console.log("aaaaaaaaaaaaaaaaaaa");
-    console.log(req.session);
-    if(typeof req.session.usuario != 'undefined'){
-        console.log(req.session.usuario);
-        return res.json(req.session.usuario);
+    if(typeof req.session.tokens != 'undefined'){
+        return res.json(true);
     }else{
         res.writeHead(401, {
         "Content-Type": "text/plain"

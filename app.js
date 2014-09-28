@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var session = require('express-session')
 mongoose.connect('mongodb://localhost/test'); //Conectamos mongoose.
 
-var routes = require('./routes/index');
+//var routes = require('./routes/index');
 //var users = require('./routes/users');
 gapi = require('./lib/gapi');
 
@@ -18,8 +18,15 @@ var texto  = require('./controllers/texto')
 var usuario  = require('./controllers/usuario')
 var rol  = require('./controllers/rol')
 var busqueda = require('./controllers/busqueda')
+<<<<<<< HEAD
 //var habilidad = require('./controllers/habilidad')
 var buser = require('./controllers/buser')
+=======
+var habilidad = require('./controllers/habilidad')
+
+var login = require('./controllers/login')
+var calendar = require('./controllers/calendar')
+>>>>>>> 110a2af4ce512ca2cbdeb5a434edc8ce303b7cbe
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -63,53 +70,23 @@ app.get('/REST/rol', rol.list)
 app.get('/REST/busqueda', busqueda.list)
 app.post('/REST/create-busqueda',busqueda.create)
 
+<<<<<<< HEAD
 //Rutas para Busqueda de usuarios
 app.get('REST/buser',buser.list)
+=======
+//rutas para habilidades
+app.get('/REST/habilidad', habilidad.list)
+app.post('/REST/habilidad', habilidad.create)
+>>>>>>> 110a2af4ce512ca2cbdeb5a434edc8ce303b7cbe
+
 
 //Login... por ahora esta aca porque es mas de prueba que otra cosa.
-app.get('/login', function(req, res) {
-  var locals = {
-        title: 'Login',
-        url: gapi.url
-      };
-  res.render('login.jade', locals);
-});
+app.get('/login',login.login)
+app.get('/oauth2callback', login.callback)
 
-
-app.get('/oauth2callback', function(req, res) {
-  var code = req.query.code;
-    gapi.a.getToken(code, function(err, tokens) {
-        gapi.a.setCredentials(tokens);
-        gapi.b.people.get({ userId: 'me', auth: gapi.a }, function(err, profile) {
-        if (err) {
-            console.log('An error occured', err);
-            return;
-        }
-        //console.log(profile); //El usuario se logueo, en teoria.
-        var email=profile.emails;
-        usuario.login(email[0].value,function(rv){//rv=Return Value
-            if(typeof rv != 'undefined'){
-                //req.session=session;
-                rv.token=code; //le meto el token en el usuario.
-                rv.save;
-                req.session.usuario=rv;
-            var locals={
-                title:"Bienvenido!",
-                usuario:rv,
-            }
-            //console.log(rv);
-            res.render('redirect.jade', locals);
-        }else{
-            var locals={
-                title:'Error en el Login',
-            }
-
-            res.render('login.jade', locals);
-        }
-        });
-        });
-    });
-});
+//Calendario
+app.get('/events', calendar.eventos)
+app.get('/events/crear', calendar.guardar)
 
 //Prueba de googleapis
 app.get('/REST/algo', function(req, res) {

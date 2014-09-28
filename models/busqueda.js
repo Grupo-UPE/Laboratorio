@@ -3,13 +3,13 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var busqueda_schema = new Schema({
-    fecha          :{type : Date,  default: Date.now},
-    id_empleado    : String,
+    fecha_inicio          :{type : Date,  default: Date.now},
+    fecha_fin          :{type : Date,  default: Date.now},
     cantidad_empleados       : Number,
     nombre         : String,
     abierto         : Boolean,
     remuneracion    : Number,
-    //habilidades     : {[id]},
+    habilidades     : [{type: Schema.ObjectId, ref : 'Habilidad'}],
     otros_comentarios : String,
     texto_twitter     : String,
     lugar_trabajo     : String,
