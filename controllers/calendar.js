@@ -47,4 +47,4 @@ exports.guardar = function(req, res){
             console.log(err);
         }
     });
-});
+}
