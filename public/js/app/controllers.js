@@ -153,37 +153,49 @@ app.controller('ApplicationController', function ($scope,
 })
 
 app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'busquedaService','busquedaCreateService',
+                        'busquedaService','busquedaCreateService','habilidadService','$route',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    busquedaService,busquedaCreateService) {
+                                    busquedaService,busquedaCreateService,habilidadService,$route) {
 
-            $scope.createBusquedas=busquedaService.query();
+            //$scope.nbusqueda=busquedaService.query();
+            $scope.listahabilidades=habilidadService.query();
 
             $scope.guardar = function () {
-              //busquedacreate.create({busqueda: $scope.bsq});
-              $scope.createBusquedas=busquedaService.query();
-              $scope.bsq="";
+              var busq = busquedaCreateService.create({bsq:$scope.bsq});
               $route.reload();
-                //busquedaCreateService.create({busqueda:$scope.busqueda})
-                //Deberiamos limpiar el formulario... Depues busco como
         };
 
 }]);
 
 
 app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'busquedaService',
+                        'busquedaService','$route',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    busquedaService) {
+                                    busquedaService,$route) {
 
             $scope.listaBusquedas=busquedaService.query();
 
-            $scope.guardar = function () {
-              //busquedacreate.create({bsq: $scope.bsq});
+            $scope.list = function () {
+              
               $scope.listaBusquedas=busquedaService.query();
               $route.reload();
-               busquedaCreateService.create({bsq:$scope.bsq})
-                //Deberiamos limpiar el formulario... Depues busco como
         };
+
+}]);
+
+app.controller('habilidadCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        'habilidadService',"$route",'habilidadCreateService',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,
+                                    habilidadService,$route,habilidadCreateService) {
+
+            $scope.listaHabilidades=habilidadService.query();
+            $scope.guardar = function () {
+              var algo = habilidadCreateService.create({habilidad: $scope.habilidad});
+              $route.reload();
+/*
+	habilidadCreateService.create({habilidad:$scope.habilidad});
+	$scope.listaHabilidades=habilidadService.query();            
+	$route.reload();/*/
+                      };
 
 }]);
