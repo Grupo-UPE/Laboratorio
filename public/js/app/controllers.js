@@ -188,19 +188,14 @@ app.controller('buserCTRL', ['$scope', '$rootScope', '$cookieStore', '$location'
                         'buserService',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
                                     buserService) {
-<<<<<<< HEAD
             $scope.listaUser=buserService.query();
 
-}]);
-=======
-
-
-               $scope.buscarusuario = function () {
+            $scope.buscarusuario = function () {
                     $scope.listaUser=buserService.query();
                     $route.reload();
                 }
-        }]);
->>>>>>> 3095d86209e62c7979b9fa5f344abf92374a46d7
+            }
+            ]);
 
 app.controller('habilidadCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'habilidadService',"$route",'habilidadCreateService',
