@@ -202,7 +202,6 @@ services.factory('controlAcceso', function () {
 });
 
 //Busqueda de usuarios
-/*Busquedas*/
 
 services.factory('buserService', function ($resource) {
     return $resource('/REST/buser', {}, {

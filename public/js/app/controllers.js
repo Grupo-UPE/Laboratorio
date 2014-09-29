@@ -221,13 +221,14 @@ app.controller('buserCTRL', ['$scope', '$rootScope', '$cookieStore', '$location'
                         'buserService',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
                                     buserService) {
+            $scope.listaUser=buserService.query();
 
-
-               $scope.buscarusuario = function () {
+            $scope.buscarusuario = function () {
                     $scope.listaUser=buserService.query();
                     $route.reload();
                 }
-        }]);
+            }
+            ]);
 
 app.controller('habilidadCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'habilidadService',"$route",'habilidadCreateService',
