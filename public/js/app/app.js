@@ -36,6 +36,21 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
                     permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
 
+            //rutas para el manejo de postulantes
+
+            $routeProvider.when('/postulantes',
+                {
+                    templateUrl: 'partials/postulante-list.html',
+                    controller: 'postulanteListCTRL',
+                    permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                });
+            $routeProvider.when('/postulantes/:postulanteId',
+                {
+                    templateUrl: 'partials/postulante-edit.html',
+                    controller: 'postulanteCTRL',
+                    permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                });
+
 	//Rutas para manejar busquedas
 
 	    $routeProvider.when('/createbusquedas',

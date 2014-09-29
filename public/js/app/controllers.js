@@ -12,6 +12,39 @@ app.run(function ($rootScope, $templateCache) {
     });
 });
 
+//postulantes controllers
+
+//controllers Postulantes
+
+app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        'postulanteService','postulanteCreateService','rolService','$route',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,
+                                    postulanteService,postulanteCreateService,rolService,$route) {
+
+            $scope.listaPostulantes=postulanteService.query();
+            $scope.listaRoles=rolService.query();
+            $scope.guardar = function () {
+                var postulante = postulanteCreateService.create({postulante:$scope.postulante});
+                    $route.reload();
+
+            }
+            }]);
+
+            app.controller('postulanteCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http', '$routeParams',
+                        'postulanteShowUpdateService',
+                                   function ($scope, $rootScope, $cookieStore, $location, $http, $routeParams,
+                                    postulanteShowUpdateService) {
+                                       $scope.postulante=postulanteShowUpdateService.show({id: $routeParams.textoId});
+                                      
+                                       $scope.guardar = function () {
+                                           postulanteShowUpdateService.update({ postulante: $scope.postulante });
+                                           $location.path('/postulantes');
+                                       };
+                                       $scope.volver = function () {
+                                           $location.path('/postulantes');
+                                       }
+                                   } ]);
+
 app.controller('usuarioListCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'usuarioService','usuarioCreateService','rolService','$route',
                                    function($scope, $rootScope, $cookieStore, $location, $http,

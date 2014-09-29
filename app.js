@@ -18,7 +18,7 @@ var texto  = require('./controllers/texto');
 var usuario  = require('./controllers/usuario');
 var rol  = require('./controllers/rol');
 var buser = require('./controllers/buser');
-
+var postulante = require('./controllers/postulante');
 var busqueda = require('./controllers/busqueda');
 var habilidad = require('./controllers/habilidad');
 
@@ -58,8 +58,14 @@ app.post('/REST/usuario', usuario.update);
 //app.post('/REST/delete-usuario', usuario.remove)
 app.post('/REST/create-usuario', usuario.create);
 
-//Rutas para roles.
-app.get('/REST/rol', rol.list);
+//rutas para los postulantes
+
+app.get('/REST/postulante', postulante.list);
+app.get('/REST/postulante/:id', postulante.show);
+app.post('/REST/postulante', postulante.update);
+//app.post('/REST/delete-usuario', usuario.remove)
+app.post('/REST/create-postulante', postulante.create);
+
 
 
 //Rutas para busquedas

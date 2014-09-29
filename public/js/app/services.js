@@ -69,6 +69,28 @@ services.factory('rolService', function ($resource) {
     });
 });
 
+
+/*Postulantes */
+
+services.factory('postulanteService', function ($resource) {
+    return $resource('/REST/postulante/', {}, {
+        query: { method: 'GET', params: {}, isArray: true }, //trae todos los postulantes
+    });
+});
+
+services.factory('postulanteCreateService', function ($resource) {
+    return $resource('/REST/create-postulante/', {}, {
+        create: { method: 'POST' },
+    });
+});
+
+services.factory('postulanteShowUpdateService', function ($resource) {
+    return $resource('/REST/postulante/:id', {}, {
+        show: { method: 'GET' },
+        update: { method: 'POST' },
+    });
+});
+
 /*Textos*/
 services.factory('textoservice', function ($resource) {
     return $resource('/REST/texto/', {}, {
