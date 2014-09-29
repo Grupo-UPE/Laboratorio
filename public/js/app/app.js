@@ -15,7 +15,6 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
             $routeProvider.when('/editar/:textoId',
                 {
                     templateUrl: 'partials/editar.html',
-                    controller: 'EditarController',
                     permisos : ['admin']
                 });
             $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginController'});
@@ -75,7 +74,7 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
 	});})
 
 
-    .config(['$httpProvider', function ($httpProvider) {
+    /*.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push(function ($q) {
         return {
             'response': function (response) {
@@ -93,4 +92,4 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
             }
         };
     });
-}]);
+}]); */

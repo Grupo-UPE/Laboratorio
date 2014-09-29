@@ -14,6 +14,43 @@
                     <input type="text" class="form-control" id="habilidad" placeholder="Nombre de la Habilidad" ng-model="habilidad" required>
                     
             </div>
+
+
+<input type="text" value="" data-role="tagsinput" ng-model="algo" />
+{{algo}}
+<!--
+<script>
+var tags = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  prefetch: {
+    url: 'assets/citynames.json',
+    filter: function(list) {
+      return $.map(list, function(cityname) {
+        return { name: cityname }; });
+    }
+  }
+});
+tags.initialize();
+
+$('input').tagsinput({
+  typeaheadjs: {
+    name: 'citynames',
+    displayKey: 'name',
+    valueKey: 'name',
+    source: tags.ttAdapter()
+  }
+});
+</script>
+-->
+
+
+
+
+
+
+
+
            
             <div class="row">
 
