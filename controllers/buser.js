@@ -1,5 +1,9 @@
-var Buser = require('../models/usuario');
+var mongoose        = require('mongoose')
+  , db_lnk          = 'mongodb://localhost/test'
+  , db              = mongoose.createConnection(db_lnk)
 
+ var usuario_schema = require('../models/usuario')
+  , Buser = db.model('Usuario', usuario_schema)
 
 exports.list = function (req, res, next) {
 
