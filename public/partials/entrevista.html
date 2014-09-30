@@ -1,0 +1,25 @@
+<div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="panel-heading">
+            <h3 class="panel-title">Generar una nueva entevista al postulante: {{postulante.nombre}} para la busqueda: {{busqueda.nombre}}</h3>
+    </div>
+    <div class="panel-body">
+        <form action="" ng-submit="guardar()" method="POST" class="form-horizontal" role="form">
+            <div class="form-group col-sm-5 col-md-5 col-lg-5">
+            <legend>Entrevistador</legend>
+                <select id="roles"  ng-model="entrevista.busqueda.entrevistador" ng-options="r.nombre for r in listaRoles" required class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></select>
+
+                <legend>Fecha y Hora</legend>
+                    <input type="hidden" name="busqueda" id="busqueda" class="form-control" value="{{busqueda._id}}" ng-model="entrevista.busqueda._id">
+                    <input type="hidden" name="postulante" id="postulante" class="form-control" value="{{postulante._id}}" ng-model="entrevista.postulante._id">
+                    <!-- Ver datetime, o algo de jquery -->
+                    <input type="date" name="fecha" id="inputFecha" class="form-control" value="" required="required" title="" placeholder="aaaa-mm-dd">
+                    <input type="time" name="hora" id="input" class="form-control" value="" required="required" title="" placeholder="hh:mm">
+                </div>
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <button type="submit" class="btn btn-primary">Generar Entrevista</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
