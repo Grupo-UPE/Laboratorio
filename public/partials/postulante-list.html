@@ -1,0 +1,215 @@
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>DNI</th>
+                <th>Estado Civil</th>
+                <th>Nacionalidad</th>
+                <th>Edad</th>
+                <th>Sexo</th>
+                <th>Telefono</th>
+                <th>Email</th>
+                <th>Formacion Academica</th>
+                <th>Disponibilidad</th>
+                <th>Experiencia Laboral</th>
+                <th>Comentario</th>
+                <th>Habilidades</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="post in listaPostulantes">
+                <td>{{post.nombre}}</td>
+                <td>{{post.apellido}}</td>
+                <td>{{post.dni}}</td>
+                <td>{{post.estado_civil}}</td>
+                <td>{{post.nacionalidad}}</td>
+                <td>{{post.edad}}</td>
+                <td>{{post.sexo}}</td>
+                <td>{{post.telefono[0].numero}}</td>
+                <td>{{post.email}}</td>
+                <td>{{post.formacion_academica[0].titulo}}</td>
+                <td>{{post.disponibilidad}}</td>
+                <td>{{post.experiiencia_laboral[0].empresa }}</td>
+                <td>{{post.comentario}}</td>
+                <td>{{post.habilidades[0].tecnologia}}</td>
+                <td><a href="/#/postulantes/{{post._id}}" class="btn btn-default">Editar</a>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+ <div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h2>Formulario Postulante</h2>
+            <hr>
+                <div class="row">
+                    <form method="post" role="form" name="frmPostulante">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="nombreP">Nombre:</label>
+                                <input class="form-control" type="text" id="nombre" ng-model="postulante.nombre" placeholder="Ingrese el nombre..." required >
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="apellidoP">Apellido:</label>
+                                <input class="form-control" type="text" id="apellido" ng-model="postulante.apellido" placeholder="Ingrese el apellido..." required >
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="dni">DNI:</label>
+                                <input class="form-control" type="text" id="dni" ng-model="postulante.dni" placeholder="Ingrese DNI" required >
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="estado_civil">Estado Civil:</label>
+                                <select class="form-control" id="estado_civil" ng-model="postulante.estado_civil">
+                                    <option value="">-</option>
+                                        <option id="option_estadoCivil_5" value="1">Viudo</option>
+                                        <option id="option_estadoCivil_290" value="2">Unión Libre</option>
+                                        <option id="option_estadoCivil_2" value="3">Casado /a</option>
+                                        <option id="option_estadoCivil_1" selected="" value="1">Soltero /a</option>
+                                        <option id="option_estadoCivil_3" value="4">Divorciado /a</option>
+                                        <option id="option_estadoCivil_4" value="5">Pareja de Hecho</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group" >
+                                <label for="nombre">Nacionalidad:</label>
+                               <select class="form-control" ng-model ="postulante.nacionalidad">
+                                    <option selected="" value="1">Argentina</option>
+                                    <option value="5">Bolivia</option>
+                                    <option value="7">Chile</option>
+                                    <option value="8">Colombia</option>
+                                    <option value="14">Costa Rica</option>
+                                    <option value="9">Ecuador</option>
+                                    <option value="18">Mexico</option>
+                                    <option value="20">Panama</option>
+                                    <option value="11">Peru</option>
+                                    <option value="28">Republica Dominicana</option>
+                                    <option value="12">Uruguay</option>
+                                    <option value="13">Venezuela</option>
+                                    <optgroup label="---------------------"></optgroup>
+                                    <option value="34">Alemania</option>
+                                    <option value="30">Australia</option>
+                                    <option value="31">Austria</option>
+                                    <option value="2">Brasil</option>
+                                    <option value="54">Bulgaria</option>
+                                    <option value="53">Bélgica</option>
+                                    <option value="23">Canada</option>
+                                    <option value="52">China</option>
+                                    <option value="68">Corea</option>
+                                    <option value="56">Croacia</option>
+                                    <option value="29">Cuba</option>
+                                    <option value="33">Dinamarca</option>
+                                    <option value="15">El Salvador</option>
+                                    <option value="75">Emiratos Arabes</option>
+                                    <option value="71">Escocia</option>
+                                    <option value="57">Eslovaquia</option>
+                                    <option value="58">Eslovenia</option>
+                                    <option value="21">Espana</option>
+                                    <option value="24">Estados Unidos</option>
+                                    <option value="59">Estonia</option>
+                                    <option value="60">Finlandia</option>
+                                    <option value="25">Francia</option>
+                                    <option value="35">Grecia</option>
+                                    <option value="16">Guatemala</option>
+                                    <option value="370">Haiti</option>
+                                    <option value="38">Holanda</option>
+                                    <option value="17">Honduras</option>
+                                    <option value="61">Hungria</option>
+                                    <option value="62">India</option>
+                                    <option value="32">Inglaterra</option>
+                                    <option value="1000">Internacional</option>
+                                    <option value="74">Irak</option>
+                                    <option value="63">Irlanda</option>
+                                    <option value="40">Israel</option>
+                                    <option value="26">Italia</option>
+                                    <option value="39">Japon</option>
+                                    <option value="64">Letonia</option>
+                                    <option value="65">Lituania</option>
+                                    <option value="380">Malasia</option>
+                                    <option value="19">Nicaragua</option>
+                                    <option value="66">Noruega</option>
+                                    <option value="67">Nueva Zelanda</option>
+                                    <option value="10">Paraguay</option>
+                                    <option value="50">Polonia</option>
+                                    <option value="22">Portugal</option>
+                                    <option value="27">Puerto Rico</option>
+                                    <option value="200">Republica Checa</option>
+                                    <option value="1001">República de Malta</option>
+                                    <option value="69">Rumania</option>
+                                    <option value="37">Rusia</option>
+                                    <option value="70">Singapur</option>
+                                    <option value="73">Suecia</option>
+                                    <option value="36">Suiza</option>
+                               </select>
+                            </div>
+                        </div>
+                       <div class="col-md-3">
+                            <div class="form-group" >
+                                <label for="edad">Sexo:</label>
+                                <input class="form-control" type="text" id="sexo" ng-model="postulante.sexo" placeholder="Sexo..." required >
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group" >
+                                <label for="edad">Edad:</label>
+                                <input class="form-control" type="text" id="edad" ng-model="postulante.edad" placeholder="Edad..." required >
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="edad">Telefono:</label>
+                                <input class="form-control" type="tel" id="telefono" ng-model="postulante.telefono" placeholder="Ingrese telefono..." required >
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="disponibilidad">Disponibilidad:</label>
+                                <input class="form-control" type="tel" id="disponibilidad" ng-model="postulante.disponibilidad" placeholder="Ingrese telefono..." required >
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input class="form-control" type="email" id="email" ng-model="postulante.email" placeholder="Ingrese Email..." required >
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="formacion_academica">Formacion Academica:</label>
+                                <textarea class="form-control" ng-model ="postulante.formacion_academica" required ></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="experiencia_laboral">Experiencia Laboral:</label>
+                                <textarea class="form-control" id="experiencia_laboral" ng-model ="postulante.experiencia_laboral" required ></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="habilidad">Habilidades:</label>
+                                <textarea class="form-control" id="habilidad" ng-model="postulante.habilidad" required ></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="comentario">Comentario:</label>
+                                <textarea class="form-control" id="comentario" ng-model="postelante.comentario" required ></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success">Registrar</button>
+                         
+                    </form>
+                    
+                </div>
+            
+        </div>

@@ -35,6 +35,21 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
                     permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
 
+            //rutas para el manejo de postulantes
+
+            $routeProvider.when('/postulantes',
+                {
+                    templateUrl: 'partials/postulante-list.html',
+                    controller: 'postulanteListCTRL',
+                    permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                });
+            $routeProvider.when('/postulantes/:postulanteId',
+                {
+                    templateUrl: 'partials/postulante-edit.html',
+                    controller: 'postulanteCTRL',
+                    permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                });
+
 	//Rutas para manejar busquedas
 
 	    $routeProvider.when('/createbusquedas',
@@ -65,6 +80,13 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
                     controller: 'habilidadCTRL',
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
+
+            $routeProvider.when('/generarentrevista/:busquedaId/:postulanteId',
+                {
+                templateUrl: 'partials/entrevista.html',
+                controller: 'IndexController', //Hay que cambiarlo por su propio controlador.
+            });
+
 }])
 
     .run(function($rootScope, $cookieStore, $http, $location, $modal, AuthService,controlAcceso) {
@@ -92,4 +114,8 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
             }
         };
     });
+<<<<<<< HEAD
 }]); */
+=======
+}]);*/
+>>>>>>> 97e76a551f66807d06021251b00e257a1e1ece41
