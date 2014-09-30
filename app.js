@@ -11,17 +11,15 @@ mongoose.connect('mongodb://localhost/test'); //Conectamos mongoose.
 var routes = require('./routes/index');
 //var users = require('./routes/users');
 gapi = require('./lib/gapi');
-//tagmanager = require('./node_modules/tagmanager/tagmanager');
-var tags= require('./public/js/ui-bootstrap/bootstrap-tagsinput');
+
 var app = express();
 
-<<<<<<< HEAD
 var texto  = require('./controllers/texto')
 var usuario  = require('./controllers/usuario')
 var rol  = require('./controllers/rol')
 var busqueda = require('./controllers/busqueda')
 var habilidad = require('./controllers/habilidad')
-=======
+
 var texto  = require('./controllers/texto');
 var usuario  = require('./controllers/usuario');
 var rol  = require('./controllers/rol');
@@ -32,7 +30,7 @@ var habilidad = require('./controllers/habilidad');
 
 var login = require('./controllers/login');
 var calendar = require('./controllers/calendar');
->>>>>>> 97e76a551f66807d06021251b00e257a1e1ece41
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -67,10 +65,10 @@ app.post('/REST/usuario', usuario.update)
 //app.post('/REST/delete-usuario', usuario.remove)
 app.post('/REST/create-usuario', usuario.create)
 
-<<<<<<< HEAD
+
 //Rutas para roles.
 app.get('/REST/rol', rol.list)
-=======
+
 //rutas para los postulantes
 
 app.get('/REST/postulante', postulante.list);
@@ -78,8 +76,6 @@ app.get('/REST/postulante/:id', postulante.show);
 app.post('/REST/postulante', postulante.update);
 //app.post('/REST/delete-usuario', usuario.remove)
 app.post('/REST/create-postulante', postulante.create);
-
->>>>>>> 97e76a551f66807d06021251b00e257a1e1ece41
 
 
 //Rutas para busquedas
@@ -90,6 +86,8 @@ app.post('/REST/create-busqueda',busqueda.create)
 //rutas para habilidades
 app.get('/REST/habilidad', habilidad.list)
 app.post('/REST/habilidad', habilidad.create)
+app.post('/REST/delete-habilidad', habilidad.remove)
+
 
 
 //Login... por ahora esta aca porque es mas de prueba que otra cosa.
@@ -182,8 +180,6 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
-//app.use($()
 
 
 
