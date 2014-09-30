@@ -2,49 +2,6 @@
             <h1>Pruebas</h1>
             <iframe src="https://www.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=francisco.ronconi%40gmail.com&amp;color=%232952A3&amp;src=4aik347gtqu1umje7kggphnsg4%40group.calendar.google.com&amp;color=%23711616&amp;ctz=America%2FArgentina%2FBuenos_Aires" style=" border-width:0 " width="800" height="600" frameborder="0" scrolling="no"></iframe>
 
-            <h2>TEXTOS</h2>
-                  <p ng-repeat="texto in listatextos">
-                        {{texto.texto}}
-                        <br />
-                        <a href="/#/editar/{{texto._id}}" class="btn btn-small">Editar</a>
-                        <button type="button"   ng-click="eliminar(texto._id)" class="btn btn-small">Eliminar</button>
-                    </p>
-                <h3>Publicar un nuevo texto</h3>
-                <form>
-                    <textarea ng-model="txt">
-                    </textarea>
-                    <br />
-                    <button type="submit"   ng-click="guardar()" class="btn btn-small btn-primary">Guardar</button>
-              </form>
-
-
-
-            <h3>Explicacion</h3>
-                <p>
-                    Tenemos nodejs y mongodb en el servidor. Desde alli solo manejamos peticiones REST. O algo similiar a ellas.
-                </p>
-                <p>Definimos las siguientes rutas:
-                <ul>
-                <li>
-                app.get('/REST/texto', texto.index)
-                </li>
-                <li>
-                app.get('/REST/texto/:id', texto.show_edit)
-                </li>
-                <li>
-                app.post('/REST/texto', texto.update)
-                </li>
-                <li>
-                app.post('/REST/delete-texto', texto.remove)
-                </li>
-                <li>
-                app.post('/REST/create-texto', texto.create)
-                </li>
-                Estas urls las va a manejar nodejs. Todas las demas las manejara angularjs.
-                </p>
-                <p>Entre los directorios de nodejs tenemos uno que se llama public. Alli es donde metimos todo lo que necesitamos para que funcione angularjs. De esta forma todas las urls que no coincidan con las definidas en app.js intentaran resolverse desde el directorio public</p>
-                <p>Angular ahora esta manejando solo urls del index del tipo /editar/id. Ademas provee funcionalidad para crear, eliminar, listar y actualizar diferentes textos.</p>
-                <p>La idea seria contar con algun sistema de autenticacion y verificacion de permisos para que un usuario solo pueda editar/borrar sus propios textos.</p>
-                <p>Como prueba de concepto de lo que se puede hacer con node+mongo+express+angular me parece que esta bien. Estamos mas cerca de crear una aplicacion MEAN con todas las letras.</p>
-
-
+            <script src="angular.js"></script>
+            <script src="ng-tags-input.js"></script>
+            <link rel="stylesheet" type="text/css" href="ng-tags-input.css">
