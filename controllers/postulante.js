@@ -32,25 +32,28 @@ var Postulante = require('../models/postulante');
 }*/
 
 exports.create = function (res, req, next) {
-    var postulante = new Postulante({
-        nombre: _postulante.nombre,
-        apellido: _postulante.apellido,
-        dni: _postulante.dni,
-        estado_civil: _postulante.estado_civil,
-        nacionalidad: _postulante.nacionalidad,
-        edad: _postulante.nacionalidad,
-        sexo: _postulante.sexo,
-        telefono: _postulante.telefono,
-        email: _postulante.email,
-        formacion_academica: _postulante.formacion,
-        disponibilidad: _postulante.formacion,
-        experiencia_laboral: _postulante.experiencia,
-        comentario: _postulante.comentario,
-        habilidades : _postulante.habilidad
+    
+    
+    
+    var _postulante = new Postulante({
+        nombre: req.body.post.nombre,
+        apellido: postulante.apellido,
+        dni: postulante.dni,
+        estado_civil: postulante.estado_civil,
+        nacionalidad: postulante.nacionalidad,
+        edad: postulante.nacionalidad,
+        sexo: postulante.sexo,
+        telefono: postulante.telefono,
+        email: postulante.email,
+        formacion_academica: postulante.formacion,
+        disponibilidad: postulante.formacion,
+        experiencia_laboral: postulante.experiencia,
+        comentario: postulante.comentario,
+        habilidades : postulante.habilidad
 
     });
 
-    postulante.save(onSaved);
+    _postulante.save(onSaved)
 
     function onSaved(err) {
         if (err) {
