@@ -126,6 +126,17 @@ services.factory('habilidadService', function ($resource) {
     });
 });
 
+services.factory('habilidadremove', function ($resource) {
+    return $resource('/REST/habilidad/:id', {}, {
+        remove: { method: 'POST' },
+    });
+});
+
+
+
+
+
+
 //Para verificar el login
 services.factory('estaLogueado', function ($resource) {
     return $resource('/REST/estaLogueado/', {}, {

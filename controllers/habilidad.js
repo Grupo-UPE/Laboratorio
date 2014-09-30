@@ -34,3 +34,32 @@ exports.list = function (req, res, next) {
   }
 
 }
+
+exports.remove = function (req, res, next) {
+    var _id = req.body.id
+
+    Texto.findById(_id, gotHabilidades)
+
+    function gotHabilidades (err, habilidad) {
+    if (err) {
+        console.log(err)
+        return next(err)
+    }
+
+    if (!habilidad) {
+        return res.send({'error':'ID invalido'})
+    }
+
+    // Tenemos el texto, eliminemoslo
+    habilidad.remove(onRemoved)
+  }
+
+  function onRemoved (err) {
+    if (err) {
+      console.log(err)
+      return next(err)
+    }
+
+    return res.redirect('/')
+  }
+}

@@ -4,7 +4,6 @@
 
 var app = angular.module('ngdemo.controllers', []);
 
-
 // Clear browser cache (in development mode)
 app.run(function ($rootScope, $templateCache) {
     $rootScope.$on('$viewContentLoaded', function () {
@@ -184,9 +183,9 @@ app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$locati
 }]);
 
 app.controller('habilidadCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'habilidadService',"$route",'habilidadCreateService',
+                        'habilidadService',"$route",'habilidadremove','habilidadCreateService',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    habilidadService,$route,habilidadCreateService) {
+                                    habilidadService,$route,habilidadremove,habilidadCreateService) {
 
             $scope.listaHabilidades=habilidadService.query();
             $scope.guardar = function () {
@@ -197,10 +196,23 @@ app.controller('habilidadCTRL', ['$scope', '$rootScope', '$cookieStore', '$locat
 	$scope.listaHabilidades=habilidadService.query();            
 	$route.reload();/*/
                       };
+                $scope.eliminar=function(idhabilidad){
+                habilidadremove.remove({_id:idhabilidad})
+                $scope.listaHabilidades=habilidadService.query();
+            
+            };
 
 }]);
 
-
-app.controller('MainCtrl', function ( $scope ) {
-    $scope.tags = [];
-});
+/*
+app.controller('MainCtrl',['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        'habilidadService',"$route", 
+                        function ($scope, $rootScope,$cookieStore,$location, $http,
+                        habilidadService,$route){
+           $scope.listaHabilidades=habilidadService.query();
+            $scope.options1= "";
+            $scope.guardar = function () {
+              var algo = habilidadCreateService.create({habilidad: $scope.habilidad});
+              $route.reload();};
+}]);
+*/

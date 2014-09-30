@@ -11,21 +11,11 @@
     
     <div class="panel-body">
         <form action="" ng-submit="guardar()" method="POST" class="form-horizontal" role="form">
+
             <div class="form-group col-sm-10 col-md-10 col-lg-3">
                     <label for="habilidad">Habilidad</label>
-                    <input type="text" class="form-control" id="habilidad" placeholder="Nombre de la Habilidad" ng-model="habilidad" required>
-                    
-                    <div ng-controller="MainCtrl">
-    
-
-    <h3>Current Tags</h3>    
-    <ul>
-        <li ng-repeat="tag in listaHabilidades"></li>
-    </ul>
-    <tag-manager tags="tags"></tag-manager>
-</div>
-
-
+                    <input type="text" class="form-control" id="habilidad" placeholder="Nombre de la Habilidad" ng-model="habilidad">
+           
            
             <div class="row">
 
@@ -37,16 +27,18 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <th>Nombre Habilidad</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="hab in listaHabilidades">
-                <td>{{hab._id}}</td>
-                <td>{{hab.nombre}} 
-                <button><a href="/#/habilidad" type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-search"></span>Edit</a></button>
+                <td>{{hab._id}} </td>
+                <td>{{hab.nombre}} </td>
+                <td>
+                <a href="/#/habilidad/{{hab._id}}" class ="btn btn-default btn-sm">Remove</a>
+                <button type="button" ng-Click="eliminar(habilidad._id)" class="btn btn-default btn-sm" ></button>
                 </td>                
             </tr>
         </tbody>
