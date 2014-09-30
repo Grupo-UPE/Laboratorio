@@ -81,6 +81,13 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
                     controller: 'habilidadCTRL',
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
+
+            $routeProvider.when('/generarentrevista/:busquedaId/:postulanteId',
+                {
+                templateUrl: 'partials/entrevista.html',
+                controller: 'IndexController', //Hay que cambiarlo por su propio controlador.
+            });
+
 }])
 
     .run(function($rootScope, $cookieStore, $http, $location, $modal, AuthService,controlAcceso) {
@@ -90,7 +97,7 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
 	});})
 
 
-    .config(['$httpProvider', function ($httpProvider) {
+    /*.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push(function ($q) {
         return {
             'response': function (response) {
@@ -108,4 +115,4 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
             }
         };
     });
-}]);
+}]);*/
