@@ -75,7 +75,7 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
 	});})
 
 
-    .config(['$httpProvider', function ($httpProvider) {
+    /*.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push(function ($q) {
         return {
             'response': function (response) {
@@ -93,4 +93,4 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
             }
         };
     });
-}]);
+}]);*/
