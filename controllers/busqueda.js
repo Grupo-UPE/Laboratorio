@@ -85,7 +85,7 @@ exports.show = function (req, res, next) {
                 habilidades:busqueda.lhab,
                 texto_twitter:busqueda.texto_twitter,
                 lugar_trabajo:busqueda.lugar_trabajo,
-                
+
             }
     return res.json(busquedadto)
   }
