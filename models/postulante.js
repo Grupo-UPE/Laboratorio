@@ -16,7 +16,9 @@ var postulante_schema = new Schema({
     experiiencia_laboral: [{ empresa: String, antiguedad: String, rol: String}],
     comentario: String,
     habilidades     : [{type: Schema.ObjectId, ref : 'Habilidad'}],
-    habilidades_evaluadas     : [{{type: Schema.ObjectId, ref : 'Habilidad'},Evaluacion:Number}],
+    habilidades_evaluadas     :
+        [{habilidad: {type: Schema.ObjectId, ref : 'Habilidad'},Evaluacion:Number}]
+    ,
 });
 
 module.exports = mongoose.model('Postulante', postulante_schema);
