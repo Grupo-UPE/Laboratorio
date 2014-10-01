@@ -50,9 +50,9 @@ exports.create = function (req, res, next) {
 
 exports.list = function (req, res, next) {
 
-    Busqueda.find(gotBusqueda).populate("habilidades")
+    busquedas.find(gotBusquedas).populate("habilidades")
 
-  function gotBusqueda (err, busquedas) {
+  function gotBusquedas (err, busquedas) {
     if (err) {
       console.log(err)
       return next()
@@ -66,9 +66,9 @@ exports.list = function (req, res, next) {
 exports.show = function (req, res, next) {
   var id = req.params.id
 
-  Seleccion.findById(id, gotBusqueda)
+  busqueda.findById(id, gotBusqueda)
 
-  function gotSeleccion (err, busqueda) {
+  function gotBusqueda (err, busqueda) {
     if (err) {
       console.log(err)
       return next(err)
