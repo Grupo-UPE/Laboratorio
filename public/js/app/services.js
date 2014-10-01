@@ -123,7 +123,7 @@ services.factory('textoremove', function ($resource) {
 
 services.factory('busquedaService', function ($resource) {
     return $resource('/REST/busqueda', {}, {
-        query: { method: 'GET', params: {}, isArray: true }, 
+        query: { method: 'GET', params: {}, isArray: true },
     });
 });
 
@@ -144,7 +144,13 @@ services.factory('habilidadCreateService', function ($resource) {
 });
 services.factory('habilidadService', function ($resource) {
     return $resource('/REST/habilidad', {}, {
-        query: { method: 'GET', params: {}, isArray: true }, 
+        query: { method: 'GET', params: {}, isArray: true },
+    });
+});
+
+services.factory('habilidadRemove', function ($resource) {
+    return $resource('/REST/delete-habilidad/:id', {}, {
+        remove: { method: 'POST' },
     });
 });
 
@@ -205,6 +211,6 @@ services.factory('controlAcceso', function () {
 
 services.factory('buserService', function ($resource) {
     return $resource('/REST/buser', {}, {
-        query: { method: 'GET', params: {}, isArray: true }, 
+        query: { method: 'GET', params: {}, isArray: true },
     });
 });

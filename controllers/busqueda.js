@@ -50,7 +50,7 @@ exports.create = function (req, res, next) {
 
 exports.list = function (req, res, next) {
 
-    busquedas.find(gotBusquedas).populate("habilidades")
+    Busqueda.find(gotBusquedas).populate("habilidades")
 
   function gotBusquedas (err, busquedas) {
     if (err) {
@@ -66,7 +66,7 @@ exports.list = function (req, res, next) {
 exports.show = function (req, res, next) {
   var id = req.params.id
 
-  busqueda.findById(id, gotBusqueda)
+  Busqueda.findById(id, gotBusqueda)
 
   function gotBusqueda (err, busqueda) {
     if (err) {
@@ -85,7 +85,7 @@ exports.show = function (req, res, next) {
                 habilidades:busqueda.lhab,
                 texto_twitter:busqueda.texto_twitter,
                 lugar_trabajo:busqueda.lugar_trabajo,
-                
+
             }
     return res.json(busquedadto)
   }

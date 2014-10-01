@@ -10,7 +10,7 @@ var busqueda_schema = new Schema({
     remuneracion    : Number,
     habilidades     : [{type: Schema.ObjectId, ref : 'Habilidad'}],
     entrevistadores     : [{type: Schema.ObjectId, ref : 'Usuario'}],
-    postulantes     : [{type: Schema.ObjectId, ref : 'Usuario'}], //Nos falta el model de postulante.
+    postulantes     : [{type: Schema.ObjectId, ref : 'Postulante'}], //Nos falta el model de postulante.
     otros_comentarios : String,
     texto_twitter     : String,
     lugar_trabajo     : String,

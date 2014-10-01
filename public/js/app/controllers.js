@@ -35,7 +35,7 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                    function ($scope, $rootScope, $cookieStore, $location, $http, $routeParams,
                                     postulanteShowUpdateService) {
                                        $scope.postulante=postulanteShowUpdateService.show({id: $routeParams.textoId});
-                                      
+
                                        $scope.guardar = function () {
                                            postulanteShowUpdateService.update({ postulante: $scope.postulante });
                                            $location.path('/postulantes');
@@ -231,11 +231,18 @@ app.controller('buserCTRL', ['$scope', '$rootScope', '$cookieStore', '$location'
             ]);
 
 app.controller('habilidadCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'habilidadService',"$route",'habilidadCreateService',
+                        'habilidadService',"$route",'habilidadCreateService','habilidadRemove',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    habilidadService,$route,habilidadCreateService) {
+                                    habilidadService,$route,habilidadCreateService,habilidadRemove) {
 
             $scope.listaHabilidades=habilidadService.query();
+
+            $scope.eliminar=function(idHabilidad){
+                console.log(idHabilidad);
+                habilidadRemove.remove({id:idHabilidad})
+                $scope.listaHabilidades=habilidadService.query();
+            }
+
             $scope.guardar = function () {
               var algo = habilidadCreateService.create({habilidad: $scope.habilidad});
               $route.reload();

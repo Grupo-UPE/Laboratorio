@@ -116,4 +116,3 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
     });
 <<<<<<< HEAD
 }]); */
-

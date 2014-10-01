@@ -2,12 +2,12 @@ var Habilidad = require('../models/habilidad');
 
 exports.create = function (req, res, next) {
     var nombre=req.body.habilidad;
-    
+
 
     var habilidad = new Habilidad({
 	nombre: nombre,
 	});
-   
+
 
     habilidad.save(onSaved)
 
@@ -29,8 +29,37 @@ exports.list = function (req, res, next) {
       console.log(err)
       return next()
     }
-  
+
     return res.json(habilidades);
   }
 
+}
+
+exports.remove = function (req, res, next) {
+    var id = req.body.id
+
+    Habilidad.findById(id, gotHabilidad)
+
+    function gotHabilidad (err, habilidad) {
+    if (err) {
+        console.log(err)
+        return next(err)
+    }
+
+    if (!habilidad) {
+        return res.send({'error':'ID invalido'})
+    }
+
+    // Tenemos el texto, eliminemoslo
+    habilidad.remove(onRemoved)
+  }
+
+  function onRemoved (err) {
+    if (err) {
+      console.log(err)
+      return next(err)
+    }
+
+    return res.redirect('/')
+  }
 }
