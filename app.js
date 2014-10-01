@@ -31,6 +31,9 @@ var habilidad = require('./controllers/habilidad');
 var login = require('./controllers/login');
 var calendar = require('./controllers/calendar');
 
+//Esto seria algo algo como el instalador.
+var install = require('./controllers/install');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -92,9 +95,10 @@ app.post('/REST/delete-habilidad', habilidad.remove)
 
 //Login... por ahora esta aca porque es mas de prueba que otra cosa.
 app.get('/login', login.login)
-
-
 app.get('/oauth2callback', login.callback)
+
+//Install
+app.get('/install',install.install)
 
 //Prueba de googleapis
 app.get('/REST/algo', function(req, res) {
