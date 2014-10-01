@@ -50,7 +50,7 @@ exports.create = function (req, res, next) {
 
 exports.list = function (req, res, next) {
 
-    Busqueda.find(gotBusquedas).populate("habilidades")
+    Busqueda.find(gotBusquedas)
 
   function gotBusquedas (err, busquedas) {
     if (err) {
