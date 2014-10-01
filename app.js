@@ -91,49 +91,10 @@ app.post('/REST/delete-habilidad', habilidad.remove)
 
 
 //Login... por ahora esta aca porque es mas de prueba que otra cosa.
-app.get('/login', function(req, res) {
-  var locals = {
-        title: 'Login',
-        url: gapi.url
-      };
-  res.render('login.jade', locals);
-});
+app.get('/login', login.login)
 
 
-app.get('/oauth2callback', function(req, res) {
-  var code = req.query.code;
-    gapi.a.getToken(code, function(err, tokens) {
-        gapi.a.setCredentials(tokens);
-        gapi.b.people.get({ userId: 'me', auth: gapi.a }, function(err, profile) {
-        if (err) {
-            console.log('An error occured', err);
-            return;
-        }
-        //console.log(profile); //El usuario se logueo, en teoria.
-        var email=profile.emails;
-        usuario.login(email[0].value,function(rv){//rv=Return Value
-            if(typeof rv != 'undefined'){
-                //req.session=session;
-                rv.token=code; //le meto el token en el usuario.
-                rv.save;
-                req.session.usuario=rv;
-            var locals={
-                title:"Bienvenido!",
-                usuario:rv,
-            }
-            //console.log(rv);
-            res.render('redirect.jade', locals);
-        }else{
-            var locals={
-                title:'Error en el Login',
-            }
-
-            res.render('login.jade', locals);
-        }
-        });
-        });
-    });
-});
+app.get('/oauth2callback', login.callback)
 
 //Prueba de googleapis
 app.get('/REST/algo', function(req, res) {
