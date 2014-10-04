@@ -19,10 +19,9 @@ app.run(function ($rootScope, $templateCache) {
 app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'postulanteService','postulanteCreateService','rolService','$route',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    postulanteService,postulanteCreateService,rolService,$route) {
+                                    postulanteService,postulanteCreateService,$route) {
 
             $scope.listaPostulantes=postulanteService.query();
-            $scope.listaRoles=rolService.query();
             $scope.guardar = function () {
                 var postulante = postulanteCreateService.create({postulante:$scope.postulante});
                     $route.reload();

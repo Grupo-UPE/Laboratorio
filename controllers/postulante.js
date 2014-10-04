@@ -2,11 +2,8 @@ var Postulante = require('../models/postulante');
 
 
 exports.create = function (req, res, next) {
-
-    console.log(req.body)
-
-/*Deberiamos recorrer recorrer el req.body.postulante para sacar los datos /*
-
+    
+ /*
   var postulante = new Postulante({
   "nombre" : "Pepe",
   "apellido" : "Argento",
@@ -21,23 +18,27 @@ exports.create = function (req, res, next) {
     }],
   "email" : "pepelapopa@gmail.com",
   "disponibilidad" : "fulltime",
+ 
   "comentario" : "texto de prueba",
+  
 });
 postulante.save();
+*/
 
-/*
-    var nombre = req.body.nombre;
-    var apellido = req.body.apellido;
-    var dni = req.body.dni;
-    var estado_civil = req.body.estado_civil;
-    var nacionalidad = req.body.nacionalidad;
-    var edad = req.body.edad;
-    var sexo = req.body.sexo;
-    var telefono = { type : 'cualquiera', numero : req.body.telefono};
+    var nombre = req.body.postulante.nombre;
+    var apellido = req.body.postulante.apellido;
+    var dni = req.body.postulante.dni;
+    var estado_civil = req.body.postulante.estado_civil;
+    var nacionalidad = req.body.postulante.nacionalidad;
+    var edad = req.body.postulante.edad;
+    var sexo = req.body.postulante.sexo;
+    var telefono = { type : 'cualquiera', numero : req.body.postulante.telefono};
     var email = req.body.email;
-    var disponibilidad = req.body.disponibilidad;
+    var disponibilidad = req.body.postulante.disponibilidad;
     var habilidad = [];
-    var comentario = req.body.comentario;
+    var comentario = req.body.postulante.comentario;
+    
+    
     var postulante = new Postulante({
         nombre: nombre,
         apellido: apellido,
@@ -48,9 +49,7 @@ postulante.save();
         sexo: sexo,
         telefono: telefono,
         email: email,
-        formacion_academica: formacion,
         disponibilidad: formacion,
-        experiencia_laboral: experiencia,
         comentario: comentario,
         habilidades : habilidad,
 
@@ -65,7 +64,7 @@ postulante.save();
         }
         return res.send("");
     }
-    */
+    
 };
 
 exports.list = function (req, res, next) {
@@ -109,7 +108,7 @@ exports.show = function (req, res, next) {
                 experiencia_laboral : _postulante.experiencia,
                 comentario          : _postulante.comentario,
                 habilidad           : _postulante.habilidad,
-
+                
             }
     return res.json(postulantedto)
   }
