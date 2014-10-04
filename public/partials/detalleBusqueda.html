@@ -1,0 +1,31 @@
+{{busqueda}}
+<div class="panel panel-default">
+      <div class="panel-heading">
+            <h3 class="panel-title">Detalle de la busqueda {{busqueda.nombre}}</h3>
+      </div>
+      <div class="panel-body">
+           <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                     <th>Postulante</th>
+                     <th>Habilidades del postulante</th>
+                     <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <tr ng-repeat="postulante in busqueda.postulantes">
+                       <td>{{postulante.nombre}}</td>
+                       <td>
+                       <span ng-repeat="habilidad in postulante.habilidades">{{habilidad}}</span>
+                       </td>
+                       <td>
+                       <span><a href="#" ng-click="generarentrevista(busqueda._id,postulante._id)">Generar entrevista</a></span></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+      </div>
+</div>

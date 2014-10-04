@@ -208,6 +208,30 @@ app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$locati
 
             $scope.listaBusquedas=busquedaService.query();
 
+             $scope.list = function () {
+
+              $scope.listaBusquedas=busquedaService.query();
+              //$route.reload();
+        };
+        $scope.detalle=function(idbusqueda){
+            $location.path('/detalleBusqueda/'+idbusqueda);
+        }
+
+
+}]);
+
+app.controller('detalleBusquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        'detalleBusquedaService','$route','$routeParams',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,
+                                    detalleBusquedaService,$route,$routeParams) {
+
+            $scope.busqueda=detalleBusquedaService.query({id:$routeParams.idBusqueda});
+
+            $scope.generarentrevista=function(idbusqueda,idpostulante){
+
+            $location.path('/generarentrevista/'+idbusqueda+'/'+idpostulante);
+        }
+
             $scope.list = function () {
 
               $scope.listaBusquedas=busquedaService.query();

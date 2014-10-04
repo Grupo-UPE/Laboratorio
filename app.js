@@ -23,6 +23,7 @@ var texto  = require('./controllers/texto')
 var usuario  = require('./controllers/usuario')
 var rol  = require('./controllers/rol')
 var busqueda = require('./controllers/busqueda')
+var busquedaBis = require('./controllers/busquedaBis')
 var habilidad = require('./controllers/habilidad')
 
 var texto  = require('./controllers/texto');
@@ -89,7 +90,8 @@ app.post('/REST/create-postulante', postulante.create);
 
 //Rutas para busquedas
 
-app.get('/REST/busqueda', busqueda.list)
+app.get('/REST/busqueda', busquedaBis.list)//Le puse el bis porque devuelve mas o menos lo que esperamos.
+app.get('/REST/detalleBusquedaBis/:id', busquedaBis.show)
 app.post('/REST/create-busqueda',busqueda.create)
 
 //rutas para habilidades

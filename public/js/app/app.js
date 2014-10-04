@@ -81,6 +81,20 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
 
+             $routeProvider.when('/busquedabis',
+                {
+                    templateUrl: 'partials/busquedaBis-list.html',
+                    controller: 'busquedaCTRL',
+                    permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                });
+
+              $routeProvider.when('/detalleBusqueda/:idBusqueda',
+                {
+                    templateUrl: 'partials/detalleBusqueda.html',
+                    controller: 'detalleBusquedaCTRL',
+                    permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                });
+
             $routeProvider.when('/generarentrevista/:busquedaId/:postulanteId',
                 {
                 templateUrl: 'partials/entrevista.html',

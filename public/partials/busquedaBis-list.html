@@ -1,0 +1,23 @@
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+             <th>Nombre</th>
+            <th>Horario</th>
+            <th>Habilidades requeridas</th>
+            <th>Accciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="bsq in listaBusquedas">
+            {{bsq}}
+               <td>{{bsq.nombre}}</td>
+               <td>{{bsq.horario}}</td>
+               <td>
+               <span ng-repeat="habilidad in bsq.habilidades">{{habilidad.nombre}}</span></td>
+               <td><a href="#" ng-click="detalle(bsq._id)">Ver detalle</a></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
