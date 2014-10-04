@@ -84,7 +84,7 @@ app.get('/REST/rol', rol.list)
 app.get('/REST/postulante', postulante.list);
 app.get('/REST/postulante/:id', postulante.show);
 app.post('/REST/postulante', postulante.update);
-//app.post('/REST/delete-usuario', usuario.remove)
+app.post('/REST/delete-postulante', postulante.remove);
 app.post('/REST/create-postulante', postulante.create);
 
 

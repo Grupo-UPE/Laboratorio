@@ -30,9 +30,11 @@
                 <td>{{post.email}}</td>
                 <td>{{post.disponibilidad}}</td>
                 <td>{{post.comentario}}</td>
-                <td>{{post.habilidades[0].tecnologia}}</td>
-                <td><a href="/#/postulantes/{{post._id}}" class="btn btn-default">Editar</a>
-            </tr>
+                <td>{{post.habilidades[0].tecnologia}}
+                <a href="/#/postulantes" type="button" class="btn btn-default btn-sm" ng-click="eliminar(post._id)">
+                    <span class="glyphicon glyphicon-search"></span>Eliminar</a>
+                </td>
+                </tr>
         </tbody>
     </table>
 </div>
@@ -157,7 +159,7 @@
                         <div class="col-md-3">
                             <div class="form-group" >
                                 <label for="edad">Edad:</label>
-                                <input class="form-control" type="text" id="edad" ng-model="postulante.edad" placeholder="Edad..." required >
+                                <input class="form-control" type="number" id="edad" ng-model="postulante.edad" placeholder="Edad..." required >
                             </div>
                         </div>
                         <div class="col-md-3">

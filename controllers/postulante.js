@@ -24,7 +24,7 @@ exports.create = function (req, res, next) {
 });
 postulante.save();
 */
-
+    var tel = req.body.postulante.telefono;
     var nombre = req.body.postulante.nombre;
     var apellido = req.body.postulante.apellido;
     var dni = req.body.postulante.dni;
@@ -32,8 +32,8 @@ postulante.save();
     var nacionalidad = req.body.postulante.nacionalidad;
     var edad = req.body.postulante.edad;
     var sexo = req.body.postulante.sexo;
-    var telefono = { type : 'cualquiera', numero : req.body.postulante.telefono};
-    var email = req.body.email;
+    var telefono = [{ tipo : 'cualquiera', numero : tel}];
+    var email = req.body.postulante.email;
     var disponibilidad = req.body.postulante.disponibilidad;
     var habilidad = [];
     var comentario = req.body.postulante.comentario;
@@ -45,11 +45,11 @@ postulante.save();
         dni: dni,
         estado_civil: estado_civil,
         nacionalidad: nacionalidad,
-        edad: nacionalidad,
+        edad: edad,
         sexo: sexo,
         telefono: telefono,
         email: email,
-        disponibilidad: formacion,
+        disponibilidad: disponibilidad,
         comentario: comentario,
         habilidades : habilidad,
 
@@ -87,27 +87,27 @@ exports.show = function (req, res, next) {
 
   Postulante.findById(id, gotPostulante)
 
-  function gotPostulante (err, _postulante) {
+  function gotPostulante (err, postulante) {
     if (err) {
       console.log(err)
       return next(err)
     }
     var postulantedto={
-                _id                 : _postulante._id,
-                nombre              : _postulante.nombre,
-                apellido            : _postulante.apellido,
-                dni                 : _postulante.dni,
-                estado_civil        : _postulante.estado_civil,
-                nacionalidad        : _postulante.nacionalidad,
-                edad                : _postulante.nacionalidad,
-                sexo                : _postulante.sexo,
-                telefono            : _postulante.telefono,
-                email               : _postulante.email,
-                formacion_academica : _postulante.formacion,
-                disponibilidad      : _postulante.disponibilidad,
-                experiencia_laboral : _postulante.experiencia,
-                comentario          : _postulante.comentario,
-                habilidad           : _postulante.habilidad,
+                _id                 : postulante._id,
+                nombre              : postulante.nombre,
+                apellido            : postulante.apellido,
+                dni                 : postulante.dni,
+                estado_civil        : postulante.estado_civil,
+                nacionalidad        : postulante.nacionalidad,
+                edad                : postulante.nacionalidad,
+                sexo                : postulante.sexo,
+                telefono            : postulante.telefono,
+                email               : postulante.email,
+                formacion_academica : postulante.formacion,
+                disponibilidad      : postulante.disponibilidad,
+                experiencia_laboral : postulante.experiencia,
+                comentario          : postulante.comentario,
+                habilidades         : postulante.habilidad,
                 
             }
     return res.json(postulantedto)
@@ -175,4 +175,33 @@ exports.update = function (req, res, next) {
         }
         return res.send('')
     }
+}
+
+exports.remove = function (req, res, next) {
+    var id = req.body.id
+
+    Postulante.findById(id, gotPostulante)
+
+    function gotHabilidad (err, postulante) {
+    if (err) {
+        console.log(err)
+        return next(err)
+    }
+
+    if (!postulante) {
+        return res.send({'error':'ID invalido'})
+    }
+
+    // Tenemos el texto, eliminemoslo
+    postulante.remove(onRemoved)
+  }
+
+  function onRemoved (err) {
+    if (err) {
+      console.log(err)
+      return next(err)
+    }
+
+    return res.redirect('/')
+  }
 }

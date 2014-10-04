@@ -84,6 +84,12 @@ services.factory('postulanteCreateService', function ($resource) {
     });
 });
 
+services.factory('postulanteRemoveService', function ($resource) {
+    return $resource('/REST/delete-postulante/:id', {}, {
+        remove: { method: 'POST' },
+    });
+});
+
 services.factory('postulanteShowUpdateService', function ($resource) {
     return $resource('/REST/postulante/:id', {}, {
         show: { method: 'GET' },

@@ -17,17 +17,24 @@ app.run(function ($rootScope, $templateCache) {
 //controllers Postulantes
 
 app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'postulanteService','postulanteCreateService','rolService','$route',
-                                   function($scope, $rootScope, $cookieStore, $location, $http,
-                                    postulanteService,postulanteCreateService,$route) {
+                        'postulanteService', 'postulanteCreateService', 'postulanteRemoveService', '$route',
+                                   function ($scope, $rootScope, $cookieStore, $location, $http,
+                                    postulanteService, postulanteCreateService, $postulanteRemoveService, $route) {
+                                       
+                                       $scope.eliminar = function (idpostulante) {
+                                           postulanteRemoveService.remove({ id: idpostulante })
+                                           $scope.listaPostulantes = postulanteService.query();
+                                       }
 
-            $scope.listaPostulantes=postulanteService.query();
-            $scope.guardar = function () {
-                var postulante = postulanteCreateService.create({postulante:$scope.postulante});
-                    $route.reload();
+                                       $scope.listaPostulantes = postulanteService.query();
+                                       $scope.guardar = function () {
+                                           var postulante = postulanteCreateService.create({ postulante: $scope.postulante });
+                                           $route.reload();
 
-            }
-            }]);
+                                       }
+
+                                       
+                                   } ]);
 
             app.controller('postulanteCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http', '$routeParams',
                         'postulanteShowUpdateService',
