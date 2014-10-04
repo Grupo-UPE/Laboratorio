@@ -1,10 +1,12 @@
 var Postulante = require('../models/postulante');
 
-/*JSON del Postulante:
 
-{
-  "nombre" : "name",
-  "apellido" : "lastname",
+exports.create = function (res, req, next) {
+    
+  
+  var postulante = new Postulante({
+  "nombre" : "Pepe",
+  "apellido" : "Argento",
   "dni" : 123,
   "estado_civil" : "Soltero",
   "nacionalidad" : "Argentino",
@@ -14,46 +16,48 @@ var Postulante = require('../models/postulante');
       "tipo" : "Celular",
       "numero" : "1535073886"
     }],
-  "email" : "sergio3886@gmail.com",
-  "formacion_academica" : [{
-      "titulo" : "analista de mujeres"
-    }],
+  "email" : "pepelapopa@gmail.com",
   "disponibilidad" : "fulltime",
-  "experiiencia_laboral" : [{
-      "empresa" : "upe",
-      "antiguedad" : "3",
-      "rol" : "junior"
-    }],
+ 
   "comentario" : "texto de prueba",
-  "habilidades" : [{
-      "tecnologia" : "java",
-      "categoria" : "junior"
-    }]
-}*/
+  
+});
+postulante.save();
 
-exports.create = function (res, req, next) {
+/*
+    var nombre = req.body.nombre;
+    var apellido = req.body.apellido;
+    var dni = req.body.dni;
+    var estado_civil = req.body.estado_civil;
+    var nacionalidad = req.body.nacionalidad;
+    var edad = req.body.edad;
+    var sexo = req.body.sexo;
+    var telefono = { type : 'cualquiera', numero : req.body.telefono};
+    var email = req.body.email;
+    var disponibilidad = req.body.disponibilidad;
+    var habilidad = [];
+    var comentario = req.body.comentario;
     
     
-    
-    var _postulante = new Postulante({
-        nombre: req.body.post.nombre,
-        apellido: postulante.apellido,
-        dni: postulante.dni,
-        estado_civil: postulante.estado_civil,
-        nacionalidad: postulante.nacionalidad,
-        edad: postulante.nacionalidad,
-        sexo: postulante.sexo,
-        telefono: postulante.telefono,
-        email: postulante.email,
-        formacion_academica: postulante.formacion,
-        disponibilidad: postulante.formacion,
-        experiencia_laboral: postulante.experiencia,
-        comentario: postulante.comentario,
-        habilidades : postulante.habilidad
+    var postulante = new Postulante({
+        nombre: nombre,
+        apellido: apellido,
+        dni: dni,
+        estado_civil: estado_civil,
+        nacionalidad: nacionalidad,
+        edad: nacionalidad,
+        sexo: sexo,
+        telefono: telefono,
+        email: email,
+        formacion_academica: formacion,
+        disponibilidad: formacion,
+        experiencia_laboral: experiencia,
+        comentario: comentario,
+        habilidades : habilidad,
 
     });
 
-    _postulante.save(onSaved)
+    postulante.save(onSaved)
 
     function onSaved(err) {
         if (err) {
@@ -62,6 +66,7 @@ exports.create = function (res, req, next) {
         }
         return res.send("");
     }
+    */
 };
 
 exports.list = function (req, res, next) {

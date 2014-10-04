@@ -11,9 +11,7 @@
                 <th>Sexo</th>
                 <th>Telefono</th>
                 <th>Email</th>
-                <th>Formacion Academica</th>
                 <th>Disponibilidad</th>
-                <th>Experiencia Laboral</th>
                 <th>Comentario</th>
                 <th>Habilidades</th>
                 
@@ -30,9 +28,7 @@
                 <td>{{post.sexo}}</td>
                 <td>{{post.telefono[0].numero}}</td>
                 <td>{{post.email}}</td>
-                <td>{{post.formacion_academica[0].titulo}}</td>
                 <td>{{post.disponibilidad}}</td>
-                <td>{{post.experiiencia_laboral[0].empresa }}</td>
                 <td>{{post.comentario}}</td>
                 <td>{{post.habilidades[0].tecnologia}}</td>
                 <td><a href="/#/postulantes/{{post._id}}" class="btn btn-default">Editar</a>
@@ -46,34 +42,34 @@
             <h2>Formulario Postulante</h2>
             <hr>
                 <div class="row">
-                    <form method="post" role="form" name="frmPostulante">
+                    <form method="POST" ng-submit="guardar()" role="form" name="frmPostulante">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="nombreP">Nombre:</label>
-                                <input class="form-control" type="text" id="nombre" ng-model="postulante.nombre" placeholder="Ingrese el nombre..." required >
+                                <label for="nombre">Nombre:</label>
+                                <input class="form-control" type="text" id="nombre" ng-model="nombre" placeholder="Ingrese el nombre..." required >
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="apellidoP">Apellido:</label>
-                                <input class="form-control" type="text" id="apellido" ng-model="postulante.apellido" placeholder="Ingrese el apellido..." required >
+                                <label for="apellido">Apellido:</label>
+                                <input class="form-control" type="text" id="apellido" ng-model="apellido" placeholder="Ingrese el apellido..." required >
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="dni">DNI:</label>
-                                <input class="form-control" type="text" id="dni" ng-model="postulante.dni" placeholder="Ingrese DNI" required >
+                                <input class="form-control" type="text" id="dni" ng-model="dni" placeholder="Ingrese DNI" required >
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="estado_civil">Estado Civil:</label>
-                                <select class="form-control" id="estado_civil" ng-model="postulante.estado_civil">
+                                <select class="form-control" id="estado_civil" ng-model="estado_civil">
                                     <option value="">-</option>
                                         <option id="option_estadoCivil_5" value="1">Viudo</option>
                                         <option id="option_estadoCivil_290" value="2">Unión Libre</option>
                                         <option id="option_estadoCivil_2" value="3">Casado /a</option>
-                                        <option id="option_estadoCivil_1" selected="" value="1">Soltero /a</option>
+                                        <option id="option_estadoCivil_1" selected value="1">Soltero /a</option>
                                         <option id="option_estadoCivil_3" value="4">Divorciado /a</option>
                                         <option id="option_estadoCivil_4" value="5">Pareja de Hecho</option>
                                 </select>
@@ -82,8 +78,8 @@
                         <div class="col-md-3">
                             <div class="form-group" >
                                 <label for="nombre">Nacionalidad:</label>
-                               <select class="form-control" ng-model ="postulante.nacionalidad">
-                                    <option selected="" value="1">Argentina</option>
+                               <select class="form-control" id="nacionalidad" ng-model ="nacionalidad">
+                                    <option selected value="1">Argentina</option>
                                     <option value="5">Bolivia</option>
                                     <option value="7">Chile</option>
                                     <option value="8">Colombia</option>
@@ -154,56 +150,44 @@
                         </div>
                        <div class="col-md-3">
                             <div class="form-group" >
-                                <label for="edad">Sexo:</label>
-                                <input class="form-control" type="text" id="sexo" ng-model="postulante.sexo" placeholder="Sexo..." required >
+                                <label for="sexo">Sexo:</label>
+                                <input class="form-control" type="text" id="sexo" ng-model="sexo" placeholder="Sexo...">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group" >
                                 <label for="edad">Edad:</label>
-                                <input class="form-control" type="text" id="edad" ng-model="postulante.edad" placeholder="Edad..." required >
+                                <input class="form-control" type="text" id="edad" ng-model="edad" placeholder="Edad..." required >
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="edad">Telefono:</label>
-                                <input class="form-control" type="tel" id="telefono" ng-model="postulante.telefono" placeholder="Ingrese telefono..." required >
+                                <input class="form-control" type="text" id="telefono" ng-model="telefono" placeholder="Ingrese telefono..." >
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="disponibilidad">Disponibilidad:</label>
-                                <input class="form-control" type="tel" id="disponibilidad" ng-model="postulante.disponibilidad" placeholder="Ingrese telefono..." required >
+                                <input class="form-control" type="tel" id="disponibilidad" ng-model="disponibilidad" placeholder="ej full-time..." required >
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input class="form-control" type="email" id="email" ng-model="postulante.email" placeholder="Ingrese Email..." required >
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="formacion_academica">Formacion Academica:</label>
-                                <textarea class="form-control" ng-model ="postulante.formacion_academica" required ></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="experiencia_laboral">Experiencia Laboral:</label>
-                                <textarea class="form-control" id="experiencia_laboral" ng-model ="postulante.experiencia_laboral" required ></textarea>
+                                <input class="form-control" type="email" id="email" ng-model="email" placeholder="Ingrese Email..." required >
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="habilidad">Habilidades:</label>
-                                <textarea class="form-control" id="habilidad" ng-model="postulante.habilidad" required ></textarea>
+                                <textarea class="form-control" id="habilidad" ng-model="habilidad"  ></textarea>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="comentario">Comentario:</label>
-                                <textarea class="form-control" id="comentario" ng-model="postelante.comentario" required ></textarea>
+                                <textarea class="form-control" id="comentario" ng-model="comentario"  ></textarea>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-success">Registrar</button>
