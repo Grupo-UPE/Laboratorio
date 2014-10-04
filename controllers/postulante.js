@@ -1,9 +1,12 @@
 var Postulante = require('../models/postulante');
 
 
-exports.create = function (res, req, next) {
-    
-  
+exports.create = function (req, res, next) {
+
+    console.log(req.body)
+
+/*Deberiamos recorrer recorrer el req.body.postulante para sacar los datos /*
+
   var postulante = new Postulante({
   "nombre" : "Pepe",
   "apellido" : "Argento",
@@ -18,9 +21,7 @@ exports.create = function (res, req, next) {
     }],
   "email" : "pepelapopa@gmail.com",
   "disponibilidad" : "fulltime",
- 
   "comentario" : "texto de prueba",
-  
 });
 postulante.save();
 
@@ -37,8 +38,6 @@ postulante.save();
     var disponibilidad = req.body.disponibilidad;
     var habilidad = [];
     var comentario = req.body.comentario;
-    
-    
     var postulante = new Postulante({
         nombre: nombre,
         apellido: apellido,
@@ -110,7 +109,7 @@ exports.show = function (req, res, next) {
                 experiencia_laboral : _postulante.experiencia,
                 comentario          : _postulante.comentario,
                 habilidad           : _postulante.habilidad,
-                
+
             }
     return res.json(postulantedto)
   }
