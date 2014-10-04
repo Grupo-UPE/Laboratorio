@@ -213,7 +213,7 @@ app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$locati
               $scope.listaBusquedas=busquedaService.query();
               //$route.reload();
         };
-        $scope.detalle=function(idbusqueda){
+        $scope.detalle=function(idbusqueda){ //La idea era usar esto pero por algun motivo me manda al index...
             $location.path('/detalleBusqueda/'+idbusqueda);
         }
 
@@ -235,7 +235,6 @@ app.controller('detalleBusquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '
             $scope.list = function () {
 
               $scope.listaBusquedas=busquedaService.query();
-              $route.reload();
         };
 
 }]);

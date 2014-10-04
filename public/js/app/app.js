@@ -17,8 +17,6 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
                     templateUrl: 'partials/editar.html',
                     permisos : ['admin']
                 });
-            $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginController'});
-            $routeProvider.otherwise({redirectTo: '/login'});
 
             //Rutas para manejar usuarios
 
@@ -100,6 +98,8 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
                 templateUrl: 'partials/entrevista.html',
                 controller: 'IndexController', //Hay que cambiarlo por su propio controlador.
             });
+
+            $routeProvider.otherwise({redirectTo: '/'});
 
 }])
 
