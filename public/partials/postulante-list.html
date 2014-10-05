@@ -30,10 +30,10 @@
                 <td>{{post.email}}</td>
                 <td>{{post.disponibilidad}}</td>
                 <td>{{post.comentario}}</td>
-                <td>{{post.habilidades[0].tecnologia}}
-                <a href="/#/postulantes" type="button" class="btn btn-default btn-sm" ng-click="eliminar(post._id)">
-                    <span class="glyphicon glyphicon-search"></span>Eliminar</a>
+                <td>{{post.habilidades[0].tecnologia}}</td>
+                <td><a href="/#/postulantes" type="button" class="btn btn-danger btn-sm" ng-click="eliminar(post._id)">Eliminar</a>
                 </td>
+                <td><a href="/#/postulantes/{{post._id}}" class="btn btn-info btn-sm">Editar</a>
                 </tr>
         </tbody>
     </table>
@@ -68,12 +68,12 @@
                                 <label for="estado_civil">Estado Civil:</label>
                                 <select class="form-control" id="estado_civil" ng-model="postulante.estado_civil">
                                     <option value="">-</option>
-                                        <option id="option_estadoCivil_5" value="1">Viudo</option>
-                                        <option id="option_estadoCivil_290" value="2">Unión Libre</option>
-                                        <option id="option_estadoCivil_2" value="3">Casado /a</option>
-                                        <option id="option_estadoCivil_1" selected value="1">Soltero /a</option>
-                                        <option id="option_estadoCivil_3" value="4">Divorciado /a</option>
-                                        <option id="option_estadoCivil_4" value="5">Pareja de Hecho</option>
+                                        <option id="viudo_a">Viudo</option>
+                                        <option id="union_libre" >Unión Libre</option>
+                                        <option id="casado_a" >Casado /a</option>
+                                        <option id="soltero_a" selected >Soltero /a</option>
+                                        <option id="divorciado_a" >Divorciado /a</option>
+                                        <option id="pareja_de_hecho" >Pareja de Hecho</option>
                                 </select>
                             </div>
                         </div>
@@ -81,72 +81,72 @@
                             <div class="form-group" >
                                 <label for="nombre">Nacionalidad:</label>
                                <select class="form-control" id="nacionalidad" ng-model ="postulante.nacionalidad">
-                                    <option selected value="1">Argentina</option>
-                                    <option value="5">Bolivia</option>
-                                    <option value="7">Chile</option>
-                                    <option value="8">Colombia</option>
-                                    <option value="14">Costa Rica</option>
-                                    <option value="9">Ecuador</option>
-                                    <option value="18">Mexico</option>
-                                    <option value="20">Panama</option>
-                                    <option value="11">Peru</option>
-                                    <option value="28">Republica Dominicana</option>
-                                    <option value="12">Uruguay</option>
-                                    <option value="13">Venezuela</option>
+                                    <option >Argentina</option>
+                                    <option selected>Bolivia</option>
+                                    <option >Chile</option>
+                                    <option>Colombia</option>
+                                    <option >Costa Rica</option>
+                                    <option>Ecuador</option>
+                                    <option >Mexico</option>
+                                    <option >Panama</option>
+                                    <option >Peru</option>
+                                    <option >Republica Dominicana</option>
+                                    <option >Uruguay</option>
+                                    <option >Venezuela</option>
                                     <optgroup label="---------------------"></optgroup>
-                                    <option value="34">Alemania</option>
-                                    <option value="30">Australia</option>
-                                    <option value="31">Austria</option>
-                                    <option value="2">Brasil</option>
-                                    <option value="54">Bulgaria</option>
-                                    <option value="53">Bélgica</option>
-                                    <option value="23">Canada</option>
-                                    <option value="52">China</option>
-                                    <option value="68">Corea</option>
-                                    <option value="56">Croacia</option>
-                                    <option value="29">Cuba</option>
-                                    <option value="33">Dinamarca</option>
-                                    <option value="15">El Salvador</option>
-                                    <option value="75">Emiratos Arabes</option>
-                                    <option value="71">Escocia</option>
-                                    <option value="57">Eslovaquia</option>
-                                    <option value="58">Eslovenia</option>
-                                    <option value="21">Espana</option>
-                                    <option value="24">Estados Unidos</option>
-                                    <option value="59">Estonia</option>
-                                    <option value="60">Finlandia</option>
-                                    <option value="25">Francia</option>
-                                    <option value="35">Grecia</option>
-                                    <option value="16">Guatemala</option>
-                                    <option value="370">Haiti</option>
-                                    <option value="38">Holanda</option>
-                                    <option value="17">Honduras</option>
-                                    <option value="61">Hungria</option>
-                                    <option value="62">India</option>
-                                    <option value="32">Inglaterra</option>
-                                    <option value="1000">Internacional</option>
-                                    <option value="74">Irak</option>
-                                    <option value="63">Irlanda</option>
-                                    <option value="40">Israel</option>
-                                    <option value="26">Italia</option>
-                                    <option value="39">Japon</option>
-                                    <option value="64">Letonia</option>
-                                    <option value="65">Lituania</option>
-                                    <option value="380">Malasia</option>
-                                    <option value="19">Nicaragua</option>
-                                    <option value="66">Noruega</option>
-                                    <option value="67">Nueva Zelanda</option>
-                                    <option value="10">Paraguay</option>
-                                    <option value="50">Polonia</option>
-                                    <option value="22">Portugal</option>
-                                    <option value="27">Puerto Rico</option>
-                                    <option value="200">Republica Checa</option>
-                                    <option value="1001">República de Malta</option>
-                                    <option value="69">Rumania</option>
-                                    <option value="37">Rusia</option>
-                                    <option value="70">Singapur</option>
-                                    <option value="73">Suecia</option>
-                                    <option value="36">Suiza</option>
+                                    <option >Alemania</option>
+                                    <option >Australia</option>
+                                    <option >Austria</option>
+                                    <option>Brasil</option>
+                                    <option >Bulgaria</option>
+                                    <option >Bélgica</option>
+                                    <option >Canada</option>
+                                    <option >China</option>
+                                    <option >Corea</option>
+                                    <option >Croacia</option>
+                                    <option >Cuba</option>
+                                    <option >Dinamarca</option>
+                                    <option >El Salvador</option>
+                                    <option >Emiratos Arabes</option>
+                                    <option >Escocia</option>
+                                    <option >Eslovaquia</option>
+                                    <option >Eslovenia</option>
+                                    <option >Espana</option>
+                                    <option >Estados Unidos</option>
+                                    <option >Estonia</option>
+                                    <option >Finlandia</option>
+                                    <option >Francia</option>
+                                    <option >Grecia</option>
+                                    <option >Guatemala</option>
+                                    <option >Haiti</option>
+                                    <option >Holanda</option>
+                                    <option >Honduras</option>
+                                    <option >Hungria</option>
+                                    <option >India</option>
+                                    <option >Inglaterra</option>
+                                    <option >Internacional</option>
+                                    <option >Irak</option>
+                                    <option >Irlanda</option>
+                                    <option >Israel</option>
+                                    <option >Italia</option>
+                                    <option >Japon</option>
+                                    <option >Letonia</option>
+                                    <option >Lituania</option>
+                                    <option >Malasia</option>
+                                    <option >Nicaragua</option>
+                                    <option >Noruega</option>
+                                    <option >Nueva Zelanda</option>
+                                    <option >Paraguay</option>
+                                    <option >Polonia</option>
+                                    <option >Portugal</option>
+                                    <option >Puerto Rico</option>
+                                    <option >Republica Checa</option>
+                                    <option >República de Malta</option>
+                                    <option >Rumania</option>
+                                    <option >Rusia</option>
+                                    <option >Singapur</option>
+                                    <option >Suecia</option>
+                                    <option >Suiza</option>
                                </select>
                             </div>
                         </div>
@@ -177,7 +177,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input class="form-control" type="email" id="email" ng-model="postulante.email" placeholder="Ingrese Email..." required >
+                                <input class="form-control" type="email" id="email" ng-model="postulante.email" placeholder="Usr@mail" required >
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -192,7 +192,12 @@
                                 <textarea class="form-control" id="comentario" ng-model="postulante.comentario"  ></textarea>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success">Registrar</button>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Registrar</button>        
+                            </div>
+                        </div>
+                        
                          
                     </form>
                     
