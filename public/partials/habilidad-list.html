@@ -13,13 +13,14 @@
                 <div class="tags" ng-class="{focused: hasFocus}">
                 <ul class="tag-list">
                     <label for="habilidad">Habilidad</label>
-                <li class="tag-item" ng-repeat="hab in listaHabilidades.nombre" ng-class="{selected: tag == tagList.selected}">
+                <li class="tag-item" ng-repeat="hab in listaHabilidades" ng-class="{selected: tag == tagList.selected}">
                    <span ng-bind="getDisplayText(tag)"></span>
                     <a class="remove-button" ng-click"tagList.remove($index)" ng-bind="options.removeTagSymbol"></a>
                 </li>
             </ul>
                 <input type="text" class="input" ng-model="newTag.text" ng-change="newTagChange()" ng-trim="false"
                ng-class="{'invalid-tag': newTag.invalid}" ti-bind-attrs="{type: options.type, placeholder: options.placeholder, tabindex: options.tabindex}" ti-autosize>
+              
 
            </div>
                     <!--
