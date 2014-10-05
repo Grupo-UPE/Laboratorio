@@ -20,7 +20,7 @@ exports.create = function (req, res, next) {
     }
 
     var busqueda= new Busqueda({
-        fecha:bsq.fecha,
+        fecha_inicio:bsq.fecha_inicio,
         id_empleado:bsq.id_empleado,
         cantidad_empleados:bsq.cantidad_empleados,
         nombre:bsq.nombre,
