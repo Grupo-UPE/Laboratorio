@@ -20,7 +20,7 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                         'postulanteService', 'postulanteCreateService', 'postulanteRemoveService', '$route',
                                    function ($scope, $rootScope, $cookieStore, $location, $http,
                                     postulanteService, postulanteCreateService, postulanteRemoveService, $route) {
-                                       
+
                                        $scope.eliminar = function (idpostulante) {
                                            postulanteRemoveService.remove({ id: idpostulante })
                                            $scope.listaPostulantes = postulanteService.query();
@@ -33,7 +33,7 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
 
                                        }
 
-                                       
+
                                    } ]);
 
  app.controller('postulanteCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http', '$routeParams',
@@ -43,7 +43,7 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                        $scope.postulante = postulanteShowUpdateService.show({ id: $routeParams.postulanteId });
 
                                        $scope.guardar = function () {
-                                           
+
                                            postulanteShowUpdateService.update({ postulante: $scope.postulante });
                                            $location.path('/postulantes');
                                        };
@@ -247,6 +247,16 @@ app.controller('detalleBusquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '
 
 }]);
 
+app.controller('generarEntrevistaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        'detalleBusquedaService','$route','$routeParams','postulanteShowUpdateService',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,
+                                    detalleBusquedaService,$route,$routeParams,postulanteShowUpdateService) {
+
+            $scope.busqueda=detalleBusquedaService.query({id:$routeParams.idBusqueda});
+            $scope.postulante=postulanteShowUpdateService.show({id:$routeParams.idPostulante});
+
+}]);
+
 //busqueda de usuarios
 app.controller('buserCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'buserService',
@@ -282,6 +292,6 @@ app.controller('habilidadCTRL', ['$scope', '$rootScope', '$cookieStore', '$locat
 	habilidadCreateService.create({habilidad:$scope.habilidad});
 	$scope.listaHabilidades=habilidadService.query();
 	$route.reload();/*/
-                      
+
 
 }]);
