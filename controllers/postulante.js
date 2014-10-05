@@ -38,7 +38,7 @@ postulante.save();
     var habilidad = [];
     var comentario = req.body.postulante.comentario;
     
-    
+    console.log(req.body.postulante.nacionalidad);
     var postulante = new Postulante({
         nombre: nombre,
         apellido: apellido,
@@ -92,6 +92,8 @@ exports.show = function (req, res, next) {
       console.log(err)
       return next(err)
     }
+
+    
     var postulantedto={
                 _id                 : postulante._id,
                 nombre              : postulante.nombre,
@@ -99,13 +101,11 @@ exports.show = function (req, res, next) {
                 dni                 : postulante.dni,
                 estado_civil        : postulante.estado_civil,
                 nacionalidad        : postulante.nacionalidad,
-                edad                : postulante.nacionalidad,
+                edad                : postulante.edad,
                 sexo                : postulante.sexo,
                 telefono            : postulante.telefono,
                 email               : postulante.email,
-                formacion_academica : postulante.formacion,
                 disponibilidad      : postulante.disponibilidad,
-                experiencia_laboral : postulante.experiencia,
                 comentario          : postulante.comentario,
                 habilidades         : postulante.habilidad,
                 
@@ -117,30 +117,23 @@ exports.show = function (req, res, next) {
 //actualizacion del postulante
 
 exports.update = function (req, res, next) {
+    var mongoose=require('mongoose');
+    var id = mongoose.Types.ObjectId(req.body.postulante._id);
+    var nombre = req.body.postulante.nombre;
+    var apellido = req.body.postulante.apellido;
+    var dni = req.body.postulante.dni;
+    var estado_civil = req.body.postulante.estado_civil;
+    var nacionalidad = req.body.postulante.nacionalidad;
+    var edad = req.body.postulante.edad;
+    var sexo = req.body.postulante.sexo;
+    var telefono = req.body.postulante.telefono;
+    var email = req.body.postulante.email;
+    var edad = req.body.postulante.edad;
+    var disponibilidad = req.body.postulante.disponibilidad;
+    var comentario = req.body.postulante.comentario;
+    var _id=mongoose.Types.ObjectId(req.body.postulante._id);
 
-    var id = req.body._id
-    var nombre = req.body.nombre;
-    var apellido = req.body.apellido;
-    var dni = req.body.dni;
-    var estado_civil = req.body.estado_civil;
-    var nacionalidad = req.body.nacionalidad;
-    var edad = req.body.edad;
-    var sexo = req.body.sexo;
-    var telefono = req.body.telefono;
-    var email = req.body.email;
-    var edad = req.body.edad;
-    var formacion_academica = req.body.formacion_academica;
-    var experiencia = req.body.experiencia;
-    var disponibilidad = req.body.disponibilidad;
-    var comentario = req.body.comentario;
-
-
-
-    if ((dni === '')) {
-        return res.send({ 'error': 'Debe escribir algo' })
-    }
-
-    Postulante.findById(id, gotPostulante)
+    Postulante.findById(_id, gotPostulante)
 
     function gotPostulante(err, postulante) {
         if (err) {
@@ -158,12 +151,12 @@ exports.update = function (req, res, next) {
             postulante.sexo = sexo;
             postulante.telefono = telefono;
             postulante.email = email;
-            postulante.formacion_academica = formacion_academica;
             postulante.disponibilidad = disponibilidad;
-            postulante.experiencia = experiencia;
             postulante.comentario = comentario;
-            postulante.habilidad = habilidad;
+            postulante.habilidad = [];
 
+            console.log(_id);
+            console.log(id);
             postulante.save(onSaved)
         }
     }
@@ -178,11 +171,11 @@ exports.update = function (req, res, next) {
 }
 
 exports.remove = function (req, res, next) {
-    var id = req.body.id
+    var id = req.body.id;
 
     Postulante.findById(id, gotPostulante)
 
-    function gotHabilidad (err, postulante) {
+    function gotPostulante (err, postulante) {
     if (err) {
         console.log(err)
         return next(err)

@@ -19,7 +19,7 @@ app.run(function ($rootScope, $templateCache) {
 app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'postulanteService', 'postulanteCreateService', 'postulanteRemoveService', '$route',
                                    function ($scope, $rootScope, $cookieStore, $location, $http,
-                                    postulanteService, postulanteCreateService, $postulanteRemoveService, $route) {
+                                    postulanteService, postulanteCreateService, postulanteRemoveService, $route) {
                                        
                                        $scope.eliminar = function (idpostulante) {
                                            postulanteRemoveService.remove({ id: idpostulante })
@@ -36,16 +36,18 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                        
                                    } ]);
 
-            app.controller('postulanteCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http', '$routeParams',
+ app.controller('postulanteCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http', '$routeParams',
                         'postulanteShowUpdateService',
                                    function ($scope, $rootScope, $cookieStore, $location, $http, $routeParams,
                                     postulanteShowUpdateService) {
-                                       $scope.postulante=postulanteShowUpdateService.show({id: $routeParams.textoId});
+                                       $scope.postulante = postulanteShowUpdateService.show({ id: $routeParams.postulanteId });
 
                                        $scope.guardar = function () {
+                                           
                                            postulanteShowUpdateService.update({ postulante: $scope.postulante });
                                            $location.path('/postulantes');
                                        };
+
                                        $scope.volver = function () {
                                            $location.path('/postulantes');
                                        }
