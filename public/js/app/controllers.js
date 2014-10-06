@@ -20,7 +20,7 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                         'postulanteService', 'postulanteCreateService', 'postulanteRemoveService', '$route',
                                    function ($scope, $rootScope, $cookieStore, $location, $http,
                                     postulanteService, postulanteCreateService, postulanteRemoveService, $route) {
-                                       
+
                                        $scope.eliminar = function (idpostulante) {
                                            postulanteRemoveService.remove({ id: idpostulante })
                                            $scope.listaPostulantes = postulanteService.query();
@@ -33,7 +33,7 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
 
                                        }
 
-                                       
+
                                    } ]);
 
  app.controller('postulanteCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http', '$routeParams',
@@ -43,7 +43,7 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                        $scope.postulante = postulanteShowUpdateService.show({ id: $routeParams.postulanteId });
 
                                        $scope.guardar = function () {
-                                           
+
                                            postulanteShowUpdateService.update({ postulante: $scope.postulante });
                                            $location.path('/postulantes');
                                        };
@@ -198,11 +198,12 @@ app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                    function($scope, $rootScope, $cookieStore, $location, $http,
                                     busquedaService,busquedaCreateService,habilidadService,$route) {
 
-            //$scope.nbusqueda=busquedaService.query();
+            $scope.listabusquedas=busquedaService.query();
             $scope.listahabilidades=habilidadService.query();
 
             $scope.guardar = function () {
-              var busq = busquedaCreateService.create({bsq:$scope.bsq});
+              var busq = busquedaCreateService.create({busqueda:$scope.busqueda});
+              $scope.listabusquedas=busquedaService.query();
               $route.reload();
         };
 
@@ -247,6 +248,16 @@ app.controller('detalleBusquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '
 
 }]);
 
+app.controller('generarEntrevistaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        'detalleBusquedaService','$route','$routeParams','postulanteShowUpdateService',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,
+                                    detalleBusquedaService,$route,$routeParams,postulanteShowUpdateService) {
+
+            $scope.busqueda=detalleBusquedaService.query({id:$routeParams.idBusqueda});
+            $scope.postulante=postulanteShowUpdateService.show({id:$routeParams.idPostulante});
+
+}]);
+
 //busqueda de usuarios
 app.controller('buserCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'buserService',
@@ -268,20 +279,21 @@ app.controller('habilidadCTRL', ['$scope', '$rootScope', '$cookieStore', '$locat
 
             $scope.listaHabilidades=habilidadService.query();
 
-            $scope.guardar = function () {
+           /* $scope.guardar = function () {
                var algo= habilidadCreateService.create({habilidad: $scope.habilidad});
               $route.reload();
-            };
+            };*/
             $scope.eliminar=function(idHabilidad){
                 console.log(idHabilidad);
                 habilidadRemove.remove({id:idHabilidad})
                 $scope.listaHabilidades=habilidadService.query();
             }
 
-/*
-	habilidadCreateService.create({habilidad:$scope.habilidad});
-	$scope.listaHabilidades=habilidadService.query();
-	$route.reload();/*/
-                      
+            	$scope.guardar=function(){
+                        habilidadCreateService.create({habilidad:$scope.habilidad});
+            	$scope.listaHabilidades=habilidadService.query();
+            	$route.reload();
+                }
+
 
 }]);

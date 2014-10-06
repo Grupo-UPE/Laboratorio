@@ -1,7 +1,7 @@
 var Habilidad = require('../models/habilidad');
 
 exports.create = function (req, res, next) {
-    var nombre=req.body.habilidad;
+    var nombre=req.body.habilidad.nombre;
 
 
     var habilidad = new Habilidad({

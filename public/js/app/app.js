@@ -3,7 +3,7 @@
 // Declare app level module which depends on filters, and services
 angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.services',
     'ngdemo.directives', 'ui.date', 'ui.mask', 'ngdemo.controllers', 'ui.bootstrap.dropdown', 'ui.bootstrap.modal',
-    'ui.bootstrap.transition','ui.bootstrap.datepicker','ui.bootstrap.position','ui.bootstrap.tabs','ngtagsinput',]).
+    'ui.bootstrap.transition','ui.bootstrap.datepicker','ui.bootstrap.position','ui.bootstrap.tabs',]).
     config(['$locationProvider', '$httpProvider','USER_ROLES','$routeProvider',
         function ($locationProvider,$httpProvider,USER_ROLES,$routeProvider) {
             //Rutas del index y de pruebas
@@ -93,10 +93,10 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
 
-            $routeProvider.when('/generarentrevista/:busquedaId/:postulanteId',
+            $routeProvider.when('/generarentrevista/:idBusqueda/:idPostulante',
                 {
                 templateUrl: 'partials/entrevista.html',
-                controller: 'IndexController', //Hay que cambiarlo por su propio controlador.
+                controller: 'generarEntrevistaCTRL',
             });
 
             $routeProvider.otherwise({redirectTo: '/'});

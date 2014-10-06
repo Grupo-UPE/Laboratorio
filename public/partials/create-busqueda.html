@@ -1,26 +1,118 @@
-<div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div class="panel-heading">
-            <h3 class="panel-title">Alta de una busqueda laboral</h3>
-    </div>
-    <div class="panel-body">
-        <form action="" ng-submit="guardar()" method="POST" class="form-horizontal" role="form">
-            <div class="form-group col-sm-5 col-md-5 col-lg-5">
-                <legend>Datos de la busqueda</legend>
-                    <label for="nombre">Nombre de la busqueda</label>
-                    <input type="text" class="form-control" id="nombre" placeholder="Nombre de la busqueda" ng-model="bsq.nombre"required>
-                    <label for="cantidad de puestos">Cantidad de puestos</label>
-                    <input type="cantidad de puestos" class="form-control" id="cantidad de puestos" placeholder="cantidad de puestos" ng-model="bsq.cantidad_empleados" required>
-                    <input type="text" data-role="tagsinput"></input>
-            </div>
-            <div class="col-sm-1 col-md-1 col-lg-1">
-                <!-- Es trampa para separar los divs -->
-            </div>
-            
-            <div class="form-group">
-                <div class="col-sm-10 col-sm-offset-2">
-                    <button type="submit" class="btn btn-primary">Generar Busqueda</button>
-                </div>
-            </div>
-        </form>
-    </div>
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Nombre Busqeda</th>
+                <th>Empleado Responsable</th>
+                <th>N° Puestos a cubrir</th>
+                <th>Remuneracion</th>
+                <th>Lugar de Trabajo</th>
+                <th>Disponibilidad</th>
+                <th>Fecha de Inicio</th>
+                <th>Habilidades</th>
+                <th>Twitter</th>
+                <th>Comentarios</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="bsq in listabusquedas">
+                <td>{{bsq.nombre}}</td>
+                <td>{{bsq.id_empleado}}</td>
+                <td>{{bsq.cantidad_empleados}}</td>
+                <td>{{bsq.remuneracion}}</td>
+                <td>{{bsq.lugar_trabajo}}</td>
+                <td>{{bsq.horario}}</td>
+                <td>{{bsq.fecha_inicio}}</td>
+                <td>{{bsq.habilidades}}</td>
+                <td>{{bsq.texto_twitter}}</td>
+                <td>{{bsq.otros_comentarios}}</td>
+                <td><a href="/#/createbusquedas" type="button" class="btn btn-danger btn-sm" ng-click="eliminar(bsq._id)">Eliminar</a>
+                </td>
+                
+                </tr>
+        </tbody>
+    </table>
 </div>
+
+<div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="row">
+                    <form method="POST" ng-submit="guardar()" role="form" name="frmBusqueda">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="nombre">Nombre:</label>
+                                <input class="form-control" type="text" id="nombre" ng-model="busqueda.nombre" placeholder="Nombre del Puesto Solicitado" required >
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="empleado_responsable">Empleado Responsable:</label>
+                                <input class="form-control" type="text" id="empleado_responsable" ng-model="busqueda.id_empleado" placeholder="Empleado Responsable de la busqueda" required >
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="cantidad_puestos">Cantidad Puestos a Cubrir:</label>
+                                <input class="form-control" type="text" id="cantidad_puestos" ng-model="busqueda.cantidad_empleados" required >
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="remuneracion">Remuneracion pretendida:</label>
+                                <input class="form-control" type="text" id="remuneracion" ng-model="busqueda.remuneracion" required >
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="lugar_de_trabajo">Lugar de Trabajo:</label>
+                                <input class="form-control" type="text" id="lugar_de_trabajo" placeholder="Oficina,Cliente,Etc" ng-model="busqueda.lugar_trabajo" required >
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="horario">Disponibilidad:</label>
+                                <select class="form-control" id="horario" ng-model="busqueda.horario">
+                                    <option value="">-</option>
+                                        <option id="Full-Time" selected>Full-Time</option>
+                                        <option id="Part-Time">Part-Time</option>
+                                        <option id="Pasantia">Pasantia</option>
+                                        <option id="Work-Home">Work-Home</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="fecha_inicio">Fecha de inicio de la busqueda:</label>
+                                <input class="form-control" type="date" name="input" id="fecha_inicio" placeholder="dd/mm/yyyy" ng-model="busqueda.fecha_inicio" min="01-01-2015" max="31-12-2020" required >
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-5 col-md-5 col-lg-5">
+                            <legend>Habilidades</legend>
+                            <tags model="habilidad" src"hab as hab.nombre for hab in listahabilidades"></tags>
+                            <!--<label for="habilidades">Habilidades</label><br />
+                            <select  size="5" id="habildidades" multiple ng-multiple="true" ng-model="usuario.roles" ng-options="r.nombre for r in listaRoles" required class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></select>-->
+                         </div>
+                         <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="texto_twitter">Link a Twitter:</label>
+                                <textarea class="form-control" id="texto_twitter" ng-model="busqueda.texto_twitter"  ></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="comentario">Comentario:</label>
+                                <textarea class="form-control" id="comentario" ng-model="busqueda.otros_comentarios"  ></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Crear Busqueda</button>        
+                            </div>
+                        </div>
+                        
+                         
+                    </form>
+                    
+                </div>
+            
+        </div>
