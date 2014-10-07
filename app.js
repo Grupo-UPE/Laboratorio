@@ -90,7 +90,8 @@ app.post('/REST/create-postulante', postulante.create);
 
 //Rutas para busquedas
 
-app.get('/REST/busqueda', busquedaBis.list)//Le puse el bis porque devuelve mas o menos lo que esperamos.
+app.get('/REST/busqueda', busqueda.list)//Le puse el bis porque devuelve mas o menos lo que esperamos.
+app.get('/REST/busquedaBis', busquedaBis.list)//Le puse el bis porque devuelve mas o menos lo que esperamos.
 app.get('/REST/detalleBusquedaBis/:id', busquedaBis.show)
 app.post('/REST/create-busqueda',busqueda.create)
 
