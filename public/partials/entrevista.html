@@ -8,7 +8,7 @@
             <div class="form-group col-sm-5 col-md-5 col-lg-5">
             <legend>Entrevistador</legend>
             <input type="text" class="form-control" placeholder="Filtro" ng-model="filtro">
-                <select id="entrevistador"  ng-model="entrevista.busqueda.entrevistador" ng-options="e.nombre for e in busqueda.entrevistadores|filter:filtro" required class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></select>
+                <select id="entrevistador"  ng-model="entrevista.busqueda.entrevistador" ng-options="e.username for e in busqueda.entrevistadores|filter:filtro" required class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></select>
 
                 <legend>Fecha y Hora</legend>
                     <input type="hidden" name="busqueda" id="busqueda" class="form-control" value="{{busqueda._id}}" ng-model="entrevista.busqueda._id">
