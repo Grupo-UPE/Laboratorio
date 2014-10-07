@@ -101,9 +101,12 @@ app.post('/REST/delete-habilidad', habilidad.remove)
 
 
 
-//Login... por ahora esta aca porque es mas de prueba que otra cosa.
+//Login
 app.get('/login', login.login)
 app.get('/oauth2callback', login.callback)
+
+//Entrevistas
+app.post('/REST/create-entrevista', calendar.create)
 
 //Install
 app.get('/install',install.install)
