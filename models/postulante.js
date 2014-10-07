@@ -9,7 +9,7 @@ var postulante_schema = new Schema({
     nacionalidad: String,
     edad: String,
     sexo: String,
-    telefono: [{ tipo: String, numero: String}],
+    telefono: String,
     email: String,
     formacion_academica: [{ titulo: String}],
     disponibilidad: String,

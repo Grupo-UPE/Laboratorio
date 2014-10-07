@@ -24,7 +24,7 @@ exports.create = function (req, res, next) {
 });
 postulante.save();
 */
-    var tel = req.body.postulante.telefono;
+ 
     var nombre = req.body.postulante.nombre;
     var apellido = req.body.postulante.apellido;
     var dni = req.body.postulante.dni;
@@ -32,13 +32,12 @@ postulante.save();
     var nacionalidad = req.body.postulante.nacionalidad;
     var edad = req.body.postulante.edad;
     var sexo = req.body.postulante.sexo;
-    var telefono = [{ tipo : 'cualquiera', numero : tel}];
+    var telefono = req.body.postulante.telefono;
     var email = req.body.postulante.email;
     var disponibilidad = req.body.postulante.disponibilidad;
     var habilidad = [];
     var comentario = req.body.postulante.comentario;
     
-    console.log(req.body.postulante.nacionalidad);
     var postulante = new Postulante({
         nombre: nombre,
         apellido: apellido,
@@ -110,6 +109,8 @@ exports.show = function (req, res, next) {
                 habilidades         : postulante.habilidad,
                 
             }
+            console.log(postulantedto.edad);
+            
     return res.json(postulantedto)
   }
 };
