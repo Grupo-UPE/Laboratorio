@@ -33,8 +33,8 @@ exports.create = function (req, res, next) {
         horario:bsq.horario,
     });
 
-    console.log("creamos la busqueda y nos queda: ");
-    console.log(busqueda);
+//    console.log("creamos la busqueda y nos queda: ");
+  //  console.log(busqueda);
 
     busqueda.save(onSaved)
 
@@ -43,14 +43,14 @@ exports.create = function (req, res, next) {
             console.log(err)
             return next(err)
         }
-        return res.redirect('/busqueda')
+        return res.redirect('/createbusqueda')
         }
 };
 
 
 exports.list = function (req, res, next) {
 
-    Busqueda.find(gotBusquedas)
+    Busqueda.find(gotBusquedas).populate("habilidades")
 
   function gotBusquedas (err, busquedas) {
     if (err) {
@@ -66,7 +66,7 @@ exports.list = function (req, res, next) {
 exports.show = function (req, res, next) {
   var id = req.params.id
 
-  Busqueda.findById(id, gotBusqueda)
+  Busqueda.findById(id, gotBusqueda).populate("habilidades")
 
   function gotBusqueda (err, busqueda) {
     if (err) {

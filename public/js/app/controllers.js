@@ -202,7 +202,7 @@ app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$
             $scope.listahabilidades=habilidadService.query();
 
             $scope.guardar = function () {
-              var busq = busquedaCreateService.create({busqueda:$scope.busqueda});
+                 busquedaCreateService.create({busqueda:$scope.busqueda});
               $scope.listabusquedas=busquedaService.query();
               $route.reload();
         };
@@ -220,8 +220,7 @@ app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$locati
              $scope.list = function () {
 
               $scope.listaBusquedas=busquedaService.query();
-              //$route.reload();
-        };
+              };
         $scope.detalle=function(idbusqueda){ //La idea era usar esto pero por algun motivo me manda al index...
             $location.path('/detalleBusqueda/'+idbusqueda);
         }
