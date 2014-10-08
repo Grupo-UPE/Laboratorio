@@ -196,10 +196,14 @@ app.controller('ApplicationController', function ($scope,
 app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'busquedaService','busquedaCreateService','habilidadService','$route',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    busquedaService,busquedaCreateService,habilidadService,$route) {
+                                    busquedaService,busquedaCreateService,habilidadService,$route ) {  
 
             $scope.listabusquedas=busquedaService.query();
             $scope.listahabilidades=habilidadService.query();
+
+            $scope.loadTags=function(query){
+              return $http.get('/REST/tags/'+query);
+            }
 
             $scope.guardar = function () {
                  busquedaCreateService.create({busqueda:$scope.busqueda});

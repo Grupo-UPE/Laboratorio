@@ -5,6 +5,13 @@
      <div class="panel-body">
                 <div class="row">
                     <form action="" method="POST" class="form-horizontal" role="form">
+
+                        {{busqueda}}
+
+                        <tags-input ng-model="busqueda.habilidades">
+                            <auto-complete source="loadTags($query)"></auto-complete>
+                        </tags-input>
+
                         <div class="col-md-3" >
                             <div class="form-group">
                                 <label for="nombre">Nombre:</label>

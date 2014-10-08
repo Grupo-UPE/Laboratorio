@@ -99,6 +99,8 @@ app.get('/REST/habilidad', habilidad.list)
 app.post('/REST/habilidad', habilidad.create)
 app.post('/REST/delete-habilidad', habilidad.remove)
 
+app.get('/REST/tags/:query', habilidad.query)
+
 
 
 //Login... por ahora esta aca porque es mas de prueba que otra cosa.
