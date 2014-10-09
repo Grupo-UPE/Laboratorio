@@ -91,6 +91,10 @@ app.post('/REST/create-postulante', postulante.create);
 //Rutas para busquedas
 
 app.get('/REST/busqueda', busqueda.list)//Le puse el bis porque devuelve mas o menos lo que esperamos.
+<<<<<<< HEAD
+=======
+app.get('/REST/busquedaBis', busquedaBis.list)//Le puse el bis porque devuelve mas o menos lo que esperamos.
+>>>>>>> 3fbd7b7c3681729d47c955b433fe574e79b3f505
 app.get('/REST/detalleBusquedaBis/:id', busquedaBis.show)
 app.post('/REST/create-busqueda',busqueda.create)
 
@@ -103,9 +107,12 @@ app.get('/REST/tags/:query', habilidad.query)
 
 
 
-//Login... por ahora esta aca porque es mas de prueba que otra cosa.
+//Login
 app.get('/login', login.login)
 app.get('/oauth2callback', login.callback)
+
+//Entrevistas
+app.post('/REST/create-entrevista', calendar.create)
 
 //Install
 app.get('/install',install.install)
