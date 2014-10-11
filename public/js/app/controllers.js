@@ -33,6 +33,10 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
 
                                        }
 
+                                       $scope.loadTags=function(query){ //Podriamos usar un service tambien. Pero como es bastante sencillo no se si nos conviene.
+                                            return $http.get('/REST/tags/'+query);
+                                        }
+
 
                                    } ]);
 
@@ -196,7 +200,7 @@ app.controller('ApplicationController', function ($scope,
 app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'busquedaService','busquedaCreateService','habilidadService','$route',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    busquedaService,busquedaCreateService,habilidadService,$route ) {  
+                                    busquedaService,busquedaCreateService,habilidadService,$route ) {
 
             $scope.listabusquedas=busquedaService.query();
             $scope.listahabilidades=habilidadService.query();

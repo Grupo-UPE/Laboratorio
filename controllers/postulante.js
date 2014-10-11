@@ -2,7 +2,7 @@ var Postulante = require('../models/postulante');
 
 
 exports.create = function (req, res, next) {
-    
+
  /*
   var postulante = new Postulante({
   "nombre" : "Pepe",
@@ -18,13 +18,13 @@ exports.create = function (req, res, next) {
     }],
   "email" : "pepelapopa@gmail.com",
   "disponibilidad" : "fulltime",
- 
+
   "comentario" : "texto de prueba",
-  
+
 });
 postulante.save();
 */
- 
+
     var nombre = req.body.postulante.nombre;
     var apellido = req.body.postulante.apellido;
     var dni = req.body.postulante.dni;
@@ -35,9 +35,13 @@ postulante.save();
     var telefono = req.body.postulante.telefono;
     var email = req.body.postulante.email;
     var disponibilidad = req.body.postulante.disponibilidad;
-    var habilidad = [];
+     var habilidades=[];
+    for (var id in req.body.postulante.habilidades) {
+        habilidades.push(req.body.postulante.habilidades[id]["_id"]);
+    }
+
     var comentario = req.body.postulante.comentario;
-    
+
     var postulante = new Postulante({
         nombre: nombre,
         apellido: apellido,
@@ -50,9 +54,12 @@ postulante.save();
         email: email,
         disponibilidad: disponibilidad,
         comentario: comentario,
-        habilidades : habilidad,
+        habilidades : habilidades,
 
     });
+    console.log(habilidades);
+
+    console.log(postulante);
 
     postulante.save(onSaved)
 
@@ -63,12 +70,12 @@ postulante.save();
         }
         return res.send("");
     }
-    
+
 };
 
 exports.list = function (req, res, next) {
 
-    Postulante.find(gotPostulantes)
+    Postulante.find(gotPostulantes).populate('habilidades')
 
     function gotPostulantes(err, postulante) {
         if (err) {
@@ -92,7 +99,7 @@ exports.show = function (req, res, next) {
       return next(err)
     }
 
-    
+
     var postulantedto={
                 _id                 : postulante._id,
                 nombre              : postulante.nombre,
@@ -107,10 +114,10 @@ exports.show = function (req, res, next) {
                 disponibilidad      : postulante.disponibilidad,
                 comentario          : postulante.comentario,
                 habilidades         : postulante.habilidad,
-                
+
             }
             console.log(postulantedto.edad);
-            
+
     return res.json(postulantedto)
   }
 };
