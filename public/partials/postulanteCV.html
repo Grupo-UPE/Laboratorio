@@ -1,0 +1,13 @@
+<h1>
+          Carga de Archivos Postulante CV
+        </h1><br>
+        <br>
+        <form id="cv" ng-upload="bar(content)" method="post" enctype='multipart/form-data' action="/upload?delay=yes" name="cv">
+          <p>
+            <label>Seleccionar un archivo:</label> <input type="file" name="file">
+          </p>
+          <p>
+            <input type="submit" class="btn" value="Submit" ng-disabled="$isUploading"><br>
+            
+          </p>
+        </form>

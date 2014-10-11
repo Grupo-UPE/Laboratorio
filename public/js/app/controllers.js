@@ -14,6 +14,14 @@ app.run(function ($rootScope, $templateCache) {
 
 //postulantes controllers
 
+app.controller('postulanteCtrlCV', function ($scope) {
+            $scope.disabled = false;
+            $scope.bar = function(content) {
+              if (console) console.log(content);
+                $scope.uploadResponse = content.msg;
+            }
+        });
+
 //controllers Postulantes
 
 app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',

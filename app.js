@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var session = require('express-session')
+var multipart = require('connect-multiparty');
 mongoose.connect('mongodb://localhost/test'); //Conectamos mongoose.
 
 var routes = require('./routes/index');
@@ -58,6 +59,8 @@ app.use(session({ secret: 'keyboard cat',
                             resave: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(bodyParser());
+app.use(multipart());
 
 //Se debe poder definirlas en otro lado
 app.get('/REST/texto', texto.index)
@@ -87,6 +90,8 @@ app.post('/REST/postulante', postulante.update);
 app.post('/REST/delete-postulante', postulante.remove);
 app.post('/REST/create-postulante', postulante.create);
 
+//carga de archivo
+app.post('/upload', postulante.upload);
 
 //Rutas para busquedas
 

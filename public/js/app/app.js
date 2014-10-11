@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on filters, and services
-angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.services',
+angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'ngdemo.services',
     'ngdemo.directives', 'ui.date', 'ui.mask', 'ngdemo.controllers', 'ui.bootstrap.dropdown', 'ui.bootstrap.modal',
     'ui.bootstrap.transition','ui.bootstrap.datepicker','ui.bootstrap.position','ui.bootstrap.tabs','ngtagsinput',]).
     config(['$locationProvider', '$httpProvider','USER_ROLES','$routeProvider',
@@ -35,6 +35,13 @@ angular.module('ngdemo', ['ngRoute','ngCookies','ngdemo.filters', 'ngdemo.servic
 
             //rutas para el manejo de postulantes
 
+            $routeProvider.when('/postulanteCV',
+                {
+                templateUrl: 'partials/postulanteCV.html',
+                controller: 'postulanteCtrlCV',
+            });
+            
+            
             $routeProvider.when('/postulantes',
                 {
                     templateUrl: 'partials/postulante-list.html',
