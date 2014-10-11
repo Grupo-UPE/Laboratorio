@@ -1,26 +1,104 @@
 <div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div class="panel-heading">
-            <h3 class="panel-title">Alta de una busqueda laboral</h3>
-    </div>
-    <div class="panel-body">
-        <form action="" ng-submit="guardar()" method="POST" class="form-horizontal" role="form">
-            <div class="form-group col-sm-5 col-md-5 col-lg-5">
-                <legend>Datos de la busqueda</legend>
-                    <label for="nombre">Nombre de la busqueda</label>
-                    <input type="text" class="form-control" id="nombre" placeholder="Nombre de la busqueda" ng-model="bsq.nombre"required>
-                    <label for="cantidad de puestos">Cantidad de puestos</label>
-                    <input type="cantidad de puestos" class="form-control" id="cantidad de puestos" placeholder="cantidad de puestos" ng-model="bsq.cantidad_empleados" required>
-                    <input type="text" data-role="tagsinput"></input>
-            </div>
-            <div class="col-sm-1 col-md-1 col-lg-1">
-                <!-- Es trampa para separar los divs -->
-            </div>
-            
-            <div class="form-group">
-                <div class="col-sm-10 col-sm-offset-2">
-                    <button type="submit" class="btn btn-primary">Generar Busqueda</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+<h3 id="h3SearchFormTitle">Datos de la Busqueda de Personal </h3>
+
+<div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
+     <div class="panel-body">
+                <div class="row">
+                    <form action="" method="POST" class="form-horizontal" role="form">
+
+                        {{busqueda}}
+
+                        <tags-input ng-model="busqueda.habilidades">
+                            <auto-complete source="loadTags($query)"></auto-complete>
+                        </tags-input>
+
+                        <div class="col-md-3" >
+                            <div class="form-group">
+                                <label for="nombre">Nombre:</label>
+                                <input class="form-control" type="text" id="nombre" ng-model="busqueda.nombre" placeholder="Puesto Solicitado" required pattern="[a-zA-Z]+" >
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-offset-1 ">
+                            <div class="form-group">
+                                <label for="empleado_responsable">Empleado Responsable:</label>
+                                <input class="form-control" type="text" id="empleado_responsable" ng-model="busqueda.id_empleado" placeholder="Empleado Responsable de la busqueda" >
+
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-offset-1">
+                            <div class="form-group">
+                                <label for="cantidad_puestos">Cantidad Puestos a Cubrir:</label>
+                                <input class="form-control" type="text" id="cantidad_puestos" ng-model="busqueda.cantidad_empleados"  >
+                            </div>
+                        </div>
+
+                      
+                        <div class="col-md-3">
+
+                            <div class="form-group">
+                                <label for="remuneracion">Remuneracion pretendida:</label>
+                                <input class="form-control" type="text" id="remuneracion" ng-model="busqueda.remuneracion" placeholder="$4000"  >
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-offset-1">
+                            <div class="form-group">
+                                <label for="lugar_de_trabajo">Lugar de Trabajo:</label>
+                                <input class="form-control" type="text" id="lugar_de_trabajo" placeholder="Oficina,Cliente,Etc" ng-model="busqueda.lugar_trabajo"  >
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-offset-1">
+                            <div class="form-group">
+                                <label for="horario">Disponibilidad:</label>
+                                <select class="form-control" id="horario" ng-model="busqueda.horario">
+                                    <option value="">-</option>
+                                        <option id="Full-Time" selected>Full-Time</option>
+                                        <option id="Part-Time">Part-Time</option>
+                                        <option id="Pasantia">Pasantia</option>
+                                        <option id="Work-Home">Work-Home</option>
+                                </select>
+                            </div>
+                     </div>
+                        
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="fecha_inicio">Fecha de inicio de la busqueda:</label>
+                                <input class="form-control" type="date" name="input" id="fecha_inicio" placeholder="dd/mm/yyyy" ng-model="busqueda.fecha_inicio" min="01-01-2015" max="31-12-2020"  >
+                            </div>
+                       
+                        </div>
+                        
+                         <div class="col-md-3 col-sm-offset-1">
+                            <div class="form-group">
+                                <label for="texto_twitter">Link a Twitter:</label>
+                                <textarea class="form-control" id="texto_twitter" ng-model="busqueda.texto_twitter"  ></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-offset-1">
+                            <div class="form-group">
+                                <label for="comentario">Comentario:</label>
+                                <textarea class="form-control" id="comentario" ng-model="busqueda.otros_comentarios"  ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-10 ">
+                            <legend>Habilidades</legend>
+                            
+                            <select  size="3" id="habilidades" multiple ng-multiple="true" ng-model="busqueda.habilidad" ng-options="h.nombre for h in listahabilidades" required class="col-xs-4 col-sm-4 col-md-4"></select>
+                            <!--<label for="habilidades">Habilidades</label><br />
+                            <select  size="5" id="habildidades" multiple ng-multiple="true" ng-model="usuario.roles" ng-options="r.nombre for r in listaRoles" required class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></select>-->
+                         </div>
+                         </div>
+                        </div>
+                        
+                        </div>
+
+                    <div class="col-md-3">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" ng-click="guardar()">Crear Busqueda</button>      
+                            </div>
+                        </div></form></div></div>

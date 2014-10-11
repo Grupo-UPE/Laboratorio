@@ -2,34 +2,34 @@
     <div class="panel-heading">
             <h3 class="panel-title">Generar una nueva entevista al postulante: {{postulante.nombre}} para la busqueda: {{busqueda.nombre}}</h3>
     </div>
-    <div class="panel-body">
-   <iframe src="https://www.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=francisco.ronconi%40gmail.com&amp;color=%232952A3&amp;src=4aik347gtqu1umje7kggphnsg4%40group.calendar.google.com&amp;color=%23711616&amp;ctz=America%2FArgentina%2FBuenos_Aires" style=" border-width:0 " width="800" height="600" frameborder="0" scrolling="no"></iframe>
-        <form action="" ng-submit="guardar()" method="POST" class="form-horizontal" role="form">
-            <div class="form-group col-sm-5 col-md-5 col-lg-5">
+    <div class="panel-body col-sm-5 col-md-5 col-lg-5">
+   <iframe src="https://www.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=pabloz18ezeiza%40gmail.com&amp;color=%232952A3&amp;src=ferticidio%40gmail.com&amp;color=%232952A3&amp;src=4aik347gtqu1umje7kggphnsg4%40group.calendar.google.com&amp;color=%23711616&amp;ctz=America%2FArgentina%2FBuenos_Aires" style=" border-width:0 " width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        <form action="" ng-submit="generarEntrevista()" method="POST" class="form-horizontal" role="form">
+            <div class="form-group">
             <legend>Entrevistador</legend>
-                <select id="roles"  ng-model="entrevista.busqueda.entrevistador" ng-options="r.nombre for r in listaRoles" required class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></select>
+            <input type="text" class="form-control" placeholder="Filtro" ng-model="filtro">
+                <select id="entrevistador"  ng-model="entrevista.entrevistador" ng-options="e.username for e in busqueda.entrevistadores|filter:filtro" required class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></select>
 
                 <legend>Fecha y Hora</legend>
-                    <input type="hidden" name="busqueda" id="busqueda" class="form-control" value="{{busqueda._id}}" ng-model="entrevista.busqueda._id">
-                    <input type="hidden" name="postulante" id="postulante" class="form-control" value="{{postulante._id}}" ng-model="entrevista.postulante._id">
+                    <input type="hidden" name="busqueda" id="busqueda" class="form-control" value="{{busqueda}}" ng-model="entrevista.busqueda">
+                    <input type="hidden" name="postulante" id="postulante" class="form-control" value="{{postulante}}" ng-model="entrevista.postulante">
                     <!-- Ver datetime, o algo de jquery -->
 
   <div class="input-append date">
-    <input data-format="dd/MM/yyyy hh:mm" type="text"  placeholder="Inicio" id="datetimepicker1" />
+    <input data-format="dd/MM/yyyy hh:mm" type="text"  placeholder="Inicio" id="datetimepicker1" ng-model="entrevista.inicio" />
     <span class="add-on">
       <i data-time-icon="icon-time" data-date-icon="icon-calendar">
       </i>
     </span><br />
     </div>
     <div class="input-append date">
-    <input data-format="hh:mm" type="text" placeholder="Fin" id="datetimepicker2" /></input>
+    <input data-format="dd/MM/yyyy hh:mm" type="text" placeholder="Fin" id="datetimepicker2" ng-model="entrevista.fin" />
     <span class="add-on">
       <i data-time-icon="icon-time" data-date-icon="icon-calendar">
       </i>
     </span>
   </div>
-
-<script type="text/javascript">
+  <script type="text/javascript">
   $(function() {
     $('#datetimepicker1').datetimepicker({
       language: 'es-AR'
@@ -43,7 +43,14 @@
 </script>
 
 
+
                 </div>
+            <div class="form-group">
+            <legend>Detalle</legend>
+                <input type="text" name="detalle" id="inputDetalle" class="form-control" ng-model="entrevista.location" placeholder="Lugar">
+                <textarea class="form-control" rows="3" placeholder="Descripcion" ng-model="entrevista.descripcion"></textarea>
+            </div>
+
             <div class="form-group">
                 <div class="col-sm-10 col-sm-offset-2">
                     <button type="submit" class="btn btn-primary">Generar Entrevista</button>

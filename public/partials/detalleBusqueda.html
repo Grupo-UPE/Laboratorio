@@ -1,4 +1,5 @@
-{{busqueda}}
+<!--{{busqueda}} -->
+<input type="text" class="form-control" placeholder="Filtro" ng-model="filtro">
 <div class="panel panel-default">
       <div class="panel-heading">
             <h3 class="panel-title">Detalle de la busqueda {{busqueda.nombre}}</h3>
@@ -15,7 +16,7 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <tr ng-repeat="postulante in busqueda.postulantes">
+                    <tr ng-repeat="postulante in busqueda.postulantes|filter:filtro">
                        <td>{{postulante.nombre}}</td>
                        <td>
                        <span ng-repeat="habilidad in postulante.habilidades">{{habilidad}}</span>

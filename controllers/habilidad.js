@@ -6,8 +6,7 @@ exports.create = function (req, res, next) {
 
     var habilidad = new Habilidad({
 	nombre: nombre,
-	});
-
+	});  
 
     habilidad.save(onSaved)
 
@@ -25,6 +24,24 @@ exports.list = function (req, res, next) {
     Habilidad.find(gotHabilidades)
 
   function gotHabilidades (err, habilidades) {
+    if (err) {
+      console.log(err)
+      return next()
+    }
+
+    return res.json(habilidades);
+  }
+
+}
+
+exports.query = function (req, res, next) {
+
+    var re = new RegExp(req.params.query,'i');
+
+    Habilidad.find({nombre:re},gotHabilidades)
+
+  function gotHabilidades (err, habilidades) {
+    console.log(habilidades);
     if (err) {
       console.log(err)
       return next()

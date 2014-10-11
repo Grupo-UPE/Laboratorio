@@ -6,4 +6,4 @@ var habilidad_schema= new Schema({
 });
 
 
-module.exports = mongoose.model('habilidad', habilidad_schema);
+module.exports = mongoose.model('Habilidad', habilidad_schema);

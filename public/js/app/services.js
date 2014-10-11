@@ -145,6 +145,14 @@ services.factory('detalleBusquedaService', function ($resource) {
         query: { method: 'GET', params: {}, isArray: false },
     });
 });
+
+//Entrevistas
+services.factory('entrevistaCreateService', function ($resource) {
+    return $resource('/REST/create-entrevista/', {}, {
+        create: { method: 'POST' },
+    });
+});
+
 /**/
 /*Habilidades*/
 

@@ -204,13 +204,18 @@ app.controller('ApplicationController', function ($scope,
 app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'busquedaService','busquedaCreateService','habilidadService','$route',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    busquedaService,busquedaCreateService,habilidadService,$route) {
+                                    busquedaService,busquedaCreateService,habilidadService,$route ) {  
 
-            //$scope.nbusqueda=busquedaService.query();
+            $scope.listabusquedas=busquedaService.query();
             $scope.listahabilidades=habilidadService.query();
 
+            $scope.loadTags=function(query){
+              return $http.get('/REST/tags/'+query);
+            }
+
             $scope.guardar = function () {
-              var busq = busquedaCreateService.create({bsq:$scope.bsq});
+                 busquedaCreateService.create({busqueda:$scope.busqueda});
+              $scope.listabusquedas=busquedaService.query();
               $route.reload();
         };
 
@@ -227,8 +232,7 @@ app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$locati
              $scope.list = function () {
 
               $scope.listaBusquedas=busquedaService.query();
-              //$route.reload();
-        };
+              };
         $scope.detalle=function(idbusqueda){ //La idea era usar esto pero por algun motivo me manda al index...
             $location.path('/detalleBusqueda/'+idbusqueda);
         }
@@ -256,12 +260,14 @@ app.controller('detalleBusquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '
 }]);
 
 app.controller('generarEntrevistaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'detalleBusquedaService','$route','$routeParams','postulanteShowUpdateService',
+                        'detalleBusquedaService','$route','$routeParams','postulanteShowUpdateService','entrevistaCreateService',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    detalleBusquedaService,$route,$routeParams,postulanteShowUpdateService) {
+                                    detalleBusquedaService,$route,$routeParams,postulanteShowUpdateService,entrevistaCreateService) {
 
             $scope.busqueda=detalleBusquedaService.query({id:$routeParams.idBusqueda});
             $scope.postulante=postulanteShowUpdateService.show({id:$routeParams.idPostulante});
+            $scope.generarEntrevista=function(){
+                entrevistaCreateService.create({entrevista:$scope.entrevista,busqueda:$scope.busqueda,postulante:$scope.postulante});}
 
 }]);
 
@@ -286,21 +292,21 @@ app.controller('habilidadCTRL', ['$scope', '$rootScope', '$cookieStore', '$locat
 
             $scope.listaHabilidades=habilidadService.query();
 
-            $scope.guardar = function () {
+           /* $scope.guardar = function () {
                var algo= habilidadCreateService.create({habilidad: $scope.habilidad});
               $route.reload();
-            };
+            };*/
             $scope.eliminar=function(idHabilidad){
                 console.log(idHabilidad);
                 habilidadRemove.remove({id:idHabilidad})
                 $scope.listaHabilidades=habilidadService.query();
             }
 
-	$scope.guardar=function(){
-            habilidadCreateService.create({habilidad:$scope.habilidad});
-	$scope.listaHabilidades=habilidadService.query();
-	$route.reload();
-    }
+            	$scope.guardar=function(){
+                        habilidadCreateService.create({habilidad:$scope.habilidad});
+            	$scope.listaHabilidades=habilidadService.query();
+            	$route.reload();
+                }
 
 
 }]);

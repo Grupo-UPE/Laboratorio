@@ -3,7 +3,7 @@
 // Declare app level module which depends on filters, and services
 angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'ngdemo.services',
     'ngdemo.directives', 'ui.date', 'ui.mask', 'ngdemo.controllers', 'ui.bootstrap.dropdown', 'ui.bootstrap.modal',
-    'ui.bootstrap.transition','ui.bootstrap.datepicker','ui.bootstrap.position','ui.bootstrap.tabs','ngtagsinput',]).
+    'ui.bootstrap.transition','ui.bootstrap.datepicker','ui.bootstrap.position','ui.bootstrap.tabs','ngTagsInput',]).
     config(['$locationProvider', '$httpProvider','USER_ROLES','$routeProvider',
         function ($locationProvider,$httpProvider,USER_ROLES,$routeProvider) {
             //Rutas del index y de pruebas
@@ -109,6 +109,14 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
             $routeProvider.otherwise({redirectTo: '/'});
 
 }])
+
+.config(function(tagsInputConfigProvider){
+    tagsInputConfigProvider
+        .setDefaults('tagsInput',{
+            placeholder:'a ver putito',
+            displayProperty:'nombre',
+        })
+})
 
     .run(function($rootScope, $cookieStore, $http, $location, $modal, AuthService,controlAcceso) {
             // Reset error when a new view is loaded

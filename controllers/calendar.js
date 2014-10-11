@@ -7,26 +7,40 @@ exports.eventos=  function(req, res){
     });
 }
 
-exports.guardar = function(req, res){
-    //console.log(req.session.usuario);
+exports.create = function(req, res){
+    /*
+    Recibo:
+        req.body.entrevista
+        req.body.postulante
+        req.body.busqueda
+    */
+
+    /*==========================================*/
+    /* Deberiamos crear un objecto entrevista con los datos recibidos y despues crear la entrevista en google calendar
+        si salta algun problema deberiamos borrar la entrevista que creamos, si no hay ningun problema con las respuesta
+        que recibimos actualizamos el objecto con los datos que nos devolvio google calendar */
+
+
     var entrevista = req.body.entrevista;
+    var sumario="Busqueda: "+req.body.busqueda.nombre+", Postulante: "+req.body.postulante.nombre+", Entrevistador: "+entrevista.entrevistador.username;
     //vista en https://developers.google.com/google-apps/calendar/v3/reference/events#resource
     //Ver https://developers.google.com/google-apps/calendar/v3/reference/events/insert
     //var d = new Date(year, month, day, hours, minutes, seconds, milliseconds);
-    var inicio = new Date(2014,8,30,18,00,0,0);
-    var fin = new Date(2014, 08, 30, 22, 0, 0, 0);
+    //var inicio = new Date(2014,8,30,18,00,0,0);
+    //var fin = new Date(2014, 08, 30, 22, 0, 0, 0);
+
     var entrevista = {
-          "summary": "Probando Google Calendar",
-          "description": "Deberiamos estar guardando un evento en el calendario creado por Francisco, poque lo compartio conmigo. Se deberia tener un calendario que se comparte con todos los responsables de RRHH",
-          "location": "Universidad Provincial de Ezeiza",
+          "summary": sumario,
+          "description": entrevista.descripcion,
+          "location": entrevista.location,
           "start": {
             //"date": "2014-09-24",
-            "dateTime": entrevista.inicio,
+            "dateTime": new Date(entrevista.inicio),
             //"timeZone": string
           },
           "end": {
             //"date": "2014-09-25",
-            "dateTime": entrevista.fin,
+            "dateTime": new Date(entrevista.fin),
             //"timeZone": string
           },
           "attendees": [ //aca deberiamos recicibir una lista, pero por ahora va a ser uno solo.
@@ -38,7 +52,6 @@ exports.guardar = function(req, res){
             "useDefault": true,
             }
         }
-    console.log(entrevista);
 
     gapi.a.setCredentials(req.session.tokens);
     //Object.getOwnPropertyNames(gapi.calendar.events)
@@ -46,5 +59,36 @@ exports.guardar = function(req, res){
         if(err){
             console.log(err);
         }
+        /*Esto es lo que me devuelve... Una vez que estoy con
+        estos datos deberia actualizar el modelo con el id del evento en el calendar.
+        Tambien podria poner el link.
+        { kind: 'calendar#event',
+  etag: '"2825431028078000"',
+  id: 'kemg2cvcuiang1pqhvjg9sk84g',
+  status: 'confirmed',
+  htmlLink: 'https://www.google.com/calendar/event?eid=a2VtZzJjdmN1aWFuZzFwcWh2amc5c2s4NGcgNGFpazM0N2d0cXUxdW1qZTdrZ2dwaG5zZzRAZw',
+  created: '2014-10-07T20:58:33.000Z',
+  updated: '2014-10-07T20:58:34.039Z',
+  summary: 'Busqueda: Busqueda de prueba, Postulante: fernando, Entrevistador: Pablo',
+  description: 'Probando que me devuelve esto.',
+  location: 'UPE',
+  creator:
+   { email: 'ferticidio@gmail.com',
+     displayName: 'Fernando Lescano' },
+  organizer:
+   { email: '4aik347gtqu1umje7kggphnsg4@group.calendar.google.com',
+     displayName: 'upeGrupo1Calendar',
+     self: true },
+  start: { dateTime: '2014-10-07T18:20:00-03:00' },
+  end: { dateTime: '2014-10-07T18:30:00-03:00' },
+  iCalUID: 'kemg2cvcuiang1pqhvjg9sk84g@google.com',
+  sequence: 0,
+  attendees:
+   [ { email: 'pabloz18ezeiza@gmail.com',
+       displayName: 'Pablo Ziegler',
+       responseStatus: 'needsAction' } ],
+  reminders: { useDefault: true } }
+
+        */
     });
 }

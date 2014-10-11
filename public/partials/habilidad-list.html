@@ -5,6 +5,7 @@
 </div>
 
 
+
 <div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
     <div class="panel-body">
@@ -20,19 +21,32 @@
 <div class="table-responsive">
     <table class="table table-striped table-hover">
         <thead>
-            <tr>
-                <th>Id</th>
                 <th>Nombre Habilidad</th>
+                <th>Opciones</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="hab in listaHabilidades">
 
-                <td>{{hab._id}}</td>
-                <td>{{hab.nombre}}
+                <td>{{hab.nombre}}</td>
                <td>  <a href="/#/habilidad" type="button" class="btn btn-default btn-sm" ng-click="eliminar(hab._id)">Eliminar</a></td>
                 </td>
             </tr>
         </tbody>
     </table>
+
+<div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+    <div class="panel-body">
+        <form action="" ng-submit="guardar()" method="POST" class="form-horizontal" role="form">
+            <div class="form-group col-sm-10 col-md-10 col-lg-3">
+                <label for="habilidad">Agregar Habilidad</label>
+                  <input type="text" class="form-control" id="habilidad" placeholder="Nombre de la habilidad" ng-model="habilidad.nombre" required>
+           
+            <div class="row">
+                <div class="col-md-10 col-md-offset-0">
+                    <button type="submit" class="btn btn-primary">Generar habilidad</button>
+                </div>
+ </div>
+
 </div>
