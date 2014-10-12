@@ -208,7 +208,7 @@ exports.upload = function (req, res) {
 
     var path = req.files.file.path;
     //seria el dni o el id del postulante
-    var nombre = 'algo';
+    var nombre = "que lindo nombre tiene este archivo no?"+1;
     var newPath = '../public/uploads/' + nombre;
     var is = fs.createReadStream(path)
     var os = fs.createWriteStream(newPath)

@@ -6,11 +6,9 @@
                 <div class="row">
                     <form action="" method="POST" class="form-horizontal" role="form">
 
-                        {{busqueda}}
+                      
 
-                        <tags-input ng-model="busqueda.habilidades">
-                            <auto-complete source="loadTags($query)"></auto-complete>
-                        </tags-input>
+                        
 
                         <div class="col-md-3" >
                             <div class="form-group">
@@ -20,8 +18,8 @@
                         </div>
                         <div class="col-md-3 col-sm-offset-1 ">
                             <div class="form-group">
-                                <label for="empleado_responsable">Empleado Responsable:</label>
-                                <input class="form-control" type="text" id="empleado_responsable" ng-model="busqueda.id_empleado" placeholder="Empleado Responsable de la busqueda" >
+                                <label for="Entrevistador">Entrevistador:</label>
+                                <input class="form-control" type="text" id="Entrevistador" ng-model="busqueda.entrevistadores" placeholder="Entrevistador" >
 
                             </div>
                         </div>
@@ -88,9 +86,9 @@
                         <div class="col-sm-10 ">
                             <legend>Habilidades</legend>
                             
-                            <select  size="3" id="habilidades" multiple ng-multiple="true" ng-model="busqueda.habilidad" ng-options="h.nombre for h in listahabilidades" required class="col-xs-4 col-sm-4 col-md-4"></select>
-                            <!--<label for="habilidades">Habilidades</label><br />
-                            <select  size="5" id="habildidades" multiple ng-multiple="true" ng-model="usuario.roles" ng-options="r.nombre for r in listaRoles" required class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></select>-->
+                            <tags-input ng-model="busqueda.habilidades">
+                            <auto-complete source="loadTags($query)"></auto-complete>
+                             </tags-input>
                          </div>
                          </div>
                         </div>

@@ -113,7 +113,7 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
 .config(function(tagsInputConfigProvider){
     tagsInputConfigProvider
         .setDefaults('tagsInput',{
-            placeholder:'a ver putito',
+            placeholder:'Ingrese las Habilidades del Postulante',
             displayProperty:'nombre',
         })
 })

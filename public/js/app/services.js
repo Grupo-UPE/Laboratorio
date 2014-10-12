@@ -139,6 +139,15 @@ services.factory('busquedaCreateService', function ($resource) {
     });
 });
 
+services.factory('busquedaRemove', function ($resource) {
+    return $resource('/REST/delete-busqueda/:id', {}, {
+        remove: { method: 'POST' },
+    });
+});
+
+
+
+
 //DetalleDeBusqueda
 services.factory('detalleBusquedaService', function ($resource) {
     return $resource('/REST/detalleBusquedaBis/:id', {}, {

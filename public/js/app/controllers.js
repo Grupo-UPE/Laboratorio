@@ -1,3 +1,4 @@
+
 'use strict';
 
 /* Controllers */
@@ -14,13 +15,13 @@ app.run(function ($rootScope, $templateCache) {
 
 //postulantes controllers
 
-app.controller('postulanteCtrlCV', function ($scope) {
+app.controller('postulanteCtrlCV',['$scope', function ($scope) {
             $scope.disabled = false;
             $scope.bar = function(content) {
               if (console) console.log(content);
                 $scope.uploadResponse = content.msg;
             }
-        });
+        }]);
 
 //controllers Postulantes
 
@@ -217,6 +218,8 @@ app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$
               return $http.get('/REST/tags/'+query);
             }
 
+            
+
             $scope.guardar = function () {
                  busquedaCreateService.create({busqueda:$scope.busqueda});
               $scope.listabusquedas=busquedaService.query();
@@ -227,11 +230,16 @@ app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$
 
 
 app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'busquedaService','$route',
+                        'busquedaService','$route','busquedaRemove',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    busquedaService,$route) {
+                                    busquedaService,$route,busquedaRemove) {
 
             $scope.listaBusquedas=busquedaService.query();
+            $scope.eliminar=function(idbusqueda){
+                console.log(idbusqueda);
+                busquedaRemove.remove({id:idbusqueda})
+                $scope.listaBusquedas=busquedaService.query();
+            }
 
              $scope.list = function () {
 
