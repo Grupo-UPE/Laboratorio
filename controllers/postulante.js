@@ -1,5 +1,5 @@
 var Postulante = require('../models/postulante');
-
+var fs = require('fs');
 
 exports.create = function (req, res, next) {
 
@@ -205,4 +205,22 @@ exports.remove = function (req, res, next) {
 
     return res.redirect('/')
   }
+}
+
+exports.upload = function (req, res) {
+    
+    var path = req.files.file.path;
+    //seria el dni o el id del postulante
+    var nombre = 'algo';
+    var newPath = '../public/uploads/' + nombre;
+    var is = fs.createReadStream(path)
+    var os = fs.createWriteStream(newPath)
+    is.pipe(os)
+    //cuando no hay mas datos que leer
+    is.on('end', function() {
+    //eliminamos el archivo temporal
+        fs.unlinkSync(path)
+    })
+    res.send('¡archivo subido!')
+
 }

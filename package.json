@@ -16,7 +16,8 @@
     "mongoose": "*",
     "morgan": "~1.0.0",
     "ng-tags-input": "^2.1.1",
-    "static-favicon": "~1.0.0"
+    "static-favicon": "~1.0.0",
+    "connect-multiparty": "*"
   },
   "description": "Laboratorio de Programacion ===========",
   "main": "app.js",
