@@ -57,9 +57,6 @@ postulante.save();
         habilidades : habilidades,
 
     });
-    console.log(habilidades);
-
-    console.log(postulante);
 
     postulante.save(onSaved)
 
@@ -113,7 +110,7 @@ exports.show = function (req, res, next) {
                 email               : postulante.email,
                 disponibilidad      : postulante.disponibilidad,
                 comentario          : postulante.comentario,
-                habilidades         : postulante.habilidad,
+                habilidades         : postulante.habilidades,
 
             }
             console.log(postulantedto.edad);
@@ -208,7 +205,7 @@ exports.remove = function (req, res, next) {
 }
 
 exports.upload = function (req, res) {
-    
+
     var path = req.files.file.path;
     //seria el dni o el id del postulante
     var nombre = 'algo';
