@@ -155,6 +155,13 @@ services.factory('detalleBusquedaService', function ($resource) {
     });
 });
 
+//Contacto
+services.factory('contactoCreateService', function ($resource) {
+    return $resource('/REST/create-contacto/', {}, {
+        create: { method: 'POST' },
+    });
+});
+
 //Entrevistas
 services.factory('entrevistaCreateService', function ($resource) {
     return $resource('/REST/create-entrevista/', {}, {

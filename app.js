@@ -26,6 +26,7 @@ var rol  = require('./controllers/rol')
 var busqueda = require('./controllers/busqueda')
 var busquedaBis = require('./controllers/busquedaBis')
 var habilidad = require('./controllers/habilidad')
+var contacto = require('./controllers/contacto')
 
 var texto  = require('./controllers/texto');
 var usuario  = require('./controllers/usuario');
@@ -101,6 +102,11 @@ app.get('/REST/busqueda', busqueda.list)
 app.get('/REST/busquedaBis', busquedaBis.list)//Le puse el bis porque devuelve mas o menos lo que esperamos.
 
 app.get('/REST/detalleBusquedaBis/:id', busquedaBis.show)
+app.post('/REST/create-contacto', contacto.create)
+app.get('/REST/contacto', contacto.list);
+app.get('/REST/contacto/:postulante', contacto.listPostulante);
+
+
 app.post('/REST/create-busqueda',busqueda.create)
 app.post('/REST/delete-busqueda',busqueda.remove)
 

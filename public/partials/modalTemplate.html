@@ -13,12 +13,10 @@
             <legend>Generar contacto</legend>
 
             <div class="form-group">
-                <textarea name="comentario" id="comentario" rows="5" placeholder="Comentario del contacto"></textarea>
+                <textarea name="comentario" id="comentario" rows="5" placeholder="Comentario del contacto" ng-model="comentario"></textarea>
+                <button type="button" class="btn btn-default" ng-click='guardar()'>Guardar</button>
             </div>
 
-
-
-            <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
 
         </div>
