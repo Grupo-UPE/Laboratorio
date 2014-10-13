@@ -253,13 +253,14 @@ app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$locati
 }]);
 
 app.controller('detalleBusquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'detalleBusquedaService','$route','$routeParams','$modal',
+                        'detalleBusquedaService','$route','$routeParams','$modal','contactoCreateService',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    detalleBusquedaService,$route,$routeParams,$modal) {
+                                    detalleBusquedaService,$route,$routeParams,$modal,contactoCreateService) {
 
             $scope.busqueda=detalleBusquedaService.query({id:$routeParams.idBusqueda});
 
             $scope.openModal = function (size,postulante) {
+                $scope.postulanteContactado=postulante;
 
             var modal = $modal.open({
               templateUrl: '/partials/modalTemplate.html',
@@ -288,21 +289,18 @@ app.controller('detalleBusquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '
 
               $scope.listaBusquedas=busquedaService.query();
         };
+        $scope.guardarContacto = function(postulante, comentario){
+            contactoCreateService.create({postulante:postulante, comentario:comentario})
+      }
 
 }]);
 
 //controller del modal
-app.controller('modalCTRL', function ($scope, $modalInstance, postulante,
-    contactoCreateService, contactoPostulanteListService) {
+app.controller('modalCTRL',
+    function ($scope, $modalInstance, postulante, contactoPostulanteListService) {
 
       $scope.postulante = postulante;
-      $scope.comentario="";
       $scope.contactos = contactoPostulanteListService.query({postulante:postulante._id})
-
-      $scope.guardar = function(){
-            console.log($scope.contacto);
-            //contactoCreateService.create({postulante:postulante._id, comentario:$scope.comentario})
-      }
 
  $scope.ok = function () {
     $modalInstance.close('cerrado');

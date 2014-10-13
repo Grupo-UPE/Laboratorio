@@ -22,7 +22,8 @@
 
             <div class="form-group">
                 <textarea name="comentario" id="comentario" rows="5" placeholder="Comentario del contacto" ng-model="comentario"></textarea>
-                <button type="button" class="btn btn-default" ng-click='guardar()'>Guardar</button>
+                {{comentario}}
+                <button type="button" class="btn btn-default" ng-click='guardarContacto(postulante._id, comentario)'>Guardar</button>
             </div>
 
 
