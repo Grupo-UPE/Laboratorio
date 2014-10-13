@@ -119,6 +119,7 @@ app.get('/oauth2callback', login.callback)
 
 //Entrevistas
 app.post('/REST/create-entrevista', calendar.create)
+app.get('/entrevista', calendar.show)
 
 //Install
 app.get('/install',install.install)
