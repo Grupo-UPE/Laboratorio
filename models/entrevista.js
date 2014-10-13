@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
 var entrevista_schema = new Schema({
     entrevistador     : {type: Schema.ObjectId, ref : 'Usuario'},
     postulante     : {type: Schema.ObjectId, ref : 'Postulante'},
+    busqueda     : {type: Schema.ObjectId, ref : 'Busqueda'},
     calendar : String,
     feedback:{ comentario: String, semaforo: {type: Number, enum: [1, 2, 3]} }
 });

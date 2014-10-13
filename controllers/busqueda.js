@@ -61,13 +61,14 @@ exports.list = function (req, res, next) {
 exports.show = function (req, res, next) {
   var id = req.params.id
 
-  Busqueda.findById(id, gotBusqueda).populate("habilidades")
+  Busqueda.findById(id, gotBusqueda).populate('postulantes').populate('entrevistadores').populate('habilidades')
 
   function gotBusqueda (err, busqueda) {
     if (err) {
       console.log(err)
       return next(err)
     }
+
     var busquedadto={
                 _id:busqueda.id_empleado,
                 nombre:busqueda.nombre,

@@ -27,7 +27,8 @@ exports.create = function(req, res){
         var ent=new Entrevista({ //creamos una entrevista y la guardamos.
 
             entrevistador     : entrevista.entrevistador._id,
-            postulante     : entrevista.postulante._id
+            postulante     : req.body.postulante._id,
+            busqueda       :req.body.busqueda._id
             });
 
             ent.save(onSaved)
@@ -108,7 +109,7 @@ exports.create = function(req, res){
           reminders: { useDefault: true } }
                 */
             ent.calendar=evento.id;
-            ent.save(onupdate)
+            ent.save(onUpdate)
 
             function onUpdate (err) {
                 if (err) {

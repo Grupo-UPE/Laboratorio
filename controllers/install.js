@@ -47,20 +47,20 @@ var busquedas = [{
     remuneracion    : 17500,
     entrevistadores     : [ObjectId('5421ee60dda3805b31d3e075'),
                                     ObjectId('5418b908976daf2e565c49e8')],
-    postulantes     : [ObjectId('542c7447f412b91116e4adaf')],
-    otros_comentarios : 'Un comentario para probar',
-    texto_twitter     : 'Solo puede tener 140 caracteres',
+    postulantes     : [ObjectId('543ade8a87b3c1274414472d'),],
+    otros_comentarios : 'Un comentario de una busqueda de prueba.',
+    texto_twitter     : 'Un comentario',
     lugar_trabajo     : "En algun lado",
     horario           : "De 00:01 a 23:59"
 }];
 
-/*
+
 var count = busquedas.length;
 for(var i = 0; i < count; i++) { //Dicen que es mas rapido esto que for(var algo in lista)
     var bsq = new Busqueda(busquedas[i]);
     bsq.save();
 }
-*/
+/**/
 /*
 var count = postulantes.length;
 for(var i = 0; i < count; i++) { //Dicen que es mas rapido esto que for(var algo in lista)
