@@ -218,7 +218,7 @@ app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$
               return $http.get('/REST/tags/'+query);
             }
 
-            
+
 
             $scope.guardar = function () {
                  busquedaCreateService.create({busqueda:$scope.busqueda});
@@ -253,11 +253,31 @@ app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$locati
 }]);
 
 app.controller('detalleBusquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'detalleBusquedaService','$route','$routeParams',
+                        'detalleBusquedaService','$route','$routeParams','$modal',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    detalleBusquedaService,$route,$routeParams) {
+                                    detalleBusquedaService,$route,$routeParams,$modal) {
 
             $scope.busqueda=detalleBusquedaService.query({id:$routeParams.idBusqueda});
+
+            $scope.openModal = function (size,usr) {
+
+            var modal = $modal.open({
+              templateUrl: '/partials/modalTemplate.html',
+              controller: 'modalCTRL',
+              size: size,
+              resolve: {
+                usuario:function(){
+                    return usr;
+                }
+              }
+            });
+
+            modal.result.then(function (selectedItem) {
+              console.log('modal cerrado');
+            }, function () {
+              console.log('Modal dismissed at: ' + new Date());
+            });
+          };
 
             $scope.generarentrevista=function(idbusqueda,idpostulante){
 
@@ -270,6 +290,20 @@ app.controller('detalleBusquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '
         };
 
 }]);
+
+//controller del modal
+app.controller('modalCTRL', function ($scope, $modalInstance, usuario) {
+
+      $scope.usuario = usuario;
+
+ $scope.ok = function () {
+    $modalInstance.close('cerrado');
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+});
 
 app.controller('generarEntrevistaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'detalleBusquedaService','$route','$routeParams','postulanteShowUpdateService','entrevistaCreateService',
