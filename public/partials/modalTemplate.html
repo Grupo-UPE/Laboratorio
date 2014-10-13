@@ -1,9 +1,26 @@
 <div ng-controller="detalleBusquedaCTRL">
         <div class="modal-header">
-            <h3 class="modal-title">Im a modal</h3>
+            <h3 class="modal-title">Contacto con {{postulante.nombre}}</h3>
         </div>
         <div class="modal-body">
-            {{usuario}}
+        <h4>Datos de contacto de: {{postulante.nombre}} {{postulante.apellido}}</h4>
+        <ul>
+            <li>E-Mail: {{postulante.email}}</li>
+            <li>Telefono: {{postulante.telefono}}</li>
+        </ul>
+
+        <form action="" method="POST" role="form">
+            <legend>Generar contacto</legend>
+
+            <div class="form-group">
+                <textarea name="comentario" id="comentario" rows="5" placeholder="Comentario del contacto"></textarea>
+            </div>
+
+
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" ng-click="ok()">OK</button>

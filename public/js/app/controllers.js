@@ -259,15 +259,15 @@ app.controller('detalleBusquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '
 
             $scope.busqueda=detalleBusquedaService.query({id:$routeParams.idBusqueda});
 
-            $scope.openModal = function (size,usr) {
+            $scope.openModal = function (size,postulante) {
 
             var modal = $modal.open({
               templateUrl: '/partials/modalTemplate.html',
               controller: 'modalCTRL',
               size: size,
               resolve: {
-                usuario:function(){
-                    return usr;
+                postulante:function(){
+                    return postulante;
                 }
               }
             });
@@ -292,9 +292,9 @@ app.controller('detalleBusquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '
 }]);
 
 //controller del modal
-app.controller('modalCTRL', function ($scope, $modalInstance, usuario) {
+app.controller('modalCTRL', function ($scope, $modalInstance, postulante) {
 
-      $scope.usuario = usuario;
+      $scope.postulante = postulante;
 
  $scope.ok = function () {
     $modalInstance.close('cerrado');
