@@ -162,6 +162,12 @@ services.factory('contactoCreateService', function ($resource) {
     });
 });
 
+services.factory('contactoPostulanteListService', function ($resource) {
+    return $resource('/REST/contacto/:postulante', {}, {
+        query: { method: 'GET', params: {}, isArray: true },
+    });
+});
+
 //Entrevistas
 services.factory('entrevistaCreateService', function ($resource) {
     return $resource('/REST/create-entrevista/', {}, {

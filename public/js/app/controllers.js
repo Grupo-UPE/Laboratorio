@@ -292,12 +292,16 @@ app.controller('detalleBusquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '
 }]);
 
 //controller del modal
-app.controller('modalCTRL', function ($scope, $modalInstance, postulante,contactoCreateService) {
+app.controller('modalCTRL', function ($scope, $modalInstance, postulante,
+    contactoCreateService, contactoPostulanteListService) {
 
       $scope.postulante = postulante;
+      $scope.comentario="";
+      $scope.contactos = contactoPostulanteListService.query({postulante:postulante._id})
 
       $scope.guardar = function(){
-            contactoCreateService.create({postulante:postulante._id,comentario:$scope.comentario})
+            console.log($scope.contacto);
+            //contactoCreateService.create({postulante:postulante._id, comentario:$scope.comentario})
       }
 
  $scope.ok = function () {
