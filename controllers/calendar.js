@@ -25,16 +25,18 @@ exports.create = function(req, res){
     var entrevista = req.body.entrevista;
 
         var ent=new Entrevista({ //creamos una entrevista y la guardamos.
-            entrevistador     : entrevista.entrevistador._id,
-            postulante     : entrevista.postulante._id;
-            });
-        ent.save(onSaved)
 
-    function onSaved (err) {
-        if (err) {
-            console.log(err)
-            return next(err)
-        }
+            entrevistador     : entrevista.entrevistador._id,
+            postulante     : entrevista.postulante._id
+            });
+
+            ent.save(onSaved)
+
+            function onSaved (err) {
+                if (err) {
+                    console.log(err)
+                    return next(err)
+                }
 
             var sumario="Busqueda: "+req.body.busqueda.nombre+", Postulante: "+req.body.postulante.nombre+", Entrevistador: "+entrevista.entrevistador.username+" id entrevista: "+ent.id;
             //vista en https://developers.google.com/google-apps/calendar/v3/reference/events#resource
@@ -77,7 +79,8 @@ exports.create = function(req, res){
                 /*Esto es lo que me devuelve... Una vez que estoy con
                 estos datos deberia actualizar el modelo con el id del evento en el calendar.
                 Tambien podria poner el link.
-                { kind: 'calendar#event',
+                {[
+                kind: 'calendar#event',
           etag: '"2825431028078000"',
           id: 'kemg2cvcuiang1pqhvjg9sk84g',
           status: 'confirmed',
@@ -103,7 +106,6 @@ exports.create = function(req, res){
                displayName: 'Pablo Ziegler',
                responseStatus: 'needsAction' } ],
           reminders: { useDefault: true } }
-
                 */
             ent.calendar=evento.id;
             ent.save(onupdate)
@@ -115,7 +117,8 @@ exports.create = function(req, res){
                 }
                 return true;
 
-        });
+                }
+    });
     }
 }
 
@@ -129,5 +132,5 @@ exports.show = function(req, res){
             console.log(evento);
         }
     });
-
 }
+
