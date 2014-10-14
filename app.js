@@ -27,7 +27,7 @@ var busqueda = require('./controllers/busqueda')
 var busquedaBis = require('./controllers/busquedaBis')
 var habilidad = require('./controllers/habilidad')
 var contacto = require('./controllers/contacto')
-
+var entrevista = require('./controllers/entrevista')
 var texto  = require('./controllers/texto');
 var usuario  = require('./controllers/usuario');
 var rol  = require('./controllers/rol');
@@ -126,6 +126,7 @@ app.get('/oauth2callback', login.callback)
 //Entrevistas
 app.post('/REST/create-entrevista', calendar.create)
 app.get('/entrevista', calendar.show)
+app.get('/REST/entrevistas', entrevista.listarEntrevistas)
 
 //Install
 app.get('/install',install.install)
