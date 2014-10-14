@@ -27,6 +27,7 @@ exports.callback = function(req, res) {
                 //req.session=session;
                 //req.session.gapi=gapi;
                 //console.log(req.session.usuario);
+                req.session.usuario=rv;
             var locals={
                 title:"Bienvenido!",
                 usuario:rv,

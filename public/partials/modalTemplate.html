@@ -11,8 +11,8 @@
         <h4>Contactos</h4>
         <ul>
             <li ng-repeat="contacto in contactos">
+                Fecha: {{contacto.fecha}}
                 <ul>
-                    <li>Fecha: {{contacto.fecha}}</li>
                     <li>{{contacto.comentario}}</li>
                 </ul>
             </li>
@@ -22,7 +22,6 @@
 
             <div class="form-group">
                 <textarea name="comentario" id="comentario" rows="5" placeholder="Comentario del contacto" ng-model="comentario"></textarea>
-                {{comentario}}
                 <button type="button" class="btn btn-default" ng-click='guardarContacto(postulante._id, comentario)'>Guardar</button>
             </div>
 

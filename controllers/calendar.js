@@ -124,9 +124,10 @@ exports.create = function(req, res){
 }
 
 exports.show = function(req, res){
+
     gapi.a.setCredentials(req.session.tokens);
     gapi.calendar.events.get({ calendarId:'4aik347gtqu1umje7kggphnsg4@group.calendar.google.com',
-        eventId:'63a2n63fsntn7crc1lbgbhsul8', auth: gapi.a}, function(err, evento){
+        eventId:req.body.entrevista.id, auth: gapi.a}, function(err, evento){
         if(err){
             console.log(err);
         }else{
