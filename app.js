@@ -26,13 +26,13 @@ var rol  = require('./controllers/rol')
 var busqueda = require('./controllers/busqueda')
 var busquedaBis = require('./controllers/busquedaBis')
 var habilidad = require('./controllers/habilidad')
-<<<<<<< HEAD
+
 //var contacto = require('./controllers/contacto')
 
-=======
+
 var contacto = require('./controllers/contacto')
 var entrevista = require('./controllers/entrevista')
->>>>>>> 6cc61b7d073832cc73126cba3b0d2b849350db64
+
 var texto  = require('./controllers/texto');
 var usuario  = require('./controllers/usuario');
 var rol  = require('./controllers/rol');
