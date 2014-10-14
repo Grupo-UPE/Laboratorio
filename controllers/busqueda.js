@@ -16,7 +16,7 @@ exports.create = function (req, res, next) {
 
     var busqueda= new Busqueda({
         fecha_inicio        :bsq.fecha_inicio,
-        Entrevistador         :bsq.lentrevistadores,
+        Entrevistador       :lentrevistadores,
         cantidad_empleados  :bsq.cantidad_empleados,
         nombre              :bsq.nombre,
         abierto             :true,
@@ -45,7 +45,7 @@ exports.create = function (req, res, next) {
 
 exports.list = function (req, res, next) {
 
-    Busqueda.find(gotBusquedas).populate("habilidades")
+    Busqueda.find(gotBusquedas).populate('postulantes').populate('entrevistadores').populate('habilidades')
 
   function gotBusquedas (err, busquedas) {
     if (err) {
@@ -61,7 +61,7 @@ exports.list = function (req, res, next) {
 exports.show = function (req, res, next) {
   var id = req.params.id
 
-  Busqueda.findById(id, gotBusqueda).populate('postulantes').populate('entrevistadores').populate('habilidades')
+  Busqueda.findById(id, gotBusqueda)
 
   function gotBusqueda (err, busqueda) {
     if (err) {
@@ -72,6 +72,7 @@ exports.show = function (req, res, next) {
     var busquedadto={
                 _id:busqueda.id_empleado,
                 nombre:busqueda.nombre,
+                entrevistador:busqueda.entrevistadores,
                 habilidades:busqueda.habilidades,
                 fecha:busqueda.fecha,
                 otros_comentarios:busqueda.otros_comentarios,
@@ -81,6 +82,8 @@ exports.show = function (req, res, next) {
                 habilidades:busqueda.lhab,
                 texto_twitter:busqueda.texto_twitter,
                 lugar_trabajo:busqueda.lugar_trabajo,
+                //postulantes:  busqueda.postulantes,
+
 
             }
     return res.json(busquedadto)

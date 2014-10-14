@@ -78,6 +78,7 @@ app.controller('usuarioListCTRL', ['$scope', '$rootScope', '$cookieStore', '$loc
             $scope.listaRoles=rolService.query();
             $scope.guardar = function () {
                 var algo=usuarioCreateService.create({usuario:$scope.usuario});
+                  $scope.listaUsuarios=usuarioService.query();
                     $route.reload(); //Probe varias cosas y es lo unico que me funciona sin usar promises o algo de eso.
 
             }
@@ -140,6 +141,7 @@ app.controller('EditarController', ['$scope', '$rootScope', '$cookieStore', '$lo
                 }
             }
             */
+
             $scope.txt=textoserviceid.show({id: $routeParams.textoId});
             $scope.guardar = function () {
                 textoserviceid.update({texto: $scope.txt.texto,id:$routeParams.textoId});
@@ -216,6 +218,9 @@ app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$
 
             $scope.loadTags=function(query){
               return $http.get('/REST/tags/'+query);
+            }
+            $scope.loadEntrevistadores=function(tag){
+              return $http.get('/REST/entrevistadores/'+tag);
             }
 
 

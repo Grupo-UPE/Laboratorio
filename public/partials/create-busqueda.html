@@ -18,15 +18,15 @@
                         </div>
                         <div class="col-md-3 col-sm-offset-1 ">
                             <div class="form-group">
-                                <label for="Entrevistador">Entrevistador:</label>
-                                <input class="form-control" type="text" id="Entrevistador" ng-model="busqueda.entrevistadores" placeholder="Entrevistador" >
+                                <label for="Empleado Referente">Empleado Referente:</label>
+                                <input class="form-control" type="text" id="Empleado Referente" ng-model="busqueda.entrevistadores" placeholder="Empleado Referente" <auto-complete source="loadEntrevistadores($query)"></auto-complete>
 
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-offset-1">
                             <div class="form-group">
                                 <label for="cantidad_puestos">Cantidad Puestos a Cubrir:</label>
-                                <input class="form-control" type="text" id="cantidad_puestos" ng-model="busqueda.cantidad_empleados"  >
+                                <input class="form-control" type="text" id="cantidad_puestos" ng-model="busqueda.cantidad_empleados">
                             </div>
                         </div>
 
@@ -68,12 +68,12 @@
                        
                         </div>
                         
-                         <div class="col-md-3 col-sm-offset-1">
+                         <!--div class="col-md-3 col-sm-offset-1">
                             <div class="form-group">
                                 <label for="texto_twitter">Link a Twitter:</label>
                                 <textarea class="form-control" id="texto_twitter" ng-model="busqueda.texto_twitter"  ></textarea>
                             </div>
-                        </div>
+                        </div-->
                         <div class="col-md-3 col-sm-offset-1">
                             <div class="form-group">
                                 <label for="comentario">Comentario:</label>

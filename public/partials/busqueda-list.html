@@ -3,14 +3,13 @@
         <thead>
             <tr>
                 <th>Nombre Busqeda</th>
-                <th>Entrevistador</th>
+                <th>Empleado Referente</th>
                 <th>N° Puestos a cubrir</th>
                 <th>Remuneracion</th>
                 <th>Lugar de Trabajo</th>
                 <th>Disponibilidad</th>
                 <th>Fecha de Inicio</th>
                 <th>Habilidades</th>
-                <th>Twitter</th>
                 <th>Comentarios</th>
                 
             </tr>
@@ -18,14 +17,12 @@
         <tbody>
             <tr ng-repeat="bsq in listaBusquedas">
                 <td>{{bsq.nombre}}</td>
-                <td>{{bsq.id_empleado}}</td>
                 <td>{{bsq.entrevistador}}</td>
                 <td>{{bsq.remuneracion}}</td>
                 <td>{{bsq.lugar_trabajo}}</td>
                 <td>{{bsq.horario}}</td>
                 <td>{{bsq.fecha_inicio}}</td>
-                <td>{{bsq.habilidades.nombre}}</td>
-                <td>{{bsq.texto_twitter}}</td>
+                <td>{{bsq.habilidades}}</td>
                 <td>{{bsq.otros_comentarios}}</td>
                 <td><a href="/#/busqueda" type="button" class="btn btn-danger btn-sm" ng-click="eliminar(bsq._id)">Eliminar</a>
                 </td>

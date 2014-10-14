@@ -33,6 +33,16 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                     permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
 
+            //rutas para crear perfiles de usuarios
+
+            /*$routeProvider.when('/roles',
+                {
+                    templateUrl: 'partials/create-rol.html',
+                    controller: 'usuarioCTRL',
+                    permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                });
+*/
+
             //rutas para el manejo de postulantes
 
             $routeProvider.when('/postulanteCV',

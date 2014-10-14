@@ -112,7 +112,25 @@ exports.show = function (req, res, next) {
     return res.json(usuariodto)
   }
 };
+/*
+exports.tag = function (req, res, next) {
 
+    var re = new RegExp(req.params.tag,'i');
+
+    Rol.find({nombre:re},gotRoles)
+
+  function gotRoles (err, roles) {
+    console.log(roles);
+    if (err) {
+      console.log(err)
+      return next()
+    }
+
+    return res.json(roles);
+  }
+
+}
+*/
 exports.update = function (req, res, next) {
     console.log(req.body.usuario);
     var mongoose=require('mongoose');

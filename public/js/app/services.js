@@ -69,7 +69,14 @@ services.factory('rolService', function ($resource) {
     });
 });
 
-
+//ROLES
+/*
+services.factory('rolCreateService', function ($resource) {
+    return $resource('/REST/rol/create/', {}, {
+        create: { method: 'POST' }, //trae todos los usuarios
+    });
+});
+*/
 /*Postulantes */
 
 services.factory('postulanteService', function ($resource) {
