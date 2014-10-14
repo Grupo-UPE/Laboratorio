@@ -3,7 +3,7 @@ var Rol = require('../models/rol'); //Traemos directamente el modelo
 /*
 *
 *Cremos dos roles para probar.
-*
+*/
 var admin = new Rol({
     nombre        :   'admin',
     puntos_de_menu: [{ url:'#/usuarios', anchor:'Administracion Usuarios' },{url:'#/prueba',anchor:'Prueba'}],
@@ -15,7 +15,7 @@ var rrhh = new Rol({
     puntos_de_menu: [{}],
 });
 rrhh.save();
-*/
+
 
 exports.list = function (req, res, next) {
 
