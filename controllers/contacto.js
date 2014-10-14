@@ -38,7 +38,6 @@ exports.list = function (req, res, next) {
 
 
 exports.listPostulante=function(req,res){
-    console.log(req.params.postulante);
     Contacto.find({postulante: req.params.postulante},gotContactos)
 
     //Supongo que se podria usar una sola funcion gotContactos para todos...
