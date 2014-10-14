@@ -46,21 +46,22 @@
                 <div class="row">
                     <form method="POST" ng-submit="guardar()" role="form" name="frmPostulante">
                         <div class="col-md-3">
-                            <div class="form-group">
+                            <div class="form-group" ng-class="{'has-error': frmPostulante.nombre.$invalid, 'has-success': frmPostulante.nombre.$valid}">
                                 <label for="nombre">Nombre:</label>
-                                <input class="form-control" type="text" id="nombre" ng-model="postulante.nombre" placeholder="Ingrese el nombre..." required >
+                                <input class="form-control" type="text" id="nombre" name="nombre" ng-model="postulante.nombre" placeholder="Ingrese el nombre..." required >
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group">
+                            <div class="form-group" ng-class="{'has-error': frmPostulante.apellido.$invalid, 'has-success': frmPostulante.apellido.$valid}">
                                 <label for="apellido">Apellido:</label>
-                                <input class="form-control" type="text" id="apellido" ng-model="postulante.apellido" placeholder="Ingrese el apellido..." required >
+                                <input class="form-control" type="text" id="apellido" name="apellido" ng-model="postulante.apellido" placeholder="Ingrese el apellido..." required >
+                                
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group">
+                            <div class="form-group" ng-class="{'has-error': frmPostulante.dni.$invalid, 'has-success': frmPostulante.dni.$valid}">
                                 <label for="dni">DNI:</label>
-                                <input class="form-control" type="text" id="dni" ng-model="postulante.dni" placeholder="Ingrese DNI" required >
+                                <input class="form-control" type="text" id="dni" name="dni" ng-model="postulante.dni" placeholder="Ingrese DNI" required >
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -169,15 +170,21 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group">
+                            <div class="form-group"  ng-class="{'has-error': frmPostulante.disponibilidad.$invalid, 'has-success': frmPostulante.disponibilidad.$valid}"">
                                 <label for="disponibilidad">Disponibilidad:</label>
-                                <input class="form-control" type="tel" id="disponibilidad" ng-model="postulante.disponibilidad" placeholder="ej full-time..." required >
+                                <input class="form-control" type="text" id="disponibilidad" name="disponibilidad" ng-model="postulante.disponibilidad" placeholder="ej full-time..." required >
+                                <div ng-show="frmPostulante.disponibilidad.$invalid">
+                                    <p class="help-block text-danger" ng-show="frmPostulante.disponibilidad.$invalid">Campo Obligatorio.</p>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input class="form-control" type="email" id="email" ng-model="postulante.email" placeholder="Usr@mail" required >
+                            <div class="form-group" ng-class="{'has-error': frmPostulante.email.$invalid, 'has-success': frmPostulante.email.$valid}">
+                                <label for="emailP">Email:</label>
+                                <input class="form-control" type="email"  name="email" ng-model="postulante.email" placeholder="Usr@mail" required >
+                                <div ng-show="frmPostulante.email.$invalid">
+                                    <p class="help-block text-danger" ng-show="frmPostulante.email.$invalid">Email invalido</p>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -194,7 +201,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success">Registrar</button>        
+                                <button type="submit" class="btn btn-success" >Registrar</button>        
                             </div>
                         </div>
                         
