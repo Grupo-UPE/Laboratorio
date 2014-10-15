@@ -2,7 +2,9 @@
 
 // Declare app level module which depends on filters, and services
 angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'ngdemo.services',
-    'ngdemo.directives', 'ui.date', 'ui.mask', 'ngdemo.controllers', 'ui.bootstrap.dropdown', 'ui.bootstrap.modal',
+    'ngdemo.directives', 'ui.date', 'ui.mask', 'ngdemo.controllers','ngdemo.controllers.busquedas','ngdemo.controllers.postulantes',
+    'ngdemo.controllers.usuarios','ngdemo.controllers.habilidades','ngdemo.controllers.entrevistas', 
+    'ui.bootstrap.dropdown', 'ui.bootstrap.modal','ngdemo.controllers.login',
     'ui.bootstrap.transition','ui.bootstrap.datepicker','ui.bootstrap.position','ui.bootstrap.tabs','ngTagsInput',]).
     config(['$locationProvider', '$httpProvider','USER_ROLES','$routeProvider',
         function ($locationProvider,$httpProvider,USER_ROLES,$routeProvider) {
@@ -32,6 +34,16 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                     controller: 'usuarioCTRL',
                     permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
+
+            //rutas para crear perfiles de usuarios
+
+            /*$routeProvider.when('/roles',
+                {
+                    templateUrl: 'partials/create-rol.html',
+                    controller: 'usuarioCTRL',
+                    permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                });
+*/
 
             //rutas para el manejo de postulantes
 

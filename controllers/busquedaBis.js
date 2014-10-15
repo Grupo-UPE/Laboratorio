@@ -24,20 +24,15 @@ exports.show = function (req, res, next) {
   var id = req.params.id
 
 
-  Busqueda.findById(id).lean().populate({path: 'postulantes'}).exec(function (err, doc) {
+
+  Busqueda.findById(id).lean().populate('habilidades').populate('entrevistadores').populate({path: 'postulantes'}).exec(function (err, doc) {
     var options={
         path: 'postulantes.habilidades',
         model: 'Habilidad'
     };
     Busqueda.populate(doc, options, gotBusqueda);
 
-    /*console.log("a");
-    for(var i=0; i<doc.postulantes.lenght; i++){
-        doc.postulantes[i].populate('habilidades');
-        console.log(doc.postulantes[i].habiliadades);
-    }*/
     });
-
 
   function gotBusqueda (err, busqueda) {
     if (err) {

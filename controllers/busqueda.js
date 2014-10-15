@@ -16,7 +16,7 @@ exports.create = function (req, res, next) {
 
     var busqueda= new Busqueda({
         fecha_inicio        :bsq.fecha_inicio,
-        Entrevistador         :bsq.lentrevistadores,
+        Entrevistador       :lentrevistadores,
         cantidad_empleados  :bsq.cantidad_empleados,
         nombre              :bsq.nombre,
         abierto             :true,
@@ -45,7 +45,7 @@ exports.create = function (req, res, next) {
 
 exports.list = function (req, res, next) {
 
-    Busqueda.find(gotBusquedas).populate("habilidades")
+    Busqueda.find(gotBusquedas).populate('postulantes').populate('entrevistadores').populate('habilidades')
 
   function gotBusquedas (err, busquedas) {
     if (err) {
@@ -61,30 +61,21 @@ exports.list = function (req, res, next) {
 exports.show = function (req, res, next) {
   var id = req.params.id
 
-  Busqueda.findById(id, gotBusqueda).populate('postulantes').populate('entrevistadores').populate('habilidades').populate('postulante.habilidades')
+Busqueda.findById(id).lean().populate('habilidades').populate('entrevistadores').populate({path: 'postulantes'}).exec(function (err, doc) {
+    var options={
+        path: 'postulantes.habilidades',
+        model: 'Habilidad'
+    };
+    Busqueda.populate(doc, options, gotBusqueda);
 
+    });
 
   function gotBusqueda (err, busqueda) {
     if (err) {
       console.log(err)
       return next(err)
     }
-
-    var busquedadto={
-                _id:busqueda.id_empleado,
-                nombre:busqueda.nombre,
-                habilidades:busqueda.habilidades,
-                fecha:busqueda.fecha,
-                otros_comentarios:busqueda.otros_comentarios,
-                horario:busqueda.horario,
-                cantidad_empleados:busqueda.cantidad_empleados,
-                remuneracion:busqueda.remuneracion,
-                habilidades:busqueda.lhab,
-                texto_twitter:busqueda.texto_twitter,
-                lugar_trabajo:busqueda.lugar_trabajo,
-
-            }
-    return res.json(busquedadto)
+    return res.json(busqueda)
   }
 };
 
