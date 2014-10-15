@@ -14,7 +14,7 @@ app.run(function ($rootScope, $templateCache) {
 });
 
 //postulantes controllers
-
+/*
 app.controller('postulanteCtrlCV',['$scope', function ($scope) {
             $scope.disabled = false;
             $scope.bar = function(content) {
@@ -66,6 +66,8 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                        }
                                    } ]);
 
+*/
+/*
 app.controller('usuarioListCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'usuarioService','usuarioCreateService','rolService','$route',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
@@ -97,7 +99,7 @@ app.controller('usuarioCTRL', ['$scope', '$rootScope', '$cookieStore', '$locatio
             $scope.volver = function(){
                 $location.path('/usuarios');
             }
-}]);
+}]);*/
 
 app.controller('IndexController', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
     'textoservice','textoserviceid','textoremove','textocreate','USER_ROLES','controlAcceso','google',
@@ -153,7 +155,7 @@ app.controller('EditarController', ['$scope', '$rootScope', '$cookieStore', '$lo
 
 /*Sacamos algo de aca
 https://medium.com/opinionated-angularjs/techniques-for-authentication-in-angularjs-applications-7bbf0346acec
-*/
+
 app.controller('LoginController', function ($scope, $rootScope, AuthService,$location) {
   $scope.credenciales = {
     username: '',
@@ -167,7 +169,7 @@ app.controller('LoginController', function ($scope, $rootScope, AuthService,$loc
     });
   };
 })
-
+*/
 app.constant('USER_ROLES', {
   all: '*',
   admin: 'admin',
@@ -207,7 +209,7 @@ app.controller('ApplicationController', function ($scope,
 
 })*/
 })
-
+/*
 app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'busquedaService','busquedaCreateService','habilidadService','$route',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
@@ -254,8 +256,9 @@ app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$locati
             $location.path('/detalleBusqueda/'+idbusqueda);
         }
 
-
 }]);
+
+
 
 app.controller('detalleBusquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'detalleBusquedaService','$route','$routeParams','$modal','contactoCreateService',
@@ -300,6 +303,8 @@ app.controller('detalleBusquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '
 
 }]);
 
+*/
+
 //controller del modal
 app.controller('modalCTRL',
     function ($scope, $modalInstance, postulante, contactoPostulanteListService) {
@@ -315,7 +320,7 @@ app.controller('modalCTRL',
     $modalInstance.dismiss('cancel');
   };
 });
-
+/*
 app.controller('generarEntrevistaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'detalleBusquedaService','$route','$routeParams','postulanteShowUpdateService','entrevistaCreateService',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
@@ -328,7 +333,7 @@ app.controller('generarEntrevistaCTRL', ['$scope', '$rootScope', '$cookieStore',
 
 }]);
 
-//busqueda de usuarios
+/busqueda de usuarios
 app.controller('buserCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'buserService',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
@@ -342,6 +347,7 @@ app.controller('buserCTRL', ['$scope', '$rootScope', '$cookieStore', '$location'
             }
             ]);
 
+
 app.controller('habilidadCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'habilidadService',"$route",'habilidadCreateService','habilidadRemove',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
@@ -352,7 +358,7 @@ app.controller('habilidadCTRL', ['$scope', '$rootScope', '$cookieStore', '$locat
            /* $scope.guardar = function () {
                var algo= habilidadCreateService.create({habilidad: $scope.habilidad});
               $route.reload();
-            };*/
+            };
             $scope.eliminar=function(idHabilidad){
                 console.log(idHabilidad);
                 habilidadRemove.remove({id:idHabilidad})
@@ -366,4 +372,4 @@ app.controller('habilidadCTRL', ['$scope', '$rootScope', '$cookieStore', '$locat
                 }
 
 
-}]);
+}]);*/
