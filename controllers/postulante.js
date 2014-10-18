@@ -204,12 +204,13 @@ exports.remove = function (req, res, next) {
   }
 }
 
-exports.upload = function (req, res) {
+exports.upload = function (req, res, next) {
 
     var path = req.files.file.path;
     //seria el dni o el id del postulante
-    var nombre = "que lindo nombre tiene este archivo no?"+1;
-    var newPath = '../public/uploads/' + nombre;
+    var nombre = req.param('postulante.dni');
+    var extension = ".pdf";
+    var newPath = '../public/uploads/' + nombre + extension;
     var is = fs.createReadStream(path)
     var os = fs.createWriteStream(newPath)
     is.pipe(os)
@@ -218,6 +219,37 @@ exports.upload = function (req, res) {
     //eliminamos el archivo temporal
         fs.unlinkSync(path)
     })
-    res.send('¡archivo subido!')
+    
+    var postulante = new Postulante({
+        nombre: req.param('postulante.nombre'),
+        apellido: req.param('postulante.apellido'),
+        dni: req.param('postulante.dni'),
+        estado_civil: req.param('postulante.estado_civil'),
+        nacionalidad: req.param('postulante.nacionalidad'),
+        edad: req.param('postulante.edad'),
+        sexo: req.param('postulante.sexo'),
+        telefono: req.param('postulante.telefono'),
+        email: req.param('postulante.email'),
+        disponibilidad: req.param('postulante.disponibilidad'),
+        comentario: req.param('postulante.comentario'),
+        habilidades : [],
+        curriculumURL : newPath
+        });
+
+    res.send(JSON.stringify(postulante));
+    
+    
+   
+   postulante.save(onSaved)
+
+    function onSaved(err) {
+        if (err) {
+            console.log(err)
+            return next(err)
+        }
+        return res.send("");
+    }
+    
+    
 
 }
