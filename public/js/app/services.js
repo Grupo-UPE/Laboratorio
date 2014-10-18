@@ -69,7 +69,14 @@ services.factory('rolService', function ($resource) {
     });
 });
 
-
+//ROLES
+/*
+services.factory('rolCreateService', function ($resource) {
+    return $resource('/REST/rol/create/', {}, {
+        create: { method: 'POST' }, //trae todos los usuarios
+    });
+});
+*/
 /*Postulantes */
 
 services.factory('postulanteService', function ($resource) {
@@ -139,10 +146,32 @@ services.factory('busquedaCreateService', function ($resource) {
     });
 });
 
+services.factory('busquedaRemove', function ($resource) {
+    return $resource('/REST/delete-busqueda/:id', {}, {
+        remove: { method: 'POST' },
+    });
+});
+
+
+
+
 //DetalleDeBusqueda
 services.factory('detalleBusquedaService', function ($resource) {
     return $resource('/REST/detalleBusquedaBis/:id', {}, {
         query: { method: 'GET', params: {}, isArray: false },
+    });
+});
+
+//Contacto
+services.factory('contactoCreateService', function ($resource) {
+    return $resource('/REST/create-contacto/', {}, {
+        create: { method: 'POST' },
+    });
+});
+
+services.factory('contactoPostulanteListService', function ($resource) {
+    return $resource('/REST/contacto/:postulante', {}, {
+        query: { method: 'GET', params: {}, isArray: true },
     });
 });
 

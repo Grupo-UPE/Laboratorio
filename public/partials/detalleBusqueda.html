@@ -19,10 +19,10 @@
                     <tr ng-repeat="postulante in busqueda.postulantes|filter:filtro">
                        <td>{{postulante.nombre}}</td>
                        <td>
-                       <span ng-repeat="habilidad in postulante.habilidades">{{habilidad}}</span>
+                       <span ng-repeat="habilidad in postulante.habilidades">{{habilidad.nombre}} </span>
                        </td>
                        <td>
-                       <span><td><a href="/#/generarentrevista/{{busqueda._id}}/{{postulante._id}}" >Generar entrevista</a></span></td>
+                       <span><td><a class="btn btn-default" href="/#/generarentrevista/{{busqueda._id}}/{{postulante._id}}" >Generar entrevista </a></span><button class="btn btn-default" ng-click="openModal('lg',postulante)">Contactar</button></td>
                     </tr>
 
                 </tbody>

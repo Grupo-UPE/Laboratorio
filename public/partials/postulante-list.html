@@ -14,7 +14,7 @@
                 <th>Disponibilidad</th>
                 <th>Comentario</th>
                 <th>Habilidades</th>
-                
+
             </tr>
         </thead>
         <tbody>
@@ -30,7 +30,7 @@
                 <td>{{post.email}}</td>
                 <td>{{post.disponibilidad}}</td>
                 <td>{{post.comentario}}</td>
-                <td>{{post.habilidades[0].tecnologia}}</td>
+                <td><span ng-repeat="habilidad in post.habilidades">{{habilidad.nombre}} </span></td>
                 <td><a href="/#/postulantes" type="button" class="btn btn-danger btn-sm" ng-click="eliminar(post._id)">Eliminar</a>
                 </td>
                 <td><a href="/#/postulantes/{{post._id}}" class="btn btn-info btn-sm">Editar</a>
@@ -190,7 +190,9 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="habilidad">Habilidades:</label>
-                                <textarea class="form-control" id="habilidad" ng-model="postulante.habilidad"  ></textarea>
+                                <tags-input ng-model="postulante.habilidades" id="habilidad">
+                                <auto-complete source="loadTags($query)"></auto-complete>
+                        </tags-input>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -201,13 +203,13 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success" >Registrar</button>        
+                                <button type="submit" class="btn btn-success" >Registrar</button>                       
                             </div>
                         </div>
-                        
-                         
+
+
                     </form>
-                    
+
                 </div>
-            
+
         </div>

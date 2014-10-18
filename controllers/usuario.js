@@ -47,18 +47,18 @@ Usuario.acceder(email, function(err, usuario, motivo) {
 
 exports.create = function (req, res, next) {
     //Las verificaciones de los requeridos la hariamos desde angular.... por ahora.
-    var email=req.body.email;
-    var username=req.body.username;
+    var email=req.body.usuario.email;
+    var username=req.body.usuario.username;
     var rolesid=[];
     //console.log(usr.roles);
     var arr = [];
-    for (var id in usr.roles) {
-        arr.push(usr.roles[id]["_id"]);
+    for (var id in req.body.usuario.roles) {
+        arr.push(req.body.usuario.roles[id]["_id"]);
     }
 
     var usuario=new Usuario({
-        email:usr.email,
-        username:usr.username,
+        email:email,
+        username:username,
         roles:arr,
     });
 
@@ -112,7 +112,25 @@ exports.show = function (req, res, next) {
     return res.json(usuariodto)
   }
 };
+/*
+exports.tag = function (req, res, next) {
 
+    var re = new RegExp(req.params.tag,'i');
+
+    Rol.find({nombre:re},gotRoles)
+
+  function gotRoles (err, roles) {
+    console.log(roles);
+    if (err) {
+      console.log(err)
+      return next()
+    }
+
+    return res.json(roles);
+  }
+
+}
+*/
 exports.update = function (req, res, next) {
     console.log(req.body.usuario);
     var mongoose=require('mongoose');

@@ -27,6 +27,12 @@ var busqueda = require('./controllers/busqueda')
 var busquedaBis = require('./controllers/busquedaBis')
 var habilidad = require('./controllers/habilidad')
 
+//var contacto = require('./controllers/contacto')
+
+
+var contacto = require('./controllers/contacto')
+var entrevista = require('./controllers/entrevista')
+
 var texto  = require('./controllers/texto');
 var usuario  = require('./controllers/usuario');
 var rol  = require('./controllers/rol');
@@ -81,6 +87,8 @@ app.post('/REST/create-usuario', usuario.create)
 
 //Rutas para roles.
 app.get('/REST/rol', rol.list)
+//app.post('/REST/create-rol',rol.create)
+//app.post('/REST/delete-rol',rol.remove)
 
 //rutas para los postulantes
 
@@ -95,18 +103,25 @@ app.post('/upload', postulante.upload);
 
 //Rutas para busquedas
 
-app.get('/REST/busqueda', busqueda.list)//Le puse el bis porque devuelve mas o menos lo que esperamos.
+app.get('/REST/busqueda', busqueda.list)
+
 
 app.get('/REST/busquedaBis', busquedaBis.list)//Le puse el bis porque devuelve mas o menos lo que esperamos.
 
 app.get('/REST/detalleBusquedaBis/:id', busquedaBis.show)
+//app.post('/REST/create-contacto', contacto.create)
+//app.get('/REST/contacto', contacto.list);
+//app.get('/REST/contacto/:postulante', contacto.listPostulante);
+
+
 app.post('/REST/create-busqueda',busqueda.create)
+app.post('/REST/delete-busqueda',busqueda.remove)
 
 //rutas para habilidades
 app.get('/REST/habilidad', habilidad.list)
 app.post('/REST/habilidad', habilidad.create)
 app.post('/REST/delete-habilidad', habilidad.remove)
-
+//app.get('/REST/entrevistadores/:tag', habilidad.tag)
 app.get('/REST/tags/:query', habilidad.query)
 
 
@@ -117,6 +132,8 @@ app.get('/oauth2callback', login.callback)
 
 //Entrevistas
 app.post('/REST/create-entrevista', calendar.create)
+app.get('/entrevista', calendar.show)
+app.get('/REST/entrevistas', entrevista.listarEntrevistas)
 
 //Install
 app.get('/install',install.install)

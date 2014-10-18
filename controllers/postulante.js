@@ -2,7 +2,7 @@ var Postulante = require('../models/postulante');
 var fs = require('fs');
 
 exports.create = function (req, res, next) {
-    
+
  /*
   var postulante = new Postulante({
   "nombre" : "Pepe",
@@ -18,13 +18,13 @@ exports.create = function (req, res, next) {
     }],
   "email" : "pepelapopa@gmail.com",
   "disponibilidad" : "fulltime",
- 
+
   "comentario" : "texto de prueba",
-  
+
 });
 postulante.save();
 */
- 
+
     var nombre = req.body.postulante.nombre;
     var apellido = req.body.postulante.apellido;
     var dni = req.body.postulante.dni;
@@ -35,9 +35,13 @@ postulante.save();
     var telefono = req.body.postulante.telefono;
     var email = req.body.postulante.email;
     var disponibilidad = req.body.postulante.disponibilidad;
-    var habilidad = [];
+     var habilidades=[];
+    for (var id in req.body.postulante.habilidades) {
+        habilidades.push(req.body.postulante.habilidades[id]["_id"]);
+    }
+
     var comentario = req.body.postulante.comentario;
-    
+
     var postulante = new Postulante({
         nombre: nombre,
         apellido: apellido,
@@ -50,7 +54,7 @@ postulante.save();
         email: email,
         disponibilidad: disponibilidad,
         comentario: comentario,
-        habilidades : habilidad,
+        habilidades : habilidades,
 
     });
 
@@ -63,12 +67,12 @@ postulante.save();
         }
         return res.send("");
     }
-    
+
 };
 
 exports.list = function (req, res, next) {
 
-    Postulante.find(gotPostulantes)
+    Postulante.find(gotPostulantes).populate('habilidades')
 
     function gotPostulantes(err, postulante) {
         if (err) {
@@ -92,7 +96,7 @@ exports.show = function (req, res, next) {
       return next(err)
     }
 
-    
+
     var postulantedto={
                 _id                 : postulante._id,
                 nombre              : postulante.nombre,
@@ -106,11 +110,11 @@ exports.show = function (req, res, next) {
                 email               : postulante.email,
                 disponibilidad      : postulante.disponibilidad,
                 comentario          : postulante.comentario,
-                habilidades         : postulante.habilidad,
-                
+                habilidades         : postulante.habilidades,
+
             }
             console.log(postulantedto.edad);
-            
+
     return res.json(postulantedto)
   }
 };
@@ -201,10 +205,10 @@ exports.remove = function (req, res, next) {
 }
 
 exports.upload = function (req, res) {
-    
+
     var path = req.files.file.path;
     //seria el dni o el id del postulante
-    var nombre = 'algo';
+    var nombre = "que lindo nombre tiene este archivo no?"+1;
     var newPath = '../public/uploads/' + nombre;
     var is = fs.createReadStream(path)
     var os = fs.createWriteStream(newPath)
