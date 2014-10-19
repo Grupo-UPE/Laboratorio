@@ -40,33 +40,27 @@
 </div>
 
  <div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h2>Formulario Postulante</h2>
-        <hr>
-        <div class="row">
-        <form id="cv" ng-upload="bar(content)" method="post" enctype='multipart/form-data' action="/upload?delay=yes" name="frmPostulante">
-            
-            <div class="form-group">
-                  <span class="btn btn-default btn-file">
-                        Seleccionar un Curriculum:<input type="file" name="file" required>
-                 </span> 
-          </div>
-            
         
+     <h2>Formulario Postulante</h2>
+     <hr>   
+        
+        <form ng-upload="bar(content)" method="post" enctype='multipart/form-data' action="/upload?delay=yes" name="frmPostulante" role="form">
+        <div class="panel-body">
             <div class="col-md-3">
-                        <div class="form-group" ng-class="{'has-error': frmPostulante.postulante.nombre.$invalid, 'has-success': frmPostulante.postulante.nombre.$valid}">
-                                <label for="nombre">Nombre:</label>
-                                <input class="form-control" type="text" id="nombre" name="postulante.nombre" ng-model="postulante.nombre" placeholder="Ingrese el nombre..." required >
+                        <div class="form-group">
+                                <label for="postulante.nombre">Nombre:</label>
+                                <input class="form-control" type="text" id="postulante.nombre" name="postulante.nombre" ng-model="postulante.nombre" placeholder="Ingrese el nombre..." required >
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group" ng-class="{'has-error': frmPostulante.postulante.apellido.$invalid, 'has-success': frmPostulante.postulante.apellido.$valid}">
-                                <label for="apellido">Apellido:</label>
-                                <input class="form-control" type="text" id="apellido" name="postulante.apellido" ng-model="postulante.apellido" placeholder="Ingrese el apellido..." required >
+                            <div class="form-group">
+                                <label for="postulante.apellido">Apellido:</label>
+                                <input class="form-control" type="text" id="postulante.apellido" name="postulante.apellido" ng-model="postulante.apellido" placeholder="Ingrese el apellido..." required >
                                 
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group" ng-class="{'has-error': frmPostulante.postulante.dni.$invalid, 'has-success': frmPostulante.postulante.dni.$valid}">
+                            <div class="form-group">
                                 <label for="dni">DNI:</label>
                                 <input class="form-control" type="text" id="dni" name="postulante.dni" ng-model="postulante.dni" placeholder="Ingrese DNI" required >
                             </div>
@@ -177,7 +171,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group"  ng-class="{'has-error': frmPostulante.postulante.disponibilidad.$invalid, 'has-success': frmPostulante.postulante.disponibilidad.$valid}"">
+                            <div class="form-group">
                                 <label for="disponibilidad">Disponibilidad:</label>
                                 <input class="form-control" type="text" id="disponibilidad" name="postulante.disponibilidad" ng-model="postulante.disponibilidad" placeholder="ej full-time..." required >
                                 <div ng-show="frmPostulante.postulante.disponibilidad.$invalid">
@@ -186,7 +180,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group" ng-class="{'has-error': frmPostulante.postulante.email.$invalid, 'has-success': frmPostulante.postulante.email.$valid}">
+                            <div class="form-group">
                                 <label for="emailP">Email:</label>
                                 <input class="form-control" type="email"  name="postulante.email" ng-model="postulante.email" placeholder="Usr@mail" required >
                                 <div ng-show="frmPostulante.email.$invalid">
@@ -197,7 +191,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="habilidad">Habilidades:</label>
-                                <tags-input name="postulante.habilidad" ng-model="postulante.habilidades" id="habilidad">
+                                <tags-input name="postulante.habilidades" ng-model="postulante.habilidades" id="habilidad">
                                 <auto-complete source="loadTags($query)"></auto-complete>
                         </tags-input>
                             </div>
@@ -208,12 +202,37 @@
                                 <textarea class="form-control" name="postulante.comentario" ng-model="postulante.comentario"  ></textarea>
                             </div>
                         </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                        <span class="btn btn-primary btn-file"><span class="fileupload-new">Seleccionar Curriculum</span>
+                        <span class="fileupload-exists">Cambiar</span>         <input type="file" name="file" required accept="application/pdf"/></span>
+                        <span class="fileupload-preview"></span>
+                        <a href="#/postulanteCV" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                        <span class="btn btn-warning btn-file"><span class="fileupload-new">Selecionar Foto</span>
+                        <span class="fileupload-exists">Cambiar</span>         <input type="file" name="foto" accept="image/*" required/></span>
+                        <span class="fileupload-preview"></span>
+                        <a href="#/postulanteCV" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="panel-footer">
             
-            <div class="col-md-6">
+            <div class="col-md-10"></div>
+            <div class="col-md-2">
                             <div class="form-group">
-                                <input type="submit" class="btn btn-success" value="Registrar Postulante" ng-disabled="$isUploading">
+                                <input type="submit" ng-disabled="frmPostulante.$invalid" class="btn btn-success" value="Registrar Postulante" ng-disabled="$isUploading">
                             </div>
                         </div>
+                </div>
         </form>
+     
         </div>
-</div>
