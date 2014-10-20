@@ -15,7 +15,7 @@ exports.create = function (req, res, next) {
       lentrevistadores.push(lentrevistadores.entrevistadores[id]["_id"]);
     }
 
-   
+
 
     var busqueda= new Busqueda({
         fecha_inicio        :bsq.fecha_inicio,
@@ -50,7 +50,7 @@ exports.create = function (req, res, next) {
 exports.list = function (req, res, next) {
 
     Busqueda.find(gotBusquedas).populate('postulantes').populate('entrevistadores').populate('habilidades')
-    
+
 
 
   function gotBusquedas (err, busquedas) {
@@ -137,7 +137,7 @@ exports.update = function (req, res, next) {
     return res.send({'error':'Debe escribir algo'})
   }
 
-    Busqueda.findById(_id, gotBusqueda);
+    Busqueda.findById(req.body.busqueda._id, gotBusqueda);
 
     function gotBusqueda (err, busqueda) {
         if (err) {
@@ -165,7 +165,7 @@ exports.listabierta = function (req, res, next) {
   var estado = req.params.estado
   var query = Busqueda.where({estado : "Abierta"});
 
-  query.findOne(function estado (err, busqueda) { 
+  query.findOne(function estado (err, busqueda) {
     if (err) {
       console.log(err)
       return next(err)
