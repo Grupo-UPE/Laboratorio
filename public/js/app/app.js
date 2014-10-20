@@ -3,9 +3,9 @@
 // Declare app level module which depends on filters, and services
 angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'ngdemo.services',
     'ngdemo.directives', 'ui.date', 'ui.mask', 'ngdemo.controllers','ngdemo.controllers.busquedas','ngdemo.controllers.postulantes',
-    'ngdemo.controllers.usuarios','ngdemo.controllers.habilidades','ngdemo.controllers.entrevistas', 
+    'ngdemo.controllers.usuarios','ngdemo.controllers.habilidades','ngdemo.controllers.entrevistas',
     'ui.bootstrap.dropdown', 'ui.bootstrap.modal','ngdemo.controllers.login',
-    'ui.bootstrap.transition','ui.bootstrap.datepicker','ui.bootstrap.position','ui.bootstrap.tabs','ngTagsInput',]).
+    'ui.bootstrap.transition','ui.bootstrap.datepicker','ui.bootstrap.position','ui.bootstrap.tabs','ngTagsInput','ui.bootstrap','ui.bootstrap.tpls',]).
     config(['$locationProvider', '$httpProvider','USER_ROLES','$routeProvider',
         function ($locationProvider,$httpProvider,USER_ROLES,$routeProvider) {
             //Rutas del index y de pruebas
@@ -52,8 +52,8 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                 templateUrl: 'partials/postulanteCV.html',
                 controller: 'postulanteCtrlCV',
             });
-            
-            
+
+
             $routeProvider.when('/postulantes',
                 {
                     templateUrl: 'partials/postulante-list.html',
