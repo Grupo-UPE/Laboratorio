@@ -78,6 +78,14 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                     permisos : ['RRHH'] //Lo dejo no se el fin que le den.
                 });
 
+    //send mail
+    $routeProvider.when('/send',
+                {
+                    templateUrl: 'partials/FormMail.html',
+                    controller: 'mailCTRL',
+                    permisos : ['RRHH'] //Lo dejo no se el fin que le den.
+                });
+
 	//Rutas para manejar Habilidades
 	$routeProvider.when('/habilidad',
                 {

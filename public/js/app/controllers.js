@@ -362,3 +362,30 @@ app.controller('habilidadCTRL', ['$scope', '$rootScope', '$cookieStore', '$locat
 
 
 }]);
+
+app.controller('mailCTRL',['$scope','$rootScope','$http',
+                   function($scope,$rootScope, $http) {
+
+$scope.enviar = function() {
+    console.log('Im in the controller');
+
+    // Trigger validation flag.
+    $scope.submitted = true;
+
+    $http.post('/send', {
+        to: $scope.to,
+        subject: $scope.subject,
+        content: $scope.content
+    }).success(function(data, status, headers, config) {
+            if(data.success){
+                $location.path('/send');
+            }else {
+                //do something about the error
+            }
+        });
+    
+    console.log($scope.to);
+    console.log($scope);
+};
+
+}]);
