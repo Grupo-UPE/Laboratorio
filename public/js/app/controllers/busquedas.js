@@ -23,40 +23,52 @@ app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$
             $scope.loadTags=function(query){
               return $http.get('/REST/tags/'+query);
             }
-            $scope.loadEntrevistadores=function(tag){
+            /*$scope.loadEntrevistadores=function(tag){
               return $http.get('/REST/entrevistadores/'+tag);
-            }
+            }*/
 
 
 
             $scope.guardar = function () {
                  busquedaCreateService.create({busqueda:$scope.busqueda});
-              $scope.listabusquedas=busquedaService.query();
+              //$scope.listabusquedas=busquedaService.query();
               $route.reload();
+              $scope.listabusquedas=busquedaService.query();
         };
 
 }]);
 
 
 app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'busquedaService','$route','busquedaRemove',
+                        'busquedaService','$route','busquedaRemove','busquedaShowUpdateService','$routeParams',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    busquedaService,$route,busquedaRemove) {
+                                    busquedaService,$route,busquedaRemove,busquedaShowUpdateService,$routeParams) {
 
             $scope.listaBusquedas=busquedaService.query();
+            //$scope.bsq = busquedaShowUpdateService.show({ estado: $scope.estado ,id: $routeParams.busquedaId });
+            $scope.guardar = function () {
+            
+             busquedaShowUpdateService.update({ bsq: $scope.bsq });
+             
+             $scope.listaBusquedas=busquedaService.query();
+             $route.reload();
+                                }
+
+
             $scope.eliminar=function(idbusqueda){
-                console.log(idbusqueda);
+                
                 busquedaRemove.remove({id:idbusqueda})
                 $scope.listaBusquedas=busquedaService.query();
             }
 
-             $scope.list = function () {
-
-              $scope.listaBusquedas=busquedaService.query();
-              };
         $scope.detalle=function(idbusqueda){ //La idea era usar esto pero por algun motivo me manda al index...
             $location.path('/detalleBusqueda/'+idbusqueda);
         }
+
+        
+
+                 
+
 
 
 }]);

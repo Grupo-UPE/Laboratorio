@@ -151,7 +151,11 @@ services.factory('busquedaRemove', function ($resource) {
         remove: { method: 'POST' },
     });
 });
-
+services.factory('busquedaShowUpdateService', function ($resource) {
+    return $resource('/REST/busqueda/:id', {id:"@id"}, {
+        update: { method: 'PUT' },
+    });
+});
 
 
 

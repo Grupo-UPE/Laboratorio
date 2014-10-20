@@ -81,6 +81,12 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                     controller: 'busquedaCTRL',
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
+        $routeProvider.when('/busqueda/:busquedaId',
+                {
+                    templateUrl: 'partials/busqueda-edit.html',
+                    controller: 'busquedaCTRL',
+                    permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                });
 
 	//busqueda de usuarios
 	$routeProvider.when('/buser',
