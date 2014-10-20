@@ -109,6 +109,8 @@ app.post('/upload', postulante.upload);
 app.get('/REST/busquedaBis', busquedaBis.list)//Le puse el bis porque devuelve mas o menos lo que esperamos.
 
 app.get('/REST/detalleBusquedaBis/:id', busquedaBis.show)
+app.post('/REST/busquedaPorHabilidades', postulante.listarPorHabilidades)//Le puse el bis porque devuelve mas o menos lo que esperamos.
+
 //app.post('/REST/create-contacto', contacto.create)
 //app.get('/REST/contacto', contacto.list);
 //app.get('/REST/contacto/:postulante', contacto.listPostulante);

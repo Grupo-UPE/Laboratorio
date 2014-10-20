@@ -40,34 +40,38 @@ app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$
 
 
 app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'busquedaService','$route','busquedaRemove','busquedaShowUpdateService','$routeParams',
+                        'busquedaService','$route','busquedaRemove','busquedaShowUpdateService','$routeParams','posiblesPostulantes',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    busquedaService,$route,busquedaRemove,busquedaShowUpdateService,$routeParams) {
+                                    busquedaService,$route,busquedaRemove,busquedaShowUpdateService,$routeParams,posiblesPostulantes) {
 
             $scope.listaBusquedas=busquedaService.query();
             //$scope.bsq = busquedaShowUpdateService.show({ estado: $scope.estado ,id: $routeParams.busquedaId });
             $scope.guardar = function () {
-            
+
              busquedaShowUpdateService.update({ bsq: $scope.bsq });
-             
+
              $scope.listaBusquedas=busquedaService.query();
              $route.reload();
                                 }
 
 
             $scope.eliminar=function(idbusqueda){
-                
+
                 busquedaRemove.remove({id:idbusqueda})
                 $scope.listaBusquedas=busquedaService.query();
+            }
+
+            $scope.buscarPostulantes=function(habilidades){
+                posiblesPostulantes.query({habilidades:habilidades});
             }
 
         $scope.detalle=function(idbusqueda){ //La idea era usar esto pero por algun motivo me manda al index...
             $location.path('/detalleBusqueda/'+idbusqueda);
         }
 
-        
 
-                 
+
+
 
 
 
