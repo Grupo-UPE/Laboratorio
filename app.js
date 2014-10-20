@@ -103,7 +103,7 @@ app.post('/upload', postulante.upload);
 
 //Rutas para busquedas
 
-app.get('/REST/busqueda', busqueda.list)
+
 
 
 app.get('/REST/busquedaBis', busquedaBis.list)//Le puse el bis porque devuelve mas o menos lo que esperamos.
@@ -113,9 +113,10 @@ app.get('/REST/detalleBusquedaBis/:id', busquedaBis.show)
 //app.get('/REST/contacto', contacto.list);
 //app.get('/REST/contacto/:postulante', contacto.listPostulante);
 
-
+app.get('/REST/busqueda', busqueda.list)
 app.post('/REST/create-busqueda',busqueda.create)
 app.post('/REST/delete-busqueda',busqueda.remove)
+app.put('/REST/busqueda', busqueda.update);
 
 //rutas para habilidades
 app.get('/REST/habilidad', habilidad.list)
