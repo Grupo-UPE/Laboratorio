@@ -31,3 +31,54 @@ exports.list = function (req, res, next) {
   }
 
 }
+
+
+
+
+exports.create = function (req, res, next) {
+    var nombre=req.body.rol.nombre;
+
+
+    var roles = new Rol({
+  nombre: nombre,
+  });  
+
+    roles.save(onSaved)
+
+    function onSaved (err) {
+        if (err) {
+            console.log(err)
+            return next(err)
+        }
+        return res.send("");
+        }
+};
+
+exports.remove = function (req, res, next) {
+    var id = req.body.id
+
+    Rol.findById(id, gotRoles)
+
+    function gotRoles (err, roles) {
+    if (err) {
+        console.log(err)
+        return next(err)
+    }
+
+    if (!roles) {
+        return res.send({'error':'ID invalido'})
+    }
+
+    // Tenemos el texto, eliminemoslo
+    roles.remove(onRemoved)
+  }
+
+  function onRemoved (err) {
+    if (err) {
+      console.log(err)
+      return next(err)
+    }
+
+    return res.redirect('/')
+  }
+}

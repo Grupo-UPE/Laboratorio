@@ -2,8 +2,10 @@
 
 // Declare app level module which depends on filters, and services
 angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'ngdemo.services',
-    'ngdemo.directives', 'ui.date', 'ui.mask', 'ngdemo.controllers', 'ui.bootstrap.dropdown', 'ui.bootstrap.modal',
-    'ui.bootstrap.transition','ui.bootstrap.datepicker','ui.bootstrap.position','ui.bootstrap.tabs','ngTagsInput',]).
+    'ngdemo.directives', 'ui.date', 'ui.mask', 'ngdemo.controllers','ngdemo.controllers.busquedas','ngdemo.controllers.postulantes',
+    'ngdemo.controllers.usuarios','ngdemo.controllers.habilidades','ngdemo.controllers.entrevistas',
+    'ui.bootstrap.dropdown', 'ui.bootstrap.modal','ngdemo.controllers.login',
+    'ui.bootstrap.transition','ui.bootstrap.datepicker','ui.bootstrap.position','ui.bootstrap.tabs','ngTagsInput','ui.bootstrap','ui.bootstrap.tpls',]).
     config(['$locationProvider', '$httpProvider','USER_ROLES','$routeProvider',
         function ($locationProvider,$httpProvider,USER_ROLES,$routeProvider) {
             //Rutas del index y de pruebas
@@ -33,6 +35,16 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                     permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
 
+            //rutas para crear perfiles de usuarios
+
+            /*$routeProvider.when('/roles',
+                {
+                    templateUrl: 'partials/create-rol.html',
+                    controller: 'usuarioCTRL',
+                    permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                });
+*/
+
             //rutas para el manejo de postulantes
 
             $routeProvider.when('/postulanteCV',
@@ -40,8 +52,8 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                 templateUrl: 'partials/postulanteCV.html',
                 controller: 'postulanteCtrlCV',
             });
-            
-            
+
+
             $routeProvider.when('/postulantes',
                 {
                     templateUrl: 'partials/postulante-list.html',
@@ -68,6 +80,12 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                     templateUrl: 'partials/busqueda-list.html',
                     controller: 'busquedaCTRL',
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                });
+        $routeProvider.when('/busqueda/:busquedaId',
+                {
+                    templateUrl: 'partials/busqueda-edit.html',
+                    controller: 'busquedaCTRL',
+                    permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
 
 	//busqueda de usuarios

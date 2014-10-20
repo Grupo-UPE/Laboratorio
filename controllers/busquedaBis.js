@@ -23,13 +23,23 @@ exports.list = function (req, res, next) {
 exports.show = function (req, res, next) {
   var id = req.params.id
 
-  Busqueda.findById(id, gotBusqueda).populate('postulantes').populate('entrevistadores').populate('habilidades')
+
+
+  Busqueda.findById(id).lean().populate('habilidades').populate('entrevistadores').populate({path: 'postulantes'}).exec(function (err, doc) {
+    var options={
+        path: 'postulantes.habilidades',
+        model: 'Habilidad'
+    };
+    Busqueda.populate(doc, options, gotBusqueda);
+
+    });
 
   function gotBusqueda (err, busqueda) {
     if (err) {
       console.log(err)
       return next(err)
     }
-    return res.json(busqueda)
+    console.log(busqueda.postulantes);
+        return res.json(busqueda);
   }
 };
