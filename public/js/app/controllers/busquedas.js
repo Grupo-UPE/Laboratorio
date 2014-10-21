@@ -40,17 +40,21 @@ app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$
 
 
 app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'busquedaService','$route','busquedaRemove','busquedaShowUpdateService','$routeParams','posiblesPostulantes',
+                        'busquedaService','$route','busquedaRemove','busquedaShowUpdateService',
+                        '$routeParams','posiblesPostulantes','busquedaServiceState',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    busquedaService,$route,busquedaRemove,busquedaShowUpdateService,$routeParams,posiblesPostulantes) {
+                                    busquedaService,$route,busquedaRemove
+                                    ,busquedaShowUpdateService,$routeParams,posiblesPostulantes,busquedaServiceState) {
 
-            $scope.listaBusquedas=busquedaService.query();
+            //$scope.listaBusquedas=busquedaService.query();
+            $scope.listaBusquedasState=busquedaServiceState.query({estado: $routeParams.estado});
+            
             //$scope.bsq = busquedaShowUpdateService.show({ estado: $scope.estado ,id: $routeParams.busquedaId });
             $scope.guardar = function () {
 
              busquedaShowUpdateService.update({ bsq: $scope.bsq });
 
-             $scope.listaBusquedas=busquedaService.query();
+             //$scope.listaBusquedas=busquedaService.query();
              $route.reload();
                                 }
 
