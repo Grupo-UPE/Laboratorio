@@ -1,0 +1,42 @@
+<div>
+        <div class="modal-header">
+            <h2>Ojo que todavia no funciona</h2>
+            <h3 class="modal-title">Coincidencias de postulantes para la busqueda {{busqueda.nombre}}</h3>
+            <h4>Habilidades requeridas</h4>
+            <span ng-repeat="habilidad in busqueda.habilidades">{{habilidad.nombre}} </span>
+        </div>
+        <div class="modal-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Habilidades</th>
+                        <th>Coincidencias de habilidades</th>
+                        <th>Seleccionar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="posible in postulantes">
+                        <td>{{posible.postulante.nombre}}</td>
+                        <td><span ng-repeat="habilidad in posible.postulante.habilidades">{{habilidad.nombre}} </span></td>
+                        <td><span ng-repeat="coincidencia in posible.coincidencias">{{coincidencia.nombre}} </span></td>
+                        <td>
+                                <input type="checkbox" value="{{posible.postulante}}">
+                        </div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+            <div class="form-group">
+                <button type="button" class="btn btn-default">Guardar</button>
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+</script>

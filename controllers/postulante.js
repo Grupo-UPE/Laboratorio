@@ -218,7 +218,7 @@ exports.upload = function (req, res, next) {
 
 
     /* ---CARGA DEL CURRICULUM --------------*/
-
+/*
     if (!req.files.file || req.files.file.size == 0) {
       mensaje = 'No se pudo subir el archivo ' + new Date().toString();
       res.send(mensaje);
@@ -234,7 +234,7 @@ exports.upload = function (req, res, next) {
             fs.unlinkSync(path_tmp_cv) //eliminamos el archivo temporal
         })
 
-    }
+    }*/
 
     /* -------  CARGA DE LA FOTO  --------------*/
     tipo=req.files.foto.type;
@@ -326,12 +326,12 @@ exports.listarPorHabilidades = function (req, res, next) {
                     }
                 }
             }
-            postulantesPuntuados.push({postulante:postulantes[i],coincidencia:listaHabilidades,puntaje:puntos}); //postulante, array de coincidencias, puntaje
+            postulantesPuntuados.push({postulante:postulantes[i],coincidencias:listaHabilidades,puntaje:puntos}); //postulante, array de coincidencias, puntaje
             puntos=0;
             listaHabilidades=[];
         };
-        console.log( postulantesPuntuados.sort(function(a, b){return b.puntaje-a.puntaje}));
-        //return res.json(postulante);
+        //console.log( postulantesPuntuados.sort(function(a, b){return b.puntaje-a.puntaje}));
+        return res.json(postulantesPuntuados.sort(function(a, b){return b.puntaje-a.puntaje}));
     }
 
 /*

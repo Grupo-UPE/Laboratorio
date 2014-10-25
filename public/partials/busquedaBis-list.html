@@ -14,9 +14,9 @@
                <td>{{bsq.nombre}}</td>
                <td>{{bsq.horario}}</td>
                <td>
-               <span ng-repeat="habilidad in bsq.habilidades">{{habilidad.nombre}}</span></td>
+               <span ng-repeat="habilidad in bsq.habilidades">{{habilidad.nombre}} </span></td>
                <td><a class="btn btn-default" href="/#/detalleBusqueda/{{bsq._id}}" >Ver detalle</a></td>
-               <td><button type="button" class="btn btn-default" ng-click="buscarPostulantes(bsq.habilidades)">Posibles</button></td>
+               <td><button type="button" class="btn btn-default" ng-click="openModal('lg',bsq)">Posibles</button></td>
             </tr>
 
         </tbody>
