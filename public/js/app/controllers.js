@@ -80,19 +80,3 @@ app.controller('ApplicationController', function ($scope,
                                                AuthService,Session,estaLogueado) {
     $scope.currentUser=estaLogueado.query();
 })
-
-//controller del modal
-app.controller('modalCTRL',
-    function ($scope, $modalInstance, postulante, contactoPostulanteListService) {
-
-      $scope.postulante = postulante;
-      $scope.contactos = contactoPostulanteListService.query({postulante:postulante._id})
-
- $scope.ok = function () {
-    $modalInstance.close('cerrado');
-  };
-
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
-});

@@ -159,7 +159,7 @@ services.factory('busquedaShowUpdateService', function ($resource) {
 
 services.factory('posiblesPostulantes', function ($resource) {
     return $resource('/REST/busquedaPorHabilidades', {}, {
-        query: { method: 'POST' },
+        query: { method: 'POST', params: {}, isArray: true },
     });
 });
 
