@@ -22,7 +22,7 @@ exports.create = function (req, res, next) {
         Entrevistador       :lentrevistadores,
         cantidad_empleados  :bsq.cantidad_empleados,
         nombre              :bsq.nombre,
-        estado              :'Cerrada',
+        estado              :'Abierta',
         remuneracion        :bsq.remuneracion,
         habilidades         :lhab,
         otros_comentarios   :bsq.otros_comentarios,
@@ -163,9 +163,9 @@ exports.update = function (req, res, next) {
 
 exports.listabierta = function (req, res, next) {
   var estado = req.params.estado
-  var query = Busqueda.where({estado : "Abierta"});
-
-  query.findOne(function estado (err, busqueda) {
+  console.log(req.params.estado);
+//  var query = Busqueda.where({estado : estado});
+  Busqueda.find({estado: req.params.estado},function estado (err, busqueda) {
     if (err) {
       console.log(err)
       return next(err)
@@ -173,3 +173,38 @@ exports.listabierta = function (req, res, next) {
     return res.json(busqueda)
   }
 )};
+
+
+
+  exports.listCerrada = function (req, res, next) {
+    var estado= [];
+    console.log(req.body.busqueda);
+    for(var id in req.body.busqueda){
+        estado.push(req.body.busqueda[id]["_id"]);
+        
+    }
+
+    console.log(estado);
+    //habilidades:ObjectId('54392bf6bea750120a07e142')
+    var e=Busqueda.find({$and: estado},gotBusquedas)
+
+    function gotBusquedas(err, busquedas) {
+        if (err) {
+            console.log(err)
+            return next()
+        }
+
+        
+        var listaEstados=[]
+
+         //Cada habilidad recibida
+                for(var j=0; t<busquedas[j].estado.length; j++){ //Cada habilidad individual de cada postulante
+                    if(busquedas[j].estado=="Abierta"){ //Si coinciden lo meto dentro del lsitado
+                        return res.json(busqueda)
+                        listaEstados.push(busquedas[j].estado[1]);
+            }
+        };
+        
+        //return res.json(postulante);
+    }
+};

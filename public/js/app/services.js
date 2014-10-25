@@ -139,6 +139,11 @@ services.factory('busquedaService', function ($resource) {
         query: { method: 'GET', params: {}, isArray: true },
     });
 });
+services.factory('busquedaServiceState', function ($resource) {
+    return $resource('/REST/busquedastate/:estado', {}, {
+        query: { method: 'GET', params: {}, isArray: true },
+    });
+});
 
 services.factory('busquedaCreateService', function ($resource) {
     return $resource('/REST/create-busqueda', {}, {
