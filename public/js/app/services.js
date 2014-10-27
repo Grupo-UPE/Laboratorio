@@ -221,6 +221,14 @@ services.factory('estaLogueado', function ($resource) {
     });
 });
 
+
+//bpostulante
+services.factory('bpostuService', function ($resource) {
+    return $resource('/REST/bpostu/:texto', {}, {
+        query: { method: 'GET', params: {}, isArray: false }, //trae todos los usuarios
+    });
+});
+
 services.factory('AuthService', function ($http, Session,$rootScope) {
   var authService = {};
 
