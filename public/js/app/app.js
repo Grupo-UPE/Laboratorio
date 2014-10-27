@@ -96,6 +96,20 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                     permisos : ['RRHH'] //Lo dejo no se el fin que le den.
                 });
 
+    //busqueda postu
+    $routeProvider.when('/bpostu',
+                {
+                    templateUrl: 'partials/busqueda-postu.html',
+                    controller: 'bpostuCTRL',
+                    permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                });
+        $routeProvider.when('/bpostu/:texto',
+                {
+                    templateUrl: 'partials/busqueda-postu.html',
+                    controller: 'bpostuCTRL',
+                    permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                });
+
     //send mail
     $routeProvider.when('/send',
                 {

@@ -23,19 +23,11 @@ var rol  = require('./controllers/rol')
 var busqueda = require('./controllers/busqueda')
 var busquedaBis = require('./controllers/busquedaBis')
 var habilidad = require('./controllers/habilidad')
-
 //var contacto = require('./controllers/contacto')
-
-
 var contacto = require('./controllers/contacto')
 var entrevista = require('./controllers/entrevista')
-<<<<<<< HEAD
-=======
-
 var texto  = require('./controllers/texto');
 var usuario  = require('./controllers/usuario');
-var rol  = require('./controllers/rol');
->>>>>>> dd6b964d822a37ce9652eb2e737025683ecc8bd5
 var buser = require('./controllers/buser');
 var postulante = require('./controllers/postulante');
 var login = require('./controllers/login');
@@ -102,13 +94,12 @@ app.post('/upload', postulante.upload);
 app.get('/send',mail.send);
 app.post('/send',mail.send);
 
+//busqueda de postulantes
+app.get('/REST/bpostu', postulante.list);
+app.get('/REST/bpostu/:texto', postulante.show);
+
 //Rutas para busquedas
-
-
-
-
 app.get('/REST/busquedaBis', busquedaBis.list)//Le puse el bis porque devuelve mas o menos lo que esperamos.
-
 app.get('/REST/detalleBusquedaBis/:id', busquedaBis.show)
 app.post('/REST/busquedaPorHabilidades', postulante.listarPorHabilidades)//Le puse el bis porque devuelve mas o menos lo que esperamos.
 

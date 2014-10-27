@@ -96,7 +96,6 @@ app.controller('modalCTRL',
     $modalInstance.dismiss('cancel');
   };
 });
-<<<<<<< HEAD
 
 app.controller('generarEntrevistaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'detalleBusquedaService','$route','$routeParams','postulanteShowUpdateService','entrevistaCreateService',
@@ -176,5 +175,16 @@ $scope.enviar = function() {
 };
 
 }]);
-=======
->>>>>>> dd6b964d822a37ce9652eb2e737025683ecc8bd5
+
+app.controller('bpostuCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http','$routeParams',
+    'bpostuService',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,$routeParams,
+                                    bpostuService) {
+      
+            //$scope.txt=textoserviceid.show({id: $routeParams.textoId});
+            
+            $scope.buscar = function () {
+                textoserviceid.query({texto: $scope.texto});
+            };
+           
+}]);
