@@ -75,10 +75,10 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                     controller: 'busquedaCreateCTRL',
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
-        $routeProvider.when('/busqueda',
+        $routeProvider.when('/busquedalist/all',
                 {
                     templateUrl: 'partials/busqueda-list.html',
-                    controller: 'busquedaCTRL',
+                    controller: 'busquedaListCTRL',
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
         $routeProvider.when('/busqueda/:busquedaId',
