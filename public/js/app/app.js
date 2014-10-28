@@ -139,7 +139,19 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
         .setDefaults('tagsInput',{
             placeholder:'Ingrese las Habilidades del Postulante',
             displayProperty:'nombre',
+            addFromAutocompleteOnly:true,
+            addOnEnter: true,
+
         })
+        .setDefaults('autoComplete',{
+            maxResultsToShow: 20,
+            debounceDelay: 100,
+            minLength: 1,
+            highlightMatchedText: true,
+            loadOnDownArrow: true,     
+                        
+        })
+    
 })
 
     .run(function($rootScope, $cookieStore, $http, $location, $modal, AuthService,controlAcceso) {
