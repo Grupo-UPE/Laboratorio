@@ -1,0 +1,112 @@
+<script> function myFunction(elem) {
+	
+						
+	if(elem.id=="nombre"){
+						document.getElementById("apellido").disabled = true; 
+						document.getElementById("email").disabled = true;
+						}
+	else if(elem.id=="apellido"){
+						document.getElementById("nombre").disabled = true; 
+						document.getElementById("email").disabled = true;
+						}
+	else if(elem.id=="email"){
+			document.getElementById("nombre").disabled = true; 
+			document.getElementById("apellido").disabled = true;
+		}
+	else if (elem.id=="refresh"){
+						document.getElementById("nombre").disabled = false; 
+						document.getElementById("apellido").disabled = false; 
+						document.getElementById("email").disabled = false;
+						}
+
+				
+			}
+	</script>
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>DNI</th>
+                <th>Estado Civil</th>
+                <th>Nacionalidad</th>
+                <th>Edad</th>
+                <th>Sexo</th>
+                <th>Telefono</th>
+                <th>Email</th>
+                <th>Disponibilidad</th>
+                <th>Comentario</th>
+                <th>Habilidades</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="post in bpostulist">
+                <td>{{post.nombre}}</td>
+                <td>{{post.apellido}}</td>
+                <td>{{post.dni}}</td>
+                <td>{{post.estado_civil}}</td>
+                <td>{{post.nacionalidad}}</td>
+                <td>{{post.edad}}</td>
+                <td>{{post.sexo}}</td>
+                <td>{{post.telefono}}</td>
+                <td>{{post.email}}</td>
+                <td>{{post.disponibilidad}}</td>
+                <td>{{post.comentario}}</td>
+                <td><span ng-repeat="habilidad in post.habilidades">{{habilidad.nombre}} </span></td>
+                <td><a href="/#/postulantes" type="button" class="btn btn-danger btn-sm" ng-click="eliminar(post._id)">Eliminar</a>
+                </td>
+                <td><a href="/#/postulantes/{{post._id}}" class="btn btn-info btn-sm">Editar</a>
+                </tr>
+        </tbody>
+    </table>
+</div>
+
+
+ <div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h2>Formulario Postulante</h2>
+            <hr>
+                <div class="row">
+                    <form method="POST" ng-submit="buscar()" role="form" name="frmPostulante">
+                        <div class="col-md-3">
+                            <div class="form-group" ng-class="{'has-error': frmPostulante.nombre.$invalid, 'has-success': frmPostulante.nombre.$valid}">
+                                <label for="nombre">Nombre:</label>
+                                <input onclick="myFunction(this)" class="form-control" type="text" id="nombre" name="nombre" ng-model="postulante.nombre" placeholder="Ingrese el nombre..." >
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group" ng-class="{'has-error': frmPostulante.apellido.$invalid, 'has-success': frmPostulante.apellido.$valid}">
+                                <label for="apellido">Apellido:</label>
+                                <input onclick="myFunction(this)" class="form-control" type="text" id="apellido" name="apellido" ng-model="postulante.apellido" placeholder="Ingrese el apellido..." >
+                                
+					    </div>
+					    <div class="col-md-3">
+					<div > 
+						<button onclick="myFunction(this)" id="refresh" class="btn btn-success" >Refresh</button>
+					</div>
+				</div>
+                        </div>              
+                        <div class="col-md-3">
+                            <div class="form-group" ng-class="{'has-error': frmPostulante.email.$invalid, 'has-success': frmPostulante.email.$valid}">
+                             <label for="emailP">Email:</label>
+                             <input onclick="myFunction(this)" class="form-control" type="email" id="email" name="email" ng-model="postulante.email" placeholder="postulante@mail">
+                                <div ng-show="frmPostulante.email.$invalid">
+                                    <p class="help-block text-danger" ng-show="frmPostulante.email.$invalid">Email invalido</p>
+                                </div>
+                            </div> 
+                    			                       
+				<div class="col-md-3">
+					<div >
+						<button type="submit" class="btn btn-success" >Buscar</button>  
+					</div>
+				</div>
+				
+				</div>
+     
+               </form>
+
+                </div>
+
+        </div>

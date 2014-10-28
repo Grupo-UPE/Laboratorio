@@ -75,10 +75,10 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                     controller: 'busquedaCreateCTRL',
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
-        $routeProvider.when('/busqueda',
+        $routeProvider.when('/busquedalist/all',
                 {
                     templateUrl: 'partials/busqueda-list.html',
-                    controller: 'busquedaCTRL',
+                    controller: 'busquedaListCTRL',
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
         $routeProvider.when('/busqueda/:busquedaId',
@@ -99,6 +99,22 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                 {
                     templateUrl: 'partials/buser-list.html',
                     controller: 'buserCTRL',
+                    permisos : ['RRHH'] //Lo dejo no se el fin que le den.
+                });
+
+    //busqueda postu
+     $routeProvider.when('/bpostu',
+                {
+                    templateUrl: 'partials/bpostu.html',
+                    controller: 'bpostuCTRL',
+                    permisos : ['RRHH'] //Lo dejo no se el fin que le den.
+                });
+
+    //send mail
+    $routeProvider.when('/send',
+                {
+                    templateUrl: 'partials/FormMail.html',
+                    controller: 'mailCTRL',
                     permisos : ['RRHH'] //Lo dejo no se el fin que le den.
                 });
 
@@ -139,7 +155,19 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
         .setDefaults('tagsInput',{
             placeholder:'Ingrese las Habilidades del Postulante',
             displayProperty:'nombre',
+            addFromAutocompleteOnly:true,
+            addOnEnter: true,
+
         })
+        .setDefaults('autoComplete',{
+            maxResultsToShow: 20,
+            debounceDelay: 100,
+            minLength: 1,
+            highlightMatchedText: true,
+            loadOnDownArrow: true,     
+                        
+        })
+    
 })
 
     .run(function($rootScope, $cookieStore, $http, $location, $modal, AuthService,controlAcceso) {

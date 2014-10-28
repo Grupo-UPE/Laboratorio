@@ -5,7 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var session = require('express-session')
+var session = require('express-session');
+var nodemailer = require('nodemailer');
 var multipart = require('connect-multiparty');
 mongoose.connect('mongodb://localhost/test'); //Conectamos mongoose.
 
@@ -16,34 +17,23 @@ gapi = require('./lib/gapi');
 //tagmanager = require('./node_modules/tagmanager/tagmanager');
 var app = express();
 
-
-
-var app = express();
-
 var texto  = require('./controllers/texto')
 var usuario  = require('./controllers/usuario')
 var rol  = require('./controllers/rol')
 var busqueda = require('./controllers/busqueda')
 var busquedaBis = require('./controllers/busquedaBis')
 var habilidad = require('./controllers/habilidad')
-
 //var contacto = require('./controllers/contacto')
-
-
 var contacto = require('./controllers/contacto')
 var entrevista = require('./controllers/entrevista')
-
 var texto  = require('./controllers/texto');
 var usuario  = require('./controllers/usuario');
-var rol  = require('./controllers/rol');
 var buser = require('./controllers/buser');
 var postulante = require('./controllers/postulante');
-var busqueda = require('./controllers/busqueda');
-var habilidad = require('./controllers/habilidad');
-
 var login = require('./controllers/login');
 var calendar = require('./controllers/calendar');
-
+var mail= require('./controllers/sendMail');
+var bpostu = require('./controllers/postulante');
 
 //Esto seria algo algo como el instalador.
 var install = require('./controllers/install');
@@ -101,13 +91,19 @@ app.post('/REST/create-postulante', postulante.create);
 //carga de archivo
 app.post('/upload', postulante.upload);
 
+//envio de mails
+app.get('/send',mail.send);
+app.post('/send',mail.send);
+
+app.get('/REST/buser', buser.list);
+app.post('/REST/buser', buser.list);
+
+//busqueda de postulantes
+app.get('/REST/bpostu', bpostu.busca);
+app.post('/REST/bpostu', bpostu.busca);
+
 //Rutas para busquedas
-
-
-
-
 app.get('/REST/busquedaBis', busquedaBis.list)//Le puse el bis porque devuelve mas o menos lo que esperamos.
-
 app.get('/REST/detalleBusquedaBis/:id', busquedaBis.show)
 app.post('/REST/busquedaPorHabilidades', postulante.listarPorHabilidades)//Le puse el bis porque devuelve mas o menos lo que esperamos.
 
@@ -119,7 +115,7 @@ app.get('/REST/busqueda', busqueda.list)
 app.get('/REST/busquedastate/:estado', busqueda.listabierta)
 app.post('/REST/create-busqueda',busqueda.create)
 app.post('/REST/delete-busqueda',busqueda.remove)
-app.put('/REST/busqueda', busqueda.update);
+app.put('/REST/busqueda/:id', busqueda.update);
 
 //rutas para habilidades
 app.get('/REST/habilidad', habilidad.list)
@@ -127,8 +123,6 @@ app.post('/REST/habilidad', habilidad.create)
 app.post('/REST/delete-habilidad', habilidad.remove)
 //app.get('/REST/entrevistadores/:tag', habilidad.tag)
 app.get('/REST/tags/:query', habilidad.query)
-
-
 
 //Login
 app.get('/login', login.login)
