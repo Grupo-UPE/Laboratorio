@@ -161,16 +161,27 @@ exports.update = function (req, res, next) {
         }
 }
 
+//populate('habilidades')
 exports.listabierta = function (req, res, next) {
   var estado = req.params.estado
 
-  Busqueda.find({estado: req.params.estado},function estado (err, busqueda) {
+  Busqueda.find({estado: req.params.estado}, gotBusqueda).populate('habilidades');
+
+function gotBusqueda (err, busqueda) {
+    if (err) {
+        console.log(err)
+        return next(err)
+    }
+    return res.json(busqueda);
+}
+    /*
+    function estado (err, busqueda) {
     if (err) {
       console.log(err)
       return next(err)
     }
     return res.json(busqueda)
-  }
-)};
+  }*/
+};
 
 

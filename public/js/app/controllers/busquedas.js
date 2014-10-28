@@ -47,8 +47,8 @@ app.controller('busquedaListCTRL', ['$scope', '$rootScope', '$cookieStore', '$lo
 
             $scope.listaBusquedas=busquedaService.query();
 
-            
-        
+
+
 
 }]);
 app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
@@ -60,9 +60,10 @@ app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$locati
 
             $scope.listaBusquedasState=busquedaServiceState.query({estado: $routeParams.estado});
 
+
             //$scope.bsq = busquedaShowUpdateService.show({ estado: $scope.estado ,id: $routeParams.busquedaId });
             $scope.guardar = function () {
-              
+
 
              busquedaShowUpdateService.update({ bsq: $scope.bsq,id:$routeParams._id });
              $route.reload();
@@ -176,6 +177,7 @@ app.controller('modalPosiblesCTRL',
     function ($scope, $modalInstance, busqueda, posiblesPostulantes) {
 
       $scope.busqueda = busqueda;
+      console.log(busqueda.habilidades);
       $scope.postulantes=posiblesPostulantes.query({habilidades:busqueda.habilidades});
 
  $scope.ok = function () {

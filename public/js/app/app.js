@@ -110,7 +110,7 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
 
-             $routeProvider.when('/busquedabis',
+             $routeProvider.when('/busquedabis/:estado',
                 {
                     templateUrl: 'partials/busquedaBis-list.html',
                     controller: 'busquedaCTRL',
