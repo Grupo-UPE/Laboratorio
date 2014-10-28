@@ -218,7 +218,7 @@ exports.upload = function (req, res, next) {
 
 
     /* ---CARGA DEL CURRICULUM --------------*/
-
+/*
     if (!req.files.file || req.files.file.size == 0) {
       mensaje = 'No se pudo subir el archivo ' + new Date().toString();
       res.send(mensaje);
@@ -234,7 +234,7 @@ exports.upload = function (req, res, next) {
             fs.unlinkSync(path_tmp_cv) //eliminamos el archivo temporal
         })
 
-    }
+    }*/
 
     /* -------  CARGA DE LA FOTO  --------------*/
     tipo=req.files.foto.type;
@@ -295,10 +295,11 @@ exports.upload = function (req, res, next) {
     res.send(JSON.stringify(postulante));
 }
 exports.listarPorHabilidades = function (req, res, next) {
-    console.log(req.body.habilidades);
     var habs= [];
+    var habId=[];
     for(var id in req.body.habilidades){
-      habs.push({habilidades: req.body.habilidades[id]["_id"]});
+        habId.push(req.body.habilidades[id]["_id"]);
+        habs.push({habilidades: req.body.habilidades[id]["_id"]});
     }
 
     console.log(habs);
@@ -311,8 +312,26 @@ exports.listarPorHabilidades = function (req, res, next) {
             return next()
         }
 
-        console.log(postulantes);
-        //return res.json(postulante);
+        var postulantesPuntuados=[]; //{postulante,coincidencias,puntaje}
+        var habilidadesPunteadas=habId.reverse();
+        var puntos=0;
+        var listaHabilidades=[]
+
+        for (var i = 0; i < postulantes.length; i++) {//Cada postulante
+            for(var j=0; j<habilidadesPunteadas.length; j++){ //Cada habilidad recibida
+                for(var t=0; t<postulantes[i].habilidades.length; t++){ //Cada habilidad individual de cada postulante
+                    if(postulantes[i].habilidades[t]._id==habilidadesPunteadas[j]){ //Si coinciden lo meto dentro del lsitado
+                        puntos=puntos+(j+1);
+                        listaHabilidades.push(postulantes[i].habilidades[t]);
+                    }
+                }
+            }
+            postulantesPuntuados.push({postulante:postulantes[i],coincidencias:listaHabilidades,puntaje:puntos}); //postulante, array de coincidencias, puntaje
+            puntos=0;
+            listaHabilidades=[];
+        };
+        //console.log( postulantesPuntuados.sort(function(a, b){return b.puntaje-a.puntaje}));
+        return res.json(postulantesPuntuados.sort(function(a, b){return b.puntaje-a.puntaje}));
     }
 
 /*
@@ -334,4 +353,8 @@ exports.listarPorHabilidades = function (req, res, next) {
         return res.json(busqueda);
   }
   */
+};
+
+exports.Busca=function(res,req,next){
+console.log("agregar");
 };

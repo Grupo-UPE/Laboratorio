@@ -79,6 +79,7 @@ app.controller('ApplicationController', function ($scope,
                                                USER_ROLES,
                                                AuthService,Session,estaLogueado) {
     $scope.currentUser=estaLogueado.query();
+
 })
 
 //controller del modal
@@ -176,15 +177,20 @@ $scope.enviar = function() {
 
 }]);
 
-app.controller('bpostuCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http','$routeParams',
-    'bpostuService',
-                                   function($scope, $rootScope, $cookieStore, $location, $http,$routeParams,
-                                    bpostuService) {
-      
-            //$scope.txt=textoserviceid.show({id: $routeParams.textoId});
+app.controller('bpostuCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http', 'bpostuService', 'postulanteRemoveService','$route',function ($scope, $rootScope, $cookieStore, $location, $http,
+                                    bpostuService,postulanteRemoveService, $route) {
+
+       $scope.eliminar = function (idpostulante) 
+       {
+           postulanteRemoveService.remove({ id: idpostulante })
+
+       }
+       
+       $scope.buscar = function () {
+       	        	
+       		$scope.bpostulist = bpostuService.query();
+		}
+       
+
             
-            $scope.buscar = function () {
-                textoserviceid.query({texto: $scope.texto});
-            };
-           
-}]);
+  }]);

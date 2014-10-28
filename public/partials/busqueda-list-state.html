@@ -1,0 +1,47 @@
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Nombre Busqeda</th>
+                <th>Empleado Referente</th>
+                <th>N° Puestos a cubrir</th>
+                <th>Remuneracion</th>
+                <th>Lugar de Trabajo</th>
+                <th>Disponibilidad</th>
+                <th>Fecha de Inicio</th>
+                <th>Habilidades</th>
+                <th>Comentarios</th>
+                <th>Estado Busqueda</th>
+                <th>Opciones</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="bsq in listaBusquedasState">
+                <td>{{bsq.nombre}}</td>
+                <td>{{bsq.entrevistador}}</td>
+                <td>{{bsq.cantidad_empleados}}</td>
+                <td>{{bsq.remuneracion}}</td>
+                <td>{{bsq.lugar_trabajo}}</td>
+                <td>{{bsq.horario}}</td>
+                <td>{{bsq.fecha_inicio}}</td>
+                <td><span ng-repeat="habilidad in bsq.habilidades">{{habilidad.nombre}} </span></td></td>
+                <td>{{bsq.otros_comentarios}}</td>
+                <td>{{bsq.estado}}</td>
+
+                <td><a href="/#/busquedastate" type="button" class="btn btn-danger btn-sm" ng-click="eliminar(bsq._id)">Eliminar</a>
+                <a href="/#/busquedastate/{{bsq._id}}" type="button" class="btn btn-info btn-sm">Editar</a>
+                </td>
+
+                </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<!-- podria hacer un menu drop con cada posible lista de busquedas por estado , haciendo un href: con un string en la url de cada estado definido /busquedalist/Abierta  /busquedalist/Cerrada , etc y ademas hacer uno en el que liste todas las busquedas con todos los estados.
+
+
+tambien hacer lo mismo que hice con los controllers de angular pero con los servicios para cada funcionalidad-->

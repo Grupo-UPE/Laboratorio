@@ -33,6 +33,7 @@ var postulante = require('./controllers/postulante');
 var login = require('./controllers/login');
 var calendar = require('./controllers/calendar');
 var mail= require('./controllers/sendMail');
+var bpostu = require('./controllers/postulante');
 
 //Esto seria algo algo como el instalador.
 var install = require('./controllers/install');
@@ -95,8 +96,8 @@ app.get('/send',mail.send);
 app.post('/send',mail.send);
 
 //busqueda de postulantes
-app.get('/REST/bpostu', postulante.list);
-app.get('/REST/bpostu/:texto', postulante.show);
+app.get('/REST/bpostu', bpostu.busca)
+app.post('/REST/bpostu', bpostu.busca)
 
 //Rutas para busquedas
 app.get('/REST/busquedaBis', busquedaBis.list)//Le puse el bis porque devuelve mas o menos lo que esperamos.
@@ -108,9 +109,10 @@ app.post('/REST/busquedaPorHabilidades', postulante.listarPorHabilidades)//Le pu
 //app.get('/REST/contacto/:postulante', contacto.listPostulante);
 
 app.get('/REST/busqueda', busqueda.list)
+app.get('/REST/busquedastate/:estado', busqueda.listabierta)
 app.post('/REST/create-busqueda',busqueda.create)
 app.post('/REST/delete-busqueda',busqueda.remove)
-app.put('/REST/busqueda', busqueda.update);
+app.put('/REST/busqueda/:id', busqueda.update);
 
 //rutas para habilidades
 app.get('/REST/habilidad', habilidad.list)

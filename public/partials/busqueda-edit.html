@@ -1,0 +1,47 @@
+<!--div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h2>Estado de la {{ bsq.nombre }}</h2>
+            <hr>
+                <div class="row">
+                    <form  method="post" role="form" name="frmPostulante" ng-submit="guardar()">
+                    <input type="hidden" name="_id" id="_id" class="form-control" value="{{bsq._id}}" ng-model="bsq._id">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="estado">Estado:</label>
+                                <input class="form-control" type="text" id="estado" ng-model="bsq.estado" required >
+                            </div>
+                        </div>
+                        <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Guardar</button><span>  </span>
+                    </div>
+               
+                    </form>
+                    
+                </div>
+            
+        </div-->
+<div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="panel-heading">
+            <h3 class="panel-title">Editar Estado de la busqueda: {{bsq.nombre}}</h3>
+    </div>
+    <div class="panel-body">
+        <form action="" ng-submit="guardar()" method="POST" class="form-horizontal" role="form">
+            <div class="form-group col-sm-5 col-md-5 col-lg-5">
+                <legend>Estado de la Busqueda</legend>
+                    <input type="hidden" name="_id" id="_id" class="form-control" value="{{bsq._id}}" ng-model="bsq._id">
+                    <label for="nombre">Nombre de la busqueda</label>
+                    <span type="text" class="form-control" id="nombre" placeholder="Nombre de la busqueda" ng-model="bsq.nombre" value="{{bsq.nombre}}"></span> 
+                    <label for="estado">Estado</label>
+                    <input type="estado" class="form-control" id="estado" placeholder="Abierta-Cerrada-Suspendida-Cancelada" ng-model="bsq.estado" required>
+
+            </div>
+            <div class="col-sm-1 col-md-1 col-lg-1">
+                <!-- Es trampa para separar los divs -->
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <button type="submit" class="btn btn-primary">Modificar Estado</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

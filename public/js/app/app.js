@@ -75,15 +75,21 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                     controller: 'busquedaCreateCTRL',
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
-        $routeProvider.when('/busqueda',
+        $routeProvider.when('/busquedalist/all',
                 {
                     templateUrl: 'partials/busqueda-list.html',
-                    controller: 'busquedaCTRL',
+                    controller: 'busquedaListCTRL',
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
         $routeProvider.when('/busqueda/:busquedaId',
                 {
                     templateUrl: 'partials/busqueda-edit.html',
+                    controller: 'busquedaCTRL',
+                    permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                });
+        $routeProvider.when('/busquedalist/:estado',
+                {
+                    templateUrl: 'partials/busqueda-list-state.html',
                     controller: 'busquedaCTRL',
                     permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
@@ -97,17 +103,11 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                 });
 
     //busqueda postu
-    $routeProvider.when('/bpostu',
+     $routeProvider.when('/bpostu',
                 {
-                    templateUrl: 'partials/busqueda-postu.html',
+                    templateUrl: 'partials/bpostu.html',
                     controller: 'bpostuCTRL',
-                    permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
-                });
-        $routeProvider.when('/bpostu/:texto',
-                {
-                    templateUrl: 'partials/busqueda-postu.html',
-                    controller: 'bpostuCTRL',
-                    permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                    permisos : ['RRHH'] //Lo dejo no se el fin que le den.
                 });
 
     //send mail

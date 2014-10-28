@@ -139,6 +139,11 @@ services.factory('busquedaService', function ($resource) {
         query: { method: 'GET', params: {}, isArray: true },
     });
 });
+services.factory('busquedaServiceState', function ($resource) {
+    return $resource('/REST/busquedastate/:estado', {}, {
+        query: { method: 'GET', params: {}, isArray: true },
+    });
+});
 
 services.factory('busquedaCreateService', function ($resource) {
     return $resource('/REST/create-busqueda', {}, {
@@ -159,7 +164,7 @@ services.factory('busquedaShowUpdateService', function ($resource) {
 
 services.factory('posiblesPostulantes', function ($resource) {
     return $resource('/REST/busquedaPorHabilidades', {}, {
-        query: { method: 'POST' },
+        query: { method: 'POST', params: {}, isArray: true },
     });
 });
 
@@ -280,5 +285,12 @@ services.factory('controlAcceso', function () {
 services.factory('buserService', function ($resource) {
     return $resource('/REST/buser', {}, {
         query: { method: 'GET', params: {}, isArray: true },
+    });
+});
+
+
+services.factory('bpostuService', function ($resource) {
+    return $resource('/REST/bpostu', {}, {
+        query: { method: 'GET' , params: {}, isArray: true },
     });
 });

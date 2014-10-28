@@ -22,7 +22,7 @@ exports.create = function (req, res, next) {
         Entrevistador       :lentrevistadores,
         cantidad_empleados  :bsq.cantidad_empleados,
         nombre              :bsq.nombre,
-        estado              :'Cerrada',
+        estado              :'Abierta',
         remuneracion        :bsq.remuneracion,
         habilidades         :lhab,
         otros_comentarios   :bsq.otros_comentarios,
@@ -163,9 +163,8 @@ exports.update = function (req, res, next) {
 
 exports.listabierta = function (req, res, next) {
   var estado = req.params.estado
-  var query = Busqueda.where({estado : "Abierta"});
 
-  query.findOne(function estado (err, busqueda) {
+  Busqueda.find({estado: req.params.estado},function estado (err, busqueda) {
     if (err) {
       console.log(err)
       return next(err)
@@ -173,3 +172,5 @@ exports.listabierta = function (req, res, next) {
     return res.json(busqueda)
   }
 )};
+
+

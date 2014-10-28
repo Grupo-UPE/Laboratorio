@@ -39,18 +39,32 @@ app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$
 }]);
 
 
-app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'busquedaService','$route','busquedaRemove','busquedaShowUpdateService','$routeParams','posiblesPostulantes',
+app.controller('busquedaListCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        'busquedaService','$route',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    busquedaService,$route,busquedaRemove,busquedaShowUpdateService,$routeParams,posiblesPostulantes) {
+                                    busquedaService,$route ) {
+
 
             $scope.listaBusquedas=busquedaService.query();
+
+            
+        
+
+}]);
+app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        'busquedaService','$route','busquedaRemove','busquedaShowUpdateService','$routeParams','posiblesPostulantes',
+                        '$modal','busquedaServiceState',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,
+                                    busquedaService,$route,busquedaRemove,busquedaShowUpdateService,$routeParams,posiblesPostulantes,
+                                    $modal,busquedaServiceState) {
+
+            $scope.listaBusquedasState=busquedaServiceState.query({estado: $routeParams.estado});
+
             //$scope.bsq = busquedaShowUpdateService.show({ estado: $scope.estado ,id: $routeParams.busquedaId });
             $scope.guardar = function () {
+              
 
-             busquedaShowUpdateService.update({ bsq: $scope.bsq });
-
-             $scope.listaBusquedas=busquedaService.query();
+             busquedaShowUpdateService.update({ bsq: $scope.bsq,id:$routeParams._id });
              $route.reload();
                                 }
 
@@ -69,6 +83,27 @@ app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$locati
             $location.path('/detalleBusqueda/'+idbusqueda);
         }
 
+        //Modal para ver los posibles postulantes.
+        $scope.openModal = function (size,busqueda) {
+                $scope.busqueda=busqueda;
+
+            var modal = $modal.open({
+              templateUrl: '/partials/modalPosibles.html',
+              controller: 'modalPosiblesCTRL',
+              size: size,
+              resolve: {
+                busqueda:function(){
+                    return busqueda;
+                }
+              }
+            });
+
+            modal.result.then(function (selectedItem) {
+              console.log('modal cerrado');
+            }, function () {
+              console.log('Modal dismissed at: ' + new Date());
+            });
+          };
 
 
 
@@ -88,7 +123,7 @@ app.controller('detalleBusquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '
                 $scope.postulanteContactado=postulante;
 
             var modal = $modal.open({
-              templateUrl: '/partials/modalTemplate.html',
+              templateUrl: '/partials/modalContacto.html',
               controller: 'modalCTRL',
               size: size,
               resolve: {
@@ -119,3 +154,35 @@ app.controller('detalleBusquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '
       }
 
 }]);
+
+//Modal de contacto
+app.controller('modalCTRL',
+    function ($scope, $modalInstance, postulante, contactoPostulanteListService) {
+
+      $scope.postulante = postulante;
+      $scope.contactos = contactoPostulanteListService.query({postulante:postulante._id})
+
+ $scope.ok = function () {
+    $modalInstance.close('cerrado');
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+});
+
+//Modal de posibles contactos
+app.controller('modalPosiblesCTRL',
+    function ($scope, $modalInstance, busqueda, posiblesPostulantes) {
+
+      $scope.busqueda = busqueda;
+      $scope.postulantes=posiblesPostulantes.query({habilidades:busqueda.habilidades});
+
+ $scope.ok = function () {
+    $modalInstance.close('cerrado');
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+});
