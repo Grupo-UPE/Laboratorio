@@ -4,28 +4,6 @@ var ObjectId = require("mongoose").Types.ObjectId;
 
 exports.create = function (req, res, next) {
 
- /*
-  var postulante = new Postulante({
-  "nombre" : "Pepe",
-  "apellido" : "Argento",
-  "dni" : 123,
-  "estado_civil" : "Soltero",
-  "nacionalidad" : "Argentino",
-  "edad" : "24",
-  "sexo" : "m",
-  "telefono" : [{
-      "tipo" : "Celular",
-      "numero" : "1535073886"
-    }],
-  "email" : "pepelapopa@gmail.com",
-  "disponibilidad" : "fulltime",
-
-  "comentario" : "texto de prueba",
-
-});
-postulante.save();
-*/
-
     var nombre = req.body.postulante.nombre;
     var apellido = req.body.postulante.apellido;
     var dni = req.body.postulante.dni;
@@ -192,6 +170,19 @@ exports.remove = function (req, res, next) {
     }
 
     // Tenemos el texto, eliminemoslo
+    
+    var curriculumURL =postulante.curriculumURL
+    var fotoUrl = postulante.fotoUrl
+    
+    try{
+        fs.unlinkSync(fotoUrl);
+        fs.unlinkSync(curriculumURL);
+    }
+    catch(err){
+        console.log(err);
+    }
+    
+    
     postulante.remove(onRemoved)
   }
 
@@ -218,7 +209,7 @@ exports.upload = function (req, res, next) {
 
 
     /* ---CARGA DEL CURRICULUM --------------*/
-/*
+
     if (!req.files.file || req.files.file.size == 0) {
       mensaje = 'No se pudo subir el archivo ' + new Date().toString();
       res.send(mensaje);
@@ -234,7 +225,7 @@ exports.upload = function (req, res, next) {
             fs.unlinkSync(path_tmp_cv) //eliminamos el archivo temporal
         })
 
-    }*/
+    }
 
     /* -------  CARGA DE LA FOTO  --------------*/
     tipo=req.files.foto.type;
