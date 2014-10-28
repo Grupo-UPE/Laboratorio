@@ -41,7 +41,7 @@ exports.create = function (req, res, next) {
             console.log(err)
             return next(err)
         }
-        return res.redirect('/createbusquedas')
+        return res.redirect('/#/createbusquedas')
         }
 };
 
