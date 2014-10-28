@@ -95,9 +95,12 @@ app.post('/upload', postulante.upload);
 app.get('/send',mail.send);
 app.post('/send',mail.send);
 
+app.get('/REST/buser', bpostu.list);
+app.post('/REST/buser', bpostu.list);
+
 //busqueda de postulantes
-app.get('/REST/bpostu', bpostu.busca)
-app.post('/REST/bpostu', bpostu.busca)
+app.get('/REST/bpostu', bpostu.busca);
+app.post('/REST/bpostu', bpostu.busca);
 
 //Rutas para busquedas
 app.get('/REST/busquedaBis', busquedaBis.list)//Le puse el bis porque devuelve mas o menos lo que esperamos.
