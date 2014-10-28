@@ -355,6 +355,6 @@ exports.listarPorHabilidades = function (req, res, next) {
   */
 };
 
-exports.Busca=function(res,req,next){
+exports.busca=function(res,req,next){
 console.log("agregar");
 };
