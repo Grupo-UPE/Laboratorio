@@ -95,8 +95,8 @@ app.post('/upload', postulante.upload);
 app.get('/send',mail.send);
 app.post('/send',mail.send);
 
-app.get('/REST/buser', bpostu.list);
-app.post('/REST/buser', bpostu.list);
+app.get('/REST/buser', buser.list);
+app.post('/REST/buser', buser.list);
 
 //busqueda de postulantes
 app.get('/REST/bpostu', bpostu.busca);
