@@ -79,4 +79,118 @@ app.controller('ApplicationController', function ($scope,
                                                USER_ROLES,
                                                AuthService,Session,estaLogueado) {
     $scope.currentUser=estaLogueado.query();
+
 })
+
+//controller del modal
+app.controller('modalCTRL',
+    function ($scope, $modalInstance, postulante, contactoPostulanteListService) {
+
+      $scope.postulante = postulante;
+      $scope.contactos = contactoPostulanteListService.query({postulante:postulante._id})
+
+ $scope.ok = function () {
+    $modalInstance.close('cerrado');
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+});
+
+app.controller('generarEntrevistaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        'detalleBusquedaService','$route','$routeParams','postulanteShowUpdateService','entrevistaCreateService',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,
+                                    detalleBusquedaService,$route,$routeParams,postulanteShowUpdateService,entrevistaCreateService) {
+
+            $scope.busqueda=detalleBusquedaService.query({id:$routeParams.idBusqueda});
+            $scope.postulante=postulanteShowUpdateService.show({id:$routeParams.idPostulante});
+            $scope.generarEntrevista=function(){
+                entrevistaCreateService.create({entrevista:$scope.entrevista,busqueda:$scope.busqueda,postulante:$scope.postulante});}
+
+}]);
+
+//busqueda de usuarios
+app.controller('buserCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        'buserService',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,
+                                    buserService) {
+            $scope.listaUser=buserService.query();
+
+            $scope.buscarusuario = function () {
+                    $scope.listaUser=buserService.query();
+                    $route.reload();
+                }
+            }
+            ]);
+
+app.controller('habilidadCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        'habilidadService',"$route",'habilidadCreateService','habilidadRemove',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,
+                                    habilidadService,$route,habilidadCreateService,habilidadRemove) {
+
+            $scope.listaHabilidades=habilidadService.query();
+
+           /* $scope.guardar = function () {
+               var algo= habilidadCreateService.create({habilidad: $scope.habilidad});
+              $route.reload();
+            };*/
+            $scope.eliminar=function(idHabilidad){
+                console.log(idHabilidad);
+                habilidadRemove.remove({id:idHabilidad})
+                $scope.listaHabilidades=habilidadService.query();
+            }
+
+            	$scope.guardar=function(){
+                        habilidadCreateService.create({habilidad:$scope.habilidad});
+            	$scope.listaHabilidades=habilidadService.query();
+            	$route.reload();
+                }
+
+
+}]);
+
+app.controller('mailCTRL',['$scope','$rootScope','$http',
+                   function($scope,$rootScope, $http) {
+
+$scope.enviar = function() {
+    console.log('Im in the controller');
+
+    // Trigger validation flag.
+    $scope.submitted = true;
+
+    $http.post('/send', {
+        to: $scope.to,
+        subject: $scope.subject,
+        content: $scope.content
+    }).success(function(data, status, headers, config) {
+            if(data.success){
+                $location.path('/send');
+            }else {
+                //do something about the error
+            }
+        });
+    
+    console.log($scope.to);
+    console.log($scope);
+};
+
+}]);
+
+app.controller('bpostuCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http', 'bpostuService', 'postulanteRemoveService','$route',function ($scope, $rootScope, $cookieStore, $location, $http,
+                                    bpostuService,postulanteRemoveService, $route) {
+
+       $scope.eliminar = function (idpostulante) 
+       {
+           postulanteRemoveService.remove({ id: idpostulante })
+
+       }
+       
+       $scope.buscar = function () {
+       	        	
+       		$scope.bpostulist = bpostuService.query();
+		}
+       
+
+            
+  }]);

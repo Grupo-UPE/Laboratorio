@@ -102,6 +102,22 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                     permisos : ['RRHH'] //Lo dejo no se el fin que le den.
                 });
 
+    //busqueda postu
+     $routeProvider.when('/bpostu',
+                {
+                    templateUrl: 'partials/bpostu.html',
+                    controller: 'bpostuCTRL',
+                    permisos : ['RRHH'] //Lo dejo no se el fin que le den.
+                });
+
+    //send mail
+    $routeProvider.when('/send',
+                {
+                    templateUrl: 'partials/FormMail.html',
+                    controller: 'mailCTRL',
+                    permisos : ['RRHH'] //Lo dejo no se el fin que le den.
+                });
+
 	//Rutas para manejar Habilidades
 	$routeProvider.when('/habilidad',
                 {
@@ -139,7 +155,19 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
         .setDefaults('tagsInput',{
             placeholder:'Ingrese las Habilidades del Postulante',
             displayProperty:'nombre',
+            addFromAutocompleteOnly:true,
+            addOnEnter: true,
+
         })
+        .setDefaults('autoComplete',{
+            maxResultsToShow: 20,
+            debounceDelay: 100,
+            minLength: 1,
+            highlightMatchedText: true,
+            loadOnDownArrow: true,     
+                        
+        })
+    
 })
 
     .run(function($rootScope, $cookieStore, $http, $location, $modal, AuthService,controlAcceso) {
