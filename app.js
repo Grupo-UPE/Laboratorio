@@ -121,6 +121,8 @@ app.post('/REST/create-busqueda',busqueda.create)
 app.post('/REST/delete-busqueda',busqueda.remove)
 app.put('/REST/busqueda/:id', busqueda.update);
 
+app.post('/REST/asociarPostulante', busqueda.asociar);
+
 //rutas para habilidades
 app.get('/REST/habilidad', habilidad.list)
 app.post('/REST/habilidad', habilidad.create)

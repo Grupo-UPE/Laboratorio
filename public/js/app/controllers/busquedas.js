@@ -174,11 +174,30 @@ app.controller('modalCTRL',
 
 //Modal de posibles contactos
 app.controller('modalPosiblesCTRL',
-    function ($scope, $modalInstance, busqueda, posiblesPostulantes) {
+    function ($scope, $modalInstance, busqueda, posiblesPostulantes, asociarPostulante) {
 
       $scope.busqueda = busqueda;
       console.log(busqueda.habilidades);
       $scope.postulantes=posiblesPostulantes.query({habilidades:busqueda.habilidades});
+      $scope.selection=[];
+
+      $scope.toggleSelection = function toggleSelection(postulante) {
+      var idx = $scope.selection.indexOf(postulante);
+
+      // is currently selected
+      if (idx > -1) {
+        $scope.selection.splice(idx, 1);
+      }
+
+      // is newly selected
+      else {
+        $scope.selection.push(postulante);
+      }
+    };
+
+      $scope.guardar = function (selection) {
+          asociarPostulante.asociar({id: busqueda._id, postulantes : $scope.selection});
+  };
 
  $scope.ok = function () {
     $modalInstance.close('cerrado');
