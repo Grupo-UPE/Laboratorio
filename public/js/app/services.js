@@ -172,6 +172,12 @@ services.factory('posiblesPostulantes', function ($resource) {
     });
 });
 
+services.factory('asociarPostulante', function ($resource) {
+    return $resource('/REST/asociarPostulante/', {}, {
+        asociar: { method: 'POST' },
+    });
+});
+
 
 
 //DetalleDeBusqueda
@@ -230,6 +236,14 @@ services.factory('estaLogueado', function ($resource) {
     });
 });
 
+
+//bpostulante
+services.factory('bpostuService', function ($resource) {
+    return $resource('/REST/bpostu/:texto', {}, {
+        query: { method: 'GET', params: {}, isArray: false }, //trae todos los usuarios
+    });
+});
+
 services.factory('AuthService', function ($http, Session,$rootScope) {
   var authService = {};
 
@@ -281,5 +295,12 @@ services.factory('controlAcceso', function () {
 services.factory('buserService', function ($resource) {
     return $resource('/REST/buser', {}, {
         query: { method: 'GET', params: {}, isArray: true },
+    });
+});
+
+
+services.factory('bpostuService', function ($resource) {
+    return $resource('/REST/bpostu', {}, {
+        query: { method: 'GET' , params: {}, isArray: true },
     });
 });

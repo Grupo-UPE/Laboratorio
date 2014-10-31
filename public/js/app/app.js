@@ -102,6 +102,22 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                     permisos : ['RRHH'] //Lo dejo no se el fin que le den.
                 });
 
+    //busqueda postu
+     $routeProvider.when('/bpostu',
+                {
+                    templateUrl: 'partials/bpostu.html',
+                    controller: 'bpostuCTRL',
+                    permisos : ['RRHH'] //Lo dejo no se el fin que le den.
+                });
+
+    //send mail
+    $routeProvider.when('/send',
+                {
+                    templateUrl: 'partials/FormMail.html',
+                    controller: 'mailCTRL',
+                    permisos : ['RRHH'] //Lo dejo no se el fin que le den.
+                });
+
 	//Rutas para manejar Habilidades
 	$routeProvider.when('/habilidad',
                 {
@@ -110,7 +126,7 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
 
-             $routeProvider.when('/busquedabis',
+             $routeProvider.when('/busquedabis/:estado',
                 {
                     templateUrl: 'partials/busquedaBis-list.html',
                     controller: 'busquedaCTRL',

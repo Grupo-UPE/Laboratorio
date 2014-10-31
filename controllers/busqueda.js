@@ -161,16 +161,56 @@ exports.update = function (req, res, next) {
         }
 }
 
+//populate('habilidades')
 exports.listabierta = function (req, res, next) {
   var estado = req.params.estado
 
-  Busqueda.find({estado: req.params.estado},function estado (err, busqueda) {
+  Busqueda.find({estado: req.params.estado}, gotBusqueda).populate('habilidades');
+
+function gotBusqueda (err, busqueda) {
+    if (err) {
+        console.log(err)
+        return next(err)
+    }
+    return res.json(busqueda);
+}
+    /*
+    function estado (err, busqueda) {
     if (err) {
       console.log(err)
       return next(err)
     }
     return res.json(busqueda)
-  }
-)};
+  }*/
+};
 
+exports.asociar = function (req, res, next) {
+    var mongoose=require('mongoose');
+    var id = mongoose.Types.ObjectId(req.body.id);
 
+    var postulantes = req.body.postulantes;
+
+    Busqueda.findById(id, gotBusqueda);
+
+        function gotBusqueda (err, busqueda) {
+            if (err) {
+                return next(err)
+            }
+            if (!busqueda) {
+                return res.send({'error':'ID invalido'})
+            } else {
+                for (var i = 0; i < postulantes.length; i++) {
+                    busqueda.postulantes.push(postulantes[i]._id);
+                };
+                busqueda.save(onSaved)
+            }
+        }
+
+        function onSaved (err) {
+            if (err) {
+                console.log(err)
+                return next(err)
+            }
+            return res.send('')
+            }
+    }
