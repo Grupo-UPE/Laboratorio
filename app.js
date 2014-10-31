@@ -18,15 +18,6 @@ var app = express();
 
 
 
-var app = express();
-
-var texto  = require('./controllers/texto')
-var usuario  = require('./controllers/usuario')
-var rol  = require('./controllers/rol')
-var busqueda = require('./controllers/busqueda')
-var busquedaBis = require('./controllers/busquedaBis')
-var habilidad = require('./controllers/habilidad')
-
 //var contacto = require('./controllers/contacto')
 
 
@@ -40,7 +31,7 @@ var buser = require('./controllers/buser');
 var postulante = require('./controllers/postulante');
 var busqueda = require('./controllers/busqueda');
 var habilidad = require('./controllers/habilidad');
-
+var busquedaBis = require('./controllers/busquedaBis')
 var login = require('./controllers/login');
 var calendar = require('./controllers/calendar');
 
@@ -119,14 +110,23 @@ app.get('/REST/busqueda', busqueda.list)
 app.get('/REST/busquedastate/:estado', busqueda.listabierta)
 app.post('/REST/create-busqueda',busqueda.create)
 app.post('/REST/delete-busqueda',busqueda.remove)
-app.put('/REST/busqueda/:id', busqueda.update);
+app.get('/REST/busqueda/:id', busqueda.show);
+app.post('/REST/busqueda', busqueda.update);
+
+
+
 
 //rutas para habilidades
 app.get('/REST/habilidad', habilidad.list)
 app.post('/REST/habilidad', habilidad.create)
 app.post('/REST/delete-habilidad', habilidad.remove)
-//app.get('/REST/entrevistadores/:tag', habilidad.tag)
 app.get('/REST/tags/:query', habilidad.query)
+
+
+
+//Entrevistadores Autocomplete
+
+app.get('/REST/entrevistadores/:queri', usuario.queri)
 
 
 

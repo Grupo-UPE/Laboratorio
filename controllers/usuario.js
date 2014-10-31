@@ -177,3 +177,21 @@ exports.update = function (req, res, next) {
         return res.send('')
         }
 }
+
+exports.queri = function (req, res, next) {
+
+    var re = new RegExp(req.params.query,'i');
+
+    Usuario.find({username:re},gotUsuarios)
+
+  function gotUsuarios (err, usuarios) {
+    console.log(usuarios);
+    if (err) {
+      console.log(err)
+      return next()
+    }
+
+    return res.json(usuarios);
+  }
+
+}

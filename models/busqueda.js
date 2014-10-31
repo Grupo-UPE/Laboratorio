@@ -15,6 +15,7 @@ var busqueda_schema = new Schema({
     texto_twitter       : String,
     lugar_trabajo       : String,
     horario             : String,
+    empleado_referente  : String,
 });
 
 module.exports = mongoose.model("Busqueda",busqueda_schema);

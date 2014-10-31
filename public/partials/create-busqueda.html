@@ -1,15 +1,9 @@
 <div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <h3 id="h3SearchFormTitle">Datos de la Busqueda de Personal </h3>
-
 <div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
      <div class="panel-body">
                 <div class="row">
                     <form action="" method="POST" class="form-horizontal" role="form">
-
-                      
-
-                        
-
                         <div class="col-md-3" >
                             <div class="form-group">
                                 <label for="nombre">Nombre:</label>
@@ -19,8 +13,7 @@
                         <div class="col-md-3 col-sm-offset-1 ">
                             <div class="form-group">
                                 <label for="Empleado Referente">Empleado Referente:</label>
-                                <input class="form-control" type="text" id="Empleado Referente" ng-model="busqueda.entrevistadores" placeholder="Empleado Referente" <auto-complete source="loadEntrevistadores($query)"></auto-complete>
-
+                                 <input class="form-control" type="text" id="empleado referente" ng-model="busqueda.empleado_referente">
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-offset-1">
@@ -28,13 +21,10 @@
                                 <label for="cantidad_puestos">Cantidad Puestos a Cubrir:</label>
                                 <input class="form-control" type="text" id="cantidad_puestos" ng-model="busqueda.cantidad_empleados">
                             </div>
-                        </div>
-
-                      
+                        </div>                 
                         <div class="col-md-3">
-
                             <div class="form-group">
-                                <label for="remuneracion">Remuneracion pretendida:</label>
+                                <label for="remuneracion">Remuneracion ofrecida:</label>
                                 <input class="form-control" type="text" id="remuneracion" ng-model="busqueda.remuneracion" placeholder="$4000"  >
                             </div>
                         </div>
@@ -55,38 +45,44 @@
                                         <option id="Work-Home">Work-Home</option>
                                 </select>
                             </div>
-                     </div>
-                        
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="fecha_inicio">Fecha de inicio de la busqueda:</label>
-                                <input class="form-control" type="date" name="input" id="fecha_inicio" placeholder="dd/mm/yyyy" ng-model="busqueda.fecha_inicio" min="01-01-2015" max="31-12-2020"  >
-                            </div>
-                       
-                        </div>
-                        
+                     </div> 
                          <!--div class="col-md-3 col-sm-offset-1">
                             <div class="form-group">
                                 <label for="texto_twitter">Link a Twitter:</label>
                                 <textarea class="form-control" id="texto_twitter" ng-model="busqueda.texto_twitter"  ></textarea>
                             </div>
                         </div-->
-                        <div class="col-md-3 col-sm-offset-1">
+                        <div class="col-md-4 col-sm-offset">
                             <div class="form-group">
                                 <label for="comentario">Comentario:</label>
                                 <textarea class="form-control" id="comentario" ng-model="busqueda.otros_comentarios"  ></textarea>
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-10 ">
+                            <legend>Posibles entrevistadores</legend>
+                            
+                            <tags-input ng-model="busqueda.entrevistador" display-property="username" placeholder="Ingrese un posible entrevistador">
+                            <auto-complete source="loadEntrevistadores($queri)"></auto-complete>
+                             </tags-input>
+                         </div>
+                         </div>
                     
                     <div class="row">
                         <div class="col-sm-10 ">
                             <legend>Habilidades</legend>
                             
-                            <tags-input ng-model="busqueda.habilidades">
+                            <tags-input ng-model="busqueda.habilidades" placeholder="Ingrese las habilidades">
+                            <auto-complete source="loadTags($query)"></auto-complete>
+                             </tags-input>
+                         </div>
+                         </div>
+                         <div class="row">
+                        <div class="col-sm-10 ">
+                            <legend>Habilidades</legend>
+                            
+                            <tags-input ng-model="busqueda.habilidades" placeholder="Ingrese las habilidades">
                             <auto-complete source="loadTags($query)"></auto-complete>
                              </tags-input>
                          </div>
