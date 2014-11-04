@@ -84,7 +84,7 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
         $routeProvider.when('/busqueda/:busquedaId',
                 {
                     templateUrl: 'partials/busqueda-edit.html',
-                    controller: 'busquedaCTRL',
+                    controller: 'busquedaListCTRL',
                     permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
         $routeProvider.when('/busquedalist/:estado',
@@ -126,7 +126,7 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
 
-             $routeProvider.when('/busquedabis',
+             $routeProvider.when('/busquedabis/:estado',
                 {
                     templateUrl: 'partials/busquedaBis-list.html',
                     controller: 'busquedaCTRL',
@@ -153,7 +153,7 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
 .config(function(tagsInputConfigProvider){
     tagsInputConfigProvider
         .setDefaults('tagsInput',{
-            placeholder:'Ingrese las Habilidades del Postulante',
+            //placeholder:'Ingrese las Habilidades del Postulante',
             displayProperty:'nombre',
             addFromAutocompleteOnly:true,
             addOnEnter: true,

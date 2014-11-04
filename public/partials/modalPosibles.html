@@ -22,7 +22,8 @@
                         <td><span ng-repeat="habilidad in posible.postulante.habilidades">{{habilidad.nombre}} </span></td>
                         <td><span ng-repeat="coincidencia in posible.coincidencias">{{coincidencia.nombre}} </span></td>
                         <td>
-                                <input type="checkbox" value="{{posible.postulante}}">
+
+                                <input type="checkbox" name="postulante[]" value="{{posible.postulante}}" ng-checked="selection.indexOf(posible.postulante) > -1" ng-click="toggleSelection(posible.postulante)">
                         </div></td>
                     </tr>
                 </tbody>
@@ -30,7 +31,7 @@
         </div>
 
             <div class="form-group">
-                <button type="button" class="btn btn-default">Guardar</button>
+                <button type="button" class="btn btn-default" ng-click="guardar(selection)">Guardar</button>
             </div>
 
 

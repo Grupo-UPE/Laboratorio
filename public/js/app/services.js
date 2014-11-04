@@ -156,15 +156,25 @@ services.factory('busquedaRemove', function ($resource) {
         remove: { method: 'POST' },
     });
 });
+
 services.factory('busquedaShowUpdateService', function ($resource) {
-    return $resource('/REST/busqueda/:id', {id:"@id"}, {
-        update: { method: 'PUT' },
+    return $resource('/REST/busqueda/:id', {}, {
+        show: { method: 'GET' },
+        update: { method: 'POST' },
     });
 });
+
+
 
 services.factory('posiblesPostulantes', function ($resource) {
     return $resource('/REST/busquedaPorHabilidades', {}, {
         query: { method: 'POST', params: {}, isArray: true },
+    });
+});
+
+services.factory('asociarPostulante', function ($resource) {
+    return $resource('/REST/asociarPostulante/', {}, {
+        asociar: { method: 'POST' },
     });
 });
 

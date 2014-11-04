@@ -13,9 +13,9 @@ app.run(function ($rootScope, $templateCache) {
 
 
 app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'busquedaService','busquedaCreateService','habilidadService','$route',
+                        'busquedaService','busquedaCreateService','habilidadService','$route','usuarioService',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    busquedaService,busquedaCreateService,habilidadService,$route ) {
+                                    busquedaService,busquedaCreateService,habilidadService,$route,usuarioService ) {
 
             $scope.listabusquedas=busquedaService.query();
             $scope.listahabilidades=habilidadService.query();
@@ -23,9 +23,9 @@ app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$
             $scope.loadTags=function(query){
               return $http.get('/REST/tags/'+query);
             }
-            /*$scope.loadEntrevistadores=function(tag){
-              return $http.get('/REST/entrevistadores/'+tag);
-            }*/
+            $scope.loadEntrevistadores=function(query){
+              return $http.get('/REST/entrevistadores/'+query);
+            }
 
 
 
@@ -40,15 +40,26 @@ app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$
 
 
 app.controller('busquedaListCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'busquedaService','$route',
+                        'busquedaService','$route','busquedaRemove','busquedaShowUpdateService','$routeParams',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    busquedaService,$route ) {
+                                    busquedaService,$route,busquedaRemove,busquedaShowUpdateService,$routeParams ) {
 
 
             $scope.listaBusquedas=busquedaService.query();
+            $scope.busqueda = busquedaShowUpdateService.show({ id: $routeParams.busquedaId });
+            $scope.guardar = function () {
+             busquedaShowUpdateService.update({ busqueda: $scope.busqueda});
+             //$route.reload();
+            
+           }
+            $scope.eliminar=function(idbusqueda){
 
+                busquedaRemove.remove({id:idbusqueda})
+                $scope.listaBusquedas=busquedaService.query();
+            }
             
         
+
 
 }]);
 app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
@@ -60,9 +71,9 @@ app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$locati
 
             $scope.listaBusquedasState=busquedaServiceState.query({estado: $routeParams.estado});
 
+
             //$scope.bsq = busquedaShowUpdateService.show({ estado: $scope.estado ,id: $routeParams.busquedaId });
             $scope.guardar = function () {
-              
 
              busquedaShowUpdateService.update({ bsq: $scope.bsq,id:$routeParams._id });
              $route.reload();
@@ -173,10 +184,30 @@ app.controller('modalCTRL',
 
 //Modal de posibles contactos
 app.controller('modalPosiblesCTRL',
-    function ($scope, $modalInstance, busqueda, posiblesPostulantes) {
+    function ($scope, $modalInstance, busqueda, posiblesPostulantes, asociarPostulante) {
 
       $scope.busqueda = busqueda;
+      console.log(busqueda.habilidades);
       $scope.postulantes=posiblesPostulantes.query({habilidades:busqueda.habilidades});
+      $scope.selection=[];
+
+      $scope.toggleSelection = function toggleSelection(postulante) {
+      var idx = $scope.selection.indexOf(postulante);
+
+      // is currently selected
+      if (idx > -1) {
+        $scope.selection.splice(idx, 1);
+      }
+
+      // is newly selected
+      else {
+        $scope.selection.push(postulante);
+      }
+    };
+
+      $scope.guardar = function (selection) {
+          asociarPostulante.asociar({id: busqueda._id, postulantes : $scope.selection});
+  };
 
  $scope.ok = function () {
     $modalInstance.close('cerrado');

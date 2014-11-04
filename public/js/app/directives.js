@@ -10,6 +10,7 @@ appDir.directive('appVersion', ['version', function(version) {
     };
   }]);
 
+<<<<<<< HEAD
 appDir.directive('modal', function () {
     return {
       template: '<div class="modal fade">' +
@@ -125,6 +126,8 @@ appDir.directive('datatables', function initialize($compile) {
 	    }};
 	});
 
+=======
+>>>>>>> 177cf26e875521b51bbc1f0e86db7f53d25794ea
 appDir.directive('dateTimePicker', function() {
 	  return {
 	    restrict: 'E',
@@ -178,57 +181,4 @@ appDir.directive('alertError', function() {
 	      '</div>'
 	  };
 	});
-
-appDir.directive('cuitcuilValidate', function() {
-    return {
-        require: 'ngModel',
-        link: function(scope, elm, attrs, ctrl) {
-            ctrl.$parsers.unshift(function(viewValue) {
-
-            	var vec= Array(10);
-    		    var esCuit=false;
-
-    		    do {
-    		    	viewValue = viewValue.replace('-','');
-    		    	viewValue = viewValue.replace('_',''); //porque al final queda unn caracter _
-    		    } while(viewValue.indexOf('-') >= 0);
-
-    		    if ( viewValue.length != 11) {  // si no estan todos los digitos
-    		        esCuit=false;
-    		    } else {
-    		        var x=0;
-    		        var dv=0;
-    		        // Multiplico los dígitos.
-    		        vec[0] = viewValue.charAt(  0) * 5;
-    		        vec[1] = viewValue.charAt(  1) * 4;
-    		        vec[2] = viewValue.charAt(  2) * 3;
-    		        vec[3] = viewValue.charAt(  3) * 2;
-    		        vec[4] = viewValue.charAt(  4) * 7;
-    		        vec[5] = viewValue.charAt(  5) * 6;
-    		        vec[6] = viewValue.charAt(  6) * 5;
-    		        vec[7] = viewValue.charAt(  7) * 4;
-    		        vec[8] = viewValue.charAt(  8) * 3;
-    		        vec[9] = viewValue.charAt(  9) * 2;
-
-    		        // Suma cada uno de los resultado.
-    		        for( var i = 0;i<=9; i++) {
-    		            x += vec[i];
-    		        }
-    		        dv = (11 - (x % 11)) % 11;
-    		        if ( dv == viewValue.charAt( 10) ) {
-    		            esCuit=true;
-    		        }
-    		    }
-    		    if (esCuit){
-    		    	ctrl.$setValidity('validcuitcuil', true);
-    		    	return viewValue;
-    		    } else {
-    		    	ctrl.$setValidity('validcuitcuil', false);
-    		    	return viewValue;
-    		    }
-
-            });
-        }
-    };
-});
 

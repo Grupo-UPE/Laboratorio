@@ -6,20 +6,21 @@ var Postulante = require("../models/postulante");
 exports.create = function (req, res, next) {
     //Las verificaciones de los requeridos la hariamos desde angular.... por ahora.
     var bsq=req.body.busqueda;
+    var usr=req.body.usuario;
     var lhab= [];
     for(var id in bsq.habilidades){
       lhab.push(bsq.habilidades[id]["_id"]);
     }
     var lentrevistadores= [];
-    for(var id in lentrevistadores.entrevistadores){
-      lentrevistadores.push(lentrevistadores.entrevistadores[id]["_id"]);
+    for(var id in bsq.entrevistadores){
+      lentrevistadores.push(bsq.entrevistadores[id]["_id"]);
     }
 
 
 
     var busqueda= new Busqueda({
         fecha_inicio        :bsq.fecha_inicio,
-        Entrevistador       :lentrevistadores,
+        entrevistador       :lentrevistadores,
         cantidad_empleados  :bsq.cantidad_empleados,
         nombre              :bsq.nombre,
         estado              :'Abierta',
@@ -29,9 +30,11 @@ exports.create = function (req, res, next) {
         texto_twitter       :bsq.texto_twitter,
         lugar_trabajo       :bsq.lugar_trabajo,
         horario             :bsq.horario,
+        empleado_referente  :bsq.empleado_referente,
+
     });
     console.log(bsq.estado);
-//    console.log("creamos la busqueda y nos queda: ");
+  //    console.log("creamos la busqueda y nos queda: ");
   //  console.log(busqueda);
 
     busqueda.save(onSaved)
@@ -117,12 +120,9 @@ exports.remove = function (req, res, next) {
 }
 
 exports.update = function (req, res, next) {
-    console.log(req.params.estado);
+    console.log(req.params.busqueda);
     var mongoose=require('mongoose');
     var id = mongoose.Types.ObjectId(req.body.busqueda._id);
-    //console.log(id);
-    //console.log(id);
-    var nombre=req.body.busqueda.nombre;
     var estados=req.body.busqueda.estado;
     var _id=mongoose.Types.ObjectId(req.body.busqueda._id);
 
@@ -137,7 +137,7 @@ exports.update = function (req, res, next) {
     return res.send({'error':'Debe escribir algo'})
   }
 
-    Busqueda.findById(req.body.busqueda._id, gotBusqueda);
+    Busqueda.findById(_id, gotBusqueda);
 
     function gotBusqueda (err, busqueda) {
         if (err) {
@@ -146,7 +146,7 @@ exports.update = function (req, res, next) {
         if (!busqueda) {
             return res.send({'error':'ID invalido'})
         } else {
-            busqueda.nombre=nombre;
+            
             busqueda.estado=arr;
             busqueda.save(onSaved)
         }
@@ -161,16 +161,56 @@ exports.update = function (req, res, next) {
         }
 }
 
+//populate('habilidades')
 exports.listabierta = function (req, res, next) {
   var estado = req.params.estado
 
-  Busqueda.find({estado: req.params.estado},function estado (err, busqueda) {
+  Busqueda.find({estado: req.params.estado}, gotBusqueda).populate('habilidades');
+
+function gotBusqueda (err, busqueda) {
+    if (err) {
+        console.log(err)
+        return next(err)
+    }
+    return res.json(busqueda);
+}
+    /*
+    function estado (err, busqueda) {
     if (err) {
       console.log(err)
       return next(err)
     }
     return res.json(busqueda)
-  }
-)};
+  }*/
+};
 
+exports.asociar = function (req, res, next) {
+    var mongoose=require('mongoose');
+    var id = mongoose.Types.ObjectId(req.body.id);
 
+    var postulantes = req.body.postulantes;
+
+    Busqueda.findById(id, gotBusqueda);
+
+        function gotBusqueda (err, busqueda) {
+            if (err) {
+                return next(err)
+            }
+            if (!busqueda) {
+                return res.send({'error':'ID invalido'})
+            } else {
+                for (var i = 0; i < postulantes.length; i++) {
+                    busqueda.postulantes.push(postulantes[i]._id);
+                };
+                busqueda.save(onSaved)
+            }
+        }
+
+        function onSaved (err) {
+            if (err) {
+                console.log(err)
+                return next(err)
+            }
+            return res.send('')
+            }
+    }
