@@ -10,7 +10,7 @@ appDir.directive('appVersion', ['version', function(version) {
     };
   }]);
 
-<<<<<<< HEAD
+
 appDir.directive('modal', function () {
     return {
       template: '<div class="modal fade">' +
@@ -126,8 +126,6 @@ appDir.directive('datatables', function initialize($compile) {
 	    }};
 	});
 
-=======
->>>>>>> 177cf26e875521b51bbc1f0e86db7f53d25794ea
 appDir.directive('dateTimePicker', function() {
 	  return {
 	    restrict: 'E',
