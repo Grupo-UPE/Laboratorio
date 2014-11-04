@@ -7,11 +7,22 @@ var app = angular.module('ngdemo.controllers.postulantes', []);
 // Clear browser cache (in development mode)
 
 
-app.controller('postulanteCtrlCV', ['$scope', '$route', '$http', 'postulanteRemoveService', function ($scope, $route, $http, postulanteRemoveService) {
+
+app.controller('postulanteCtrlCV', ['$scope', '$route', '$http', 'postulanteRemoveService', 'postulanteShowUpdateService', function ($scope, $route, $http, postulanteRemoveService, postulanteShowUpdateService) {
 
     /* CARGAMOS LOS POSTULANTES EN LA TABLA*/
-    
+
     $scope.listaPostulantes = [];
+
+    $scope.showModal = false;
+    $scope.cerrar = function () {
+        $scope.showModal = false;
+    }
+    $scope.toggleModal = function (postID) {
+        $scope.showModal = true;
+
+        $scope.postulant = postulanteShowUpdateService.show({ id: postID });
+    };
 
     $scope.cargarPostulantes = function () {
         $http({
@@ -41,15 +52,15 @@ app.controller('postulanteCtrlCV', ['$scope', '$route', '$http', 'postulanteRemo
 
     /* FUNCION PARA ELIMINAR UN POSTULANTE */
     $scope.eliminar = function (idpostulante) {
-                        postulanteRemoveService.remove({ id: idpostulante })
-                        $scope.cargarPostulantes();
-                                       }
+        postulanteRemoveService.remove({ id: idpostulante })
+        $scope.cargarPostulantes();
+    }
 
-   /* FUNCION PARA LOS TAGS */
+    /* FUNCION PARA LOS TAGS */
 
-   $scope.loadTags=function(query){ //Podriamos usar un service tambien. Pero como es bastante sencillo no se si nos conviene.
-                     return $http.get('/REST/tags/'+query);
-   }
+    $scope.loadTags = function (query) { //Podriamos usar un service tambien. Pero como es bastante sencillo no se si nos conviene.
+        return $http.get('/REST/tags/' + query);
+    }
 
 
 } ]);
@@ -67,15 +78,17 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                        }
 
                                        $scope.listaPostulantes = postulanteService.query();
+
                                        $scope.guardar = function () {
+
                                            var postulante = postulanteCreateService.create({ postulante: $scope.postulante });
                                            $route.reload();
 
                                        }
 
-                                       $scope.loadTags=function(query){ //Podriamos usar un service tambien. Pero como es bastante sencillo no se si nos conviene.
-                                            return $http.get('/REST/tags/'+query);
-                                        }
+                                       $scope.loadTags = function (query) { //Podriamos usar un service tambien. Pero como es bastante sencillo no se si nos conviene.
+                                           return $http.get('/REST/tags/' + query);
+                                       }
 
 
                                    } ]);

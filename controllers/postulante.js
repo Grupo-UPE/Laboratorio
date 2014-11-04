@@ -90,15 +90,23 @@ exports.show = function (req, res, next) {
                 disponibilidad      : postulante.disponibilidad,
                 comentario          : postulante.comentario,
                 habilidades         : postulante.habilidades,
+                fotoUrl             : "../uploads/fotos/" + postulante.dni + ".jpg",
+                curriculumURL       : "../uploads/curriculums/" + postulante.dni + ".pdf"
+
 
             }
-            console.log(postulantedto.edad);
+
 
     return res.json(postulantedto)
   }
 };
 
 //actualizacion del postulante
+exports.actualizar = function(){
+
+}
+
+
 
 exports.update = function (req, res, next) {
     var mongoose=require('mongoose');
@@ -123,9 +131,17 @@ exports.update = function (req, res, next) {
         if (err) {
             return next(err)
         }
+        try{
+            console.log(req.files);
+        }
+        catch(err){
+            console.log(err);
+        }
         if (!postulante) {
             return res.send({ 'error': 'ID invalido' })
-        } else {
+        }
+
+         else {
             postulante.nombre = nombre;
             postulante.apellido = apellido;
             postulante.dni = dni;
@@ -138,9 +154,6 @@ exports.update = function (req, res, next) {
             postulante.disponibilidad = disponibilidad;
             postulante.comentario = comentario;
             postulante.habilidad = [];
-
-            console.log(_id);
-            console.log(id);
             postulante.save(onSaved)
         }
     }
@@ -170,10 +183,10 @@ exports.remove = function (req, res, next) {
     }
 
     // Tenemos el texto, eliminemoslo
-    
+
     var curriculumURL =postulante.curriculumURL
     var fotoUrl = postulante.fotoUrl
-    
+
     try{
         fs.unlinkSync(fotoUrl);
         fs.unlinkSync(curriculumURL);
@@ -181,8 +194,8 @@ exports.remove = function (req, res, next) {
     catch(err){
         console.log(err);
     }
-    
-    
+
+
     postulante.remove(onRemoved)
   }
 
@@ -198,7 +211,7 @@ exports.remove = function (req, res, next) {
 
 exports.upload = function (req, res, next) {
 
-    res.setHeader('Content-Type', 'text/html');
+    //res.setHeader('Content-Type', 'text/html');
 
     var mensaje = '';
     var nombre = req.param('postulante.dni');
@@ -257,6 +270,20 @@ exports.upload = function (req, res, next) {
     /* ------CARGA DATOS EN LA BASE ------------*/
     //console.log(req.param('pustulante.habilidades'))
 
+    /*for (var id in req.body.postulante.habilidades) {
+        habilidades.push(req.body.postulante.habilidades[id]["_id"]);
+    }*/
+
+    try{
+       //res.send(req.param('postulante.habilidades'));
+       console.log(req.param('req.body.postulante.habilidades'));
+       console.log(postulante.habilidad);
+       console.log(req.param('postulante.habilidad'));
+    }
+    catch(err){
+        res.send(err);
+    }
+
     var postulante = new Postulante({
         nombre: req.param('postulante.nombre'),
         apellido: req.param('postulante.apellido'),
@@ -283,7 +310,7 @@ exports.upload = function (req, res, next) {
         return res.send("");
     }
 
-    res.send(JSON.stringify(postulante));
+
 }
 exports.listarPorHabilidades = function (req, res, next) {
     var habs= [];
@@ -346,6 +373,8 @@ exports.listarPorHabilidades = function (req, res, next) {
   */
 };
 
+
 exports.busca=function(res,req,next){
 console.log("agregar");
 };
+
