@@ -91,7 +91,7 @@ exports.show = function (req, res, next) {
                 comentario          : postulante.comentario,
                 habilidades         : postulante.habilidades,
                 fotoUrl             : "../uploads/fotos/" + postulante.dni + ".jpg",
-                curriculumURL       : "../uploads/curriculums/" + postulante.dni + ".pdf"
+                curriculumURL       : postulante.curriculumURL
 
 
             }
@@ -228,17 +228,8 @@ exports.upload = function (req, res, next) {
       res.send(mensaje);
     }
     else{
-        var path_tmp_cv = req.files.file.path;
-        extension = '.pdf';
-        newPath_cv = '../public/uploads/curriculums/' + nombre + extension;
-        var is = fs.createReadStream(path_tmp_cv)
-        var os = fs.createWriteStream(newPath_cv)
-        is.pipe(os)
-        is.on('end', function() {//cuando no hay mas datos que leer
-            fs.unlinkSync(path_tmp_cv) //eliminamos el archivo temporal
-        })
 
-    }
+        
 
     /* -------  CARGA DE LA FOTO  --------------*/
     tipo=req.files.foto.type;
@@ -274,15 +265,8 @@ exports.upload = function (req, res, next) {
         habilidades.push(req.body.postulante.habilidades[id]["_id"]);
     }*/
 
-    try{
-       //res.send(req.param('postulante.habilidades'));
-       console.log(req.param('req.body.postulante.habilidades'));
-       console.log(postulante.habilidad);
-       console.log(req.param('postulante.habilidad'));
-    }
-    catch(err){
-        res.send(err);
-    }
+ 
+
 
     var postulante = new Postulante({
         nombre: req.param('postulante.nombre'),
@@ -300,16 +284,59 @@ exports.upload = function (req, res, next) {
         curriculumURL : newPath_cv,
         fotoUrl : newPath_foto
         });
-    postulante.save(onSaved)
+  
 
-    function onSaved(err) {
+    /** CARGA CV */
+    var path_tmp_cv = req.files.file.path;
+        console.log('paso por aca: ' + path_tmp_cv);
+        extension = '.pdf';
+        gapi.a.setCredentials(req.session.tokens);
+        console.log('se autentico');
+        
+        //var drive = gapi.drive({ auth: gapi.a });
+        
+        console.log('paso por el dirve');
+        gapi.drive.files.insert({
+          resource: {
+            parents : [{id: '0B29paO-zxCaBZTVTZ0ZuMm00Y2M'}],
+            title: req.files.file.name,
+            mimeType: 'application/pdf'
+          },
+          media: {
+            mimeType: 'application/pdf',
+            body: fs.createReadStream(path_tmp_cv) // read streams are awesome!
+          }, auth: gapi.a
+        }, function(err, res){
+            if(err){
+                console.log(err);
+            }
+            console.log('entro al callback');
+            console.log(res);
+            newPath_cv = res.selfLink;
+            console.log(res.selfLink);
+            postulante.curriculumURL = res.selfLink;
+            postulante.save(onSaved)
+            fs.unlinkSync(path_tmp_cv);
+        });
+
+       function onSaved(err) {
         if (err) {
             console.log(err)
             return next(err)
         }
+
         return res.send("");
     }
 
+        /*newPath_cv = '../public/uploads/curriculums/' + nombre + extension;
+        var is = fs.createReadStream(path_tmp_cv)
+        var os = fs.createWriteStream(newPath_cv)
+        is.pipe(os)
+        is.on('end', function() {//cuando no hay mas datos que leer
+            fs.unlinkSync(path_tmp_cv) //eliminamos el archivo temporal
+        })*/
+
+    }
 
 }
 exports.listarPorHabilidades = function (req, res, next) {
