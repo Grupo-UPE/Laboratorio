@@ -87,4 +87,12 @@ $scope.mytime = new Date();
                 entrevistaCreateService.create({entrevista:$scope.entrevista,busqueda:$scope.busqueda,postulante:$scope.postulante});}
 
 }]);
-//Probando
+
+app.controller('entrevistasUsuarioCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        '$route','$routeParams','entrevistasUsuario',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,
+                                    $route,$routeParams,entrevistasUsuario) {
+
+            $scope.entrevistas=entrevistasUsuario.query();
+
+}]);

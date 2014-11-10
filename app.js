@@ -150,6 +150,9 @@ app.get('/oauth2callback', login.callback)
 app.post('/REST/create-entrevista', calendar.create)
 app.get('/entrevista', calendar.show)
 app.get('/REST/entrevistas', entrevista.listarEntrevistas)
+app.get('/REST/entrevistasUsuario', entrevista.listarEntrevistasUsuario)
+//app.get('/REST/entrevistasSinFeedbackUsuario', entrevista.listarEntrevistasSinFeedbackUsuario)
+
 
 //Install
 app.get('/install',install.install)
@@ -167,7 +170,7 @@ app.get('/REST/algo', function(req, res) {
 });
 
 //Login
-app.get('/REST/estaLogueado', usuario.estaLogueado);
+app.get('/REST/1gueado', usuario.estaLogueado);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

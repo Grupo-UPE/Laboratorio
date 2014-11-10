@@ -20,7 +20,7 @@ exports.create = function (req, res, next) {
 
     var busqueda= new Busqueda({
         fecha_inicio        :bsq.fecha_inicio,
-        entrevistador       :lentrevistadores,
+        entrevistadores       :lentrevistadores,
         cantidad_empleados  :bsq.cantidad_empleados,
         nombre              :bsq.nombre,
         estado              :'Abierta',
@@ -34,6 +34,7 @@ exports.create = function (req, res, next) {
 
     });
     console.log(bsq.estado);
+    console.log(busqueda);
   //    console.log("creamos la busqueda y nos queda: ");
   //  console.log(busqueda);
 
@@ -146,7 +147,7 @@ exports.update = function (req, res, next) {
         if (!busqueda) {
             return res.send({'error':'ID invalido'})
         } else {
-            
+
             busqueda.estado=arr;
             busqueda.save(onSaved)
         }
