@@ -66,7 +66,7 @@ exports.create = function (req, res, next) {
         }
         return res.send("");
         }
-};
+}
 
 exports.list = function (req, res, next) {
 
@@ -85,7 +85,6 @@ exports.list = function (req, res, next) {
     //console.log(JSON.stringify(usuarios));
     return res.json(usuarios);
   }
-
 }
 
 exports.show = function (req, res, next) {
@@ -106,7 +105,7 @@ exports.show = function (req, res, next) {
             }
     return res.json(usuariodto)
   }
-};
+}
 /*
 exports.tag = function (req, res, next) {
 

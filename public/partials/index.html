@@ -1,5 +1,5 @@
 <div><input type="checkbox" ng-model="checked" ng-init="checked=false"/>
-<span ng-if="checked" class="animate-if">NG IF FUNCIONA?</span>              
+<span ng-if="checked" class="animate-if">NG IF FUNCIONA?</span>
  <h2>------------------------------</h2><br/>
       Show when checked:
       <span ng-if="checked" class="animate-if">
@@ -7,19 +7,19 @@
       </span>
 
                 <div ng-repeat="usr in listaUsuarios">
-                    
-                <div ng-if="usr.roles == entrevistador">  
+
+                <div ng-if="usr.roles == entrevistador">
                     <h2>{{usr.roles}}</h2>
                    </div>
                   <div ng-if="usr.roles == rrhh">
                     <h2>{{usr.roles}}</h2>
-                      
+
                    </div>
                    <div ng-if="usr.roles== entrevistador">
                     <h2>{{usr.roles}}</h2>
-                      
-                   </div> 
-                
+
+                   </div>
+
                </div>
 </div>
         <div class="row col-xs-12 col-sm-6 col-md-6 col-lg-6 ">
@@ -29,10 +29,10 @@
                   </div>
                   <div class="panel-body">
                             Datos del usuario logueado, solo para ver, {{usuario}}
-                        <div ng-include="'partials/listaEntrevistasUsuario.html'"  ng-if="usuario.rol.nombre=='entrevistador'||usuario.rol.nombre=='admin'"></div>
-                        <div ng-include="'partials/listaEntrevistasUsuario.html'" ng-if="usuario.rol.nombre=='rrhh'||usuario.rol.nombre=='admin'">
+                        <div ng-include="'partials/listaEntrevistasUsuario.html'"  ng-if="usuario.rol.nombre=='entrevistador'||usuario.rol.nombre=='admin'" ng-controller="entrevistasUsuarioCTRL"></div>
+                        <div ng-include="'partials/listaEntrevistasUsuario.html'" ng-if="usuario.rol.nombre=='rrhh'||usuario.rol.nombre=='admin'" ng-controller="entrevistasUsuarioCTRL">
                         </div>
-                        <div ng-include="'partials/listaEntrevistasUsuario.html'" ng-if="usuario.rol.nombre==='admin'">
+                        <div ng-include="'partials/listaEntrevistasUsuario.html'" ng-if="usuario.rol.nombre==='admin'" ng-controller="entrevistasUsuarioCTRL">
                         </div>
                 </div>
             </div>

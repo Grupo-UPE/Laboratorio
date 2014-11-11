@@ -89,10 +89,13 @@ $scope.mytime = new Date();
 }]);
 
 app.controller('entrevistasUsuarioCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        '$route','$routeParams','entrevistasUsuario',
+                        '$route','$routeParams','entrevistasUsuario','$sce',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    $route,$routeParams,entrevistasUsuario) {
+                                    $route,$routeParams,entrevistasUsuario,$sce) {
 
             $scope.entrevistas=entrevistasUsuario.query();
+            $scope.iframesrc= function(){
+                return $sce.trustAsResourceUrl("https://www.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src="+$scope.usuario.email+"&amp;ctz=America%2FArgentina%2FBuenos_Aires");
+            }
 
 }]);
