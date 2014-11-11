@@ -73,7 +73,7 @@ exports.show = function (req, res, next) {
     if (err) {
       console.log(err)
       return next(err)
-    }
+   }
 
 
     var postulantedto={
@@ -90,7 +90,7 @@ exports.show = function (req, res, next) {
                 disponibilidad      : postulante.disponibilidad,
                 comentario          : postulante.comentario,
                 habilidades         : postulante.habilidades,
-                fotoUrl             : "../uploads/fotos/" + postulante.dni + ".jpg",
+                fotoUrl             : "../uploads/fotos/" + postulante.dni,
                 curriculumURL       : postulante.curriculumURL
 
 
@@ -131,12 +131,7 @@ exports.update = function (req, res, next) {
         if (err) {
             return next(err)
         }
-        try{
-            console.log(req.files);
-        }
-        catch(err){
-            console.log(err);
-        }
+        
         if (!postulante) {
             return res.send({ 'error': 'ID invalido' })
         }
@@ -163,6 +158,7 @@ exports.update = function (req, res, next) {
             console.log(err)
             return next(err)
         }
+
         return res.send('')
     }
 }
@@ -242,7 +238,7 @@ exports.upload = function (req, res, next) {
         if(tipo=='image/png' || tipo=='image/jpg' || tipo=='image/jpeg' ){
             var path_tmp_foto = req.files.foto.path;
             extension = ".jpg";
-            newPath_foto = '../public/uploads/fotos/' + nombre + extension;
+            newPath_foto = '../public/uploads/fotos/' + nombre;
             is = fs.createReadStream(path_tmp_foto)
             os = fs.createWriteStream(newPath_foto)
             is.pipe(os)
@@ -288,14 +284,7 @@ exports.upload = function (req, res, next) {
 
     /** CARGA CV */
     var path_tmp_cv = req.files.file.path;
-        console.log('paso por aca: ' + path_tmp_cv);
-        extension = '.pdf';
         gapi.a.setCredentials(req.session.tokens);
-        console.log('se autentico');
-        
-        //var drive = gapi.drive({ auth: gapi.a });
-        
-        console.log('paso por el dirve');
         gapi.drive.files.insert({
           resource: {
             parents : [{id: '0B29paO-zxCaBZTVTZ0ZuMm00Y2M'}],
@@ -310,11 +299,15 @@ exports.upload = function (req, res, next) {
             if(err){
                 console.log(err);
             }
-            console.log('entro al callback');
-            console.log(res);
             newPath_cv = res.selfLink;
-            console.log(res.selfLink);
-            postulante.curriculumURL = res.selfLink;
+
+            try{
+                postulante.curriculumURL = res.selfLink;
+            }
+            catch(err){
+                console.log(err);
+            }
+            
             postulante.save(onSaved)
             fs.unlinkSync(path_tmp_cv);
         });
@@ -400,8 +393,62 @@ exports.listarPorHabilidades = function (req, res, next) {
   */
 };
 
+exports.uploadImage = function(req, res, next){
+
+    var id = req.param('postulant._id');
+    var dni = req.param('postulant.dni');
+    tipo=req.files.foto.type;
+
+    if (!req.files.foto || req.files.foto.size == 0) {
+      mensaje = 'No se pudo subir el archivo ' + new Date().toString();
+      res.send(mensaje);
+    }
+    else{
+        if(tipo=='image/png' || tipo=='image/jpg' || tipo=='image/jpeg' ){
+            var path_tmp_foto = req.files.foto.path;
+            var newPath_foto = '../public/uploads/fotos/' + dni;
+            is = fs.createReadStream(path_tmp_foto)
+            os = fs.createWriteStream(newPath_foto)
+            is.pipe(os)
+            is.on('end', function() {
+                fs.unlinkSync(path_tmp_foto)
+            })
+            
+            Postulante.findById(id, gotPostulante)
+
+            function gotPostulante(err, postulante) {
+                if (err) {
+                    return next(err)
+                }
+        
+                if (!postulante) {
+                    return res.send({ 'error': 'ID invalido' })
+                 }
+
+                else {
+                    postulante.fotoUrl = newPath_foto;
+                    postulante.save(onSaved)
+                }
+            }
+
+            function onSaved(err) {
+            if (err) {
+                console.log(err)
+                return next(err)
+            }
+
+            return res.send('')
+            }
+
+        }
+        else{
+             mensaje = 'Tipo de archivo no soportado';
+             res.send(mensaje);
+        }
+
+    }
+}
 
 exports.busca=function(res,req,next){
 console.log("agregar");
 };
-

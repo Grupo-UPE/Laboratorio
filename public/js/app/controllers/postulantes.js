@@ -12,8 +12,11 @@ app.controller('postulanteCtrlCV', ['$scope', '$route', '$http', 'postulanteRemo
 
     /* CARGAMOS LOS POSTULANTES EN LA TABLA*/
 
+    
     $scope.listaPostulantes = [];
-
+    $scope.nombre='';
+    $scope.apellido='';
+    $scope.curriculumURL='';
     $scope.showModal = false;
     $scope.cerrar = function () {
         $scope.showModal = false;
@@ -22,6 +25,7 @@ app.controller('postulanteCtrlCV', ['$scope', '$route', '$http', 'postulanteRemo
         $scope.showModal = true;
 
         $scope.postulant = postulanteShowUpdateService.show({ id: postID });
+        $scope.$watch($scope.nombre);
     };
 
     $scope.cargarPostulantes = function () {
@@ -39,6 +43,7 @@ app.controller('postulanteCtrlCV', ['$scope', '$route', '$http', 'postulanteRemo
           alert('Error al intentar recuperar los Postulantes.');
       });
     };
+
 
     $scope.cargarPostulantes();
 
