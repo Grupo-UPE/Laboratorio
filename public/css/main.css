@@ -154,10 +154,9 @@
 
 nav {    
   display: none;
-
+}
 nav {
   display: block;
-
   text-align: left;
 }
 nav ul {

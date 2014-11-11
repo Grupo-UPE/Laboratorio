@@ -15,6 +15,11 @@ var rrhh = new Rol({
     puntos_de_menu: [{}],
 });
 rrhh.save();
+var entrevistador = new Rol({
+    nombre        :   'entrevistador',
+    puntos_de_menu: [{}],
+});
+entrevistador.save();
 */
 
 exports.list = function (req, res, next) {

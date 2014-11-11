@@ -21,17 +21,16 @@
         </div-->
 <div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div class="panel-heading">
-            <h3 class="panel-title">Editar Estado de la busqueda: {{bsq.nombre}}</h3>
+            <h3 class="panel-title">Editar Estado de la busqueda: {{busqueda.nombre}}</h3>
     </div>
-    <div class="panel-body">
-        <form action="" ng-submit="guardar()" method="POST" class="form-horizontal" role="form">
+    <div class="panel-body" >
+        <form action="" ng-submit="guardar()"  method="POST" class="form-horizontal" role="form">
             <div class="form-group col-sm-5 col-md-5 col-lg-5">
-                <legend>Estado de la Busqueda</legend>
-                    <input type="hidden" name="_id" id="_id" class="form-control" value="{{bsq._id}}" ng-model="bsq._id">
-                    <label for="nombre">Nombre de la busqueda</label>
-                    <span type="text" class="form-control" id="nombre" placeholder="Nombre de la busqueda" ng-model="bsq.nombre" value="{{bsq.nombre}}"></span> 
+                <legend>Estado de la Busqueda {{busqueda.nombre}}</legend>
+                    <input type="hidden" name="_id" id="_id" class="form-control" value="{{busqueda._id}}" ng-model="busqueda._id">
+                    
                     <label for="estado">Estado</label>
-                    <input type="estado" class="form-control" id="estado" placeholder="Abierta-Cerrada-Suspendida-Cancelada" ng-model="bsq.estado" required>
+                    <input  class="form-control" id="estado" placeholder="Abierta-Cerrada-Suspendida-Cancelada" ng-model="bsq.estado" required>
 
             </div>
             <div class="col-sm-1 col-md-1 col-lg-1">
@@ -39,7 +38,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-10 col-sm-offset-2">
-                    <button type="submit" class="btn btn-primary">Modificar Estado</button>
+                    <button type="submit" ng-click="guardar()" class="btn btn-primary">Modificar Estado</button>
                 </div>
             </div>
         </form>

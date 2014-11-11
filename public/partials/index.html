@@ -1,13 +1,48 @@
-            {{profile}}
-            <h1>Pruebas</h1>
-
+            <h1>Pruebas</h1><input type="checkbox" ng-model="checked" ng-init="checked=false
+            " />
+<span ng-if="checked" class="animate-if">NG IF FUNCIONA?
+                    </span>
             <h2>TEXTOS</h2>
-                  <p ng-repeat="texto in listatextos">
-                        {{texto.texto}}
-                        <br />
-                        <a href="/#/editar/{{texto._id}}" class="btn btn-small">Editar</a>
-                        <button type="button"   ng-click="eliminar(texto._id)" class="btn btn-small">Eliminar</button>
-                    </p>
+                        
+ <h2>------------------------------</h2><br/>
+      Show when checked:
+      <span ng-if="checked" class="animate-if">
+        This is removed when the checkbox is unchecked.
+      </span>
+
+                <div ng-repeat="usr in listaUsuarios">
+                    
+                <div ng-if="usr.roles == entrevistador">  
+                    <h2>{{usr.roles}}</h2>
+                      //differnt template with hoot data {{usr.roles}}
+                   </div>
+                  <div ng-if="usr.roles == rrhh">
+                    <h2>{{usr.roles}}</h2>
+                      //differnt template with story data
+                   </div>
+                   <div ng-if="usr.roles== entrevistador">
+                    <h2>{{usr.roles}}</h2>
+                      //differnt template with article data
+                   </div> 
+                
+               </div>
+               
+                             
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>------------------------------</h2>
                 <h3>Publicar un nuevo texto</h3>
                 <form>
                     <textarea ng-model="txt">
