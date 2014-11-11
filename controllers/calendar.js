@@ -39,6 +39,7 @@ exports.create = function(req, res){
                     return next(err)
                 }
 
+                console.log("Guardo entrevista");
             var sumario="Busqueda: "+req.body.busqueda.nombre+", Postulante: "+req.body.postulante.nombre+", Entrevistador: "+entrevista.entrevistador.username+" id entrevista: "+ent.id;
             //vista en https://developers.google.com/google-apps/calendar/v3/reference/events#resource
             //Ver https://developers.google.com/google-apps/calendar/v3/reference/events/insert
@@ -77,6 +78,7 @@ exports.create = function(req, res){
                 if(err){
                     console.log(err);
                 }
+                console.log("paso por aca");
                 /*Esto es lo que me devuelve... Una vez que estoy con
                 estos datos deberia actualizar el modelo con el id del evento en el calendar.
                 Tambien podria poner el link.
