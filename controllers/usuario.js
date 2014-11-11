@@ -24,7 +24,7 @@ Usuario.acceder('pabloz18ezeiza@gmail.com',function(err,usuario,motivo){
 
 exports.estaLogueado=function(req, res) {
     if(typeof req.session.tokens != 'undefined'){
-        return res.json(true);
+        return res.json(req.session.usuario);
     }else{
         res.writeHead(401, {
         "Content-Type": "text/plain"

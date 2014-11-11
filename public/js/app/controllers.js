@@ -51,7 +51,7 @@ app.controller('EditarController', ['$scope', '$rootScope', '$cookieStore', '$lo
 //Control principal del logueo.
 app.controller('ApplicationController', function ($scope,
                                                Session,estaLogueado) {
-    $scope.currentUser=estaLogueado.query();
+    $scope.usuario=estaLogueado.query();
 
 })
 

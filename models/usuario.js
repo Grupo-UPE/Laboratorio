@@ -39,7 +39,7 @@ usuario_schema.statics.acceder = function(email, cb) {
         if(err) throw err;
         if(!usuario) return cb(null,null,"no existe un usuario con ese email");
         return cb(null,usuario,null);
-        }).populate('roles');
+        }).populate('rol');
     }
 
 module.exports = mongoose.model('Usuario', usuario_schema); //Exportamos el modelo y no solo el schema.
