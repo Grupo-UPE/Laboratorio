@@ -304,3 +304,9 @@ services.factory('bpostuService', function ($resource) {
         query: { method: 'GET' , params: {}, isArray: true },
     });
 });
+
+services.factory('entrevistasUsuario', function ($resource) {
+    return $resource('/REST/entrevistasUsuario', {}, {
+        query: { method: 'GET' , params: {}, isArray: true },
+    });
+});

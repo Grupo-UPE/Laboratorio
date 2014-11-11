@@ -96,6 +96,7 @@ app.post('/REST/create-postulante', postulante.create);
 
 //carga de archivo
 app.post('/upload', postulante.upload);
+app.post('/uploadImage', postulante.uploadImage);
 
 //envio de mails
 app.get('/send',mail.send);
@@ -150,6 +151,9 @@ app.get('/oauth2callback', login.callback)
 app.post('/REST/create-entrevista', calendar.create)
 app.get('/entrevista', calendar.show)
 app.get('/REST/entrevistas', entrevista.listarEntrevistas)
+app.get('/REST/entrevistasUsuario', entrevista.listarEntrevistasUsuario)
+//app.get('/REST/entrevistasSinFeedbackUsuario', entrevista.listarEntrevistasSinFeedbackUsuario)
+
 
 //Install
 app.get('/install',install.install)

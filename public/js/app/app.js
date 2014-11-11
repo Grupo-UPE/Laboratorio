@@ -6,8 +6,8 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
     'ngdemo.controllers.usuarios','ngdemo.controllers.habilidades','ngdemo.controllers.entrevistas',
     'ui.bootstrap.dropdown', 'ui.bootstrap.modal','ngdemo.controllers.login',
     'ui.bootstrap.transition','ui.bootstrap.datepicker','ui.bootstrap.position','ui.bootstrap.tabs','ngTagsInput','ui.bootstrap','ui.bootstrap.tpls',]).
-    config(['$locationProvider', '$httpProvider','USER_ROLES','$routeProvider',
-        function ($locationProvider,$httpProvider,USER_ROLES,$routeProvider) {
+    config(['$locationProvider', '$httpProvider','$routeProvider',
+        function ($locationProvider,$httpProvider,$routeProvider) {
             //Rutas del index y de pruebas
             $routeProvider.when('/',
                 {
@@ -133,6 +133,13 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
 
+             $routeProvider.when('/busquedabis',
+                {
+                    templateUrl: 'partials/busquedaBis-list.html',
+                    controller: 'busquedaBisCTRL',
+                    permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                });
+
               $routeProvider.when('/detalleBusqueda/:idBusqueda',
                 {
                     templateUrl: 'partials/detalleBusqueda.html',
@@ -164,10 +171,10 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
             debounceDelay: 100,
             minLength: 1,
             highlightMatchedText: true,
-            loadOnDownArrow: true,     
-                        
+            loadOnDownArrow: true,
+
         })
-    
+
 })
 
     .run(function($rootScope, $cookieStore, $http, $location, $modal, AuthService,controlAcceso) {

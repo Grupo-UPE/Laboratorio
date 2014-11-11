@@ -15,20 +15,12 @@ app.run(function ($rootScope, $templateCache) {
 
 
 app.controller('IndexController', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-    'textoservice','textoserviceid','textoremove','textocreate','USER_ROLES','controlAcceso','google',
+    'textoservice','textoserviceid','textoremove','textocreate','controlAcceso','google',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    textoservice,textoserviceid,textoremove,textocreate,USER_ROLES,controlAcceso,google) {
+                                    textoservice,textoserviceid,textoremove,textocreate,controlAcceso,google) {
                                     //Prueba de googleapis
                                     $scope.profile=google.query();
-            /*var roles=[USER_ROLES.admin,USER_ROLES.rhh]
-              if($scope.currentUser===null){
-                $location.path('/login');
-            }else{
-                if(!controlAcceso.puedeAcceder($scope.currentUser,roles)){
-                    $location.path('/');
-                }
-            }
-    */
+
             $scope.listatextos=textoservice.query();
             $scope.guardar = function () {
                 textocreate.create({texto: $scope.txt});
@@ -43,19 +35,9 @@ app.controller('IndexController', ['$scope', '$rootScope', '$cookieStore', '$loc
 }]);
 
 app.controller('EditarController', ['$scope', '$rootScope', '$cookieStore', '$location', '$http','$routeParams',
-    'textoserviceid','USER_ROLES','controlAcceso',
+    'textoserviceid','controlAcceso',
                                    function($scope, $rootScope, $cookieStore, $location, $http,$routeParams,
-                                    textoserviceid,USER_ROLES,controlAcceso) {
-           /* var roles=[USER_ROLES.admin];
-            $scope.roles=[USER_ROLES.admin];
-           if($scope.currentUser===null){
-                $location.path('/login');
-            }else{
-                if(!controlAcceso.puedeAcceder($scope.currentUser,roles)){
-                    $location.path('/');
-                }
-            }
-            */
+                                    textoserviceid,controlAcceso) {
 
             $scope.txt=textoserviceid.show({id: $routeParams.textoId});
             $scope.guardar = function () {
@@ -66,19 +48,10 @@ app.controller('EditarController', ['$scope', '$rootScope', '$cookieStore', '$lo
             }
 }]);
 
-app.constant('USER_ROLES', {
-  all: '*',
-  admin: 'admin',
-  rrhh: 'rrhh',
-  entrevistador: 'entrevistador',
-  invitado:'invitado'
-});
-
 //Control principal del logueo.
 app.controller('ApplicationController', function ($scope,
-                                               USER_ROLES,
-                                               AuthService,Session,estaLogueado) {
-    $scope.currentUser=estaLogueado.query();
+                                               Session,estaLogueado) {
+    $scope.usuario=estaLogueado.query();
 
 })
 
@@ -170,7 +143,7 @@ $scope.enviar = function() {
                 //do something about the error
             }
         });
-    
+
     console.log($scope.to);
     console.log($scope);
 };
@@ -180,17 +153,17 @@ $scope.enviar = function() {
 app.controller('bpostuCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http', 'bpostuService', 'postulanteRemoveService','$route',function ($scope, $rootScope, $cookieStore, $location, $http,
                                     bpostuService,postulanteRemoveService, $route) {
 
-       $scope.eliminar = function (idpostulante) 
+       $scope.eliminar = function (idpostulante)
        {
            postulanteRemoveService.remove({ id: idpostulante })
 
        }
-       
+
        $scope.buscar = function () {
-       	        	
+
        		$scope.bpostulist = bpostuService.query();
 		}
-       
 
-            
+
+
   }]);

@@ -24,7 +24,7 @@ Usuario.acceder('pabloz18ezeiza@gmail.com',function(err,usuario,motivo){
 
 exports.estaLogueado=function(req, res) {
     if(typeof req.session.tokens != 'undefined'){
-        return res.json(true);
+        return res.json(req.session.usuario);
     }else{
         res.writeHead(401, {
         "Content-Type": "text/plain"
@@ -49,17 +49,12 @@ exports.create = function (req, res, next) {
     //Las verificaciones de los requeridos la hariamos desde angular.... por ahora.
     var email=req.body.usuario.email;
     var username=req.body.usuario.username;
-    var rolesid=[];
-    //console.log(usr.roles);
-    var arr = [];
-    for (var id in req.body.usuario.roles) {
-        arr.push(req.body.usuario.roles[id]["_id"]);
-    }
+    var rol=req.body.usuario.rol["_id"]
 
     var usuario=new Usuario({
         email:email,
         username:username,
-        roles:arr,
+        rol:rol,
     });
 
     usuario.save(onSaved)
@@ -75,7 +70,7 @@ exports.create = function (req, res, next) {
 
 exports.list = function (req, res, next) {
 
-    Usuario.find(gotUsuarios).populate('roles')
+    Usuario.find(gotUsuarios).populate('rol')
 
   function gotUsuarios (err, usuarios) {
     if (err) {
@@ -107,7 +102,7 @@ exports.show = function (req, res, next) {
                 _id:usuario._id,
                 username:usuario.username,
                 email:usuario.email,
-                roles:usuario.roles,
+                rol:usuario.rol,
             }
     return res.json(usuariodto)
   }
@@ -139,17 +134,10 @@ exports.update = function (req, res, next) {
     //console.log(id);
     var username=req.body.usuario.username;
     var email=req.body.usuario.email;
-    var roles=req.body.usuario.roles;
+    var rol=req.body.usuario.rol['_id'];
     var _id=mongoose.Types.ObjectId(req.body.usuario._id);
 
-    //console.log(usr.roles);
-    var arr = [];
-    for (var id in roles) {
-        arr.push(roles[id]["_id"]);
-    }
-
-
-  if ((email=== '')) {
+   if ((email=== '')) {
     return res.send({'error':'Debe escribir algo'})
   }
 
@@ -164,7 +152,7 @@ exports.update = function (req, res, next) {
         } else {
             usuario.username=username;
             usuario.email=email;
-            usuario.roles=arr;
+            usuario.rol=rol;
             usuario.save(onSaved)
         }
     }
@@ -195,3 +183,13 @@ exports.queri = function (req, res, next) {
   }
 
 }
+/*
+db.entrevistas.update(
+    { "_id" : ObjectId("545bd4bf72c1ff0c34f74617") },
+    {
+      $set: {
+        feedback:"aaaaaaaaaaa"
+      }
+    }
+)
+*/
