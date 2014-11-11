@@ -195,7 +195,7 @@ exports.queri = function (req, res, next) {
   }
 
 }
-
+/*
 db.entrevistas.update(
     { "_id" : ObjectId("545bd4bf72c1ff0c34f74617") },
     {
@@ -204,3 +204,4 @@ db.entrevistas.update(
       }
     }
 )
+*/
