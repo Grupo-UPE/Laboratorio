@@ -33,8 +33,8 @@ exports.estaLogueado=function(req, res) {
     }
 }
 
-  exports.login = function (email,callback) {
-Usuario.acceder(email, function(err, usuario, motivo) {
+exports.login = function (email,callback) {
+    Usuario.acceder(email, function(err, usuario, motivo) {
         if (err) throw err;
         if (usuario) {
             console.log("Retornando usuario");
@@ -49,7 +49,7 @@ exports.create = function (req, res, next) {
     //Las verificaciones de los requeridos la hariamos desde angular.... por ahora.
     var email=req.body.usuario.email;
     var username=req.body.usuario.username;
-    var rol=req.body.usuario.rol["_id"]
+    var rol=req.body.usuario.rol["_id"];
 
     var usuario=new Usuario({
         email:email,
@@ -175,14 +175,14 @@ exports.queri = function (req, res, next) {
   function gotUsuarios (err, usuarios) {
     console.log(usuarios);
     if (err) {
-      console.log(err)
-      return next()
+        console.log(err)
+        return next()
     }
 
     return res.json(usuarios);
-  }
-
+    }
 }
+
 /*
 db.entrevistas.update(
     { "_id" : ObjectId("545bd4bf72c1ff0c34f74617") },

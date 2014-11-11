@@ -126,9 +126,6 @@ app.controller('busquedaBisCTRL', ['$scope', '$rootScope', '$cookieStore', '$loc
 
             $scope.listaBusquedasState=busquedaServiceState.query({estado: 'Abierta'});
 
-
-            //$scope.bsq = busquedaShowUpdateService.show({ estado: $scope.estado ,id: $routeParams.busquedaId });
-
             $scope.buscarPostulantes=function(habilidades){
                 posiblesPostulantes.query({habilidades:habilidades});
             }

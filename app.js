@@ -171,7 +171,7 @@ app.get('/REST/algo', function(req, res) {
 });
 
 //Login
-app.get('/REST/estaLogueado', usuario.estaLogueado);
+app.get('/REST/estaLogueado', usuario.estaLogueado)
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
