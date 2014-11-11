@@ -13,11 +13,11 @@
                         <div class="col-sm-10">
                         <button type="submit" class="btn btn-primary">Guardar</button><span>  </span>
                     </div>
-               
+
                     </form>
-                    
+
                 </div>
-            
+
         </div-->
 <div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div class="panel-heading">
@@ -27,8 +27,6 @@
         <form action="" ng-submit="guardar()"  method="POST" class="form-horizontal" role="form">
             <div class="form-group col-sm-5 col-md-5 col-lg-5">
                 <legend>Estado de la Busqueda {{busqueda.nombre}}</legend>
-                    <input type="hidden" name="_id" id="_id" class="form-control" value="{{busqueda._id}}" ng-model="busqueda._id">
-                    
                     <label for="estado">Estado</label>
                     <input  class="form-control" id="estado" placeholder="Abierta-Cerrada-Suspendida-Cancelada" ng-model="bsq.estado" required>
 

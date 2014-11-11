@@ -67,6 +67,12 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                     permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
 
+            $routeProvider.when('/subirCV/:id',
+                {
+                    templateUrl: 'partials/subirCV.html',
+                    controller: 'postulanteCtrlCV',
+                });
+
 	//Rutas para manejar busquedas
 
 	    $routeProvider.when('/createbusquedas',

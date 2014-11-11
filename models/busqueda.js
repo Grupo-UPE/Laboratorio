@@ -6,7 +6,7 @@ var busqueda_schema = new Schema({
     fecha_fin           :{type : Date,  default: Date.now},
     cantidad_empleados  : Number,
     nombre              : String,
-    estado              :{type: String, enum:['Abierta','Cerrada','Suspendida','Cerrada']},
+    estado              :{type: String, enum:['Abierta','Cerrada','Suspendida','Cancelada']},
     remuneracion        : Number,
     habilidades         : [{type: Schema.ObjectId, ref : 'Habilidad'}],
     entrevistadores     : [{type: Schema.ObjectId, ref : 'Usuario'}],

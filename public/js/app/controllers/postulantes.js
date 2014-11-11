@@ -12,7 +12,7 @@ app.controller('postulanteCtrlCV', ['$scope', '$route', '$http', 'postulanteRemo
 
     /* CARGAMOS LOS POSTULANTES EN LA TABLA*/
 
-    
+
     $scope.listaPostulantes = [];
     $scope.nombre='';
     $scope.apellido='';
@@ -85,10 +85,9 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                        $scope.listaPostulantes = postulanteService.query();
 
                                        $scope.guardar = function () {
-
-                                           var postulante = postulanteCreateService.create({ postulante: $scope.postulante });
-                                           $route.reload();
-
+                                                var postulante=postulanteCreateService.create({ postulante: $scope.postulante },function(){
+                                                    $location.path('/subirCV/'+postulante._id);
+                                                });
                                        }
 
                                        $scope.loadTags = function (query) { //Podriamos usar un service tambien. Pero como es bastante sencillo no se si nos conviene.

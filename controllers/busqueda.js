@@ -121,24 +121,18 @@ exports.remove = function (req, res, next) {
 }
 
 exports.update = function (req, res, next) {
-    console.log(req.params.busqueda);
     var mongoose=require('mongoose');
-    var id = mongoose.Types.ObjectId(req.body.busqueda._id);
-    var estados=req.body.busqueda.estado;
-    var _id=mongoose.Types.ObjectId(req.body.busqueda._id);
-
-    //console.log(usr.roles);
-    var arr = [];
-    for (var id in estados) {
-        arr.push(estados[id]["_id"]);
-    }
+    console.log(req.body);
+    var id = mongoose.Types.ObjectId(req.body.id);
+    var estado=req.body.bsq.estado;
 
 
-  if ((estados=== '')) {
+
+  if ((estado=== '')) {
     return res.send({'error':'Debe escribir algo'})
   }
 
-    Busqueda.findById(_id, gotBusqueda);
+    Busqueda.findById(id, gotBusqueda);
 
     function gotBusqueda (err, busqueda) {
         if (err) {
@@ -148,7 +142,7 @@ exports.update = function (req, res, next) {
             return res.send({'error':'ID invalido'})
         } else {
 
-            busqueda.estado=arr;
+            busqueda.estado=estado;
             busqueda.save(onSaved)
         }
     }
