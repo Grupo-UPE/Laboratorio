@@ -1,12 +1,10 @@
-
-            {{usuario}}
-            <div class="row">
-
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 panel panel-success">
+        <div class="row col-xs-12 col-sm-6 col-md-6 col-lg-6 ">
+            <div class="panel panel-success">
                   <div class="panel-heading">
                         <h3 class="panel-title">Entrevistas</h3>
                   </div>
                   <div class="panel-body">
+                            Datos del usuario logueado, solo para ver, {{usuario}}
                         <div ng-include="'partials/listaEntrevistasUsuario.html'"  ng-if="usuario.rol.nombre=='entrevistador'||usuario.rol.nombre=='admin'"></div>
                         <div ng-include="'partials/listaEntrevistasUsuario.html'" ng-if="usuario.rol.nombre=='rrhh'||usuario.rol.nombre=='admin'">
                         </div>
@@ -14,8 +12,24 @@
                         </div>
                 </div>
             </div>
+        </div>
+        <div class="row col-xs-12 col-sm-6 col-md-6 col-lg-6 ">
+            <div class="panel panel-success">
+                  <div class="panel-heading">
+                        <h3 class="panel-title">Busquedas</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="panel panel-default" ng-if="usuario.rol.nombre=='rrhh'||usuario.rol.nombre=='admin'">
+                          <div class="panel-heading">
+                                <h3 class="panel-title">Busquedas activas</h3>
+                          </div>
+                          <div class="panel-body">
+                                <div ng-include="'partials/busquedaBis-list.html'" ng-controller="busquedaBisCTRL">
+                                </div>
+                          </div>
+                    </div>
 
-                <a class="twitter-timeline" href="https://twitter.com/LaboratoriosUPE" data-widget-id="531956561145380864">Tweets por @LaboratoriosUPE</a>
+                         <a class="twitter-timeline" href="https://twitter.com/LaboratoriosUPE" data-widget-id="531956561145380864">Tweets por @LaboratoriosUPE</a>
                 <script>
                     !function(d,s,id){
                         var js,fjs=d.getElementsByTagName(s)[0],
@@ -24,8 +38,9 @@
                                 fjs.parentNode.insertBefore(js,fjs);}
                             }(document,"script","twitter-wjs");
                 </script>
+                  </div>
             </div>
-            </div>
+        </div>
 
 
 

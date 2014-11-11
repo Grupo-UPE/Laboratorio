@@ -133,6 +133,13 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
 
+             $routeProvider.when('/busquedabis',
+                {
+                    templateUrl: 'partials/busquedaBis-list.html',
+                    controller: 'busquedaBisCTRL',
+                    permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                });
+
               $routeProvider.when('/detalleBusqueda/:idBusqueda',
                 {
                     templateUrl: 'partials/detalleBusqueda.html',

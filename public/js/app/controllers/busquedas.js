@@ -50,15 +50,15 @@ app.controller('busquedaListCTRL', ['$scope', '$rootScope', '$cookieStore', '$lo
             $scope.guardar = function () {
              busquedaShowUpdateService.update({ busqueda: $scope.busqueda});
              //$route.reload();
-            
+
            }
             $scope.eliminar=function(idbusqueda){
 
                 busquedaRemove.remove({id:idbusqueda})
                 $scope.listaBusquedas=busquedaService.query();
             }
-            
-        
+
+
 
 
 }]);
@@ -115,12 +115,49 @@ app.controller('busquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$locati
               console.log('Modal dismissed at: ' + new Date());
             });
           };
+}]);
+
+app.controller('busquedaBisCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        'busquedaService','$route','busquedaRemove','busquedaShowUpdateService','$routeParams','posiblesPostulantes',
+                        '$modal','busquedaServiceState',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,
+                                    busquedaService,$route,busquedaRemove,busquedaShowUpdateService,$routeParams,posiblesPostulantes,
+                                    $modal,busquedaServiceState) {
+
+            $scope.listaBusquedasState=busquedaServiceState.query({estado: 'Abierta'});
 
 
+            //$scope.bsq = busquedaShowUpdateService.show({ estado: $scope.estado ,id: $routeParams.busquedaId });
 
+            $scope.buscarPostulantes=function(habilidades){
+                posiblesPostulantes.query({habilidades:habilidades});
+            }
 
+        $scope.detalle=function(idbusqueda){ //La idea era usar esto pero por algun motivo me manda al index...
+            $location.path('/detalleBusqueda/'+idbusqueda);
+        }
 
+        //Modal para ver los posibles postulantes.
+        $scope.openModal = function (size,busqueda) {
+                $scope.busqueda=busqueda;
 
+            var modal = $modal.open({
+              templateUrl: '/partials/modalPosibles.html',
+              controller: 'modalPosiblesCTRL',
+              size: size,
+              resolve: {
+                busqueda:function(){
+                    return busqueda;
+                }
+              }
+            });
+
+            modal.result.then(function (selectedItem) {
+              console.log('modal cerrado');
+            }, function () {
+              console.log('Modal dismissed at: ' + new Date());
+            });
+          };
 }]);
 
 app.controller('detalleBusquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
