@@ -5,7 +5,7 @@
             <tr>
                 <th>Usuario</th>
                 <th>E-Mail</th>
-                <th>Roles</th>
+                <th>Rol</th>
                 <th>Editar</th>
             </tr>
         </thead>
@@ -13,7 +13,7 @@
             <tr ng-repeat="usr in listaUsuarios|filter:filtro">
                 <td>{{usr.username}}</td>
                 <td>{{usr.email}}</td>
-                <td>{{usr.roles}}</td>
+                <td>{{usr.rol.nombre}}</td>
                 <td><a href="/#/usuarios/{{usr._id}}" class="btn btn-default">Editar</a>
             </tr>
         </tbody>
@@ -40,8 +40,8 @@
             </div>
             <div class="form-group col-sm-5 col-md-5 col-lg-5">
                     <legend>Rol</legend>
-                    <label for="roles">Roles</label><br />
-                    <select  size="5" id="roles" multiple ng-multiple="true" ng-model="usuario.roles" ng-options="r.nombre for r in listaRoles"  class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></select>
+                    <label for="rol">Rol</label><br />
+                    <select  size="5" id="rol" ng-model="usuario.rol" ng-options="r.nombre for r in listaRoles"  class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></select>
             </div>
             <div class="form-group">
                 <div class="col-sm-10 col-sm-offset-2">

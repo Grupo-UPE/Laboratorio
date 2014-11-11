@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 var usuario_schema = new Schema({
     email   : { type: String, required: true,lowercase:true, index: { unique: true } },
     username          :   String,
-    roles                   :  [{type: Schema.ObjectId, ref : 'Rol'}],
+    rol                   :  {type: Schema.ObjectId, ref : 'Rol'},
 });
 
 /* No usamos contraseñas
