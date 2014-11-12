@@ -20,7 +20,7 @@ var postulante_schema = new Schema({
         [{habilidad: {type: Schema.ObjectId, ref : 'Habilidad'},Evaluacion:Number}]
     ,
     curriculumURL : String,
-    fotoUrl : String
+    fotoUrl : Boolean
 });
 
 module.exports = mongoose.model('Postulante', postulante_schema);

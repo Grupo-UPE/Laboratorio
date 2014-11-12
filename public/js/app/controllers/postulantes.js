@@ -79,24 +79,36 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                    function ($scope, $rootScope, $cookieStore, $location, $http,
                                     postulanteService, postulanteShowUpdateService, postulanteCreateService, postulanteRemoveService, $route) {
 
+                                       $scope.showModal_cv = false;
+
                                        $scope.eliminar = function (idpostulante) {
                                            postulanteRemoveService.remove({ id: idpostulante })
                                            $scope.listaPostulantes = postulanteService.query();
                                        }
 
                                        $scope.listaPostulantes = postulanteService.query();
+                                       
+                                       $scope.guardar = function(){
+                                          var postulante=postulanteCreateService.create({ postulante: $scope.postulante }, function(){
+                                             $scope.postulant = postulanteShowUpdateService.show({ id: postulante._id });
+                                          });
 
-                                       $scope.guardar = function () {
-                                                var postulante=postulanteCreateService.create({ postulante: $scope.postulante },function(){
-                                                    $location.path('/subirCV/'+postulante._id);
-                                                });
+                                          $scope.showModal_cv = true;
                                        }
 
                                        $scope.loadTags = function (query) { //Podriamos usar un service tambien. Pero como es bastante sencillo no se si nos conviene.
                                            return $http.get('/REST/tags/' + query);
                                        }
 
+                                       $scope.isUploadingCV = function(){
+                                          $scope.showModal_cv = false;
+                                          $route.reload();
+                                       }
 
+                                      $scope.modalCV = function(postID){
+                                        $scope.showModal_cv = true;
+                                        $scope.postulant = postulanteShowUpdateService.show({ id: postulante._id });
+                                      }
                                       $scope.showModal = false;
                                       $scope.cerrar = function () {
                                       $scope.showModal = false;
@@ -104,7 +116,6 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                 }
                                 $scope.toggleModal = function (postID) {
                                     $scope.showModal = true;
-
                                     $scope.postulant = postulanteShowUpdateService.show({ id: postID });
                                     
                                 };

@@ -48,8 +48,9 @@
     </table>
 </div>
     
-    <modal title="Informacion del Postulante" visible="showModal">
-        <form  ng-upload="bar(content)" method="post" enctype='multipart/form-data' action="/uploadDoc?delay=yes" ng-submit="isUploading(post._id)">
+    <modal title="¿Cargar Curriculum?" visible="showModal_cv">
+        <h3>¿Cargar Curriculum?</h3>
+        <form  ng-upload="bar(content)" method="post" enctype='multipart/form-data' action="/uploadDoc?delay=yes" ng-submit="isUploadingCV(post._id)">
 <div>
                 <div class="form-group">
                     <div class="fileupload fileupload-new" data-provides="fileupload">
@@ -60,22 +61,17 @@
                     </div>
                 </div>
                 </div>
-                <a href="{{postulant.curriculumURL}}" class="btn btn-primary btn-xs">
-                        <span class="glyphicon glyphicon-paperclip"></span>Ver Curriculim
-                </a>
                 <input type="hidden" name="postulant._id" ng-value="postulant._id">
-                <input type="hidden" name="postulant.dni" ng-value="postulant.dni">
                 <input type="submit"class="btn btn-danger" ng-disabled="$isUploading" value="Cargar Curriculum">
-
         </form>
     </modal>
 
-    <modal title="Informacion del Postulante" visible="showModal2">
+
+
+    <modal title="Informacion del Postulante" visible="showModal">
            <h1>{{postulant.nombre}} {{postulant.apellido}}</h1>
            <hr>
            <div class="modal-body">
-           
-           
            
            <form  ng-upload="bar(content)" method="post" enctype='multipart/form-data' action="/uploadImage?delay=yes" ng-submit="isUploading(post._id)">
                 <div>
@@ -92,8 +88,14 @@
                 <input type="hidden" name="postulant.dni" ng-value="postulant.dni">
                 <input type="submit"class="btn btn-danger" ng-disabled="$isUploading" value="Cargar Foto">
            </form>
-        
-           <img src="{{postulant.fotoUrl}}" alt="FOTO POSTULANTE" class="img-thumbnail">
+           <label for="">variable: {{postulant._id}}</label>
+           
+            <div ng-if="postulant.fotoUrl === true">
+                <img src="../uploads/fotos/{{postulant._id}}" alt="FOTO POSTULANTE" class="img-thumbnail">
+            </div>
+           <div ng-if="postulant.fotoUrl == false">
+               <img src="../uploads/fotos/sin_foto.jpg" alt="Postulante sin foto">
+           </div>
            <hr>
            <div>
                <ul>Nacionalidad: {{postulant.nacionalidad}}</ul>
@@ -102,9 +104,20 @@
                <ul>Telefono: {{postulant.telefono}}</ul>
                <ul>Disponibilidad: {{postulant.disponibilidad}}</ul>
                <ul>DNI: {{postulant.dni}}</ul>
-                <a href="{{postulant.curriculumURL}}" class="btn btn-primary btn-xs">
+              
+            
+                                          
+               <div ng-if="postulant.curriculumURL != instead">
+                   <a href="{{postulant.curriculumURL}}" class="btn btn-primary btn-xs">
                         <span class="glyphicon glyphicon-paperclip"></span>Ver Curriculim
-                </a>
+                    </a>
+               </div>
+               <div ng-if="postulant.curriculumURL === instead" class="form-group">
+                   <label for="" class="help-block text-danger">Sin Curricumul</label>
+                   <button class="btn btn-primary btn-xs" ng-click="modalCV(postulant._id)">¿Cargar?</button>
+               </div>
+
+                
 
                
            </div>

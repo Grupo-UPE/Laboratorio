@@ -70,7 +70,7 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
             $routeProvider.when('/subirCV/:id',
                 {
                     templateUrl: 'partials/subirCV.html',
-                    controller: 'postulanteCtrlCV',
+                    controller: 'postulanteCTRL',
                 });
 
 	//Rutas para manejar busquedas

@@ -34,6 +34,7 @@ exports.create = function (req, res, next) {
         disponibilidad: disponibilidad,
         comentario: comentario,
         habilidades : habilidades,
+        fotoUrl : false
 
     });
 
@@ -90,7 +91,7 @@ exports.show = function (req, res, next) {
                 disponibilidad      : postulante.disponibilidad,
                 comentario          : postulante.comentario,
                 habilidades         : postulante.habilidades,
-                fotoUrl             : "../uploads/fotos/" + postulante.dni,
+                fotoUrl             : postulante.fotoUrl,
                 curriculumURL       : postulante.curriculumURL
 
 
@@ -406,7 +407,7 @@ exports.uploadImage = function(req, res, next){
     else{
         if(tipo=='image/png' || tipo=='image/jpg' || tipo=='image/jpeg' ){
             var path_tmp_foto = req.files.foto.path;
-            var newPath_foto = '../public/uploads/fotos/' + dni;
+            var newPath_foto = '../public/uploads/fotos/' + id;
             is = fs.createReadStream(path_tmp_foto)
             os = fs.createWriteStream(newPath_foto)
             is.pipe(os)
@@ -426,7 +427,7 @@ exports.uploadImage = function(req, res, next){
                  }
 
                 else {
-                    postulante.fotoUrl = newPath_foto;
+                    postulante.fotoUrl = true;
                     postulante.save(onSaved)
                 }
             }
@@ -505,6 +506,10 @@ exports.uploadDoc = function(req,res,next){
                                     
                 }
 }}};
+
+exports.prueba = function(req, res, next){
+    console.log(req.params);
+}
 
 exports.busca=function(res,req,next){
 console.log("agregar");

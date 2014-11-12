@@ -98,6 +98,7 @@ app.post('/REST/create-postulante', postulante.create);
 app.post('/upload', postulante.upload);
 app.post('/uploadImage', postulante.uploadImage);
 app.post('/uploadDoc', postulante.uploadDoc);
+app.post('/prueba', postulante.prueba);
 
 //envio de mails
 app.get('/send',mail.send);
