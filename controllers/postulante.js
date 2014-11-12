@@ -45,8 +45,8 @@ exports.create = function (req, res, next) {
             console.log(err)
             return next(err)
         }
+        return res.send("");
     }
-    return res.send(postulante);
 
 };
 
@@ -132,7 +132,7 @@ exports.update = function (req, res, next) {
         if (err) {
             return next(err)
         }
-
+        
         if (!postulante) {
             return res.send({ 'error': 'ID invalido' })
         }
@@ -226,7 +226,7 @@ exports.upload = function (req, res, next) {
     }
     else{
 
-
+        
 
     /* -------  CARGA DE LA FOTO  --------------*/
     tipo=req.files.foto.type;
@@ -262,7 +262,7 @@ exports.upload = function (req, res, next) {
         habilidades.push(req.body.postulante.habilidades[id]["_id"]);
     }*/
 
-
+ 
 
 
     var postulante = new Postulante({
@@ -281,7 +281,7 @@ exports.upload = function (req, res, next) {
         curriculumURL : newPath_cv,
         fotoUrl : newPath_foto
         });
-
+  
 
     /** CARGA CV */
     var path_tmp_cv = req.files.file.path;
@@ -308,7 +308,7 @@ exports.upload = function (req, res, next) {
             catch(err){
                 console.log(err);
             }
-
+            
             postulante.save(onSaved)
             fs.unlinkSync(path_tmp_cv);
         });
@@ -414,14 +414,14 @@ exports.uploadImage = function(req, res, next){
             is.on('end', function() {
                 fs.unlinkSync(path_tmp_foto)
             })
-
+            
             Postulante.findById(id, gotPostulante)
 
             function gotPostulante(err, postulante) {
                 if (err) {
                     return next(err)
                 }
-
+        
                 if (!postulante) {
                     return res.send({ 'error': 'ID invalido' })
                  }

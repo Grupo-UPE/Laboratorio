@@ -12,9 +12,6 @@ app.controller('postulanteCtrlCV', ['$scope', '$rootScope', '$routeParams', '$ro
 
     /* CARGAMOS LOS POSTULANTES EN LA TABLA*/
 
-    
-    
-
     $scope.listaPostulantes = [];
     $scope.nombre='';
     $scope.apellido='';
@@ -92,8 +89,6 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                           var postulante=postulanteCreateService.create({ postulante: $scope.postulante }, function(){
                                              $scope.postulant = postulanteShowUpdateService.show({ id: postulante._id });
                                           });
-
-                                          $scope.showModal_cv = true;
                                        }
 
                                        $scope.loadTags = function (query) { //Podriamos usar un service tambien. Pero como es bastante sencillo no se si nos conviene.
