@@ -34,6 +34,7 @@ exports.create = function (req, res, next) {
         disponibilidad: disponibilidad,
         comentario: comentario,
         habilidades : habilidades,
+        fotoUrl : false
 
     });
 
@@ -44,8 +45,8 @@ exports.create = function (req, res, next) {
             console.log(err)
             return next(err)
         }
+        return res.send("");
     }
-    return res.send(postulante);
 
 };
 
@@ -90,7 +91,7 @@ exports.show = function (req, res, next) {
                 disponibilidad      : postulante.disponibilidad,
                 comentario          : postulante.comentario,
                 habilidades         : postulante.habilidades,
-                fotoUrl             : "../uploads/fotos/" + postulante.dni,
+                fotoUrl             : postulante.fotoUrl,
                 curriculumURL       : postulante.curriculumURL
 
 
@@ -131,7 +132,7 @@ exports.update = function (req, res, next) {
         if (err) {
             return next(err)
         }
-
+        
         if (!postulante) {
             return res.send({ 'error': 'ID invalido' })
         }
@@ -225,7 +226,7 @@ exports.upload = function (req, res, next) {
     }
     else{
 
-
+        
 
     /* -------  CARGA DE LA FOTO  --------------*/
     tipo=req.files.foto.type;
@@ -261,7 +262,7 @@ exports.upload = function (req, res, next) {
         habilidades.push(req.body.postulante.habilidades[id]["_id"]);
     }*/
 
-
+ 
 
 
     var postulante = new Postulante({
@@ -280,7 +281,7 @@ exports.upload = function (req, res, next) {
         curriculumURL : newPath_cv,
         fotoUrl : newPath_foto
         });
-
+  
 
     /** CARGA CV */
     var path_tmp_cv = req.files.file.path;
@@ -307,7 +308,7 @@ exports.upload = function (req, res, next) {
             catch(err){
                 console.log(err);
             }
-
+            
             postulante.save(onSaved)
             fs.unlinkSync(path_tmp_cv);
         });
@@ -406,27 +407,27 @@ exports.uploadImage = function(req, res, next){
     else{
         if(tipo=='image/png' || tipo=='image/jpg' || tipo=='image/jpeg' ){
             var path_tmp_foto = req.files.foto.path;
-            var newPath_foto = '../public/uploads/fotos/' + dni;
+            var newPath_foto = '../public/uploads/fotos/' + id;
             is = fs.createReadStream(path_tmp_foto)
             os = fs.createWriteStream(newPath_foto)
             is.pipe(os)
             is.on('end', function() {
                 fs.unlinkSync(path_tmp_foto)
             })
-
+            
             Postulante.findById(id, gotPostulante)
 
             function gotPostulante(err, postulante) {
                 if (err) {
                     return next(err)
                 }
-
+        
                 if (!postulante) {
                     return res.send({ 'error': 'ID invalido' })
                  }
 
                 else {
-                    postulante.fotoUrl = newPath_foto;
+                    postulante.fotoUrl = true;
                     postulante.save(onSaved)
                 }
             }
@@ -447,6 +448,67 @@ exports.uploadImage = function(req, res, next){
         }
 
     }
+}
+
+exports.uploadDoc = function(req,res,next){
+    var id = req.param('postulant._id');
+    var dni = req.param('postulant.dni');
+    if (!req.files.file || req.files.file.size == 0) {
+      mensaje = 'No se pudo subir el archivo ' + new Date().toString();
+      res.send(mensaje);
+    }
+    else{
+        Postulante.findById(id, gotPostulante)
+            function gotPostulante(err, postulante) {
+                if (err) {
+                    return next(err)
+                }
+
+                if (!postulante) {
+                    return res.send({ 'error': 'ID invalido' })
+                 }
+                else {
+                    var path_tmp_cv = req.files.file.path;
+                    gapi.a.setCredentials(req.session.tokens);
+                    gapi.drive.files.insert({
+                      resource: {
+                        parents : [{id: '0B29paO-zxCaBZTVTZ0ZuMm00Y2M'}],
+                        title: req.files.file.name,
+                        mimeType: 'application/pdf'
+                      },
+                      media: {
+                        mimeType: 'application/pdf',
+                        body: fs.createReadStream(path_tmp_cv) // read streams are awesome!
+                      }, auth: gapi.a
+                    }, function(err, res){
+                        if(err){
+                            console.log(err);
+                        }
+
+                        try{
+                            postulante.curriculumURL = res.webContentLink;
+                        }
+                        catch(err){
+                            console.log(err);
+                        }
+
+                        postulante.save(onSaved);
+                        fs.unlinkSync(path_tmp_cv);
+                    });
+                       function onSaved(err) {
+                        if (err) {
+                            console.log(err)
+                            return next(err)
+                        }
+
+                        return res.send("");
+                        }
+                                    
+                }
+}}};
+
+exports.prueba = function(req, res, next){
+    console.log(req.params);
 }
 
 exports.busca=function(res,req,next){

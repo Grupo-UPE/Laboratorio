@@ -8,10 +8,9 @@ var app = angular.module('ngdemo.controllers.postulantes', []);
 
 
 
-app.controller('postulanteCtrlCV', ['$scope', '$route', '$http', 'postulanteRemoveService', 'postulanteShowUpdateService', function ($scope, $route, $http, postulanteRemoveService, postulanteShowUpdateService) {
+app.controller('postulanteCtrlCV', ['$scope', '$rootScope', '$routeParams', '$route', '$http', 'postulanteRemoveService', 'postulanteShowUpdateService', function ($scope, $route, $rootScope, $routeParams, $http, postulanteRemoveService, postulanteShowUpdateService) {
 
     /* CARGAMOS LOS POSTULANTES EN LA TABLA*/
-
 
     $scope.listaPostulantes = [];
     $scope.nombre='';
@@ -73,9 +72,11 @@ app.controller('postulanteCtrlCV', ['$scope', '$route', '$http', 'postulanteRemo
 //controllers Postulantes
 
 app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'postulanteService', 'postulanteCreateService', 'postulanteRemoveService', '$route',
+                        'postulanteService', 'postulanteShowUpdateService', 'postulanteCreateService', 'postulanteRemoveService', '$route',
                                    function ($scope, $rootScope, $cookieStore, $location, $http,
-                                    postulanteService, postulanteCreateService, postulanteRemoveService, $route) {
+                                    postulanteService, postulanteShowUpdateService, postulanteCreateService, postulanteRemoveService, $route) {
+
+                                       $scope.showModal_cv = false;
 
                                        $scope.eliminar = function (idpostulante) {
                                            postulanteRemoveService.remove({ id: idpostulante })
@@ -83,16 +84,37 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                        }
 
                                        $scope.listaPostulantes = postulanteService.query();
-
-                                       $scope.guardar = function () {
-                                                var postulante=postulanteCreateService.create({ postulante: $scope.postulante },function(){
-                                                    $location.path('/subirCV/'+postulante._id);
-                                                });
+                                       
+                                       $scope.guardar = function(){
+                                          var postulante=postulanteCreateService.create({ postulante: $scope.postulante }, function(){
+                                             $scope.postulant = postulanteShowUpdateService.show({ id: postulante._id });
+                                          });
                                        }
 
                                        $scope.loadTags = function (query) { //Podriamos usar un service tambien. Pero como es bastante sencillo no se si nos conviene.
                                            return $http.get('/REST/tags/' + query);
                                        }
+
+                                       $scope.isUploadingCV = function(){
+                                          $scope.showModal_cv = false;
+                                          $route.reload();
+                                       }
+
+                                      $scope.modalCV = function(postID){
+                                        $scope.showModal_cv = true;
+                                        $scope.postulant = postulanteShowUpdateService.show({ id: postulante._id });
+                                      }
+                                      $scope.showModal = false;
+                                      $scope.cerrar = function () {
+                                      $scope.showModal = false;
+                                      $scope.showModal2 = false;
+                                }
+                                $scope.toggleModal = function (postID) {
+                                    $scope.showModal = true;
+                                    $scope.postulant = postulanteShowUpdateService.show({ id: postID });
+                                    
+                                };
+
 
 
                                    } ]);
