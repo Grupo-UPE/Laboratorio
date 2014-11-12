@@ -449,6 +449,63 @@ exports.uploadImage = function(req, res, next){
     }
 }
 
+exports.uploadDoc = function(req,res,next){
+    var id = req.param('postulant._id');
+    var dni = req.param('postulant.dni');
+    if (!req.files.file || req.files.file.size == 0) {
+      mensaje = 'No se pudo subir el archivo ' + new Date().toString();
+      res.send(mensaje);
+    }
+    else{
+        Postulante.findById(id, gotPostulante)
+            function gotPostulante(err, postulante) {
+                if (err) {
+                    return next(err)
+                }
+
+                if (!postulante) {
+                    return res.send({ 'error': 'ID invalido' })
+                 }
+                else {
+                    var path_tmp_cv = req.files.file.path;
+                    gapi.a.setCredentials(req.session.tokens);
+                    gapi.drive.files.insert({
+                      resource: {
+                        parents : [{id: '0B29paO-zxCaBZTVTZ0ZuMm00Y2M'}],
+                        title: req.files.file.name,
+                        mimeType: 'application/pdf'
+                      },
+                      media: {
+                        mimeType: 'application/pdf',
+                        body: fs.createReadStream(path_tmp_cv) // read streams are awesome!
+                      }, auth: gapi.a
+                    }, function(err, res){
+                        if(err){
+                            console.log(err);
+                        }
+
+                        try{
+                            postulante.curriculumURL = res.webContentLink;
+                        }
+                        catch(err){
+                            console.log(err);
+                        }
+
+                        postulante.save(onSaved);
+                        fs.unlinkSync(path_tmp_cv);
+                    });
+                       function onSaved(err) {
+                        if (err) {
+                            console.log(err)
+                            return next(err)
+                        }
+
+                        return res.send("");
+                        }
+                                    
+                }
+}}};
+
 exports.busca=function(res,req,next){
 console.log("agregar");
 };
