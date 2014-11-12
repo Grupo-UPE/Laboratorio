@@ -48,13 +48,9 @@ app.controller('busquedaListCTRL', ['$scope', '$rootScope', '$cookieStore', '$lo
             $scope.listaBusquedas=busquedaService.query();
             $scope.busqueda = busquedaShowUpdateService.show({ id: $routeParams.busquedaId });
             $scope.guardar = function () {
-<<<<<<< HEAD
-                 //busquedaShowUpdateService.update({ bsq: $scope.bsq, idkey: "value", $routeParams.busquedaId});
-            //$route.reload();
-=======
              busquedaShowUpdateService.update({ busqueda: $scope.busqueda});
              //$route.reload();
->>>>>>> 9a9fc545ec8dd38e50bf7c4ab60fa021d3b0c5cf
+
 
            }
             $scope.eliminar=function(idbusqueda){
