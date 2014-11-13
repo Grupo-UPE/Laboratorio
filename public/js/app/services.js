@@ -310,3 +310,9 @@ services.factory('entrevistasUsuario', function ($resource) {
         query: { method: 'GET' , params: {}, isArray: true },
     });
 });
+
+services.factory('entrevistasFuturas', function ($resource) {
+    return $resource('/REST/entrevistasFuturas', {}, {
+        query: { method: 'GET' , params: {}, isArray: true },
+    });
+});

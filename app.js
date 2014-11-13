@@ -154,6 +154,7 @@ app.post('/REST/create-entrevista', calendar.create)
 app.get('/entrevista', calendar.show)
 app.get('/REST/entrevistas', entrevista.listarEntrevistas)
 app.get('/REST/entrevistasUsuario', entrevista.listarEntrevistasUsuario)
+app.get('/REST/entrevistasFuturas', entrevista.listarEntrevistasFuturas)
 //app.get('/REST/entrevistasSinFeedbackUsuario', entrevista.listarEntrevistasSinFeedbackUsuario)
 
 

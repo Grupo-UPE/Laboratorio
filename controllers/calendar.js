@@ -28,7 +28,9 @@ exports.create = function(req, res){
 
             entrevistador     : entrevista.entrevistador._id,
             postulante     : req.body.postulante._id,
-            busqueda       :req.body.busqueda._id
+            busqueda       :req.body.busqueda._id,
+            fecha              : new Date(entrevista.inicio),
+            descripcion      : entrevista.descripcion,
             });
 
             ent.save(onSaved)
@@ -78,7 +80,6 @@ exports.create = function(req, res){
                 if(err){
                     console.log(err);
                 }
-                console.log("paso por aca");
                 /*Esto es lo que me devuelve... Una vez que estoy con
                 estos datos deberia actualizar el modelo con el id del evento en el calendar.
                 Tambien podria poner el link.
@@ -110,17 +111,8 @@ exports.create = function(req, res){
                responseStatus: 'needsAction' } ],
           reminders: { useDefault: true } }
                 */
-            ent.calendar=evento.id;
-            ent.save(onUpdate)
 
-            function onUpdate (err) {
-                if (err) {
-                    console.log(err)
-                    return next(err)
-                }
-                return true;
-
-                }
+        return true;
     });
     }
 }

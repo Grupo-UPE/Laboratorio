@@ -99,3 +99,11 @@ app.controller('entrevistasUsuarioCTRL', ['$scope', '$rootScope', '$cookieStore'
             }
 
 }]);
+
+app.controller('entrevistasFuturasCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        '$route','$routeParams','entrevistasFuturas','$sce',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,
+                                    $route,$routeParams,entrevistasFuturas,$sce) {
+
+            $scope.entrevistas=entrevistasFuturas.query();
+}]);
