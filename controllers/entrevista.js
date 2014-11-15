@@ -73,3 +73,33 @@ exports.listarEntrevistasSinFeedback = function(req, res){
     return res.json(entrevistas);
   }
 }
+
+exports.guardarFeedback = function (req, res, next) {
+    var mongoose=require('mongoose');
+    var id = mongoose.Types.ObjectId(req.body.entrevista);
+    var semaforo=req.body.semaforo;
+    var comentario=req.body.comentario;
+
+    Entrevista.findById(id, gotEntrevista);
+
+    function gotEntrevista (err, entrevista) {
+        if (err) {
+            return next(err)
+        }
+        if (!entrevista) {
+            return res.send({'error':'ID invalido'})
+        } else {
+            entrevista.feedback.comentario=comentario;
+            entrevista.feedback.semaforo=semaforo;
+            entrevista.save(onSaved);
+        }
+    }
+
+    function onSaved (err) {
+        if (err) {
+            console.log(err)
+            return next(err)
+        }
+        return res.send('')
+        }
+}

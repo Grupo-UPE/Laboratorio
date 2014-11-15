@@ -128,8 +128,8 @@ app.controller('modalEntrevistas',
 
       $scope.entrevista = entrevista;
       $scope.guardar = function(){
-            guardarFeedback.guardar({entrevista:$scope.entrevista._id, semaforo:$scope.semaforo,
-                            comentario:$scope.comentario});
+            guardarFeedback.guardar({entrevista:$scope.entrevista._id, semaforo:$scope.entrevista.semaforo,
+                            comentario:$scope.entrevista.comentario});
       }
 
  $scope.ok = function () {

@@ -9,13 +9,13 @@
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
+                    <th>Info de contacto</th>
                      <th>Postulante</th>
                      <th>Habilidades del postulante</th>
                      <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                <tr>
                     <tr ng-repeat="postulante in busqueda.postulantes|filter:filtro">
                        <td>{{postulante.nombre}}</td>
                        <td>

@@ -43,19 +43,19 @@
                     <div class="form-group">
                         <div id="radio" name="radio" class="radio col-xs-2 col-sm-2 col-md-2 col-lg-2">
                            <label class="label label-success">
-                               <input type="radio" name="semaforo" ng-model="semaforo" ng-value="3" id="input">
+                               <input type="radio" name="semaforo" ng-model="entrevista.semaforo" ng-value="3" id="input">
                            </label><br>
                            <label class="label label-warning">
-                               <input type="radio" name="semaforo" ng-model="semaforo" ng-value="2" id="input" value="2">
+                               <input type="radio" name="semaforo" ng-model="entrevista.semaforo" ng-value="2" id="input" value="2">
                            </label><br>
                            <label class="label label-danger">
-                               <input type="radio" name="semaforo" id="input" ng-model="semaforo" ng-value="1" value="1">
+                               <input type="radio" name="semaforo" id="input" ng-model="entrevista.semaforo" ng-value="1" value="1">
                            </label><br>
                         </div>
                         <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                            <textarea ng-model="comentario" cols="20" rows="3" placeholder="Comentario sobe el postulante"></textarea>
+                            <textarea ng-model="entrevista.comentario" cols="20" rows="3" placeholder="Comentario sobe el postulante"></textarea>
                         </div><br><br><br><br><!-- Muy feo pero funciona -->
-                       <button type="submit" class="btn btn-primary" ng-disabled="!semaforo||!comentario">Guardar Feedback</button>
+                       <button type="submit" class="btn btn-primary" ng-disabled="!entrevista.semaforo||!entrevista.comentario" ng-click="guardar()">Guardar Feedback</button>
                 </div>
             </form>
         </div>
