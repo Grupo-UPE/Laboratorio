@@ -1,4 +1,4 @@
-<div ng-controller="detalleBusquedaCTRL">
+<div ng-controller="modalCTRL">
         <div class="modal-header">
             <h3 class="modal-title">Contacto con {{postulante.nombre}}</h3>
         </div>
@@ -21,8 +21,8 @@
             <legend>Generar contacto</legend>
 
             <div class="form-group">
-                <textarea name="comentario" id="comentario" rows="5" placeholder="Comentario del contacto" ng-model="comentario"></textarea>
-                <button type="button" class="btn btn-default" ng-click='guardarContacto(postulante._id, comentario)'>Guardar</button>
+                <textarea name="comentario" id="comentario" rows="5" placeholder="Comentario del contacto" ng-model="comentario"></textarea><br>
+                <button type="button" class="btn btn-primary" ng-click='guardarContacto(postulante._id, comentario)'><span class="glyphicon glyphicon-save"></span> Guardar</button>
             </div>
 
 
