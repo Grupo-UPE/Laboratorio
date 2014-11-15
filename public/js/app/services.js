@@ -316,3 +316,21 @@ services.factory('entrevistasFuturas', function ($resource) {
         query: { method: 'GET' , params: {}, isArray: true },
     });
 });
+
+services.factory('entrevistasUsuario', function ($resource) {
+    return $resource('/REST/entrevistasFuturas', {}, {
+        query: { method: 'GET' , params: {}, isArray: true },
+    });
+});
+
+services.factory('entrevistasUsuarioSinFeedback', function ($resource) {
+    return $resource('/REST/entrevistasUsuarioSinFeedback', {}, {
+        query: { method: 'GET' , params: {}, isArray: true },
+    });
+});
+
+services.factory('entrevistasSinFeedback', function ($resource) {
+    return $resource('/REST/entrevistasSinFeedback', {}, {
+        query: { method: 'GET' , params: {}, isArray: true },
+    });
+});

@@ -99,7 +99,7 @@ app.controller('entrevistasUsuarioCTRL', ['$scope', '$rootScope', '$cookieStore'
             }
             //Modal para ver los posibles postulantes.
         $scope.openModalEntrevista = function (entrevista) {
-                console.log(entrevista);
+
                 $scope.entrevista=entrevista;
 
 
@@ -145,3 +145,44 @@ app.controller('entrevistasFuturasCTRL', ['$scope', '$rootScope', '$cookieStore'
 
             $scope.entrevistas=entrevistasFuturas.query();
 }]);
+
+app.controller('entrevistasUsuarioSinFeedbackCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        '$route','$routeParams','entrevistasUsuarioSinFeedback','$sce','$modal',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,
+                                    $route,$routeParams,entrevistasUsuarioSinFeedback,$sce,$modal) {
+
+            $scope.entrevistas=entrevistasUsuarioSinFeedback.query();
+             $scope.openModalEntrevista = function (entrevista) {
+
+                $scope.entrevista=entrevista;
+
+
+            var modal = $modal.open({
+              templateUrl: '/partials/modalEntrevista.html',
+              controller: 'modalEntrevistas',
+              size: 'lg',
+              resolve: {
+                entrevista:function(){
+                    return entrevista;
+                },
+              }
+            });
+
+            modal.result.then(function (selectedItem) {
+              console.log('modal cerrado');
+            }, function () {
+              console.log('Modal dismissed at: ' + new Date());
+            });
+          };
+}]);
+
+app.controller('entrevistasSinFeedbackCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        '$route','$routeParams','entrevistasSinFeedback','$sce',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,
+                                    $route,$routeParams,entrevistasSinFeedback,$sce) {
+
+            $scope.entrevistas=entrevistasSinFeedback.query();
+}]);
+
+
+

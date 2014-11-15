@@ -10,7 +10,7 @@
                             <th>Busqueda</th>
                             <th>Postulante</th>
                             <th>Fecha y hora</th>
-                            <th>Dar Feedback</th>
+                            <th>Feedback</th>
                             <!-- Deberiamos sacar la descripcion y todo lo demas del coso del cosito (Lease google calendar :p) -->
                         </tr>
                     </thead>
@@ -19,7 +19,7 @@
                             <td>{{entrevista.busqueda.nombre}}</td>
                             <td>{{entrevista.postulante.nombre}}</td>
                             <td>{{entrevista.fecha|date:'dd/MM hh:mm'}}</td>
-                            <td><td><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Feedback</td>
+                            <td><button type="button" class="btn btn-success" ng-click="openModalEntrevista(entrevista)"><span class="glyphicon glyphicon-plus"></span> Feedback</td>
                         </tr>
                     </tbody>
                 </table>
