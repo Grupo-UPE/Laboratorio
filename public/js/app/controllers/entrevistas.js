@@ -124,9 +124,13 @@ app.controller('entrevistasUsuarioCTRL', ['$scope', '$rootScope', '$cookieStore'
 }]);
 
 app.controller('modalEntrevistas',
-    function ($scope, $modalInstance, entrevista) {
+    function ($scope, $modalInstance, entrevista, guardarFeedback) {
 
       $scope.entrevista = entrevista;
+      $scope.guardar = function(){
+            guardarFeedback.guardar({entrevista:$scope.entrevista._id, semaforo:$scope.semaforo,
+                            comentario:$scope.comentario});
+      }
 
  $scope.ok = function () {
     $modalInstance.close('cerrado');

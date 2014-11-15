@@ -334,3 +334,9 @@ services.factory('entrevistasSinFeedback', function ($resource) {
         query: { method: 'GET' , params: {}, isArray: true },
     });
 });
+
+services.factory('guardarFeedback', function ($resource) {
+    return $resource('/REST/guardarFeedback', {}, {
+        guardar: { method: 'POST' },
+    });
+});
