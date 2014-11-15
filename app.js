@@ -118,7 +118,7 @@ app.post('/REST/busquedaPorHabilidades', postulante.listarPorHabilidades)//Le pu
 
 //app.post('/REST/create-contacto', contacto.create)
 //app.get('/REST/contacto', contacto.list);
-//app.get('/REST/contacto/:postulante', contacto.listPostulante);
+app.get('/REST/contacto/:postulante', contacto.listPostulante);
 
 app.get('/REST/busqueda', busqueda.list)
 app.get('/REST/busquedastate/:estado', busqueda.listabierta)
