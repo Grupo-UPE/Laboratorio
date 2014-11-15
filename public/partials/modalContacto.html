@@ -1,17 +1,18 @@
-<div ng-controller="modalCTRL">
-        <div class="modal-header">
-            <h3 class="modal-title">Contacto con {{postulante.nombre}}</h3>
-        </div>
-        <div class="modal-body">
-        <h4>Datos de contacto de: {{postulante.nombre}} {{postulante.apellido}}</h4>
-        <ul>
+<!-- Seria buenisimo mandar el e-mail desde aca pero no llegamos -->
+<div class="panel panel-success">
+      <div class="panel-heading">
+            <h3 class="panel-title">Contacto con {{postulante.nombre}}</h3>
+      </div>
+      <div class="panel-body">
+            <h4>Datos de contacto de: {{postulante.nombre}} {{postulante.apellido}}</h4>
+            <ul>
             <li>E-Mail: {{postulante.email}}</li>
             <li>Telefono: {{postulante.telefono}}</li>
         </ul>
         <h4>Contactos</h4>
         <ul>
             <li ng-repeat="contacto in contactos">
-                Fecha: {{contacto.fecha}}
+                Fecha: {{contacto.fecha|date:'dd/MM'}} <!-- Falta el año -->
                 <ul>
                     <li>{{contacto.comentario}}</li>
                 </ul>
@@ -24,11 +25,8 @@
                 <textarea name="comentario" id="comentario" rows="5" placeholder="Comentario del contacto" ng-model="comentario"></textarea><br>
                 <button type="button" class="btn btn-primary" ng-click='guardarContacto(postulante._id, comentario)'><span class="glyphicon glyphicon-save"></span> Guardar</button>
             </div>
-
-
+      </div>
+      <div class="panel-footer">
+            <button class="btn btn-success" ng-click="ok()">Salir</button>
         </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-        </div>
-</script>
+</div>
