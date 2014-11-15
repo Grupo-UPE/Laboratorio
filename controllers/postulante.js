@@ -511,6 +511,27 @@ exports.prueba = function(req, res, next){
     console.log(req.params);
 }
 
-exports.busca=function(res,req,next){
-console.log("agregar");
+exports.busca = function (req, res, next) {
+	var name = req.params('nombre');
+	var apell = req.params('apellido');
+	var email = req.params('email');
+  console.log(name);
+
+Postulante.find({
+    "$or": [{
+        "nombre": name
+    }, {
+        "apellido": apell
+    }, {
+        "email": email
+    }]
+}, gotPostulante);	
+  function gotPostulante (err, postulante) {
+    if (err) {
+      console.log(err)
+      return next(err)
+    }
+  
+   return res.json(postulante)
+  }
 };
