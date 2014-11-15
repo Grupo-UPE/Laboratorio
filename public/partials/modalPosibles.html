@@ -10,7 +10,7 @@
             <tr>
                 <th>Nombre</th>
                 <th>Habilidades</th>
-                <th>Coincidencias de habilidades</th>
+                <th>Habilidades Coincidentes</th>
                 <th>Seleccionar</th>
             </tr>
         </thead>
@@ -26,10 +26,10 @@
             </tr>
         </tbody>
     </table>
-    <button type="button" class="btn btn-default" ng-click="guardar(selection)">Guardar</button>
+
+    <button type="button" class="btn btn-primary" ng-click="guardar(selection)">Guardar</button><br><br>
     </div>
     <div class="panel-footer">
-        <button class="btn btn-primary" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-success" ng-click="ok()" title="No se olvie de guardar la seleccion">Cerrar</button>
     </div>
 </div>
