@@ -89,16 +89,54 @@ $scope.mytime = new Date();
 }]);
 
 app.controller('entrevistasUsuarioCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        '$route','$routeParams','entrevistasUsuario','$sce',
+                        '$route','$routeParams','entrevistasUsuario','$sce','$modal',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    $route,$routeParams,entrevistasUsuario,$sce) {
+                                    $route,$routeParams,entrevistasUsuario,$sce,$modal) {
 
             $scope.entrevistas=entrevistasUsuario.query();
             $scope.iframesrc= function(){
                 return $sce.trustAsResourceUrl("https://www.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src="+$scope.usuario.email+"&amp;ctz=America%2FArgentina%2FBuenos_Aires");
             }
+            //Modal para ver los posibles postulantes.
+        $scope.openModalEntrevista = function (entrevista) {
+                console.log(entrevista);
+                $scope.entrevista=entrevista;
+
+
+            var modal = $modal.open({
+              templateUrl: '/partials/modalEntrevista.html',
+              controller: 'modalEntrevistas',
+              size: 'lg',
+              resolve: {
+                entrevista:function(){
+                    return entrevista;
+                },
+              }
+            });
+
+            modal.result.then(function (selectedItem) {
+              console.log('modal cerrado');
+            }, function () {
+              console.log('Modal dismissed at: ' + new Date());
+            });
+          };
 
 }]);
+
+app.controller('modalEntrevistas',
+    function ($scope, $modalInstance, entrevista) {
+
+      $scope.entrevista = entrevista;
+
+ $scope.ok = function () {
+    $modalInstance.close('cerrado');
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+});
+
 
 app.controller('entrevistasFuturasCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         '$route','$routeParams','entrevistasFuturas','$sce',

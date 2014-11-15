@@ -155,6 +155,9 @@ app.get('/entrevista', calendar.show)
 app.get('/REST/entrevistas', entrevista.listarEntrevistas)
 app.get('/REST/entrevistasUsuario', entrevista.listarEntrevistasUsuario)
 app.get('/REST/entrevistasFuturas', entrevista.listarEntrevistasFuturas)
+app.get('/REST/entrevistasUsuarioSinFeedback', entrevista.listarEntrevistasUsuarioSinFeedback)
+app.get('/REST/entrevistasSinFeedback', entrevista.listarEntrevistasUsuarioSinFeedback)
+
 //app.get('/REST/entrevistasSinFeedbackUsuario', entrevista.listarEntrevistasSinFeedbackUsuario)
 
 

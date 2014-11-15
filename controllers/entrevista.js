@@ -59,3 +59,17 @@ exports.listarEntrevistasUsuarioSinFeedback = function(req, res){
     return res.json(entrevistas);
   }
 }
+
+exports.listarEntrevistasSinFeedback = function(req, res){
+    //Todas las entrevistas de las que no tenemos feedback.
+    Entrevista.find({fecha: {"$lt": new Date().setHours(23)}},gotEntrevistas) //con fecha menor a hoy a las 11 de la noche
+                            .populate('entrevistador').populate('postulante').populate('busqueda') //con los datos del entrevistador, el postulante y la busqueda.
+      function gotEntrevistas (err, entrevistas) {
+    if (err) {
+      console.log(err)
+      return next()
+    }
+
+    return res.json(entrevistas);
+  }
+}

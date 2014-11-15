@@ -5,8 +5,13 @@
                         <h3 class="panel-title">Entrevistas</h3>
                   </div>
                   <div class="panel-body">
-                        <div ng-include="'partials/listaEntrevistasUsuario.html'" ng-controller="entrevistasUsuarioCTRL"></div>
+                        <div ng-include="'partials/listaEntrevistasUsuario.html'" ng-controller="entrevistasUsuarioCTRL">
+                        </div>
+                        <div ng-include="'partials/entrevistasUsuarioSinFeedback.html'" ng-controller="entrevistasUsuarioCTRL">
+                        </div>
                         <div ng-include="'partials/entrevistasFuturas.html'" ng-if="usuario.rol.nombre=='rrhh'||usuario.rol.nombre=='admin'" ng-controller="entrevistasUsuarioCTRL">
+                        </div>
+                        <div ng-include="'partials/entrevistasSinFeedback.html'" ng-if="usuario.rol.nombre=='rrhh'||usuario.rol.nombre=='admin'" ng-controller="entrevistasUsuarioCTRL">
                         </div>
                 </div>
             </div>
