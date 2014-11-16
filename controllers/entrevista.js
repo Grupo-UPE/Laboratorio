@@ -103,3 +103,19 @@ exports.guardarFeedback = function (req, res, next) {
         return res.send('')
         }
 }
+
+exports.listarEntrevistasPostulante = function(req, res){
+    //Todas las entrevistas de un postulante
+    var mongoose=require('mongoose');
+    var postulante = mongoose.Types.ObjectId(req.params.postulante);
+    Entrevista.find({postulante:postulante, feedback: {'$ne': null }},gotEntrevistas) //Todas las entrevistas de un postulante con feedback no nulo
+                            .populate('entrevistador').populate('postulante').populate('busqueda') //con los datos del entrevistador, el postulante y la busqueda.
+      function gotEntrevistas (err, entrevistas) {
+    if (err) {
+      console.log(err)
+      return next()
+    }
+
+    return res.json(entrevistas);
+  }
+}

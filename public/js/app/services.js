@@ -334,3 +334,8 @@ services.factory('guardarFeedback', function ($resource) {
         guardar: { method: 'POST' },
     });
 });
+services.factory('entrevistaPostulante', function ($resource) {
+    return $resource('/REST/entrevistaPostulante/:postulante', {}, {
+        query: { method: 'GET' , params: {}, isArray: true },
+    });
+});

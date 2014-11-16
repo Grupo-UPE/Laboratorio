@@ -158,6 +158,7 @@ app.get('/REST/entrevistasFuturas', entrevista.listarEntrevistasFuturas)
 app.get('/REST/entrevistasUsuarioSinFeedback', entrevista.listarEntrevistasUsuarioSinFeedback)
 app.get('/REST/entrevistasSinFeedback', entrevista.listarEntrevistasUsuarioSinFeedback)
 app.post('/REST/guardarFeedback', entrevista.guardarFeedback)
+app.get('/REST/entrevistaPostulante/:postulante', entrevista.listarEntrevistasPostulante)
 
 
 

@@ -18,6 +18,22 @@
                 </ul>
             </li>
         </ul>
+        <h4>Entrevistas</h4>
+
+        <ul class="list-unstyled">
+            <li ng-repeat="entrevista in entrevistas">
+                {{entrevista.fecha|date:'dd/MM/yyyy'}} <strong>{{entrevista.entrevistador.username}}:</strong>
+                <span class="label label-success" ng-if="entrevista.feedback.semaforo==1">
+                    {{entrevista.feedback.comentario}}
+                </span>
+                <span class="label label-warning" ng-if="entrevista.feedback.semaforo==2">
+                    {{entrevista.feedback.comentario}}
+                </span>
+                <span class="label label-danger " ng-if="entrevista.feedback.semaforo==3">
+                    {{entrevista.feedback.comentario}}
+                </span>
+            </li>
+        </ul>
 
             <legend>Generar contacto</legend>
 
