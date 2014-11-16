@@ -126,44 +126,38 @@ app.controller('habilidadCTRL', ['$scope', '$rootScope', '$cookieStore', '$locat
 app.controller('mailCTRL',['$scope','$rootScope','$http',
                    function($scope,$rootScope, $http) {
 
-$scope.enviar = function() {
-    console.log('Im in the controller');
+    $scope.mail = {};
 
-    // Trigger validation flag.
-    $scope.submitted = true;
+	// Función para registrar a una persona
+	$scope.enviar = function() {
+		$http.post('/send', $scope.mail)
+		.success(function(data) {
+				$scope.mail = {}; // Borramos los datos del formulario
+			})
+		.error(function(data) {
+			console.log('Error: ' + data);
+		});
+	};
 
-    $http.post('/send', {
-        to: $scope.to,
-        subject: $scope.subject,
-        content: $scope.content
-    }).success(function(data, status, headers, config) {
-            if(data.success){
-                $location.path('/send');
-            }else {
-                //do something about the error
-            }
-        });
 
-    console.log($scope.to);
-    console.log($scope);
-};
 
 }]);
 
-app.controller('bpostuCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http', 'bpostuService', 'postulanteRemoveService','$route',function ($scope, $rootScope, $cookieStore, $location, $http,
-                                    bpostuService,postulanteRemoveService, $route) {
-
-       $scope.eliminar = function (idpostulante)
-       {
-           postulanteRemoveService.remove({ id: idpostulante })
-
-       }
-
-       $scope.buscar = function () {
-
-       		$scope.bpostulist = bpostuService.query();
-		}
-
-
-
-  }]);
+app.controller('bpostuCTRL', ['$scope', '$rootScope', '$http','$route',
+                              function ($scope, $rootScope,  $http, $route) {
+    $scope.bpostulante = {};
+    $scope.bpostulist = {};
+    
+        $scope.buscar = function () {
+        $http.post('/REST/bpostu', $scope.bpostulante)
+        .success(function(data) {
+            $scope.bpostulante = {}; // Borramos los datos del formulario
+            $scope.bpostulist = data;
+            console.log('Data'+data);
+			})
+		.error(function(data) {
+			console.log('Error: ' + data);
+		});
+           
+        }
+      }]);

@@ -178,8 +178,6 @@ services.factory('asociarPostulante', function ($resource) {
     });
 });
 
-
-
 //DetalleDeBusqueda
 services.factory('detalleBusquedaService', function ($resource) {
     return $resource('/REST/detalleBusquedaBis/:id', {}, {
@@ -207,7 +205,6 @@ services.factory('entrevistaCreateService', function ($resource) {
     });
 });
 
-/**/
 /*Habilidades*/
 
 
@@ -298,12 +295,6 @@ services.factory('buserService', function ($resource) {
     });
 });
 
-
-services.factory('bpostuService', function ($resource) {
-    return $resource('/REST/bpostu', {}, {
-        query: { method: 'GET' , params: {}, isArray: true },
-    });
-});
 
 services.factory('entrevistasUsuario', function ($resource) {
     return $resource('/REST/entrevistasUsuario', {}, {

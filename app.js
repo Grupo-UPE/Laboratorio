@@ -101,8 +101,8 @@ app.post('/uploadDoc', postulante.uploadDoc);
 app.post('/prueba', postulante.prueba);
 
 //envio de mails
-app.get('/send',mail.send);
-app.post('/send',mail.send);
+app.get('/send',mail.enviomail);
+app.post('/send',mail.enviomail);
 
 app.get('/REST/buser', buser.list);
 app.post('/REST/buser', buser.list);

@@ -1,7 +1,7 @@
 var nodemailer = require('nodemailer');
 gapi = require('../lib/gapi');
 
-exports.send = function(req, res) {
+exports.enviomail = function(req, res, next) {
 var smtpTransport = nodemailer.createTransport("SMTP",{
    service: "Gmail",  // sets automatically host, port and connection security settings
 auth: {
@@ -15,11 +15,11 @@ auth: {
 		}    
 	}  
 });
-
+    
 	var mailOptions={
-		to : "carlosrodriguez.upe@gmail.com",//req.query.to,
-		subject : "hola",//req.query.subject,
-		text : "hola",//req.query.text,
+		to : req.body.to,
+		subject : req.body.subject,
+		text : req.body.content,
 		generateTextFromHTML: true,
   		html: "<b>Hello world</b>"
 	}

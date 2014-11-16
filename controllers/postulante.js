@@ -512,11 +512,11 @@ exports.prueba = function(req, res, next){
 }
 
 exports.busca = function (req, res, next) {
-	var name = req.params('nombre');
-	var apell = req.params('apellido');
-	var email = req.params('email');
-  console.log(name);
-
+    
+	var name = req.body.nombre;
+	var apell = req.body.apellido;
+	var email = req.body.email;
+    
 Postulante.find({
     "$or": [{
         "nombre": name

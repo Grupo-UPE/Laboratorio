@@ -1,27 +1,4 @@
-<script> function myFunction(elem) {
-	
-						
-	if(elem.id=="nombre"){
-						document.getElementById("apellido").disabled = true; 
-						document.getElementById("email").disabled = true;
-						}
-	else if(elem.id=="apellido"){
-						document.getElementById("nombre").disabled = true; 
-						document.getElementById("email").disabled = true;
-						}
-	else if(elem.id=="email"){
-			document.getElementById("nombre").disabled = true; 
-			document.getElementById("apellido").disabled = true;
-		}
-	else if (elem.id=="refresh"){
-						document.getElementById("nombre").disabled = false; 
-						document.getElementById("apellido").disabled = false; 
-						document.getElementById("email").disabled = false;
-						}
 
-				
-			}
-	</script>
 <div class="table-responsive">
     <table class="table table-striped table-hover">
         <thead>
@@ -68,30 +45,30 @@
             <h2>Formulario Postulante</h2>
             <hr>
                 <div class="row">
-                    <form method="POST" ng-submit="buscar()" role="form" name="frmPostulante">
+                    <form method="post" ng-submit="buscar()" role="form" name="frmPostulante">
                         <div class="col-md-3">
-                            <div class="form-group" ng-class="{'has-error': frmPostulante.nombre.$invalid, 'has-success': frmPostulante.nombre.$valid}">
-                                <label for="nombre">Nombre:</label>
-                                <input onclick="myFunction(this)" class="form-control" type="text" id="nombre" name="nombre" ng-model="postulante.nombre" placeholder="Ingrese el nombre..." >
+                            <div class="form-group">
+                                <label for="bpostulante.nombre">Nombre:</label>
+                                <input class="form-control" type="text" ng-model="bpostulante.nombre" placeholder="Ingrese el nombre..." >
                             </div>
                             
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group" ng-class="{'has-error': frmPostulante.apellido.$invalid, 'has-success': frmPostulante.apellido.$valid}">
-                                <label for="apellido">Apellido:</label>
-                                <input onclick="myFunction(this)" class="form-control" type="text" id="apellido" name="apellido" ng-model="postulante.apellido" placeholder="Ingrese el apellido..." >
+                            <div class="form-group">
+                                <label for="bpostulante.apellido">Apellido:</label>
+                                <input  class="form-control" type="text" ng-model="bpostulante.apellido" placeholder="Ingrese el apellido..." >
                                 
 					    </div>
 					    <div class="col-md-3">
 					<div > 
-						<button onclick="myFunction(this)" id="refresh" class="btn btn-success" >Refresh</button>
+						<button  id="refresh" class="btn btn-success" >Refresh</button>
 					</div>
 				</div>
                         </div>              
                         <div class="col-md-3">
-                            <div class="form-group" ng-class="{'has-error': frmPostulante.email.$invalid, 'has-success': frmPostulante.email.$valid}">
-                             <label for="emailP">Email:</label>
-                             <input onclick="myFunction(this)" class="form-control" type="email" id="email" name="email" ng-model="postulante.email" placeholder="postulante@mail">
+                            <div class="form-group" >
+                             <label for="bpostulante.email">Email:</label>
+                             <input class="form-control" type="email"  ng-model="bpostulante.email" placeholder="postulante@mail">
                                 <div ng-show="frmPostulante.email.$invalid">
                                     <p class="help-block text-danger" ng-show="frmPostulante.email.$invalid">Email invalido</p>
                                 </div>

@@ -3,14 +3,14 @@
             <h3 class="panel-title">Envios de Mail</h3>
     </div>
     <div class="panel-body">
-        <form anction=""  method="POST" class="form-horizontal" role="form">
+        <form anction=""  method="post" class="form-horizontal" role="form">
             <div class="form-group col-sm-5 col-md-5 col-lg-5">
-                    <label>Para:</label>
-                    <input id="to" type="email" class="form-control"  placeholder="aaaaa@aaaa.com.." required>
+                    <label for="mail.to">Para:</label>
+                    <input type="email" class="form-control"  placeholder="aaaaa@aaaa.com.." required ng-model="mail.to">
                     <label>Asunto:</label>
-                    <input id= "subject" type="text" class="form-control"  placeholder="Asunto..."  required>
+                    <input type="text" class="form-control"  placeholder="Asunto..."  required ng-model="mail.subject">
                     <label>Texto</label>
-                    <textarea id = "content"  class="form-control" cols="40" rows="5" placeholder="Write what you want to send" required></textarea>
+                    <textarea class="form-control" cols="40" rows="5" placeholder="Write what you want to send" required ng-model="mail.content"></textarea>
 
             </div>
             <div class="form-group">
