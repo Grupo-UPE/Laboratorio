@@ -41,7 +41,6 @@ exports.create = function(req, res){
                     return next(err)
                 }
 
-                console.log("Guardo entrevista");
             var sumario="Busqueda: "+req.body.busqueda.nombre+", Postulante: "+req.body.postulante.nombre+", Entrevistador: "+entrevista.entrevistador.username+" id entrevista: "+ent.id;
             //vista en https://developers.google.com/google-apps/calendar/v3/reference/events#resource
             //Ver https://developers.google.com/google-apps/calendar/v3/reference/events/insert
@@ -112,7 +111,7 @@ exports.create = function(req, res){
           reminders: { useDefault: true } }
                 */
 
-        return true;
+        return res.send(true);
     });
     }
 }

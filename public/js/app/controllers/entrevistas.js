@@ -84,7 +84,10 @@ $scope.mytime = new Date();
 
             $scope.postulante=postulanteShowUpdateService.show({id:$routeParams.idPostulante});
             $scope.generarEntrevista=function(){
-                entrevistaCreateService.create({entrevista:$scope.entrevista,busqueda:$scope.busqueda,postulante:$scope.postulante});}
+                entrevistaCreateService.create({entrevista:$scope.entrevista,
+                            busqueda:$scope.busqueda,postulante:$scope.postulante},function(){
+                    $location.path('/');
+                    })}
 
 }]);
 
@@ -130,6 +133,7 @@ app.controller('modalEntrevistas',
       $scope.guardar = function(){
             guardarFeedback.guardar({entrevista:$scope.entrevista._id, semaforo:$scope.entrevista.semaforo,
                             comentario:$scope.entrevista.comentario});
+            $modalInstance.close('');
       }
 
  $scope.ok = function () {
