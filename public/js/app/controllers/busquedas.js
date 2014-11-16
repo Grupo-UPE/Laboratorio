@@ -195,18 +195,22 @@ app.controller('detalleBusquedaCTRL', ['$scope', '$rootScope', '$cookieStore', '
 
               $scope.listaBusquedas=busquedaService.query();
         };
-        $scope.guardarContacto = function(postulante, comentario){
-            contactoCreateService.create({postulante:postulante, comentario:comentario})
-      }
+
 
 }]);
 
 //Modal de contacto
 app.controller('modalCTRL',
-    function ($scope, $modalInstance, postulante, contactoPostulanteListService) {
+    function ($scope, $modalInstance, postulante, contactoPostulanteListService, contactoCreateService,entrevistaPostulante) {
 
       $scope.postulante = postulante;
+      $scope.entrevistas=entrevistaPostulante.query({postulante:postulante._id});
       $scope.contactos = contactoPostulanteListService.query({postulante:postulante._id})
+
+      $scope.guardarContacto = function(postulante, comentario){
+            contactoCreateService.create({postulante:postulante, comentario:comentario})
+            $modalInstance.close('');
+      }
 
  $scope.ok = function () {
     $modalInstance.close('cerrado');
@@ -242,6 +246,7 @@ app.controller('modalPosiblesCTRL',
 
       $scope.guardar = function (selection) {
           asociarPostulante.asociar({id: busqueda._id, postulantes : $scope.selection});
+          $modalInstance.close('');
   };
 
  $scope.ok = function () {

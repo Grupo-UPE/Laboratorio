@@ -15,8 +15,8 @@
                <td>{{bsq.horario}}</td>
                <td>
                <span ng-repeat="habilidad in bsq.habilidades">{{habilidad.nombre}} </span></td>
-               <td><a class="btn btn-default" href="/#/detalleBusqueda/{{bsq._id}}" >Ver detalle</a></td>
-               <td><button type="button" class="btn btn-default" ng-click="openModal('lg',bsq)">Posibles</button></td>
+               <td><a class="btn btn-default" href="/#/detalleBusqueda/{{bsq._id}}"><span class="glyphicon glyphicon-zoom-in"></span> Detalle</a></td>
+               <td><button type="button" class="btn btn-default" ng-click="openModal('lg',bsq)"><span class="glyphicon glyphicon-plus"></span> Posibles</button></td>
             </tr>
 
         </tbody>

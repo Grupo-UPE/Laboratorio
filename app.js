@@ -116,9 +116,9 @@ app.get('/REST/busquedaBis', busquedaBis.list)//Le puse el bis porque devuelve m
 app.get('/REST/detalleBusquedaBis/:id', busquedaBis.show)
 app.post('/REST/busquedaPorHabilidades', postulante.listarPorHabilidades)//Le puse el bis porque devuelve mas o menos lo que esperamos.
 
-//app.post('/REST/create-contacto', contacto.create)
-//app.get('/REST/contacto', contacto.list);
-//app.get('/REST/contacto/:postulante', contacto.listPostulante);
+app.post('/REST/create-contacto', contacto.create)
+app.get('/REST/contacto', contacto.list);
+app.get('/REST/contacto/:postulante', contacto.listPostulante);
 
 app.get('/REST/busqueda', busqueda.list)
 app.get('/REST/busquedastate/:estado', busqueda.listabierta)
@@ -155,7 +155,13 @@ app.get('/entrevista', calendar.show)
 app.get('/REST/entrevistas', entrevista.listarEntrevistas)
 app.get('/REST/entrevistasUsuario', entrevista.listarEntrevistasUsuario)
 app.get('/REST/entrevistasFuturas', entrevista.listarEntrevistasFuturas)
-//app.get('/REST/entrevistasSinFeedbackUsuario', entrevista.listarEntrevistasSinFeedbackUsuario)
+app.get('/REST/entrevistasUsuarioSinFeedback', entrevista.listarEntrevistasUsuarioSinFeedback)
+app.get('/REST/entrevistasSinFeedback', entrevista.listarEntrevistasUsuarioSinFeedback)
+app.post('/REST/guardarFeedback', entrevista.guardarFeedback)
+app.get('/REST/entrevistaPostulante/:postulante', entrevista.listarEntrevistasPostulante)
+
+
+
 
 
 //Install

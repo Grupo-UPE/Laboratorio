@@ -84,21 +84,67 @@ $scope.mytime = new Date();
 
             $scope.postulante=postulanteShowUpdateService.show({id:$routeParams.idPostulante});
             $scope.generarEntrevista=function(){
-                entrevistaCreateService.create({entrevista:$scope.entrevista,busqueda:$scope.busqueda,postulante:$scope.postulante});}
+                entrevistaCreateService.create({entrevista:$scope.entrevista,
+                            busqueda:$scope.busqueda,postulante:$scope.postulante},function(){
+                    $location.path('/');
+                    })}
 
 }]);
 
 app.controller('entrevistasUsuarioCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        '$route','$routeParams','entrevistasUsuario','$sce',
+                        '$route','$routeParams','entrevistasUsuario','$sce','$modal',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    $route,$routeParams,entrevistasUsuario,$sce) {
+                                    $route,$routeParams,entrevistasUsuario,$sce,$modal) {
 
             $scope.entrevistas=entrevistasUsuario.query();
             $scope.iframesrc= function(){
                 return $sce.trustAsResourceUrl("https://www.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src="+$scope.usuario.email+"&amp;ctz=America%2FArgentina%2FBuenos_Aires");
             }
+            //Modal para ver los posibles postulantes.
+        $scope.openModalEntrevista = function (entrevista) {
+
+                $scope.entrevista=entrevista;
+
+
+            var modal = $modal.open({
+              templateUrl: '/partials/modalEntrevista.html',
+              controller: 'modalEntrevistas',
+              size: 'lg',
+              resolve: {
+                entrevista:function(){
+                    return entrevista;
+                },
+              }
+            });
+
+            modal.result.then(function (selectedItem) {
+              console.log('modal cerrado');
+            }, function () {
+              console.log('Modal dismissed at: ' + new Date());
+            });
+          };
 
 }]);
+
+app.controller('modalEntrevistas',
+    function ($scope, $modalInstance, entrevista, guardarFeedback) {
+
+      $scope.entrevista = entrevista;
+      $scope.guardar = function(){
+            guardarFeedback.guardar({entrevista:$scope.entrevista._id, semaforo:$scope.entrevista.semaforo,
+                            comentario:$scope.entrevista.comentario});
+            $modalInstance.close('');
+      }
+
+ $scope.ok = function () {
+    $modalInstance.close('cerrado');
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+});
+
 
 app.controller('entrevistasFuturasCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         '$route','$routeParams','entrevistasFuturas','$sce',
@@ -107,3 +153,44 @@ app.controller('entrevistasFuturasCTRL', ['$scope', '$rootScope', '$cookieStore'
 
             $scope.entrevistas=entrevistasFuturas.query();
 }]);
+
+app.controller('entrevistasUsuarioSinFeedbackCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        '$route','$routeParams','entrevistasUsuarioSinFeedback','$sce','$modal',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,
+                                    $route,$routeParams,entrevistasUsuarioSinFeedback,$sce,$modal) {
+
+            $scope.entrevistas=entrevistasUsuarioSinFeedback.query();
+             $scope.openModalEntrevista = function (entrevista) {
+
+                $scope.entrevista=entrevista;
+
+
+            var modal = $modal.open({
+              templateUrl: '/partials/modalEntrevista.html',
+              controller: 'modalEntrevistas',
+              size: 'lg',
+              resolve: {
+                entrevista:function(){
+                    return entrevista;
+                },
+              }
+            });
+
+            modal.result.then(function (selectedItem) {
+              console.log('modal cerrado');
+            }, function () {
+              console.log('Modal dismissed at: ' + new Date());
+            });
+          };
+}]);
+
+app.controller('entrevistasSinFeedbackCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        '$route','$routeParams','entrevistasSinFeedback','$sce',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,
+                                    $route,$routeParams,entrevistasSinFeedback,$sce) {
+
+            $scope.entrevistas=entrevistasSinFeedback.query();
+}]);
+
+
+

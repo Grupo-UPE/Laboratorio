@@ -307,3 +307,26 @@ services.factory('entrevistasFuturas', function ($resource) {
         query: { method: 'GET' , params: {}, isArray: true },
     });
 });
+
+services.factory('entrevistasUsuarioSinFeedback', function ($resource) {
+    return $resource('/REST/entrevistasUsuarioSinFeedback', {}, {
+        query: { method: 'GET' , params: {}, isArray: true },
+    });
+});
+
+services.factory('entrevistasSinFeedback', function ($resource) {
+    return $resource('/REST/entrevistasSinFeedback', {}, {
+        query: { method: 'GET' , params: {}, isArray: true },
+    });
+});
+
+services.factory('guardarFeedback', function ($resource) {
+    return $resource('/REST/guardarFeedback', {}, {
+        guardar: { method: 'POST' },
+    });
+});
+services.factory('entrevistaPostulante', function ($resource) {
+    return $resource('/REST/entrevistaPostulante/:postulante', {}, {
+        query: { method: 'GET' , params: {}, isArray: true },
+    });
+});

@@ -1,6 +1,6 @@
-<div class="panel panel-info" ng-controller="entrevistasUsuarioCTRL">
+<div class="panel panel-danger" ng-controller="entrevistasUsuarioSinFeedbackCTRL">
       <div class="panel-heading">
-            <h3 class="panel-title">Tus proximas entrevistas</h3>
+            <h3 class="panel-title">Feedbacks que debe</h3>
       </div>
       <div class="panel-body">
             <div class="table-responsive">
@@ -10,7 +10,7 @@
                             <th>Busqueda</th>
                             <th>Postulante</th>
                             <th>Fecha y hora</th>
-                            <th>Ver entrevista</th>
+                            <th>Feedback</th>
                             <!-- Deberiamos sacar la descripcion y todo lo demas del coso del cosito (Lease google calendar :p) -->
                         </tr>
                     </thead>
@@ -19,7 +19,7 @@
                             <td>{{entrevista.busqueda.nombre}}</td>
                             <td>{{entrevista.postulante.nombre}}</td>
                             <td>{{entrevista.fecha|date:'dd/MM hh:mm'}}</td>
-                            <td><button type="button" class="btn btn-info" ng-click="openModalEntrevista(entrevista)"><span class="glyphicon glyphicon-zoom-in"></span> Detalle</button></td>
+                            <td><button type="button" class="btn btn-success" ng-click="openModalEntrevista(entrevista)"><span class="glyphicon glyphicon-plus"></span> Feedback</td>
                         </tr>
                     </tbody>
                 </table>
