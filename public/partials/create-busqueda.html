@@ -31,27 +31,26 @@
                         <div class="col-md-3 col-sm-offset-1">
                             <div class="form-group">
                                 <label for="lugar_de_trabajo">Lugar de Trabajo:</label>
-                                <input class="form-control" type="text" id="lugar_de_trabajo" placeholder="Oficina,Cliente,Etc" ng-model="busqueda.lugar_trabajo"  >
+                                <select class="form-control" id="lugar_de_trabajo" ng-model="busqueda.lugar_trabajo">
+                                    <option value="">Oficina</option>
+                                        <option id="Oficina Cliente">Oficina Cliente</option>
+                                        <option id="Home Office">Home Office</option>
+                                        <option id="Otro">Otro</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-offset-1">
                             <div class="form-group">
                                 <label for="horario">Disponibilidad:</label>
                                 <select class="form-control" id="horario" ng-model="busqueda.horario">
-                                    <option value="">-</option>
-                                        <option id="Full-Time" selected>Full-Time</option>
+                                    <option value="">Full-Time</option>
+                                        
                                         <option id="Part-Time">Part-Time</option>
                                         <option id="Pasantia">Pasantia</option>
                                         <option id="Work-Home">Work-Home</option>
                                 </select>
                             </div>
                      </div>
-                         <!--div class="col-md-3 col-sm-offset-1">
-                            <div class="form-group">
-                                <label for="texto_twitter">Link a Twitter:</label>
-                                <textarea class="form-control" id="texto_twitter" ng-model="busqueda.texto_twitter"  ></textarea>
-                            </div>
-                        </div-->
                         <div class="col-md-4 col-sm-offset">
                             <div class="form-group">
                                 <label for="comentario">Comentario:</label>

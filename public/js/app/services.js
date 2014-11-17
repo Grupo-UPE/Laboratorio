@@ -163,6 +163,12 @@ services.factory('busquedaShowUpdateService', function ($resource) {
         update: { method: 'POST' },
     });
 });
+services.factory('busquedaStateShowUpdateService', function ($resource) {
+    return $resource('/REST/busquedastate/:id', {}, {
+        show: { method: 'GET' },
+        update: { method: 'POST' },
+    });
+});
 
 
 

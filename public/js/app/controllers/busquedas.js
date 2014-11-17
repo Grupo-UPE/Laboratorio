@@ -49,15 +49,36 @@ app.controller('busquedaListCTRL', ['$scope', '$rootScope', '$cookieStore', '$lo
             $scope.busqueda = busquedaShowUpdateService.show({ id: $routeParams.busquedaId });
             $scope.guardar = function () {
              busquedaShowUpdateService.update({ busqueda: $scope.busqueda});
-             //$route.reload();
-
-
            }
+             /*$scope.busqueda = busquedaStateShowUpdateService.show({ id: $routeParams.busquedaId });
+             $scope.save = function () {
+             busquedaShowUpdateService.update({ busqueda: $scope.busqueda});
+
+
+           }*/
             $scope.eliminar=function(idbusqueda){
 
                 busquedaRemove.remove({id:idbusqueda})
                 $scope.listaBusquedas=busquedaService.query();
             }
+
+
+
+
+}]);
+app.controller('busquedastateListCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
+                        'busquedaService','$route','busquedaRemove','busquedaStateShowUpdateService','$routeParams',
+                                   function($scope, $rootScope, $cookieStore, $location, $http,
+                                    busquedaService,$route,busquedaRemove,busquedaStateShowUpdateService,$routeParams ) {
+
+
+            //$scope.listaBusquedas=busquedaService.query();
+             $scope.busqueda = busquedaStateShowUpdateService.show({ id: $routeParams.busquedaId });
+             $scope.guardar = function () {
+             busquedaShowUpdateService.update({ busqueda: $scope.busqueda});
+
+
+           }
 
 
 

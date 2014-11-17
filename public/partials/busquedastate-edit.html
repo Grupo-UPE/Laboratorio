@@ -1,0 +1,15 @@
+<div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="panel-heading">
+            <h3 class="panel-title">Editar Estado de la busqueda: {{busqueda.nombre}}</h3>
+    </div>
+    <div class="panel-body" >
+        <form action="" ng-submit="guardar()"  method="POST" class="form-horizontal" role="form">
+            <div class="form-group col-sm-5 col-md-5 col-lg-5">
+            	</div> <legend>Estado de la Busqueda {{busqueda.nombre}}</legend>
+                    
+      
+                    <label for="estado">Estado</label>
+                    <input  class="form-control" id="estado" placeholder="Abierta-Cerrada-Suspendida-Cancelada" ng-model="bsq.estado" required>
+                </form>
+                </div>
+            </div>

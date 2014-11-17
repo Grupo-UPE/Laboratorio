@@ -83,7 +83,13 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                 {
                     templateUrl: 'partials/busqueda-edit.html',
                     controller: 'busquedaListCTRL',
-                    permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                    permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
+                });
+        $routeProvider.when('/busquedastate/:busquedaId',
+                {
+                    templateUrl: 'partials/busquedastate-edit.html',
+                    controller: 'busquedastateListCTRL',
+                    permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
         $routeProvider.when('/busquedalist/:estado',
                 {

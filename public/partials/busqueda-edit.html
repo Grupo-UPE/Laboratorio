@@ -25,22 +25,87 @@
     </div>
     <div class="panel-body" >
         <form action="" ng-submit="guardar()"  method="POST" class="form-horizontal" role="form">
-            <div class="form-group col-sm-5 col-md-5 col-lg-5">
-                <legend>Estado de la Busqueda {{busqueda.nombre}}</legend>
-                    <input type="hidden" name="_id" id="_id" class="form-control" value="{{busqueda._id}}" ng-model="busqueda._id">
-                    
-                    <label for="estado">Estado</label>
-                    <input  class="form-control" id="estado" placeholder="Abierta-Cerrada-Suspendida-Cancelada" ng-model="bsq.estado" required>
+            <div class="form-group col-sm-12 col-md-12 col-lg-12">
+              <div class="col-md-3" >
+                <input type="hidden" name="_id" id="_id" class="form-control" value="{{busqueda._id}}" ng-model="busqueda._id">
+                            <div class="form-group">
+                                <label for="nombre">Nombre:</label>
+                                <input class="form-control" type="text" id="nombre" ng-model="busqueda.nombre" placeholder="Puesto Solicitado" required pattern="[a-zA-Z]+" >
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-offset-1 ">
+                            <div class="form-group">
+                                <label for="Empleado Referente">Empleado Referente:</label>
+                                 <input class="form-control" type="text" id="empleado referente" ng-model="busqueda.empleado_referente">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-offset-1">
+                            <div class="form-group">
+                                <label for="cantidad_puestos">Cantidad Puestos a Cubrir:</label>
+                                <input class="form-control" type="text" id="cantidad_puestos" ng-model="busqueda.cantidad_empleados">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="remuneracion">Remuneracion ofrecida:</label>
+                                <input class="form-control" type="text" id="remuneracion" ng-model="busqueda.remuneracion" placeholder="$4000"  >
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-offset-1">
+                            <div class="form-group">
+                                <label for="lugar_de_trabajo">Lugar de Trabajo:</label>
+                                <select class="form-control" id="lugar_de_trabajo" ng-model="busqueda.lugar_trabajo"><option value="">Oficina</option>
+                                        <option id="Oficina Cliente">Oficina Cliente</option>
+                                        <option id="Home Office">Home Office</option>
+                                        <option id="Otro">Otro</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-offset-1">
+                            <div class="form-group">
+                                <label for="horario">Disponibilidad:</label>
+                                <select class="form-control" id="horario" ng-model="busqueda.horario">
+                                    <option value="">Full-Time</option>
+                                        <option id="Part-Time">Part-Time</option>
+                                        <option id="Pasantia">Pasantia</option>
+                                        <option id="Work-Home">Work-Home</option>
+                                </select>
+                            </div>
+                     </div>
+                        <div class="col-md-4 col-sm-offset">
+                            <div class="form-group">
+                                <label for="comentario">Comentario:</label>
+                                <textarea class="form-control" id="comentario" ng-model="busqueda.otros_comentarios"  ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-10 ">
+                            <legend>Posibles entrevistadores</legend>
 
-            </div>
-            <div class="col-sm-1 col-md-1 col-lg-1">
-                <!-- Es trampa para separar los divs -->
-            </div>
-            <div class="form-group">
-                <div class="col-sm-10 col-sm-offset-2">
-                    <button type="submit" ng-click="guardar()" class="btn btn-primary">Modificar Estado</button>
+                            <tags-input ng-model="busqueda.entrevistadores" display-property="username" placeholder="Ingrese un posible entrevistador">
+                            <auto-complete source="loadEntrevistadores($queri)"></auto-complete>
+                             </tags-input>
+                         </div>
+                         </div>
+
+                    <div class="row">
+                        <div class="col-sm-10 ">
+                            <legend>Habilidades</legend>
+
+                            <tags-input ng-model="busqueda.habilidades" placeholder="Ingrese las habilidades">
+                            <auto-complete source="loadTags($query)"></auto-complete>
+                             </tags-input>
+                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary" ng-click="guardar()">Modificar  Busqueda</button>
+                                </div>
+                        </div>
+                    </div>  
                 </div>
             </div>
         </form>
-    </div>
-</div>
+</div>    

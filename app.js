@@ -122,6 +122,8 @@ app.get('/REST/contacto/:postulante', contacto.listPostulante);
 
 app.get('/REST/busqueda', busqueda.list)
 app.get('/REST/busquedastate/:estado', busqueda.listabierta)
+app.get('/REST/busquedastate/:id', busqueda.show)
+app.post('/REST/busquedastate', busqueda.update);
 app.post('/REST/create-busqueda',busqueda.create)
 app.post('/REST/delete-busqueda',busqueda.remove)
 app.get('/REST/busqueda/:id', busqueda.show);
