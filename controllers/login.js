@@ -49,3 +49,13 @@ exports.callback = function(req, res) {
         });
     });
 }
+
+exports.logout = function(req, res) {
+    req.session.destroy();
+    var locals = {
+        title: 'Logout',
+        url: gapi.url,
+        nombre: 'UPE'
+      };
+    res.render('logout.jade', locals);
+}
