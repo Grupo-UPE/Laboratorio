@@ -121,7 +121,6 @@ exports.remove = function (req, res, next) {
 }
 
 exports.update = function (req, res, next) {
-    console.log(req.params.busqueda);
     var mongoose=require('mongoose');
     var id = mongoose.Types.ObjectId(req.body.busqueda._id);
     var estado=req.body.busqueda.estado;
