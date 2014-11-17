@@ -8,11 +8,17 @@ var app = angular.module('ngdemo.controllers.entrevistas', []);
 
 
 app.controller('generarEntrevistaCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
-                        'detalleBusquedaService','$route','$routeParams','postulanteShowUpdateService','entrevistaCreateService',
+                        'detalleBusquedaService','$route','$routeParams','postulanteShowUpdateService','entrevistaCreateService','$sce',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    detalleBusquedaService,$route,$routeParams,postulanteShowUpdateService,entrevistaCreateService) {
-
-            $scope.busqueda=detalleBusquedaService.query({id:$routeParams.idBusqueda});
+                                    detalleBusquedaService,$route,$routeParams,postulanteShowUpdateService,entrevistaCreateService,$sce) {
+            $scope.iframeCalendar="";
+            $scope.busqueda=detalleBusquedaService.query({id:$routeParams.idBusqueda},function(){//Para poder sacar los entrevistadores
+                var src="&src=4aik347gtqu1umje7kggphnsg4%40group.calendar.google.com&amp;";
+                for (var i = 0; i < $scope.busqueda.entrevistadores.length; i++) {
+                    src=src+"&src="+$scope.busqueda.entrevistadores[i].email+"&amp";
+                }
+                $scope.iframeCalendar=$sce.trustAsResourceUrl("https://www.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src="+src+";ctz=America%2FArgentina%2FBuenos_Aires");
+            });
 
 //Date picker
   $scope.today = function() {
@@ -83,6 +89,7 @@ $scope.mytime = new Date();
   //timepicker
 
             $scope.postulante=postulanteShowUpdateService.show({id:$routeParams.idPostulante});
+
             $scope.generarEntrevista=function(){
                 entrevistaCreateService.create({entrevista:$scope.entrevista,
                             busqueda:$scope.busqueda,postulante:$scope.postulante},function(){

@@ -3,7 +3,7 @@
             <h3 class="panel-title">Generar una nueva entevista al postulante: {{postulante.nombre}} para la busqueda: {{busqueda.nombre}}</h3>
     </div>
     <div class="panel-body col-sm-5 col-md-5 col-lg-5">
-   <iframe src="https://www.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=pabloz18ezeiza%40gmail.com&amp;color=%232952A3&amp;src=ferticidio%40gmail.com&amp;color=%232952A3&amp;src=4aik347gtqu1umje7kggphnsg4%40group.calendar.google.com&amp;color=%23711616&amp;ctz=America%2FArgentina%2FBuenos_Aires" style=" border-width:0 " width="800" height="600" frameborder="0" scrolling="no"></iframe>
+   <iframe src="{{iframeCalendar}}" style=" border-width:0 " width="800" height="600" frameborder="0" scrolling="no"></iframe>
         <form action="" ng-submit="generarEntrevista()" method="POST" class="form-horizontal" role="form">
             <div class="form-group">
             <legend>Entrevistador</legend>
