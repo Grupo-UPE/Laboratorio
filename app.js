@@ -148,6 +148,7 @@ app.get('/REST/entrevistadores/:queri', usuario.queri)
 //Login
 app.get('/login', login.login)
 app.get('/oauth2callback', login.callback)
+app.get('/logout', login.logout)
 
 //Entrevistas
 app.post('/REST/create-entrevista', calendar.create)
