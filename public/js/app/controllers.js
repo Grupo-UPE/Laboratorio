@@ -19,7 +19,7 @@ app.controller('IndexController', ['$scope', '$rootScope', '$cookieStore', '$loc
                                    function($scope, $rootScope, $cookieStore, $location, $http,
                                     textoservice,textoserviceid,textoremove,textocreate,controlAcceso,google) {
                                     //Prueba de googleapis
-                                    $scope.profile=google.query();
+                                    $rootScope.profile=google.query();
 
             $scope.listatextos=textoservice.query();
             $scope.guardar = function () {
@@ -147,7 +147,7 @@ app.controller('bpostuCTRL', ['$scope', '$rootScope', '$http','$route',
                               function ($scope, $rootScope,  $http, $route) {
     $scope.bpostulante = {};
     $scope.bpostulist = {};
-    
+
         $scope.buscar = function () {
         $http.post('/REST/bpostu', $scope.bpostulante)
         .success(function(data) {
@@ -158,6 +158,6 @@ app.controller('bpostuCTRL', ['$scope', '$rootScope', '$http','$route',
 		.error(function(data) {
 			console.log('Error: ' + data);
 		});
-           
+
         }
       }]);
