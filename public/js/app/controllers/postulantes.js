@@ -84,10 +84,11 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                        }
 
                                        $scope.listaPostulantes = postulanteService.query();
-                                       
+
                                        $scope.guardar = function(){
                                           var postulante=postulanteCreateService.create({ postulante: $scope.postulante }, function(){
                                              $scope.postulant = postulanteShowUpdateService.show({ id: postulante._id });
+                                             $scope.showModal_cv=true
                                           });
                                        }
 
@@ -112,7 +113,7 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                 $scope.toggleModal = function (postID) {
                                     $scope.showModal = true;
                                     $scope.postulant = postulanteShowUpdateService.show({ id: postID });
-                                    
+
                                 };
 
 

@@ -45,7 +45,7 @@ exports.create = function (req, res, next) {
             console.log(err)
             return next(err)
         }
-        return res.send("");
+        return res.send(postulante);
     }
 
 };
@@ -407,7 +407,8 @@ exports.uploadImage = function(req, res, next){
     else{
         if(tipo=='image/png' || tipo=='image/jpg' || tipo=='image/jpeg' ){
             var path_tmp_foto = req.files.foto.path;
-            var newPath_foto = '../public/uploads/fotos/' + id;
+            //var newPath_foto = '../public/uploads/fotos/' + id;
+            var newPath_foto = './public/uploads/fotos/' + id;
             is = fs.createReadStream(path_tmp_foto)
             os = fs.createWriteStream(newPath_foto)
             is.pipe(os)
@@ -512,11 +513,11 @@ exports.prueba = function(req, res, next){
 }
 
 exports.busca = function (req, res, next) {
-    
+
 	var name = req.body.nombre;
 	var apell = req.body.apellido;
 	var email = req.body.email;
-    
+
 Postulante.find({
     "$or": [{
         "nombre": name
