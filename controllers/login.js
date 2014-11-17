@@ -4,7 +4,8 @@ var usuario  = require('../controllers/usuario')
 exports.login = function(req, res) {
   var locals = {
         title: 'Login',
-        url: gapi.url
+        url: gapi.url,
+        nombre: 'UPE'
       };
   res.render('login.jade', locals);
 }
@@ -30,13 +31,16 @@ exports.callback = function(req, res) {
                 req.session.usuario=rv;
             var locals={
                 title:"Bienvenido!",
+                nombre:"UPE",
                 usuario:rv,
             }
             //console.log(rv);
             res.render('redirect.jade', locals);
         }else{
             var locals={
+                nombre:"UPE",
                 title:'Error en el Login',
+                error:true
             }
 
             res.render('login.jade', locals);

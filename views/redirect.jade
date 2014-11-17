@@ -7,6 +7,10 @@ block header
         }
         setTimeout ("redireccionar()", 3000);
 block content
-  h1= title
-  p="Redirigiendolo a la aplicacion. Si en 5 segundos lo redirige siga el siguiente link"
-  a(href= "/")= "Ir a la aplicacion"
+    .container
+        .col-lg-4.col-md-4.col-sm-12.col-xs-12.col-lg-offset-4.col-md-offset-4
+                h1 Redirigiendolo a la aplicacion
+                div.alert.alert-success
+                    strong Login exitoso
+                    span  Redirigiendolo a la aplicacion. Si en 5 segundos no lo redirige acceda con el boton.
+                a.btn.btn-lg.btn-primary.btn-block(href= "/")= "Ir a la aplicacion"

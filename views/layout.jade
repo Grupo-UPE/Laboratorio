@@ -1,8 +1,13 @@
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    title= title + " | " + nombre
+    link(rel='stylesheet', href='/css/bootstrap/bootstrap.min.css')
     block header
   body
-    block content
+    .container
+        .navbar.navbar-default
+            .container
+                .navbar-header
+                    a.navbar-brand(href='/')= nombre
+        block content
