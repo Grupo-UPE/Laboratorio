@@ -1,15 +1,48 @@
-<div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<div class="panel panel-default col-xs-6 col-sm-6 col-md-6 col-lg-6">
     <div class="panel-heading">
             <h3 class="panel-title">Editar Estado de la busqueda: {{busqueda.nombre}}</h3>
     </div>
+    <!--div class="panel-body" >
+        <form action="" ng-submit="guardar()"  method="POST" class="form-horizontal" role="form"></div>
+            <div class="form-group col-sm-5 col-md-5 col-lg-5">
+            	 <legend>Estado de la Busqueda {{busqueda.nombre}}</legend>
+                    <input type="hidden" name="_id" id="_id" class="form-control" value="{{busqueda._id}}" ng-model="busqueda._id">
+      
+                    <label for="estado">Estado</label>
+                    <select class="form-control" ng-model="busqueda.estado">
+                    	<option value="">Abierta</option>
+                                        <option id="Cerrada">Cerrada</option>
+                                        <option id="Suspendida">Suspendida</option>
+                                        <option id="Cancelada">Cancelada</option>
+                                </select>
+                                <div class="col-sm-0 col-md-0 col-lg-0">
+                </div>   
+                
+            
+                <a href="/#/busquedalist/all" type="submit"  ng-click="guardar()" class="btn btn-success btn-sm" >Guardar</a>
+            </div>
+             </div>   
+</form>
+             
+    </div-->
     <div class="panel-body" >
         <form action="" ng-submit="guardar()"  method="POST" class="form-horizontal" role="form">
             <div class="form-group col-sm-5 col-md-5 col-lg-5">
-            	</div> <legend>Estado de la Busqueda {{busqueda.nombre}}</legend>
+                <legend>Estado de la Busqueda {{busqueda.nombre}}</legend>
+                    <input type="hidden" name="_id" id="_id" class="form-control" value="{{busqueda._id}}" ng-model="busqueda._id">
                     
-      
                     <label for="estado">Estado</label>
-                    <input  class="form-control" id="estado" placeholder="Abierta-Cerrada-Suspendida-Cancelada" ng-model="bsq.estado" required>
-                </form>
+                    <input  class="form-control" id="estado" placeholder="Abierta-Cerrada-Suspendida-Cancelada" ng-model="busqueda.estado" required>
+
+            </div>
+            <div class="col-sm-1 col-md-1 col-lg-1">
+                
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <button type="submit" ng-click="guardar()" class="btn btn-primary">Modificar Estado</button>
                 </div>
             </div>
+        </form>
+    </div>
+</div>
