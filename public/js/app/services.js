@@ -160,16 +160,9 @@ services.factory('busquedaRemove', function ($resource) {
 services.factory('busquedaShowUpdateService', function ($resource) {
     return $resource('/REST/busqueda/:id', {}, {
         show: { method: 'GET' },
-        update: { method: 'POST' },
+        update: { method: 'POST'},
     });
 });
-services.factory('busquedaStateShowUpdateService', function ($resource) {
-    return $resource('/REST/busquedastate/:id', {}, {
-        show: { method: 'GET' },
-        update: { method: 'POST' },
-    });
-});
-
 
 
 services.factory('posiblesPostulantes', function ($resource) {
