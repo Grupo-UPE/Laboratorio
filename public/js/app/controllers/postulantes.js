@@ -116,8 +116,26 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                    function ($scope, $rootScope, $cookieStore, $location, $http,
                                     postulanteService, postulanteShowUpdateService, postulanteCreateService, postulanteRemoveService, $route) {
 
+
                                        $scope.showModal_cv = false;
                                        $scope.showModal = false;
+
+                                        $scope.reload = function () {
+                                            $isUploading
+                                            $scope.showModal_cv = false;
+                                            $scope.estaSubiendo= false;
+                                            $scope.showModal = false;
+                                            $scope.showModal2 = false;
+                                            console.log("Paso por aca");
+                                            if($scope.postulant){
+                                                console.log("Y por aca tambien");
+                                                $route.reload();
+                                            }
+                                        };
+
+
+
+
                                        $scope.eliminar = function (idpostulante) {
                                            postulanteRemoveService.remove({ id: idpostulante })
                                            $scope.listaPostulantes = postulanteService.query();
@@ -139,6 +157,7 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                        $scope.loadTags = function (query) { //Podriamos usar un service tambien. Pero como es bastante sencillo no se si nos conviene.
                                            return $http.get('/REST/tags/' + query);
                                        }
+
                                       /*
                                       var data = $scope.listaPostulantes = postulanteService.query();
                                       $scope.tableParams = new ngTableParams({
@@ -152,6 +171,19 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                          });
 
                                       */
+
+
+                                       $scope.isUploadingCV = function(){
+                                          $scope.showModal_cv = false;
+                                          $scope.estaSubiendo= true;
+                                       }
+
+                                      $scope.modalCV = function(postID){
+                                        $scope.showModal_cv = true;
+                                        $scope.postulant = postulanteShowUpdateService.show({ id: postulante._id });
+                                      }
+
+
                                       $scope.cerrar = function () {
                                       $scope.showModal = false;
                                       $scope.showModal2 = false;
@@ -165,6 +197,17 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
 
 
                                    } ]);
+
+ app.controller('postulanteReload', ['$location','$route','$timeout', function ($location,$route,$timeout) {
+
+    $route.reload();
+
+    $timeout(function() {
+        $location.path('/postulantes') //Feo pero creo que funciona.
+    }, 1000);
+
+
+}]);
 
  app.controller('postulanteCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http', '$routeParams',
                         'postulanteShowUpdateService',
