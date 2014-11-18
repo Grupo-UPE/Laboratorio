@@ -52,20 +52,44 @@ exports.create = function (req, res, next) {
 
 
 exports.list = function (req, res, next) {
-
-    Busqueda.find(gotBusquedas).populate('postulantes').populate('entrevistadores').populate('habilidades')
-
-
-
-  function gotBusquedas (err, busquedas) {
-    if (err) {
-      console.log(err)
-      return next()
+    var skip=0;
+    var limit=5;
+    if(req.params.pagina){
+        skip=(req.params.pagina-1)*5;
+        total=(req.param.pagina)*5;
     }
-    //console.log(JSON.stringify(busquedas));
-    return res.json(busquedas);
-  }
 
+    Busqueda.find().skip(skip).limit(limit).populate('postulantes').populate('entrevistadores').populate('habilidades')
+    .exec(function(err, busquedas){
+        if (err) {
+            console.log(err)
+            return next()
+            }
+            return res.json(busquedas);
+            });
+}
+
+exports.totalBusquedas = function (req, res, next) {
+
+    if(req.params.estado){
+        Busqueda.find({estado: req.params.estado}).count()
+        .exec(function(err, total){
+            if (err) {
+                console.log(err)
+                return next()
+             }
+                return res.json({total:total});
+        });
+    }else{
+    Busqueda.count()
+    .exec(function(err, total){
+        if (err) {
+            console.log(err)
+            return next()
+            }
+            return res.json({total:total});
+            });
+    }
 }
 
 exports.show = function (req, res, next) {

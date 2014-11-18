@@ -115,12 +115,15 @@ app.post('/REST/bpostu', bpostu.busca);
 app.get('/REST/busquedaBis', busquedaBis.list)//Le puse el bis porque devuelve mas o menos lo que esperamos.
 app.get('/REST/detalleBusquedaBis/:id', busquedaBis.show)
 app.post('/REST/busquedaPorHabilidades', postulante.listarPorHabilidades)//Le puse el bis porque devuelve mas o menos lo que esperamos.
+app.get('/REST/totalBusquedas/:estado', busqueda.totalBusquedas)
+app.get('/REST/totalBusquedas', busqueda.totalBusquedas)
 
 app.post('/REST/create-contacto', contacto.create)
 app.get('/REST/contacto', contacto.list);
 app.get('/REST/contacto/:postulante', contacto.listPostulante);
 
 app.get('/REST/busqueda', busqueda.list)
+app.get('/REST/busqueda/:pagina', busqueda.list)
 app.get('/REST/busquedastate/:estado', busqueda.listabierta)
 app.post('/REST/create-busqueda',busqueda.create)
 app.post('/REST/delete-busqueda',busqueda.remove)

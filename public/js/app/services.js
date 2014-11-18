@@ -135,7 +135,7 @@ services.factory('textoremove', function ($resource) {
 /*Busquedas*/
 
 services.factory('busquedaService', function ($resource) {
-    return $resource('/REST/busqueda', {}, {
+    return $resource('/REST/busqueda/:pagina', {}, {
         query: { method: 'GET', params: {}, isArray: true },
     });
 });
@@ -327,5 +327,11 @@ services.factory('guardarFeedback', function ($resource) {
 services.factory('entrevistaPostulante', function ($resource) {
     return $resource('/REST/entrevistaPostulante/:postulante', {}, {
         query: { method: 'GET' , params: {}, isArray: true },
+    });
+});
+
+services.factory('totalBusquedas', function ($resource) {
+    return $resource('/REST/totalBusquedas/:estado', {}, {
+        get: { method: 'GET' , params: {}, isArray: false },
     });
 });

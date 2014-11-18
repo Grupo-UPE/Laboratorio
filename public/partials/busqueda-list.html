@@ -37,4 +37,8 @@
                 </tr>
         </tbody>
     </table>
+    <ul class="pagination">
+    Pagina {{paginaActual}} de {{totalPaginas}}<br>
+    <li ng-repeat="n in [] | range:totalPaginas"><a href ng-click="pagina(n)">{{n}}</a></li>
+</ul>
 </div>

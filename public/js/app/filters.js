@@ -12,8 +12,17 @@ appDir.filter('interpolate', ['version', function(version) {
 
 
 appDir.filter('formatDate',function(){
-	
+
 	return function(data){
 		var result=formatDate(String(data));
-		return result;};  
+		return result;};
+});
+
+appDir.filter('range', function() {
+  return function(input, total) {
+    total = parseInt(total);
+    for (var i=1; i<=total; i++)
+      input.push(i);
+    return input;
+  };
 });

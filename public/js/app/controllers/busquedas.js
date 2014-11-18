@@ -41,11 +41,24 @@ app.controller('busquedaCreateCTRL', ['$scope', '$rootScope', '$cookieStore', '$
 
 app.controller('busquedaListCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'busquedaService','$route','busquedaRemove','busquedaShowUpdateService','$routeParams',
+                        'totalBusquedas',
                                    function($scope, $rootScope, $cookieStore, $location, $http,
-                                    busquedaService,$route,busquedaRemove,busquedaShowUpdateService,$routeParams ) {
+                                    busquedaService,$route,busquedaRemove,busquedaShowUpdateService,$routeParams,
+                                    totalBusquedas) {
 
-
+            $scope.paginaActual=1;
+            $scope.totalPaginas=1;
             $scope.listaBusquedas=busquedaService.query();
+            $scope.totalBusquedas=totalBusquedas.get({},function(){
+                $scope.totalPaginas=(Math.floor($scope.totalBusquedas.total/5)+1);
+            });
+
+            $scope.pagina = function (pagina){
+                $scope.paginaActual=pagina;
+                $scope.listaBusquedas=busquedaService.query({pagina:pagina});
+            }
+
+
 
             if($routeParams.busquedaId){
                 $scope.busqueda = busquedaShowUpdateService.show({ id: $routeParams.busquedaId });
