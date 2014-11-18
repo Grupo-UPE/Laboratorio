@@ -60,6 +60,13 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                     controller: 'postulanteListCTRL',
                     permisos : ['RRHH'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
+
+            $routeProvider.when('/postulantes/reload',
+                {
+                    templateUrl: 'partials/postulante-list.html',
+                    controller: 'postulanteReload',
+                });
+
             $routeProvider.when('/postulantes/:postulanteId',
                 {
                     templateUrl: 'partials/postulante-edit.html',

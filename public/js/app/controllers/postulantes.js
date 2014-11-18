@@ -76,7 +76,20 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                    function ($scope, $rootScope, $cookieStore, $location, $http,
                                     postulanteService, postulanteShowUpdateService, postulanteCreateService, postulanteRemoveService, $route) {
 
-                                       $scope.showModal_cv = false;
+                                        $scope.reload = function () {
+                                            $isUploading
+                                            $scope.showModal_cv = false;
+                                            $scope.estaSubiendo= false;
+                                            $scope.showModal = false;
+                                            $scope.showModal2 = false;
+                                            console.log("Paso por aca");
+                                            if($scope.postulant){
+                                                console.log("Y por aca tambien");
+                                                $route.reload();
+                                            }
+                                        };
+
+
 
                                        $scope.eliminar = function (idpostulante) {
                                            postulanteRemoveService.remove({ id: idpostulante })
@@ -98,14 +111,14 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
 
                                        $scope.isUploadingCV = function(){
                                           $scope.showModal_cv = false;
-                                          $route.reload();
+                                          $scope.estaSubiendo= true;
                                        }
 
                                       $scope.modalCV = function(postID){
                                         $scope.showModal_cv = true;
                                         $scope.postulant = postulanteShowUpdateService.show({ id: postulante._id });
                                       }
-                                      $scope.showModal = false;
+
                                       $scope.cerrar = function () {
                                       $scope.showModal = false;
                                       $scope.showModal2 = false;
@@ -119,6 +132,17 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
 
 
                                    } ]);
+
+ app.controller('postulanteReload', ['$location','$route','$timeout', function ($location,$route,$timeout) {
+
+    $route.reload();
+
+    $timeout(function() {
+        $location.path('/postulantes') //Feo pero creo que funciona.
+    }, 1000);
+
+
+}]);
 
  app.controller('postulanteCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http', '$routeParams',
                         'postulanteShowUpdateService',

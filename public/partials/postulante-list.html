@@ -1,4 +1,4 @@
-<div class="table-responsive">
+<div class="table-responsive" on-init="reload()">
     <table class="table table-striped table-hover">
         <thead>
             <tr>
@@ -26,7 +26,7 @@
                 <td>{{post.telefono}}</td>
                 <td>{{post.email}}</td>
                 <td>{{post.disponibilidad}}</td>
-                <td><span ng-repeat="habilidad in post.habilidades">{{habilidad.nombre}} </span></td>        
+                <td><span ng-repeat="habilidad in post.habilidades">{{habilidad.nombre}} </span></td>
                 <td>
                     <a href="/#/postulantes/{{post._id}}" class="btn btn-info btn-xs">
                         <span class="glyphicon glyphicon-pencil"></span>Editar
@@ -47,10 +47,11 @@
         </tbody>
     </table>
 </div>
-    
+
     <modal title="¿Cargar Curriculum?" visible="showModal_cv">
         <h3>¿Cargar Curriculum?</h3>
-        <form  ng-upload="bar(content)" method="post" enctype='multipart/form-data' action="/uploadDoc?delay=yes" ng-submit="isUploadingCV(post._id)">
+        <form  method="post" enctype='multipart/form-data' action="/uploadDoc?delay=yes" ng-submit="isUploadingCV(post._id)">
+        <!--ng-upload="bar(content)" -->
 <div>
                 <div class="form-group">
                     <div class="fileupload fileupload-new" data-provides="fileupload">
@@ -67,12 +68,17 @@
     </modal>
 
 
+    <modal title="Cargando" visible="estaSubiendo">
+        <img src="/images/icn-cargando.gif" alt="">
+    </modal>
+
+
 
     <modal title="Informacion del Postulante" visible="showModal">
            <h1>{{postulant.nombre}} {{postulant.apellido}}</h1>
            <hr>
            <div class="modal-body">
-           
+
            <form  ng-upload="bar(content)" method="post" enctype='multipart/form-data' action="/uploadImage?delay=yes" ng-submit="isUploading(post._id)">
                 <div>
                 <div class="form-group">
@@ -89,7 +95,7 @@
                 <input type="submit"class="btn btn-danger" ng-disabled="$isUploading" value="Cargar Foto">
            </form>
            <label for="">variable: {{postulant._id}}</label>
-           
+
             <div ng-if="postulant.fotoUrl === true">
                 <img src="../uploads/fotos/{{postulant._id}}" alt="FOTO POSTULANTE" class="img-thumbnail">
             </div>
@@ -104,9 +110,9 @@
                <ul>Telefono: {{postulant.telefono}}</ul>
                <ul>Disponibilidad: {{postulant.disponibilidad}}</ul>
                <ul>DNI: {{postulant.dni}}</ul>
-              
-            
-                                          
+
+
+
                <div ng-if="postulant.curriculumURL != instead">
                    <a href="{{postulant.curriculumURL}}" class="btn btn-primary btn-xs">
                         <span class="glyphicon glyphicon-paperclip"></span>Ver Curriculim
@@ -117,9 +123,9 @@
                    <button class="btn btn-primary btn-xs" ng-click="modalCV(postulant._id)">¿Cargar?</button>
                </div>
 
-                
 
-               
+
+
            </div>
         <hr>
         <h4>Habilidades</h4>
@@ -130,7 +136,7 @@
         <textarea disabled class="form-control">{{postulant.comentario}}</textarea>
         <div>
             <a href="https://twitter.com/intent/tweet?button_hashtag=destacado&text=Me interesa {{postulant.nombre}} {{postulant.apellido}}, echa un vistaso a su curriculum: {{postulant.curriculumURL}}" class="twitter-hashtag-button" data-lang="es" data-size="large" data-related="LaboratoriosUPE,usuario">Tweet #destacado</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>       
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         </div>
 
            </div>
@@ -159,7 +165,7 @@
                             <div class="form-group" ng-class="{'has-error': frmPostulante.apellido.$invalid, 'has-success': frmPostulante.apellido.$valid}">
                                 <label for="apellido">Apellido:</label>
                                 <input class="form-control" type="text" id="apellido" name="apellido" ng-model="postulante.apellido" placeholder="Ingrese el apellido..." required >
-                                
+
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -274,7 +280,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group"  ng-class="{'has-error': frmPostulante.disponibilidad.$invalid, 'has-success': frmPostulante.disponibilidad.$valid}"">
+                            <div class="form-group"  ng-class="{'has-error': frmPostulante.disponibilidad.$invalid, 'has-success': frmPostulante.disponibilidad.$valid}">
                                 <label for="disponibilidad">Disponibilidad:</label>
                                 <input class="form-control" type="text" id="disponibilidad" name="disponibilidad" ng-model="postulante.disponibilidad" placeholder="ej full-time..." required >
                                 <div ng-show="frmPostulante.disponibilidad.$invalid">
@@ -307,7 +313,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success" >Registrar</button>                       
+                                <button type="submit" class="btn btn-success" >Registrar</button>
                             </div>
                         </div>
 

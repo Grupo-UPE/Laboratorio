@@ -502,7 +502,7 @@ exports.uploadDoc = function(req,res,next){
                             return next(err)
                         }
 
-                        return res.send("");
+                        return res.redirect('/#/postulantes/reload')
                         }
 
                 }
