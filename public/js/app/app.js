@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on filters, and services
-angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'ngdemo.services',
+angular.module('ngdemo', ['ngRoute', 'ngUpload', 'angularFileUpload','ngCookies','ngdemo.filters', 'ngdemo.services',
     'ngdemo.directives', 'ui.date', 'ui.mask', 'ngdemo.controllers','ngdemo.controllers.busquedas','ngdemo.controllers.postulantes',
     'ngdemo.controllers.usuarios','ngdemo.controllers.habilidades','ngdemo.controllers.entrevistas',
     'ui.bootstrap.dropdown', 'ui.bootstrap.modal','ngdemo.controllers.login',
@@ -66,6 +66,13 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload','ngCookies','ngdemo.filters', 'n
                     controller: 'postulanteCTRL',
                     permisos : ['admin'] //En realidad no lo estamos usando, pero por las dudas lo dejo.
                 });
+
+            $routeProvider.when('/subirCV/:id',
+                {
+                    templateUrl: 'partials/subirCV.html',
+                    controller: 'uploadDoc',
+                });
+
 
 	    $routeProvider.when('/createbusquedas',
                 {
