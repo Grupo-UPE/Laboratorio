@@ -80,7 +80,7 @@ services.factory('rolCreateService', function ($resource) {
 /*Postulantes */
 
 services.factory('postulanteService', function ($resource) {
-    return $resource('/REST/postulante/', {}, {
+    return $resource('/REST/postulante/:pagina', {}, {
         query: { method: 'GET', params: {}, isArray: true }, //trae todos los postulantes
     });
 });
@@ -332,6 +332,12 @@ services.factory('entrevistaPostulante', function ($resource) {
 
 services.factory('totalBusquedas', function ($resource) {
     return $resource('/REST/totalBusquedas/:estado', {}, {
+        get: { method: 'GET' , params: {}, isArray: false },
+    });
+});
+
+services.factory('totalPostulantes', function ($resource) {
+    return $resource('/REST/totalPostulantes/:estado', {}, {
         get: { method: 'GET' , params: {}, isArray: false },
     });
 });

@@ -31,16 +31,16 @@ var app = angular.module('ngdemo.controllers.postulantes', []);
                                                 console.log(data);
                                              });
                                              }
-                                            };   
+                                            };
 
                                        $scope.probar = function(){
                                           console.log($routeParams.id);
 
                                        }
-                                       
+
                                        $scope.guardar = function () {
 
-                                           
+
                                            $location.path('/postulantes');
 
                                        };
@@ -113,8 +113,23 @@ app.controller('postulanteCtrlCV', ['$scope', '$rootScope', '$routeParams', '$ro
 
 app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'postulanteService', 'postulanteShowUpdateService', 'postulanteCreateService', 'postulanteRemoveService', '$route',
+                        'totalPostulantes',
                                    function ($scope, $rootScope, $cookieStore, $location, $http,
-                                    postulanteService, postulanteShowUpdateService, postulanteCreateService, postulanteRemoveService, $route) {
+                                    postulanteService, postulanteShowUpdateService, postulanteCreateService, postulanteRemoveService, $route,
+                                    totalPostulantes) {
+
+                                    $scope.paginaActual=1;
+                                    $scope.totalPaginas=1;
+                                    $scope.listaPostulantes = postulanteService.query();
+
+                                    $scope.totalPostulantes=totalPostulantes.get({},function(){
+                                        $scope.totalPaginas=(Math.floor($scope.totalPostulantes.total/5)+1);
+                                    });
+
+                                    $scope.pagina = function (pagina){
+                                        $scope.paginaActual=pagina;
+                                        $scope.listaPostulantes = postulanteService.query({pagina:pagina});
+                                    }
 
 
                                        $scope.showModal_cv = false;
@@ -141,8 +156,6 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                            $scope.listaPostulantes = postulanteService.query();
                                        }
 
-                                       $scope.listaPostulantes = postulanteService.query();
-
                                       $scope.cargarCurriculum = function(postID){
                                         $scope.showModal = false;
                                         $location.path('/subirCV/'+ postID);
@@ -150,7 +163,7 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                        $scope.guardar = function(){
                                           var postulante=postulanteCreateService.create({ postulante: $scope.postulante }, function(){
                                               $location.path('/subirCV/'+postulante._id);
-                                             
+
                                           });
                                        }
 

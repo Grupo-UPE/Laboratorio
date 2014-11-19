@@ -51,19 +51,45 @@ exports.create = function (req, res, next) {
 };
 
 exports.list = function (req, res, next) {
+    var skip=0;
+    var limit=5;
+    if(req.params.pagina){
+        skip=(req.params.pagina-1)*5;
+        total=(req.param.pagina)*5;
+    }
 
-    Postulante.find(gotPostulantes).populate('habilidades')
-
-    function gotPostulantes(err, postulante) {
+    Postulante.find().skip(skip).limit(limit).populate('habilidades')
+    .exec(function(err, postulantes){
         if (err) {
             console.log(err)
             return next()
-        }
-
-        return res.json(postulante);
-    }
-
+            }
+            return res.json(postulantes);
+            });
 };
+
+exports.totalPostulantes = function (req, res, next) {
+
+    if(req.params.estado){
+        Postulante.find({estado: req.params.estado}).count()
+        .exec(function(err, total){
+            if (err) {
+                console.log(err)
+                return next()
+             }
+                return res.json({total:total});
+        });
+    }else{
+    Postulante.count()
+    .exec(function(err, total){
+        if (err) {
+            console.log(err)
+            return next()
+            }
+            return res.json({total:total});
+            });
+    }
+}
 
 exports.show = function (req, res, next) {
   var id = req.params.id
@@ -186,7 +212,7 @@ exports.remove = function (req, res, next) {
 
     try{
         fs.unlinkSync('../public/uploads/fotos/' + postulante._id);
-        
+
     }
     catch(err){
         console.log(err);
