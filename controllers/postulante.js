@@ -185,8 +185,8 @@ exports.remove = function (req, res, next) {
     var fotoUrl = postulante.fotoUrl
 
     try{
-        fs.unlinkSync(fotoUrl);
-        fs.unlinkSync(curriculumURL);
+        fs.unlinkSync('../public/uploads/fotos/' + postulante._id);
+        
     }
     catch(err){
         console.log(err);
@@ -206,133 +206,7 @@ exports.remove = function (req, res, next) {
   }
 }
 
-exports.upload = function (req, res, next) {
 
-    //res.setHeader('Content-Type', 'text/html');
-
-    var mensaje = '';
-    var nombre = req.param('postulante.dni');
-    var extension = '';
-    var newPath_cv='';
-    var newPath_foto='';
-    var tipo='';
-
-
-    /* ---CARGA DEL CURRICULUM --------------*/
-
-    if (!req.files.file || req.files.file.size == 0) {
-      mensaje = 'No se pudo subir el archivo ' + new Date().toString();
-      res.send(mensaje);
-    }
-    else{
-
-
-
-    /* -------  CARGA DE LA FOTO  --------------*/
-    tipo=req.files.foto.type;
-
-    if (!req.files.foto || req.files.foto.size == 0) {
-      mensaje = 'No se pudo subir el archivo ' + new Date().toString();
-      res.send(mensaje);
-    }
-    else{
-        if(tipo=='image/png' || tipo=='image/jpg' || tipo=='image/jpeg' ){
-            var path_tmp_foto = req.files.foto.path;
-            extension = ".jpg";
-            newPath_foto = '../public/uploads/fotos/' + nombre;
-            is = fs.createReadStream(path_tmp_foto)
-            os = fs.createWriteStream(newPath_foto)
-            is.pipe(os)
-            is.on('end', function() {
-                fs.unlinkSync(path_tmp_foto)
-            })
-
-        }
-        else{
-             mensaje = 'Tipo de archivo no soportado';
-             res.send(mensaje);
-        }
-
-    }
-
-    /* ------CARGA DATOS EN LA BASE ------------*/
-    //console.log(req.param('pustulante.habilidades'))
-
-    /*for (var id in req.body.postulante.habilidades) {
-        habilidades.push(req.body.postulante.habilidades[id]["_id"]);
-    }*/
-
-
-
-
-    var postulante = new Postulante({
-        nombre: req.param('postulante.nombre'),
-        apellido: req.param('postulante.apellido'),
-        dni: req.param('postulante.dni'),
-        estado_civil: req.param('postulante.estado_civil'),
-        nacionalidad: req.param('postulante.nacionalidad'),
-        edad: req.param('postulante.edad'),
-        sexo: req.param('postulante.sexo'),
-        telefono: req.param('postulante.telefono'),
-        email: req.param('postulante.email'),
-        disponibilidad: req.param('postulante.disponibilidad'),
-        comentario: req.param('postulante.comentario'),
-        habilidades : [],
-        curriculumURL : newPath_cv,
-        fotoUrl : newPath_foto
-        });
-
-
-    /** CARGA CV */
-    var path_tmp_cv = req.files.file.path;
-        gapi.a.setCredentials(req.session.tokens);
-        gapi.drive.files.insert({
-          resource: {
-            parents : [{id: '0B29paO-zxCaBZTVTZ0ZuMm00Y2M'}],
-            title: req.files.file.name,
-            mimeType: 'application/pdf'
-          },
-          media: {
-            mimeType: 'application/pdf',
-            body: fs.createReadStream(path_tmp_cv) // read streams are awesome!
-          }, auth: gapi.a
-        }, function(err, res){
-            if(err){
-                console.log(err);
-            }
-            newPath_cv = res.selfLink;
-
-            try{
-                postulante.curriculumURL = res.selfLink;
-            }
-            catch(err){
-                console.log(err);
-            }
-
-            postulante.save(onSaved)
-            fs.unlinkSync(path_tmp_cv);
-        });
-
-       function onSaved(err) {
-        if (err) {
-            console.log(err)
-            return next(err)
-        }
-
-        return res.send("");
-    }
-
-        /*newPath_cv = '../public/uploads/curriculums/' + nombre + extension;
-        var is = fs.createReadStream(path_tmp_cv)
-        var os = fs.createWriteStream(newPath_cv)
-        is.pipe(os)
-        is.on('end', function() {//cuando no hay mas datos que leer
-            fs.unlinkSync(path_tmp_cv) //eliminamos el archivo temporal
-        })*/
-
-    }
-
-}
 exports.listarPorHabilidades = function (req, res, next) {
     var habs= [];
     var habId=[];
@@ -407,8 +281,8 @@ exports.uploadImage = function(req, res, next){
     else{
         if(tipo=='image/png' || tipo=='image/jpg' || tipo=='image/jpeg' ){
             var path_tmp_foto = req.files.foto.path;
-            //var newPath_foto = '../public/uploads/fotos/' + id;
-            var newPath_foto = './public/uploads/fotos/' + id;
+            var newPath_foto = '../public/uploads/fotos/' + id;
+            //var newPath_foto = './public/uploads/fotos/' + id;
             is = fs.createReadStream(path_tmp_foto)
             os = fs.createWriteStream(newPath_foto)
             is.pipe(os)
@@ -451,21 +325,27 @@ exports.uploadImage = function(req, res, next){
     }
 }
 
+
+
+
+
+
 exports.uploadDoc = function(req,res,next){
     var id = req.param('postulant._id');
-    var dni = req.param('postulant.dni');
+    //var dni = req.param('postulant.dni');
     if (!req.files.file || req.files.file.size == 0) {
       mensaje = 'No se pudo subir el archivo ' + new Date().toString();
       res.send(mensaje);
     }
     else{
-        Postulante.findById(id, gotPostulante)
+        Postulante.findById(req.body.id, gotPostulante)
             function gotPostulante(err, postulante) {
                 if (err) {
                     return next(err)
                 }
 
                 if (!postulante) {
+                    console.log(req.body.id)
                     return res.send({ 'error': 'ID invalido' })
                  }
                 else {
@@ -508,9 +388,6 @@ exports.uploadDoc = function(req,res,next){
                 }
 }}};
 
-exports.prueba = function(req, res, next){
-    console.log(req.params);
-}
 
 exports.busca = function (req, res, next) {
 

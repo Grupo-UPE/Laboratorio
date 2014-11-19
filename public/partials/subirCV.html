@@ -1,0 +1,40 @@
+<div class="container" style="width:500px; border:1px; margin:0 auto; height:400px; padding-top:100px padding-botton:100px; text-align:center; ">
+<div class="panel panel-success">
+	<div class="panel-heading" ><h3>Carga de Archivos a Google Drive</h3></div>
+	<div class="panel-body">
+		<form  ng-upload="bar(content)" method="post" enctype='multipart/form-data' action="/uploadDoc?delay=yes" ng-submit="isUploadingCV(post._id)">
+			<div class="container" style="width: 200px; padding-right:250px;">
+                <div class="form-group">
+                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                        <span class="btn btn-success btn-lg btn-file"><span class="fileupload-new glyphicon glyphicon-search">  Selecionar Curriculum</span>
+                        <span class="fileupload-exists glyphicon glyphicon-cloud-upload"> Cambiar</span>         <input type="file" ng-file-select="onFileSelect($files)" name="file" accept="application/pdf" /></span>
+                        <span class="fileupload-preview"></span>
+                        <a href="#/postulantes" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                    </div>
+                </div>
+                <div ng-if="isUploading!=0">
+                	<div class="form-group">
+                	<button ng-click="upload.abort()" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove" ng-click="guardar"> </span> Cancel Upload</button>
+                </div>
+                </div>
+                
+            </div>
+            <div class="panel-footer">
+            	<input type="hidden" name="postulant._id" ng-value="postulant._id">
+                <div class="progress progress-striped active">
+						  <div class="progress-bar" role="progressbar"
+						       aria-valuenow="{{isUploading}}" aria-valuemin="0" aria-valuemax="100"
+						       style="width: {{isUploading}}%">
+						    <span class="sr-only">{{isUploading}}% completado</span>
+						  </div>
+				</div>
+				<button type="button" class="btn btn-warning" ng-click="volver()">Volver</button>
+            </div>
+		</form>
+	</div>
+	
+</div>
+</div>
+
+
+
