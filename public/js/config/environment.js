@@ -1,7 +1,7 @@
 var protocol="${server.protocol}";
 var server="${server.ip}";
 var port="${server.port}";
-var app_name="sueldos";
+var app_name="UPE";
 
 if (server.indexOf("server.ip") !== -1){
 	//encontró el string server.ip exto quiere decir que se está ejecutando desde el entorno del eclipse

@@ -11,76 +11,60 @@ var Usuario = require('../models/usuario'); //Traemos directamente el modelo
 var Rol = require('../models/rol'); //Traemos directamente el modelo
 var Postulante = require('../models/postulante');
 var Busqueda = require('../models/busqueda');
+var Habilidad = require('../models/habilidad');
+var config = require('../config/config');
 
 exports.install = function(){
-var roles=[{nombre:"nombre de rol", puntosdemenu:[{texto:"Texto a mostrar",anchor:"URL"},{texto:"",anchor:""}]}];
-var administradores=['m@ail','otroM@ail'];
-var rrhhs=[];
-var entrevistadores=[];
+var roles=[{nombre:"admin"},{nombre:"rrhh"},{nombre:"entrevistador"}];
+var administrador=config.ADMIN;
+var rrhh=config.RRHH;
+var entrevistador=config.ENTREVISTADOR;
+var habilidades = config.HABILIDADES;
 
-var postulantes=[
-    {
-    nombre: 'fernando',
-    apellido: 'lescano',
-    dni: 31956641,
-    estado_civil: 'soltero',
-    nacionalidad: 'argentina',
-    edad: 'mucha',
-    sexo: 'poco',
-    telefono: [{ tipo: 'mio', numero: 'alguno'}],
-    email: 'alguno',
-    formacion_academica: [{ titulo: 'tecnico universitario en desarrollo de software'}],
-    disponibilidad: 'abierto a propuestas',
-    experiiencia_laboral: [{ empresa: 'alguna', antiguedad: 'muy poca', rol: 'che pibe'}],
-    comentario: 'depende del lenguaje... podria ser /* */',
-    //habilidades     : [{type: Schema.ObjectId, ref : 'Habilidad'}],
-    //habilidades_evaluadas     :
-      //  [{habilidad: {type: Schema.ObjectId, ref : 'Habilidad'},Evaluacion:Number}],
-//});
-    }
-];
-
-var busquedas = [{
-    cantidad_empleados       : 1,
-    nombre         : 'Busqueda de prueba',
-    abierto         : true,
-    remuneracion    : 17500,
-    entrevistadores     : [ObjectId('5421ee60dda3805b31d3e075'),
-                                    ObjectId('5418b908976daf2e565c49e8')],
-    postulantes     : [ObjectId('543ade8a87b3c1274414472d'),],
-    otros_comentarios : 'Un comentario de una busqueda de prueba.',
-    texto_twitter     : 'Un comentario',
-    lugar_trabajo     : "En algun lado",
-    horario           : "De 00:01 a 23:59"
-}];
-
-
-var count = busquedas.length;
-for(var i = 0; i < count; i++) { //Dicen que es mas rapido esto que for(var algo in lista)
-    var bsq = new Busqueda(busquedas[i]);
-    bsq.save();
-}
-/**/
-/*
-var count = postulantes.length;
-for(var i = 0; i < count; i++) { //Dicen que es mas rapido esto que for(var algo in lista)
-    var post = new Postulante(postulantes[i]);
-    post.save();
-}
-*/
-var habilidades=[];
-/*
-var count = roles.length;
-for(var i = 0; i < count; i++) { //Dicen que es mas rapido esto que for(var algo in lista)
-    var rol = new Rol({
-    nombre        :   roles[i].nombre,
-    puntos_de_menu: roles[i].puntosdemenu,
+var rolAdmin = new Rol({
+    nombre        :   "admin"
     });
-    rol.save();
+rolAdmin.save();
+
+var rolRRHH = new Rol({
+    nombre        :   "rrhh"
+    });
+rolRRHH.save();
+
+var rolEntrevistador = new Rol({
+    nombre        :   "entrevistador"
+    });
+rolEntrevistador.save();
+
+var admin = new Usuario({
+    email: administrador.email,
+    username: administrador.username,
+    rol: rolAdmin._id,
+});
+admin.save();
+
+var rrhh = new Usuario({
+    email: rrhh.email,
+    username: rrhh.username,
+    rol: rolRRHH._id,
+});
+rrhh.save();
+
+var entrevistador = new Usuario({
+    email: entrevistador.email,
+    username: entrevistador.username,
+    rol: rolEntrevistador._id,
+});
+entrevistador.save();
+
+//Creamos las habilidades
+var count = habilidades.length;
+for(var i = 0; i < count; i++) { //Dicen que es mas rapido esto que for(var algo in lista)
+    var habilidad = new Habilidad({
+        nombre: habilidades[i]
+    });
+    habilidad.save();
 }
-*/
 
 
-
-//Idem con las habilidades los administadores, los rrhs y los entrevistadores.
 }

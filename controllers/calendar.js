@@ -1,9 +1,10 @@
 var gapi = require('../lib/gapi');
 var Entrevista = require('../models/entrevista');
+var config = require('../config/config')
 
 exports.eventos=  function(req, res){
     gapi.a.setCredentials(req.session.tokens); //Probe guardar el gapi con las credenciales directamente, pero no funciona.
-    gapi.calendar.events.list({calendarId:'4aik347gtqu1umje7kggphnsg4@group.calendar.google.com',  auth: gapi.a },function(err, eventos){
+    gapi.calendar.events.list({calendarId:config.GOOGLE_CALENDAR,  auth: gapi.a },function(err, eventos){
         console.log(eventos);//Usado para probar.
     });
 }
@@ -74,7 +75,7 @@ exports.create = function(req, res){
 
             gapi.a.setCredentials(req.session.tokens);
             //Object.getOwnPropertyNames(gapi.calendar.events)
-            gapi.calendar.events.insert({ calendarId:'4aik347gtqu1umje7kggphnsg4@group.calendar.google.com',
+            gapi.calendar.events.insert({ calendarId: config.GOOGLE_CALENDAR,
                 resource:entrevistagoogle ,auth: gapi.a },function(err, evento){
                 if(err){
                     console.log(err);
@@ -119,7 +120,7 @@ exports.create = function(req, res){
 exports.show = function(req, res){
 
     gapi.a.setCredentials(req.session.tokens);
-    gapi.calendar.events.get({ calendarId:'4aik347gtqu1umje7kggphnsg4@group.calendar.google.com',
+    gapi.calendar.events.get({ calendarId: config.GOOGLE_CALENDAR,
         eventId:req.body.entrevista.id, auth: gapi.a}, function(err, evento){
         if(err){
             console.log(err);

@@ -1,6 +1,7 @@
 var Postulante = require('../models/postulante');
 var fs = require('fs');
 var ObjectId = require("mongoose").Types.ObjectId;
+var config = require('../config/config')
 
 exports.create = function (req, res, next) {
 
@@ -379,7 +380,7 @@ exports.uploadDoc = function(req,res,next){
                     gapi.a.setCredentials(req.session.tokens);
                     gapi.drive.files.insert({
                       resource: {
-                        parents : [{id: '0B29paO-zxCaBZTVTZ0ZuMm00Y2M'}],
+                        parents : [{id: config.GOOGLE_DRIVE}],
                         title: req.files.file.name,
                         mimeType: 'application/pdf'
                       },
