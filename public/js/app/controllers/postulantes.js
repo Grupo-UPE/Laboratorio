@@ -64,6 +64,7 @@ app.controller('postulanteCtrlCV', ['$scope', '$rootScope', '$routeParams', '$ro
         $scope.showModal = true;
 
         $scope.postulant = postulanteShowUpdateService.show({ id: postID });
+        console.log($scope.postulant);
         $scope.$watch($scope.nombre);
     };
 
@@ -113,10 +114,10 @@ app.controller('postulanteCtrlCV', ['$scope', '$rootScope', '$routeParams', '$ro
 
 app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'postulanteService', 'postulanteShowUpdateService', 'postulanteCreateService', 'postulanteRemoveService', '$route',
-                        'totalPostulantes',
+                        'totalPostulantes','postulantePaginadoService',
                                    function ($scope, $rootScope, $cookieStore, $location, $http,
                                     postulanteService, postulanteShowUpdateService, postulanteCreateService, postulanteRemoveService, $route,
-                                    totalPostulantes) {
+                                    totalPostulantes,postulantePaginadoService) {
 
                                     $scope.paginaActual=1;
                                     $scope.totalPaginas=1;
@@ -128,7 +129,7 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
 
                                     $scope.pagina = function (pagina){
                                         $scope.paginaActual=pagina;
-                                        $scope.listaPostulantes = postulanteService.query({pagina:pagina});
+                                        $scope.listaPostulantes = postulantePaginadoService.query({pagina:pagina});
                                     }
 
 
