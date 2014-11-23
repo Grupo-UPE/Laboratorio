@@ -12,11 +12,12 @@ var app = angular.module('ngdemo.controllers.postulantes', []);
                                    function ($scope, $upload, $rootScope, $route, $cookieStore, $location, $http, $routeParams,
                                     postulanteShowUpdateService) {
 
-                                       $scope.postulant = postulanteShowUpdateService.show({ id: $routeParams.id });
+                                      $scope.postulant = postulanteShowUpdateService.show({ id: $routeParams.id });
                                       $scope.volver = function(){
                                         $location.path('/postulantes');
                                       }
                                       $scope.isUploading =0;
+                                      
                                       $scope.onFileSelect = function($files) {
                                         for (var i = 0; i < $files.length; i++) {
                                           var file = $files[i];
@@ -114,10 +115,10 @@ app.controller('postulanteCtrlCV', ['$scope', '$rootScope', '$routeParams', '$ro
 
 app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$location', '$http',
                         'postulanteService', 'postulanteShowUpdateService', 'postulanteCreateService', 'postulanteRemoveService', '$route',
-                        'totalPostulantes','postulantePaginadoService',
+                        'totalPostulantes','postulantePaginadoService', 'habilidadService',
                                    function ($scope, $rootScope, $cookieStore, $location, $http,
                                     postulanteService, postulanteShowUpdateService, postulanteCreateService, postulanteRemoveService, $route,
-                                    totalPostulantes,postulantePaginadoService) {
+                                    totalPostulantes,postulantePaginadoService, habilidadService) {
 
                                     $scope.paginaActual=1;
                                     $scope.totalPaginas=1;
@@ -158,8 +159,9 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                        }
 
                                       $scope.cargarCurriculum = function(postID){
-                                        $scope.showModal = false;
+                                        
                                         $location.path('/subirCV/'+ postID);
+
                                       }
                                        $scope.guardar = function(){
                                           var postulante=postulanteCreateService.create({ postulante: $scope.postulante }, function(){
@@ -193,8 +195,10 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                        }
 
                                       $scope.modalCV = function(postID){
+
                                         $scope.showModal_cv = true;
                                         $scope.postulant = postulanteShowUpdateService.show({ id: postulante._id });
+
                                       }
 
 
@@ -203,7 +207,9 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                       $scope.showModal2 = false;
                                 }
                                 $scope.toggleModal = function (postID) {
+                                    
                                     $scope.showModal = true;
+                                    $scope.habilidades = habilidadService.query();
                                     $scope.postulant = postulanteShowUpdateService.show({ id: postID });
 
                                 };

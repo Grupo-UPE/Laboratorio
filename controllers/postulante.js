@@ -93,45 +93,15 @@ exports.totalPostulantes = function (req, res, next) {
 
 exports.show = function (req, res, next) {
   var id = req.params.id
-
-  Postulante.findById(id, gotPostulante)
-
-  function gotPostulante (err, postulante) {
-    if (err) {
-      console.log(err)
-      return next(err)
-   }
-
-
-    var postulantedto={
-                _id                 : postulante._id,
-                nombre              : postulante.nombre,
-                apellido            : postulante.apellido,
-                dni                 : postulante.dni,
-                estado_civil        : postulante.estado_civil,
-                nacionalidad        : postulante.nacionalidad,
-                edad                : postulante.edad,
-                sexo                : postulante.sexo,
-                telefono            : postulante.telefono,
-                email               : postulante.email,
-                disponibilidad      : postulante.disponibilidad,
-                comentario          : postulante.comentario,
-                habilidades         : postulante.habilidades,
-                fotoUrl             : postulante.fotoUrl,
-                curriculumURL       : postulante.curriculumURL
-
-
-            }
-
-
-    return res.json(postulantedto)
-  }
+  Postulante
+    .findOne({ _id: id })
+    .populate('habilidades')
+    .exec(function (err, postulantedto) {
+        if (err) return handleError(err);
+        return res.json(postulantedto)
+    })
 };
 
-//actualizacion del postulante
-exports.actualizar = function(){
-
-}
 
 
 
@@ -151,6 +121,17 @@ exports.update = function (req, res, next) {
     var disponibilidad = req.body.postulante.disponibilidad;
     var comentario = req.body.postulante.comentario;
     var _id=mongoose.Types.ObjectId(req.body.postulante._id);
+
+    Postulante
+    .findOne({ _id: id })
+    .populate('habilidades')
+    .exec(function (err, postulantedto) {
+        if (err) return handleError(err);
+        return res.json(postulantedto)
+  
+    })
+
+
 
     Postulante.findById(_id, gotPostulante)
 
@@ -375,6 +356,9 @@ exports.uploadDoc = function(req,res,next){
                     return res.send({ 'error': 'ID invalido' })
                  }
                 else {
+                    try{
+
+
                     var path_tmp_cv = req.files.file.path;
                     gapi.a.setCredentials(req.session.tokens);
                     gapi.drive.files.insert({
@@ -411,7 +395,10 @@ exports.uploadDoc = function(req,res,next){
                         return res.redirect('/#/postulantes/reload')
                         }
 
+                }catch(err){
+                    return res.send('error: '+  err)
                 }
+            }
 }}};
 
 
