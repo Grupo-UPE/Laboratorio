@@ -97,6 +97,8 @@ app.post('/REST/create-postulante', postulante.create);
 
 app.get('/REST/totalPostulantes/:estado', postulante.totalPostulantes);
 app.get('/REST/totalPostulantes', postulante.totalPostulantes);
+app.get('/REST/habillidadesPostulante/:postulante', postulante.getHabilidades);
+
 
 
 

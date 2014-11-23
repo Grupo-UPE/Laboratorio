@@ -134,9 +134,11 @@ app.controller('entrevistasUsuarioCTRL', ['$scope', '$rootScope', '$cookieStore'
 }]);
 
 app.controller('modalEntrevistas',
-    function ($scope, $modalInstance, entrevista, guardarFeedback) {
+    function ($scope, $modalInstance, entrevista, guardarFeedback,habillidadesPostulante) {
 
       $scope.entrevista = entrevista;
+      $scope.habilidades = habillidadesPostulante.get({postulante:entrevista.postulante._id});
+
       $scope.guardar = function(){
             guardarFeedback.guardar({entrevista:$scope.entrevista._id, semaforo:$scope.entrevista.semaforo,
                             comentario:$scope.entrevista.comentario});
