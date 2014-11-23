@@ -439,3 +439,19 @@ Postulante.find({
    return res.json(postulante)
   }
 };
+
+exports.getHabilidades = function (req, res, next) {
+  var id = req.params.postulante
+
+  Postulante.findById(id, gotPostulante).populate('habilidades')
+
+  function gotPostulante (err, postulante) {
+    if (err) {
+      console.log(err)
+      return next(err)
+   }
+
+
+    return res.json(postulante.habilidades)
+  }
+};

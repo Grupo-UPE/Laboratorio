@@ -347,3 +347,10 @@ services.factory('totalPostulantes', function ($resource) {
         get: { method: 'GET' , params: {}, isArray: false },
     });
 });
+
+services.factory('habillidadesPostulante', function ($resource) {
+    return $resource('/REST/habillidadesPostulante/:postulante', {}, {
+        get: { method: 'GET' , params: {}, isArray: true },
+    });
+});
+
