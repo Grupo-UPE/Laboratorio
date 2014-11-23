@@ -14,7 +14,7 @@ var Busqueda = require('../models/busqueda');
 var Habilidad = require('../models/habilidad');
 var config = require('../config/config');
 
-exports.install = function(){
+exports.install = function(req, res){
 var roles=[{nombre:"admin"},{nombre:"rrhh"},{nombre:"entrevistador"}];
 var administrador=config.ADMIN;
 var rrhh=config.RRHH;
@@ -66,5 +66,6 @@ for(var i = 0; i < count; i++) { //Dicen que es mas rapido esto que for(var algo
     habilidad.save();
 }
 
+res.render('install.jade', '');
 
 }

@@ -1,0 +1,15 @@
+extends layout
+block content
+    .container
+        .col-lg-4.col-md-4.col-sm-12.col-xs-12.col-lg-offset-4.col-md-offset-4
+                h2 Aplicacion instalada
+                div.alert.alert-success
+                    strong Instalacion exitosa!
+                    span  Ya se encuentra instalada la aplicacion. Ahora puede ingresar con la cuenta de Google que definio en la configuracion.
+                p.
+                    Ingresar a la aplicacion con la cuenta de Google
+                a.btn.btn-lg.btn-primary.btn-block(href= "/login")= "Ingresar"
+                br
+                div.alert.alert-danger
+                    strong Borre o renombre el archivo controllers/install.js!
+                    span  Para asegurar su aplicacion debe borrar el archivo install.js que se encuentra en la carpeta controllers.
