@@ -417,17 +417,15 @@ exports.uploadDoc = function(req,res,next){
 
 exports.busca = function (req, res, next) {
 
-	var name = req.body.nombre;
-	var apell = req.body.apellido;
-	var email = req.body.email;
+	var string = req.body.texto;
 
 Postulante.find({
     "$or": [{
-        "nombre": name
+        "nombre": string
     }, {
-        "apellido": apell
+        "apellido": string
     }, {
-        "email": email
+        "email": string
     }]
 }, gotPostulante);
   function gotPostulante (err, postulante) {

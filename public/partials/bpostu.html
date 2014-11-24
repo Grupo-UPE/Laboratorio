@@ -42,48 +42,20 @@
 
 
  <div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h2>Formulario Postulante</h2>
-            <hr>
-                <div class="row">
-                    <form method="post" ng-submit="buscar()" role="form" name="frmPostulante">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="bpostulante.nombre">Nombre:</label>
-                                <input class="form-control" type="text" ng-model="bpostulante.nombre" placeholder="Ingrese el nombre..." >
-                            </div>
-                            
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="bpostulante.apellido">Apellido:</label>
-                                <input  class="form-control" type="text" ng-model="bpostulante.apellido" placeholder="Ingrese el apellido..." >
-                                
-					    </div>
-					    <div class="col-md-3">
-					<div > 
-						<button  id="refresh" class="btn btn-success" >Refresh</button>
-					</div>
-				</div>
-                        </div>              
-                        <div class="col-md-3">
-                            <div class="form-group" >
-                             <label for="bpostulante.email">Email:</label>
-                             <input class="form-control" type="email"  ng-model="bpostulante.email" placeholder="postulante@mail">
-                                <div ng-show="frmPostulante.email.$invalid">
-                                    <p class="help-block text-danger" ng-show="frmPostulante.email.$invalid">Email invalido</p>
-                                </div>
-                            </div> 
-                    			                       
-				<div class="col-md-3">
-					<div >
-						<button type="submit" class="btn btn-success" >Buscar</button>  
-					</div>
-				</div>
-				
-				</div>
-     
-               </form>
-
+    <h2>Formulario Postulante</h2>
+    <hr>
+        <div class="row">
+            <form method="post" ng-submit="buscar()" role="form" name="frmPostulante">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="bpostulante.texto">Nombre, Apellido o Mail:</label>
+                        <input class="form-control" type="text" ng-model="bpostulante.texto" placeholder="Ingrese el nombre...">                        	                       
+                        <button type="submit" class="btn btn-success" >Buscar</button> 
+                     
+                    </div>
                 </div>
 
+            </form>
         </div>
+</div>
+

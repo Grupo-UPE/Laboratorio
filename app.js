@@ -17,7 +17,6 @@ gapi = require('./lib/gapi');
 //tagmanager = require('./node_modules/tagmanager/tagmanager');
 var app = express();
 
-var texto  = require('./controllers/texto')
 var usuario  = require('./controllers/usuario')
 var rol  = require('./controllers/rol')
 var busqueda = require('./controllers/busqueda')
@@ -40,6 +39,7 @@ var login = require('./controllers/login');
 var calendar = require('./controllers/calendar');
 var mail= require('./controllers/sendMail');
 var bpostu = require('./controllers/postulante');
+var importarCSV = require('./controllers/importCSV');
 
 //Esto seria algo algo como el instalador.
 var install = require('./controllers/install');
@@ -105,6 +105,8 @@ app.get('/REST/totalPostulantes', postulante.totalPostulantes);
 app.post('/uploadImage', postulante.uploadImage);
 app.post('/uploadDoc', postulante.uploadDoc);
 
+//importacion de csv
+app.post('/import',importarCSV.parseo);
 
 //envio de mails
 app.get('/send',mail.enviomail);

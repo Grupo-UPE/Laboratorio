@@ -55,7 +55,17 @@
         <li ng-repeat="n in [] | range:totalPaginas"><a href ng-click="pagina(n)">{{n}}</a></li>
     </ul>
 </div>
-
+<div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<h2>Importacion CSV</h2>
+<hr>
+<form action="/import" method="post"  enctype="multipart/form-data">
+    <input type="file" name="filecsv"/>
+    <span class="fileupload-preview"></span>
+     <div class="form-group">
+        <button type="submit" ng-click="importar()" class="btn btn-success" >Procesar</button>
+    </div>
+</form>
+</div>
     <modal title="Informacion del Postulante" visible="showModal">
            <h1>{{postulant.nombre}} {{postulant.apellido}}</h1>
            <hr>

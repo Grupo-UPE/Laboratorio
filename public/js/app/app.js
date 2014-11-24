@@ -120,6 +120,12 @@ angular.module('ngdemo', ['ngRoute', 'ngUpload', 'angularFileUpload','ngCookies'
                     permisos : ['RRHH'] //Lo dejo no se el fin que le den.
                 });
 
+    //importacion csv
+    $routeProvider.when('/import',
+                {
+                    permisos : ['RRHH'] //Lo dejo no se el fin que le den.
+                });
+
     //busqueda postu
      $routeProvider.when('/bpostu',
                 {

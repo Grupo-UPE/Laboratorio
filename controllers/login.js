@@ -32,6 +32,8 @@ exports.callback = function(req, res) {
             var locals={
                 title:"Bienvenido!",
                 nombre:"UPE",
+                user:profile.displayName,
+                imagen:profile.image.url,
                 usuario:rv,
             }
             //console.log(rv);

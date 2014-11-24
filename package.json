@@ -18,7 +18,8 @@
     "ng-tags-input": "^2.1.1",
     "static-favicon": "~1.0.0",
     "connect-multiparty": "*",
-    "nodemailer": "0.3.29"
+    "nodemailer": "0.3.29",
+    "ya-csv": "*"
   },
   "description": "Laboratorio de Programacion ===========",
   "main": "app.js",
