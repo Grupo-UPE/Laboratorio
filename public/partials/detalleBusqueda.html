@@ -9,7 +9,6 @@
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                    <th>Info de contacto</th>
                      <th>Postulante</th>
                      <th>Habilidades del postulante</th>
                      <th>Acciones</th>
@@ -17,12 +16,12 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="postulante in busqueda.postulantes|filter:filtro">
-                       <td>{{postulante.nombre}}</td>
+                       <td>{{postulante.nombre}}, {{postulante.apellido}}</td>
                        <td>
                        <span ng-repeat="habilidad in postulante.habilidades">{{habilidad.nombre}} </span>
                        </td>
                        <td>
-                       <span><td><a class="btn btn-default" href="/#/generarentrevista/{{busqueda._id}}/{{postulante._id}}" ><span class="glyphicon glyphicon-check"></span> Generar entrevista </a></span><button class="btn btn-default" ng-click="openModal('lg',postulante)"><span class="glyphicon glyphicon-envelope"></span> Contactar</button></td>
+                       <span><a class="btn btn-default" href="/#/generarentrevista/{{busqueda._id}}/{{postulante._id}}" ><span class="glyphicon glyphicon-check"></span> Generar entrevista </a></span><button class="btn btn-default" ng-click="openModal('lg',postulante)"><span class="glyphicon glyphicon-envelope"></span> Contactar</button></td>
                     </tr>
 
                 </tbody>

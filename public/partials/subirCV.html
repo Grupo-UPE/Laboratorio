@@ -14,7 +14,7 @@
                 </div>
                 <div ng-if="isUploading!=0">
                 	<div class="form-group">
-                	<button ng-click="upload.abort()" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove" ng-click="guardar"> </span> Cancel Upload</button>
+                	<button ng-disabled="isUploading ===100" ng-click="upload.abort()" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove" ng-click="guardar"> </span> Cancel Upload</button>
                 </div>
                 </div>
                 
@@ -28,6 +28,9 @@
 						    <span class="sr-only">{{isUploading}}% completado</span>
 						  </div>
 				</div>
+                <div ng-if="isUploading !=0">
+                    <span> {{isUploading}}% completado</span>
+                </div>
 				<button type="button" class="btn btn-warning" ng-click="volver()">Volver</button>
             </div>
 		</form>

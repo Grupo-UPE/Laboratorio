@@ -80,7 +80,13 @@ services.factory('rolCreateService', function ($resource) {
 /*Postulantes */
 
 services.factory('postulanteService', function ($resource) {
-    return $resource('/REST/postulante/:pagina', {}, {
+    return $resource('/REST/postulante', {}, {
+        query: { method: 'GET', params: {}, isArray: true }, //trae todos los postulantes
+    });
+});
+
+services.factory('postulantePaginadoService', function ($resource) {
+    return $resource('/REST/postulante/pagina/:pagina', {}, {
         query: { method: 'GET', params: {}, isArray: true }, //trae todos los postulantes
     });
 });
@@ -341,3 +347,10 @@ services.factory('totalPostulantes', function ($resource) {
         get: { method: 'GET' , params: {}, isArray: false },
     });
 });
+
+services.factory('habillidadesPostulante', function ($resource) {
+    return $resource('/REST/habillidadesPostulante/:postulante', {}, {
+        get: { method: 'GET' , params: {}, isArray: true },
+    });
+});
+

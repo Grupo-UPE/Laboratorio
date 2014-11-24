@@ -138,10 +138,12 @@
                                 <input class="form-control" type="email" id="email" ng-model="postulante.email" placeholder="Ingrese Email..." required >
                             </div>
                         </div>
-                        <div class="col-md-3">
+                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="habilidad">Habilidades:</label>
-                                <textarea class="form-control" id="habilidad" ng-model="postulante.habilidad"></textarea>
+                                <tags-input ng-model="postulante.habilidades" id="habilidad">
+                                <auto-complete source="loadTags($query)"></auto-complete>
+                        </tags-input>
                             </div>
                         </div>
                         <div class="col-md-3">

@@ -1,16 +1,16 @@
 <div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div class="panel-heading">
-            <h3 class="panel-title">Editar usuario {{usuario}}</h3>
+            <h3 class="panel-title">Editar usuario {{usr.username}}</h3>
     </div>
     <div class="panel-body">
         <form action="" ng-submit="guardar()" method="POST" class="form-horizontal" role="form">
             <div class="form-group col-sm-5 col-md-5 col-lg-5">
                 <legend>Datos del usuario</legend>
-                    <input type="hidden" name="_id" id="_id" class="form-control" value="{{usuario._id}}" ng-model="usuario._id">
+                    <input type="hidden" name="_id" id="_id" class="form-control" value="{{usr._id}}" ng-model="usuario._id">
                     <label for="username">Nombre de usuario</label>
                     <input type="text" class="form-control" id="username" placeholder="Nombre de Usuario" ng-model="usuario.username" required>
                     <label for="email">E-Mail</label>
-                    <input type="email" class="form-control" id="email" placeholder="em@il" ng-model="usuario.email" required>
+                    <input type="email" class="form-control" id="email" placeholder="em@il" ng-model="usr.email" required>
 
             </div>
             <div class="col-sm-1 col-md-1 col-lg-1">
@@ -19,7 +19,7 @@
             <div class="form-group col-sm-5 col-md-5 col-lg-5">
                     <legend>Rol</legend>
                     <label for="rol">Rol</label><br />
-                    <select  size="5" id="rol" ng-model="usuario.rol" ng-options="r.nombre for r in listaRoles" required class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></select>
+                    <select  size="5" id="rol" ng-model="usr.rol" ng-options="r.nombre for r in listaRoles" required class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></select>
             </div>
             <div class="form-group">
                 <div class="col-sm-10 col-sm-offset-2">

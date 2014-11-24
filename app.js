@@ -89,7 +89,7 @@ app.get('/REST/rol', rol.list)
 //rutas para los postulantes
 
 app.get('/REST/postulante', postulante.list);
-app.get('/REST/postulante/:pagina', postulante.list);
+app.get('/REST/postulante/pagina/:pagina', postulante.list);
 app.get('/REST/postulante/:id', postulante.show);
 app.post('/REST/postulante', postulante.update);
 app.post('/REST/delete-postulante', postulante.remove);
@@ -97,6 +97,8 @@ app.post('/REST/create-postulante', postulante.create);
 
 app.get('/REST/totalPostulantes/:estado', postulante.totalPostulantes);
 app.get('/REST/totalPostulantes', postulante.totalPostulantes);
+app.get('/REST/habillidadesPostulante/:postulante', postulante.getHabilidades);
+
 
 
 
