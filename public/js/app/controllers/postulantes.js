@@ -241,6 +241,10 @@ app.controller('postulanteListCTRL', ['$scope', '$rootScope', '$cookieStore', '$
                                            $location.path('/postulantes');
                                        };
 
+                                       $scope.loadTags = function (query) { //Podriamos usar un service tambien. Pero como es bastante sencillo no se si nos conviene.
+                                           return $http.get('/REST/tags/' + query);
+                                       }
+
                                        $scope.volver = function () {
                                            $location.path('/postulantes');
                                        }

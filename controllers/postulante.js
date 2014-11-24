@@ -15,7 +15,7 @@ exports.create = function (req, res, next) {
     var telefono = req.body.postulante.telefono;
     var email = req.body.postulante.email;
     var disponibilidad = req.body.postulante.disponibilidad;
-     var habilidades=[];
+    var habilidades=[];
     for (var id in req.body.postulante.habilidades) {
         habilidades.push(req.body.postulante.habilidades[id]["_id"]);
     }
@@ -120,18 +120,12 @@ exports.update = function (req, res, next) {
     var email = req.body.postulante.email;
     var edad = req.body.postulante.edad;
     var disponibilidad = req.body.postulante.disponibilidad;
+    var habilidades=[];
+    for (var id in req.body.postulante.habilidades) {
+        habilidades.push(req.body.postulante.habilidades[id]["_id"]);
+    }
     var comentario = req.body.postulante.comentario;
     var _id=mongoose.Types.ObjectId(req.body.postulante._id);
-
-    Postulante
-    .findOne({ _id: id })
-    .populate('habilidades')
-    .exec(function (err, postulantedto) {
-        if (err) return handleError(err);
-        return res.json(postulantedto)
-  
-    })
-
 
 
     Postulante.findById(_id, gotPostulante)
@@ -157,7 +151,7 @@ exports.update = function (req, res, next) {
             postulante.email = email;
             postulante.disponibilidad = disponibilidad;
             postulante.comentario = comentario;
-            postulante.habilidad = [];
+            postulante.habilidades = habilidades;
             postulante.save(onSaved)
         }
     }
