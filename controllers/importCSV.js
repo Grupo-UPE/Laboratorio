@@ -15,60 +15,63 @@ function createDocRecurse (err) {
         console.log(err);
         process.exit(1);
     }
-console.log(PostuList.length);
+
     if (PostuList.length>1) {
         //quito titulos del archivo
         var line = PostuList.shift();
-        var habilidad=[];     
-        var algo=line.split(';');
+        var habilidadObject=[];     
+        var csvParser=line.split(';');
+        var habilidadParser=csvParser[11].split(',');
 
-        var viene=['JAVA','SQL','java'];
-        viene.forEach(function(habi,i){
+        habilidadParser.forEach(function(habi,i){
             Habilidad.find({nombre:habi},function (err, habilidades){
+                 if (err) {
+                      console.log('Fallo la creacion de habilidad: '+err)
+                      //return next()
+                    }
                 if(habilidades==''){
                     var habilidad = new Habilidad({
                             nombre: habi,
-                        });  
+                        }); 
+
                     habilidad.save();
                 }
             });
         });
 
-        Habilidad.find({nombre:{$in:viene}},gotHabilidades)
+        Habilidad.find({nombre:{$in:habilidadParser}},gotHabilidades)
                 function gotHabilidades (err, habilidades) {
                     if (err) {
-                      console.log(err)
+                      console.log('Fallo la busqueda de habilidades'+err)
                       //return next()
                     }
                     for (var id in habilidades) {
-                        habilidad.push(habilidades[id]["_id"]);
+                        habilidadObject.push(habilidades[id]["_id"]);
                     }
 
                     var doc = new Postulante({
-                    nombre: algo[0],
-                    apellido: algo[1],
-                    dni: algo[2],
-                    estado_civil: algo[3],
-                    nacionalidad: algo[4],
-                    edad: algo[5],
-                    sexo: algo[6],
-                    telefono: algo[7],
-                    email: algo[8],
-                    disponibilidad: algo[9],
-                    comentario: algo[10],
-                    habilidades : habilidad,
+                    nombre: csvParser[0],
+                    apellido: csvParser[1],
+                    dni: csvParser[2],
+                    estado_civil: csvParser[3],
+                    nacionalidad: csvParser[4],
+                    edad: csvParser[5],
+                    sexo: csvParser[6],
+                    telefono: csvParser[7],
+                    email: csvParser[8],
+                    disponibilidad: csvParser[9],
+                    comentario: csvParser[10],
+                    habilidades : habilidadObject,
                     fotoUrl : false
                     });
 
-                     if(algo[0]!=''){
+                     if(csvParser[0]!=''){
                        doc.save(createDocRecurse);
                      }
                 }
 
     } else {
-        // After the last entry query to show the result.
-        //queryAllEntries();
-        console.log('termino');
+        // Al final retorno
         res.redirect('http://127.0.0.1:3000/#/postulantes');
     }
 }
