@@ -398,8 +398,8 @@ exports.uploadDoc = function(req,res,next){
 
 
 exports.busca = function (req, res, next) {
-
-	var string = req.body.texto;
+            //var re = new RegExp(req.params.query,'i');
+	var string = new RegExp(req.body.texto,'i');//req.body.texto;
 
 Postulante.find({
     "$or": [{
