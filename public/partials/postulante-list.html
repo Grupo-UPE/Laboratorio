@@ -55,17 +55,37 @@
         <li ng-repeat="n in [] | range:totalPaginas"><a href ng-click="pagina(n)">{{n}}</a></li>
     </ul>
 </div>
-<div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
-<h2>Importacion CSV</h2>
-<hr>
-<form action="/import" method="post"  enctype="multipart/form-data">
-    <input type="file" name="filecsv"/>
-    <span class="fileupload-preview"></span>
-     <div class="form-group">
-        <button type="submit" ng-click="importar()" class="btn btn-success" >Procesar</button>
-    </div>
-</form>
-</div>
+
+            <div class="panel panel-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h2>  Importacion CSV</h2>
+                    
+
+                    <div class="panel-body">
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $( "#mostrar" ).click(function() {
+                                $("#formulario").toggle( "slow", function() {
+                                    //
+                                });
+                            });
+                        });
+                    </script>
+                        <button type="button" class="btn btn-danger" id="mostrar">Mostrar Ocultar</button><br><br>
+                       <form action="/import" method="post" id="formulario" style="display: none" enctype="multipart/form-data">
+                           <div class="fileupload fileupload-new" data-provides="fileupload">
+                        <span class="btn btn-primary btn-file"><span class="fileupload-new glyphicon glyphicon-search"> Selecionar CSV</span>
+                        <span class="fileupload-exists"> Cambiar</span>         <input type="file" name="filecsv" accept="application/csv" /></span>
+                        <span class="fileupload-preview"></span>
+                        <a href="#/postulanteCV" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                        </div> 
+                             <div class="form-group">
+                                <button type="submit" ng-click="importar()" class="btn btn-success" >Procesar</button>
+                            </div>
+                        </form>
+                </div>
+            </div>
+
+
     <modal title="Informacion del Postulante" visible="showModal">
            <h1>{{postulant.nombre}} {{postulant.apellido}}</h1>
            <hr>
@@ -147,20 +167,20 @@
                         <div class="col-md-3">
                             <div class="form-group" ng-class="{'has-error': frmPostulante.nombre.$invalid, 'has-success': frmPostulante.nombre.$valid}">
                                 <label for="nombre">Nombre:</label>
-                                <input class="form-control" type="text" id="nombre" name="nombre" ng-model="postulante.nombre" placeholder="Ingrese el nombre..." >
+                                <input class="form-control" type="text" id="nombre" name="nombre" ng-model="postulante.nombre" placeholder="Ingrese el nombre..." required>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group" ng-class="{'has-error': frmPostulante.apellido.$invalid, 'has-success': frmPostulante.apellido.$valid}">
                                 <label for="apellido">Apellido:</label>
-                                <input class="form-control" type="text" id="apellido" name="apellido" ng-model="postulante.apellido" placeholder="Ingrese el apellido..." >
+                                <input class="form-control" type="text" id="apellido" name="apellido" ng-model="postulante.apellido" placeholder="Ingrese el apellido..." required>
 
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group" ng-class="{'has-error': frmPostulante.dni.$invalid, 'has-success': frmPostulante.dni.$valid}">
                                 <label for="dni">DNI:</label>
-                                <input class="form-control" type="text" id="dni" name="postulante.dni" ng-model="postulante.dni" placeholder="Ingrese DNI" >
+                                <input class="form-control" type="text" id="dni" name="dni" ng-model="postulante.dni" placeholder="Ingrese DNI" required>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -259,19 +279,19 @@
                         <div class="col-md-3">
                             <div class="form-group" >
                                 <label for="edad">Edad:</label>
-                                <input class="form-control" type="text" id="edad" ng-model="postulante.edad" placeholder="Edad..." >
+                                <input class="form-control" type="text" id="edad" ng-model="postulante.edad" placeholder="Edad...">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="edad">Telefono:</label>
-                                <input class="form-control" type="text" id="telefono" ng-model="postulante.telefono" placeholder="Ingrese telefono..." >
+                                <input class="form-control" type="text" id="telefono" ng-model="postulante.telefono" placeholder="Ingrese telefono...">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group"  ng-class="{'has-error': frmPostulante.disponibilidad.$invalid, 'has-success': frmPostulante.disponibilidad.$valid}">
                                 <label for="disponibilidad">Disponibilidad:</label>
-                                <input class="form-control" type="text" id="disponibilidad" name="disponibilidad" ng-model="postulante.disponibilidad" placeholder="ej full-time..." >
+                                <input class="form-control" type="text" id="disponibilidad" name="disponibilidad" ng-model="postulante.disponibilidad" placeholder="ej full-time..." required>
                                 <div ng-show="frmPostulante.disponibilidad.$invalid">
                                     <p class="help-block text-danger" ng-show="frmPostulante.disponibilidad.$invalid">Campo Obligatorio.</p>
                                 </div>
@@ -280,7 +300,7 @@
                         <div class="col-md-3">
                             <div class="form-group" ng-class="{'has-error': frmPostulante.email.$invalid, 'has-success': frmPostulante.email.$valid}">
                                 <label for="emailP">Email:</label>
-                                <input class="form-control" type="email"  name="email" ng-model="postulante.email" placeholder="Usr@mail" >
+                                <input class="form-control" type="email"  name="email" ng-model="postulante.email" placeholder="Usr@mail" required>
                                 <div ng-show="frmPostulante.email.$invalid">
                                     <p class="help-block text-danger" ng-show="frmPostulante.email.$invalid">Email invalido</p>
                                 </div>
@@ -289,7 +309,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="habilidad">Habilidades:</label>
-                                <tags-input ng-model="postulante.habilidades" id="habilidad">
+                                <tags-input ng-model="postulante.habilidades" id="habilidad" required>
                                 <auto-complete source="loadTags($query)"></auto-complete>
                         </tags-input>
                             </div>
@@ -305,7 +325,7 @@
                             <div class="col-md-10"></div>
                             <div class="col-md-2">
                             <div class="form-group">
-                                <button type="submit" ng-click="guardar()" class="btn btn-success" ><span class="glyphicon glyphicon-plus"></span> Registrar postulante</button>
+                                <button type="submit" ng-click="guardar()" ng-disabled="frmPostulante.$invalid" class="btn btn-success" ><span class="glyphicon glyphicon-plus"></span> Registrar postulante</button>
                             </div>
                         </div>
                         </div>
