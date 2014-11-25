@@ -409,7 +409,7 @@ Postulante.find({
     }, {
         "email": string
     }]
-}, gotPostulante);
+}, gotPostulante).populate('habilidades');
   function gotPostulante (err, postulante) {
     if (err) {
       console.log(err)
